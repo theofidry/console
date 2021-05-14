@@ -19,6 +19,9 @@ use function implode;
 use const PHP_EOL;
 use function str_replace;
 
+/**
+ * Utility class which helps to compare command outputs.
+ */
 final class DisplayNormalizer
 {
     private function __construct()

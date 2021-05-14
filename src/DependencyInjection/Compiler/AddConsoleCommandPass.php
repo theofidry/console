@@ -21,6 +21,11 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
+/**
+ * Looks for all the console commands registered and registers them as regular
+ * Symfony commands. This allows to provide the API at minimal cost since it
+ * leverages all the FrameworkBundle work already done.
+ */
 final class AddConsoleCommandPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void

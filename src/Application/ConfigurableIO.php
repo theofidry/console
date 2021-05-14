@@ -17,5 +17,9 @@ use Fidry\Console\IO;
 
 interface ConfigurableIO
 {
+    /**
+     * Configures the input and output instances based on the user arguments and
+     * options. This is executed before running the application.
+     */
     public function configureIO(IO $io): void;
 }

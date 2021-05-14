@@ -18,6 +18,9 @@ use Symfony\Component\Console\Command\Command as BaseSymfonyCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Bridge between a traditional Symfony console command and the new Command API.
+ */
 final class SymfonyCommand extends BaseSymfonyCommand
 {
     private Command $command;

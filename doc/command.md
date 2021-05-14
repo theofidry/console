@@ -319,7 +319,7 @@ Commands have three lifecycle methods that are invoked when running the command:
 
 ### Testing Commands
 
-See [Symfony Testing Commands documentation][test-commands].
+See [Symfony Testing Commands documentation][testing-commands].
 
 
 ### Logging Command Errors

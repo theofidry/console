@@ -15,6 +15,12 @@ namespace Fidry\Console\Application;
 
 use function sprintf;
 
+/**
+ * Base class for an application which mimics the behaviour contained by the
+ * Symfony Application base class.
+ *
+ * @see \Symfony\Component\Console\Application
+ */
 abstract class BaseApplication implements Application
 {
     public function getLongVersion(): string

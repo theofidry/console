@@ -16,6 +16,9 @@ namespace Fidry\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * Represents the command configuration.
+ */
 final class Configuration
 {
     private string $name;

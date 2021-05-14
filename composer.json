@@ -1,8 +1,8 @@
 {
-    "name": "webmozarts/console",
+    "name": "fidry/console",
     "type": "library",
     "description": "Library to create CLI applications",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "Théo Fidry",

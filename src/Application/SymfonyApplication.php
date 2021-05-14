@@ -28,6 +28,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\Service\ResetInterface;
 
+/**
+ * Bridge to create a traditional Symfony application from the new Application
+ * API.
+ */
 final class SymfonyApplication extends BaseSymfonyApplication
 {
     private Application $application;

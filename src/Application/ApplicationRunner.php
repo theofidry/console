@@ -28,6 +28,13 @@ final class ApplicationRunner
         $this->application = new SymfonyApplication($application);
     }
 
+    /**
+     * Executes the given application command.
+     *
+     * @return int 0 if everything went fine, or an exit code
+     *
+     * @see ExitCode
+     */
     public static function runApplication(
         Application $application,
         ?InputInterface $input,
@@ -41,6 +48,9 @@ final class ApplicationRunner
         );
     }
 
+    /**
+     * @see ApplicationRunner::runApplication()
+     */
     public function run(?IO $io = null): int
     {
         if (null === $io) {
