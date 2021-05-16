@@ -57,16 +57,5 @@
         "psr-4": {
             "Fidry\\Console\\Tests\\": "tests"
         }
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../*",
-            "canonical": false
-        },
-        {
-            "type": "composer",
-            "url": "https://gitlab.webmozarts.com/api/v4/group/4/-/packages/composer/"
-        }
-    ]
+    }
 }
