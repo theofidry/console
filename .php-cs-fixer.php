@@ -12,7 +12,7 @@
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
-return Config::create()
+return (new Config())
     ->setUsingCache(true)
     ->setRiskyAllowed(true)
     ->setRules([
@@ -27,8 +27,10 @@ return Config::create()
         'compact_nullable_typehint' => true,
         'declare_strict_types' => true,
         'dir_constant' => true,
+        'echo_tag_syntax' => [
+            'format' => 'short',
+        ],
         'ereg_to_preg' => true,
-        'final_static_access' => true,
         'fopen_flag_order' => true,
         'fopen_flags' => true,
         'fully_qualified_strict_types' => true,
@@ -66,7 +68,6 @@ return Config::create()
         'no_binary_string' => true,
         'no_homoglyph_names' => true,
         'no_php4_constructor' => true,
-        'no_short_echo_tag' => true,
         'no_superfluous_elseif' => true,
         'no_unset_cast' => true,
         'no_unset_on_property' => true,
@@ -75,12 +76,12 @@ return Config::create()
         'nullable_type_declaration_for_default_null_value' => true,
         'ordered_class_elements' => true,
         'ordered_imports' => true,
+        'phpdoc_order_by_value' => true,
         'phpdoc_to_comment' => false,
         'php_unit_construct' => true,
         'php_unit_method_casing' => [
             'case' => 'snake_case',
         ],
-        'php_unit_ordered_covers' => true,
         'php_unit_set_up_tear_down_visibility' => true,
         'php_unit_test_case_static_method_calls' => [
             'call_type' => 'self'
