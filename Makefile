@@ -19,7 +19,7 @@ PSALM_BIN = vendor-bin/psalm/vendor/vimeo/psalm/psalm
 PSALM = $(PSALM_BIN) --no-cache
 PHP_CS_FIXER_BIN = vendor-bin/php-cs-fixer/vendor/friendsofphp/php-cs-fixer/php-cs-fixer
 # To keep in sync with the command defined in the parent Makefile
-PHP_CS_FIXER = $(PHP_CS_FIXER_BIN) fix --ansi --verbose --config=.php_cs
+PHP_CS_FIXER = $(PHP_CS_FIXER_BIN) fix --ansi --verbose --config=.php-cs-fixer.php
 
 
 .DEFAULT_GOAL := default
