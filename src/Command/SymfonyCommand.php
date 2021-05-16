@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Command;
 
 use Fidry\Console\IO;
+use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command as BaseSymfonyCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -28,6 +29,9 @@ final class SymfonyCommand extends BaseSymfonyCommand
     /** @psalm-suppress PropertyNotSetInConstructor */
     private IO $io;
 
+    /** @psalm-suppress PropertyNotSetInConstructor */
+    private CommandRegistry $commandRegistry;
+
     public function __construct(Command $command)
     {
         $this->command = $command;
@@ -35,6 +39,15 @@ final class SymfonyCommand extends BaseSymfonyCommand
         $name = $command->getConfiguration()->getName();
 
         parent::__construct($name);
+    }
+
+    public function setApplication(?Application $application = null): void
+    {
+        parent::setApplication($application);
+
+        if (null !== $application) {
+            $this->commandRegistry = new CommandRegistry($application);
+        }
     }
 
     protected function configure(): void
@@ -56,6 +69,10 @@ final class SymfonyCommand extends BaseSymfonyCommand
         $this->io = new IO($input, $output);
 
         $command = $this->command;
+
+        if ($command instanceof CommandAware) {
+            $command->setCommandRegistry($this->commandRegistry);
+        }
 
         if ($command instanceof InitializableCommand) {
             $command->initialize($this->io);
