@@ -16,6 +16,11 @@ namespace Fidry\Console\Command;
 use Fidry\Console\IO;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
+/**
+ * Bridge between a new Command API and a traditional Symfony console command.
+ *
+ * @private
+ */
 final class ReversedSymfonyCommand implements Command
 {
     private SymfonyCommand $command;

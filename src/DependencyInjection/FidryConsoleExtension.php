@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Fidry\Console\DependencyInjection;
 
 use Fidry\Console\Command\Command;
-use Fidry\Console\Command\CommandAware;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -32,8 +31,5 @@ final class FidryConsoleExtension extends Extension
         $container
             ->registerForAutoconfiguration(Command::class)
             ->addTag('fidry.console_command');
-        $container
-            ->registerForAutoconfiguration(CommandAware::class)
-            ->addTag('fidry.console_command', ['command_aware' => true]);
     }
 }

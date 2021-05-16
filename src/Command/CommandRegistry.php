@@ -16,6 +16,10 @@ namespace Fidry\Console\Command;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 
+/**
+ * Utility class which allows to easily access to the known commands of a given
+ * application.
+ */
 final class CommandRegistry
 {
     private Application $application;

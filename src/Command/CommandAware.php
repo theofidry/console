@@ -13,6 +13,12 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Command;
 
+/**
+ * Should be implemented by commands which requires access to other registered
+ * commands.
+ *
+ * @see CommandAwareness
+ */
 interface CommandAware extends Command
 {
     public function setCommandRegistry(CommandRegistry $commandRegistry): void;
