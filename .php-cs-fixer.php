@@ -103,6 +103,7 @@ return (new Config())
         Finder::create()
             ->in(__DIR__)
             ->exclude([
+                'dist',
                 'tests/Integration/var/cache/',
                 'tests/Integration/var/logs/',
             ]),

@@ -29,6 +29,7 @@ trait CommandAwareness
 
     private function getCommandRegistry(): CommandRegistry
     {
+        /** @psalm-suppress RedundantPropertyInitializationCheck */
         if (!isset($this->_commandRegistry)) {
             throw new LogicException('Expected the command registry to be configured');
         }

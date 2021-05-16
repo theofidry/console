@@ -30,6 +30,7 @@
         },
         "MethodCallRemoval": {
             "ignore": [
+                "Fidry\\Console\\Command\\SymfonyCommand::setApplication",
                 "Fidry\\Console\\IO::__construct"
             ]
         },

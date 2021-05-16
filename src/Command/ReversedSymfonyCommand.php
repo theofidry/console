@@ -28,7 +28,7 @@ final class ReversedSymfonyCommand implements Command
     public function getConfiguration(): Configuration
     {
         return new Configuration(
-            $this->command->getName(),
+            $this->command->getName() ?? '',
             $this->command->getDescription(),
             $this->command->getHelp(),
             $this->command->getDefinition()->getArguments(),
