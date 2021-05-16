@@ -332,6 +332,8 @@ log message whenever a command does not finish with the `0` exit status.
 
 ### Learn More
 
+- [How to Call Other Commands](./call-other-commands.md)
+
 See [Symfony Learn More documentation][learn-more].
 
 

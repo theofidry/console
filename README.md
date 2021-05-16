@@ -89,6 +89,7 @@ With the bundle enabled, those services are auto-configured into traditional Sym
 ### Complete documentation
 
 - [Command](./doc/command.md)
+- [How to Call Other Commands](./doc/call-other-commands.md)
 - [Application](./doc/application.md)
 
 
