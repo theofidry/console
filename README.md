@@ -7,6 +7,11 @@ It can be used either in combination with [`FrameworkBundle`][FrameworkBundle] t
 facilitate the creation of commands or as a stand-alone package to create a CLI
 application app.
 
+Key differences:
+    - Implement interfaces instead of extending classes
+    - An `IO` object which provides typed arguments and options
+    - An `IO` object instead of an input & output object
+
 
 ## Table of Contents
 
