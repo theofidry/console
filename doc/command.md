@@ -340,7 +340,7 @@ See [Symfony Learn More documentation][learn-more].
 <br />
 <hr />
 
-« [Table of Contents](../README.md#table-of-contents) • [Application](application.md) »
+« [Table of Contents](../README.md#table-of-contents) • [How to Call Other Commands](call-other-commands.md) »
 
 
 [testing-commands]: https://symfony.com/doc/current/console.html#testing-commands
