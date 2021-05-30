@@ -10,8 +10,9 @@ application app.
 Key differences:
 
 - Implement interfaces instead of extending classes
-- An `IO` object which provides typed arguments and options
-- An `IO` object instead of an input & output object
+- Leverages an `IO` object instead of Input + Output + SymfonyStyle which offers:
+    - The API of SymfonyStyle but still access to the Input and Output objects
+    - A typed API for arguments and options
 
 
 ## Table of Contents
