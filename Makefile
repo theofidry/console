@@ -115,10 +115,10 @@ $(COVERAGE_DIR): $(PHPUNIT_BIN) src tests phpunit.xml.dist
 	$(TOUCH) "$@"
 
 $(PHP_CS_FIXER_BIN):
-	$(MAKE) --directory ../.. vendor-bin/php-cs-fixer/vendor
+	composer bin php-cs-fixer install
 
 $(PSALM_BIN):
-	$(MAKE) --directory ../.. vendor-bin/psalm/vendor/bin/psalm
+	composer bin psalm install
 
 $(COVERS_VALIDATOR_BIN):
-	$(MAKE) --directory ../.. vendor-bin/covers-validator/vendor/bin/covers-validator
+	composer bin covers-validator install

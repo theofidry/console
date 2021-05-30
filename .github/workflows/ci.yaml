@@ -1,0 +1,42 @@
+name: CI
+
+on:
+    push:
+        branches: [ master ]
+    pull_request:
+
+jobs:
+    tests:
+        runs-on: 'ubuntu-latest'
+        name: "Test ${{ matrix.php }}"
+        strategy:
+            fail-fast: true
+            matrix:
+                php: [ "7.4", "8.0" ]
+
+        steps:
+            -   name: 'Check out repository code'
+                uses: actions/checkout@v2
+
+            -   name: 'Get composer cache directory'
+                id: composercache
+                run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+            -   name: 'Cache composer dependencies'
+                uses: actions/cache@v2
+                with:
+                    path: ${{ steps.composercache.outputs.dir }}
+                    key: composer-${{ runner.os }}-${{ matrix.php }}-${{ hashFiles('composer.*') }}
+                    restore-keys: |
+                        composer-${{ runner.os }}-${{ matrix.php }}-
+                        composer-${{ runner.os }}-
+                        composer-
+
+            -   name: 'Install dependencies'
+                run: composer install --no-interaction --no-progress --no-suggest --prefer-dist
+
+            -   name: 'Install tools'
+                run: composer bin all install --no-interaction --no-progress --no-suggest --prefer-dist
+
+            -   name: 'Run tests'
+                run: make
