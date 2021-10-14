@@ -94,13 +94,13 @@ final class IO extends SymfonyStyle
     }
 
     /**
-     * @return string[]
+     * @return list<string>
      */
-    public function getStringArrayArgument(string $name): array
+    public function getStringListArgument(string $name): array
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsArray($argument);
+        ConsoleAssert::assertIsList($argument);
 
         return $argument;
     }
@@ -125,13 +125,13 @@ final class IO extends SymfonyStyle
     }
 
     /**
-     * @return int[]
+     * @return list<int>
      */
-    public function getIntegerArrayArgument(string $name): array
+    public function getIntegerListArgument(string $name): array
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsArray($argument);
+        ConsoleAssert::assertIsList($argument);
 
         return array_map(
             static function ($element): int {
@@ -163,13 +163,13 @@ final class IO extends SymfonyStyle
     }
 
     /**
-     * @return float[]
+     * @return list<float>
      */
-    public function getFloatArrayArgument(string $name): array
+    public function getFloatListArgument(string $name): array
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsArray($argument);
+        ConsoleAssert::assertIsList($argument);
 
         return array_map(
             static function ($element): float {
@@ -218,13 +218,13 @@ final class IO extends SymfonyStyle
     }
 
     /**
-     * @return string[]
+     * @return list<string>
      */
-    public function getStringArrayOption(string $name): array
+    public function getStringListOption(string $name): array
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsArray($option);
+        ConsoleAssert::assertIsList($option);
 
         return $option;
     }
@@ -249,13 +249,13 @@ final class IO extends SymfonyStyle
     }
 
     /**
-     * @return int[]
+     * @return list<int>
      */
-    public function getIntegerArrayOption(string $name): array
+    public function getIntegerListOption(string $name): array
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsArray($option);
+        ConsoleAssert::assertIsList($option);
 
         return array_map(
             static function ($element): int {
@@ -287,13 +287,13 @@ final class IO extends SymfonyStyle
     }
 
     /**
-     * @return float[]
+     * @return list<float>
      */
-    public function getFloatArrayOption(string $name): array
+    public function getFloatListOption(string $name): array
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsArray($option);
+        ConsoleAssert::assertIsList($option);
 
         return array_map(
             static function ($element): float {
@@ -328,7 +328,7 @@ final class IO extends SymfonyStyle
     }
 
     /**
-     * @return null|bool|string|string[]
+     * @return null|bool|string|list<string>
      */
     private function getOption(string $name)
     {

@@ -182,22 +182,22 @@ final class IOTest extends TestCase
     {
         yield 'int' => [
             10,
-            'Expected an option value type to be "null|bool|string|string[]". Got "int"',
+            'Expected an option value type to be "null|bool|string|list<string>". Got "int"',
         ];
 
         yield 'float' => [
             10.8,
-            'Expected an option value type to be "null|bool|string|string[]". Got "float"',
+            'Expected an option value type to be "null|bool|string|list<string>". Got "float"',
         ];
 
         yield 'object' => [
             new stdClass(),
-            'Expected an option value type to be "null|bool|string|string[]". Got "stdClass"',
+            'Expected an option value type to be "null|bool|string|list<string>". Got "stdClass"',
         ];
 
         yield 'closure' => [
             static fn () => '',
-            'Expected an option value type to be "null|bool|string|string[]". Got "Closure"',
+            'Expected an option value type to be "null|bool|string|list<string>". Got "Closure"',
         ];
     }
 
