@@ -25,12 +25,32 @@ Key differences:
     - [Composer](#composer)
 - [Complete documentation](#complete-documentation)
     - [Command](./doc/command.md)
+        - [Creating a command](.doc/command.md#creating-a-command)
+        - [Configuring the Command](.doc/command.md#configuring-the-command)
+        - [Registering the Command](.doc/command.md#registering-the-command)
+        - [Executing the Command](.doc/command.md#executing-the-command)
+        - [Console Output](.doc/command.md#console-output)
+        - [Output Sections](.doc/command.md#output-sections)
+        - [Console Input](.doc/command.md#console-input)
+        - [Getting Services from the Service Container](.doc/command.md#getting-services-from-the-service-container)
+        - [Command Lifecycle](.doc/command.md#command-lifecycle)
+        - [Testing Commands](.doc/command.md#testing-commands)
+        - [Logging Command Errors](.doc/command.md#logging-command-errors)
+        - [Learn More](.doc/command.md#learn-more) 
     - [Application](./doc/application.md)
+        - [Creating an application](./doc/application.md#creating-an-application)
+        - [Executing an Application](./doc/application.md#executing-an-application)
 - [Known Limitations](#known-limitations)
 - [Contributing](#contributing)
 
 
 ### Installation with Symfony
+
+```
+$ composer require theofidry/console
+```
+
+The Symfony Flex plugin should add the following:
 
 ```php
 <?php declare(strict_types=1);
@@ -91,14 +111,6 @@ final class CommandWithService implements Command
 ```
 
 With the bundle enabled, those services are auto-configured into traditional Symfony commands.
-
-
-### Complete documentation
-
-- [Command](./doc/command.md)
-    - [How to Call Other Commands](./doc/call-other-commands.md)
-    - [How to Make Commands Lazily Loaded](./doc/lazy-commands.md)
-- [Application](./doc/application.md)
 
 
 ### Known limitations
