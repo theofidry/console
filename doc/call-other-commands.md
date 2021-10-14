@@ -59,4 +59,4 @@ final class CreateUserCommand implements Command, CommandAware
 <br />
 <hr />
 
-« [Console](command.md) • [How to Make Commands Lazily Loaded](lazy-commands.md) »
+« [Console](command.md) • [How to Make Commands Lazily Loaded](lazy-command.md) »

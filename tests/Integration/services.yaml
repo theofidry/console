@@ -10,5 +10,27 @@ services:
     Fidry\Console\Tests\Command\Fixture\:
         resource: '../Command/Fixture'
 
+    app.simple_command:
+        class: Fidry\Console\Tests\Command\Fixture\SimpleCommand
+        autoconfigure: false
+
+    app.simple_lazy_1:
+        class: Fidry\Console\Command\SymfonyCommand
+        arguments:
+            - '@app.simple_command'
+        tags:
+            - name: 'console.command'
+              command: 'app:simple-lazy-1'
+              description: 'First instance of a "traditional" lazy Symfony command'
+
+    app.simple_lazy_2:
+        class: Fidry\Console\Command\SymfonyCommand
+        arguments:
+            - '@app.simple_command'
+        tags:
+            - name: 'console.command'
+              command: 'app:simple-lazy-2'
+              description: 'Second instance of a "traditional" lazy Symfony command'
+
     Fidry\Console\Tests\StatefulService:
         public: true

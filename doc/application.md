@@ -128,7 +128,7 @@ ApplicationRunner::runApplication(new MyApplication());
 <br />
 <hr />
 
-« [How to Make Commands Lazily Loaded](lazy-commands.md) • [Table of Contents](../README.md#table-of-contents) »
+« [How to Make Commands Lazily Loaded](lazy-command.md) • [Table of Contents](../README.md#table-of-contents) »
 
 
 [demo-console]: https://github.com/symfony/demo/blob/main/bin/console
