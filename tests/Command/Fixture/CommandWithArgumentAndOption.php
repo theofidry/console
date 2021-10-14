@@ -66,13 +66,11 @@ final class CommandWithArgumentAndOption implements Command
         return ExitCode::SUCCESS;
     }
 
-    /** @psalm-suppress InvalidNullableReturnType, InvalidReturnStatement, InvalidReturnType, NullableReturnStatement */
     private static function getArg(IO $io): string
     {
         return $io->getInput()->getArgument('arg');
     }
 
-    /** @psalm-suppress InvalidNullableReturnType, InvalidReturnStatement, InvalidReturnType, NullableReturnStatement */
     private static function getOpt(IO $io): bool
     {
         return $io->getInput()->getOption('opt');
