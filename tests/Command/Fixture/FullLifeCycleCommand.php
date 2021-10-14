@@ -85,7 +85,6 @@ final class FullLifeCycleCommand implements Command, InitializableCommand, Inter
         return ExitCode::SUCCESS;
     }
 
-    /** @psalm-suppress InvalidNullableReturnType, InvalidReturnStatement, InvalidReturnType, NullableReturnStatement */
     private static function getUsername(IO $io): string
     {
         return $io->getInput()->getArgument('username');
