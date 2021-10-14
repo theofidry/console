@@ -37,6 +37,8 @@ Key differences:
         - [Testing Commands](./doc/command.md#testing-commands)
         - [Logging Command Errors](./doc/command.md#logging-command-errors)
         - [Learn More](./doc/command.md#learn-more)
+    - [How to Call Other Commands](./doc/call-other-commands.md)
+    - [How to Make Commands Lazily Loaded](./doc/lazy-command.md)
     - [Application](./doc/application.md)
         - [Creating an application](./doc/application.md#creating-an-application)
         - [Executing an Application](./doc/application.md#executing-an-application)
