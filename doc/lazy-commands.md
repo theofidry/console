@@ -20,11 +20,14 @@ final class CreateUserCommand implements LazyCommand
         return 'app:create-user';
     }
 
+    public static function getDescription(): string
+    {
+        return 'Adds a user';
+    }
+
     // ...
 }
 ```
-
-Note: Calling the `list` command will instantiate all commands, including lazy commands.
 
 
 <br />

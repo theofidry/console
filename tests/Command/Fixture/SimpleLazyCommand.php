@@ -31,6 +31,11 @@ final class SimpleLazyCommand implements LazyCommand
         return 'app:lazy';
     }
 
+    public static function getDescription(): string
+    {
+        return 'lazy command description';
+    }
+
     public function getConfiguration(): Configuration
     {
         return new Configuration(
