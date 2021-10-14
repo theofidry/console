@@ -47,7 +47,7 @@ final class TypeAssertions
         );
         self::assertExpectedType(
             $expected->stringArray,
-            static fn () => $io->getStringArrayArgument($argumentName),
+            static fn () => $io->getStringListArgument($argumentName),
         );
         self::assertExpectedType(
             $expected->integer,
@@ -59,7 +59,7 @@ final class TypeAssertions
         );
         self::assertExpectedType(
             $expected->integerArray,
-            static fn () => $io->getIntegerArrayArgument($argumentName),
+            static fn () => $io->getIntegerListArgument($argumentName),
         );
         self::assertExpectedType(
             $expected->float,
@@ -71,7 +71,7 @@ final class TypeAssertions
         );
         self::assertExpectedType(
             $expected->floatArray,
-            static fn () => $io->getFloatArrayArgument($argumentName),
+            static fn () => $io->getFloatListArgument($argumentName),
         );
     }
 
@@ -98,7 +98,7 @@ final class TypeAssertions
         );
         self::assertExpectedType(
             $expected->stringArray,
-            static fn () => $io->getStringArrayOption($optionName),
+            static fn () => $io->getStringListOption($optionName),
         );
         self::assertExpectedType(
             $expected->integer,
@@ -110,7 +110,7 @@ final class TypeAssertions
         );
         self::assertExpectedType(
             $expected->integerArray,
-            static fn () => $io->getIntegerArrayOption($optionName),
+            static fn () => $io->getIntegerListOption($optionName),
         );
         self::assertExpectedType(
             $expected->float,
@@ -122,7 +122,7 @@ final class TypeAssertions
         );
         self::assertExpectedType(
             $expected->floatArray,
-            static fn () => $io->getFloatArrayOption($optionName),
+            static fn () => $io->getFloatListOption($optionName),
         );
     }
 
