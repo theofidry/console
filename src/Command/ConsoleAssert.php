@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Command;
 
+use function array_is_list;
 use function get_debug_type;
 use function is_array;
 use function is_bool;
@@ -60,7 +61,7 @@ final class ConsoleAssert
     /**
      * @param mixed $option
      *
-     * @psalm-assert null|bool|string|string[] $argument
+     * @psalm-assert null|bool|string|list<string> $argument
      */
     public static function assertIsValidOptionType($option): void
     {
@@ -68,10 +69,10 @@ final class ConsoleAssert
             return;
         }
 
-        if (!is_array($option)) {
+        if (!is_array($option) || !array_is_list($option)) {
             throw new ConsoleInvalidArgumentException(
                 sprintf(
-                    'Expected an option value type to be "null|bool|string|string[]". Got "%s"',
+                    'Expected an option value type to be "null|bool|string|list<string>". Got "%s"',
                     get_debug_type($option),
                 ),
             );
@@ -104,13 +105,13 @@ final class ConsoleAssert
     /**
      * @param mixed $argument
      *
-     * @psalm-assert array $argument
+     * @psalm-assert list $argument
      */
-    public static function assertIsArray($argument): void
+    public static function assertIsList($argument): void
     {
         /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
-            static fn () => Assert::isArray(
+            static fn () => Assert::isList(
                 $argument,
                 sprintf(
                     'Cannot cast a non-array input argument into an array. Got the value "%s"',
