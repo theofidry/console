@@ -39,8 +39,8 @@ final class SimpleLazyCommand implements LazyCommand
     public function getConfiguration(): Configuration
     {
         return new Configuration(
-            self::getName(),    // TODO: add test to check that the lazy name takes over
-            '',
+            'app:not-lazy',
+            'non-lazy description',
             '',
         );
     }
