@@ -3,6 +3,9 @@
 - [Creating an application](#creating-an-application)
 - [Executing an Application](#executing-an-application)
 
+This library ships with an Application API for standalone apps (i.e. when not
+using [`FrameworkBundle`][FrameworkBundle] – otherwise you very unlikely need it).
+
 
 ### Creating an application
 
@@ -78,8 +81,6 @@ extend the class `Fidry\Console\Application\BaseApplication`.
 
 A traditional Symfony application CLI script looks as follow:
 
-You can optionally define a description, help message and the input options and arguments:
-
 ```php
 #!/usr/bin/env php
 <?php declare(strict_types=1);
@@ -124,6 +125,9 @@ ApplicationRunner::runApplication(new MyApplication());
 
 ```
 
+This application runner is a thin layer that allows to port back this library
+API to a regular Symfony application execution.
+
 
 <br />
 <hr />
@@ -132,3 +136,4 @@ ApplicationRunner::runApplication(new MyApplication());
 
 
 [demo-console]: https://github.com/symfony/demo/blob/main/bin/console
+[FrameworkBundle]: https://github.com/symfony/framework-bundle
