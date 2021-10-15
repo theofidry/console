@@ -13,11 +13,13 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Command\Feature;
 
+use Fidry\Console\ExitCode;
 use Fidry\Console\Tests\StatefulService;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
@@ -82,7 +84,7 @@ final class CommandLazinessSupportTest extends KernelTestCase
         self::assertTrue($this->service->called);
     }
 
-    public function test_it_can_be_executed(): void
+    public function test_it_can_be_executed_via_the_command_tester(): void
     {
         // Sanity check
         self::assertFalse($this->service->called);
@@ -91,6 +93,25 @@ final class CommandLazinessSupportTest extends KernelTestCase
         $tester = new CommandTester($command);
 
         $tester->execute([], ['interactive' => false]);
+
+        /** @psalm-suppress DocblockTypeContradiction */
+        self::assertTrue($this->service->called);
+    }
+
+    public function test_it_can_be_executed_via_the_application(): void
+    {
+        // Sanity check
+        self::assertFalse($this->service->called);
+
+        $input = new StringInput('app:lazy');
+        $input->setInteractive(false);
+
+        $exitCode = $this->application->run(
+            $input,
+            new NullOutput(),
+        );
+
+        self::assertSame(ExitCode::SUCCESS, $exitCode);
 
         /** @psalm-suppress DocblockTypeContradiction */
         self::assertTrue($this->service->called);
