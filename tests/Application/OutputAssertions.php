@@ -25,6 +25,7 @@ final class OutputAssertions
     public static function assertSameOutput(string $expected, string $actual): void
     {
         Assert::assertSame(
+            // I do not care about the expected to have trailing spaces...
             DisplayNormalizer::removeTrailingSpaces($expected),
             DisplayNormalizer::removeTrailingSpaces($actual),
         );

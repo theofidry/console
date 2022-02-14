@@ -79,6 +79,7 @@ final class ApplicationSimpleConfigSupportTest extends TestCase
         );
 
         $actual = $output->fetch();
+
         OutputAssertions::assertSameOutput(
             '',
             $actual,
