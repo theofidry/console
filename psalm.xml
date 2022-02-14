@@ -23,6 +23,7 @@
 
         <ignoreFiles>
             <directory name="vendor"/>
+            <directory name="tests/Integration/var"/>
         </ignoreFiles>
     </projectFiles>
 
