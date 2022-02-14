@@ -29,9 +29,11 @@ final class ApplicationRunner
     }
 
     /**
+     * @psalm-suppress PossiblyUnusedReturnValue
+     *
      * Executes the given application command.
      *
-     * @return int 0 if everything went fine, or an exit code
+     * @return int Zero if everything went fine, or an exit code
      *
      * @see ExitCode
      */

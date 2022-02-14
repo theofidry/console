@@ -1,5 +1,16 @@
 #!/usr/bin/env php
-<?php declare(strict_types=1);
+<?php
+
+/*
+ * This file is part of the Fidry\Console package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
 
 use Fidry\Console\Tests\Integration\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -25,11 +36,14 @@ if ($input->hasParameterOption('--no-debug', true)) {
     putenv('APP_DEBUG='.$_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = '0');
 }
 
-if ($_SERVER['APP_DEBUG']) {
+if ($_SERVER['APP_DEBUG'] ?? false) {
     umask(0000);
 }
 
-$kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
+$kernel = new Kernel(
+        $_SERVER['APP_ENV'] ?? 'dev',
+        (bool) ($_SERVER['APP_DEBUG'] ?? false),
+);
 
 $application = new Application($kernel);
 $application->run($input);
