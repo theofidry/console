@@ -41,7 +41,7 @@ final class Configuration
      * API).
      *
      * @param InputArgument[] $arguments
-     * @param InputOption[] $options
+     * @param InputOption[]   $options
      */
     public function __construct(
         string $name,

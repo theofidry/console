@@ -17,7 +17,6 @@ use function array_is_list;
 use function get_debug_type;
 use function is_array;
 use function is_bool;
-use function is_int;
 use function is_string;
 use function Safe\sprintf;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
