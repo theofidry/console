@@ -61,7 +61,7 @@ final class ConsoleAssert
     /**
      * @param mixed $option
      *
-     * @psalm-assert null|bool|string|list<string> $argument
+     * @psalm-assert null|bool|string|list<string> $value
      */
     public static function assertIsValidOptionType($option): void
     {
@@ -84,38 +84,38 @@ final class ConsoleAssert
     }
 
     /**
-     * @param mixed $argument
+     * @param mixed $value
      *
-     * @psalm-assert string|null $argument
+     * @psalm-assert string|null $value
      */
-    public static function assertIsNotArray($argument): void
+    public static function assertIsNotArray($value): void
     {
         /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
             static fn () => Assert::false(
-                is_array($argument),
+                is_array($value),
                 sprintf(
                     'Cannot cast an array input argument as a scalar. Got the argument value: "%s"',
-                    var_export($argument, true),
+                    var_export($value, true),
                 ),
             ),
         );
     }
 
     /**
-     * @param mixed $argument
+     * @param mixed $value
      *
-     * @psalm-assert list $argument
+     * @psalm-assert list $value
      */
-    public static function assertIsList($argument): void
+    public static function assertIsList($value): void
     {
         /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
             static fn () => Assert::isList(
-                $argument,
+                $value,
                 sprintf(
                     'Cannot cast a non-array input argument into an array. Got the value "%s"',
-                    var_export($argument, true),
+                    var_export($value, true),
                 ),
             ),
         );
@@ -124,17 +124,17 @@ final class ConsoleAssert
     /**
      * @psalm-assert numeric $value
      *
-     * @param mixed $argument
+     * @param mixed $value
      */
-    public static function numeric($argument): void
+    public static function numeric($value): void
     {
         /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
             static fn () => Assert::numeric(
-                $argument,
+                $value,
                 sprintf(
                     'Expected a numeric. Got "%s"',
-                    var_export($argument, true),
+                    var_export($value, true),
                 ),
             ),
         );
@@ -143,17 +143,36 @@ final class ConsoleAssert
     /**
      * @psalm-assert int $value
      *
-     * @param mixed $argument
+     * @param mixed $value
      */
-    public static function integer($argument): void
+    public static function integer($value): void
     {
         /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
             static fn () => Assert::digits(
-                $argument,
+                $value,
                 sprintf(
                     'Expected an integer. Got "%s"',
-                    var_export($argument, true),
+                    var_export($value, true),
+                ),
+            ),
+        );
+    }
+
+    /**
+     * @psalm-assert int $value
+     *
+     * @param mixed $value
+     */
+    public static function string($value): void
+    {
+        /** @psalm-suppress MissingClosureReturnType */
+        self::castThrowException(
+            static fn () => Assert::string(
+                $value,
+                sprintf(
+                    'Expected a string. Got "%s"',
+                    var_export($value, true),
                 ),
             ),
         );

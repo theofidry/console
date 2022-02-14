@@ -109,8 +109,11 @@ final class IO extends SymfonyStyle
     {
         $argument = $this->getArgument($name);
 
+        /** @psalm-trace */
         ConsoleAssert::assertIsNotArray($argument);
+        /** @psalm-trace */
         ConsoleAssert::integer($argument);
+        /** @psalm-trace */
 
         return (int) $argument;
     }
