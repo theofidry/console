@@ -109,8 +109,7 @@ final class IO extends SymfonyStyle
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsNotArray($argument);
-        ConsoleAssert::integer($argument);
+        ConsoleAssert::integerString($argument);
 
         return (int) $argument;
     }
@@ -135,7 +134,8 @@ final class IO extends SymfonyStyle
 
         return array_map(
             static function ($element): int {
-                ConsoleAssert::integer($element);
+                /** @psalm-suppress RedundantConditionGivenDocblockType */
+                ConsoleAssert::integerString($element);
 
                 return (int) $element;
             },
@@ -233,8 +233,7 @@ final class IO extends SymfonyStyle
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsNotArray($option);
-        ConsoleAssert::integer($option);
+        ConsoleAssert::integerString($option);
 
         return (int) $option;
     }
@@ -259,7 +258,8 @@ final class IO extends SymfonyStyle
 
         return array_map(
             static function ($element): int {
-                ConsoleAssert::integer($element);
+                /** @psalm-suppress RedundantConditionGivenDocblockType */
+                ConsoleAssert::integerString($element);
 
                 return (int) $element;
             },

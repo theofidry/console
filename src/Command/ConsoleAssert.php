@@ -26,6 +26,8 @@ use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;
 
 /**
  * @private
+ * @psalm-type ArgumentInput = null|string|string[]
+ * @psalm-type OptionInput = null|bool|string|list<string>
  */
 final class ConsoleAssert
 {
@@ -36,7 +38,7 @@ final class ConsoleAssert
     /**
      * @param mixed $argument
      *
-     * @psalm-assert null|string|string[] $argument
+     * @psalm-assert ArgumentInput $argument
      */
     public static function assertIsValidArgumentType($argument): void
     {
@@ -61,7 +63,7 @@ final class ConsoleAssert
     /**
      * @param mixed $option
      *
-     * @psalm-assert null|bool|string|list<string> $argument
+     * @psalm-assert OptionInput $option
      */
     public static function assertIsValidOptionType($option): void
     {
@@ -84,78 +86,87 @@ final class ConsoleAssert
     }
 
     /**
-     * @param mixed $argument
+     * @param ArgumentInput|OptionInput $value
      *
-     * @psalm-assert string|null $argument
+     * @psalm-assert !array $value
      */
-    public static function assertIsNotArray($argument): void
+    public static function assertIsNotArray($value): void
     {
         /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
             static fn () => Assert::false(
-                is_array($argument),
+                is_array($value),
                 sprintf(
                     'Cannot cast an array input argument as a scalar. Got the argument value: "%s"',
-                    var_export($argument, true),
+                    self::castType($value),
                 ),
             ),
         );
     }
 
     /**
-     * @param mixed $argument
+     * @param ArgumentInput|OptionInput $value
      *
-     * @psalm-assert list $argument
+     * @psalm-assert list $value
      */
-    public static function assertIsList($argument): void
+    public static function assertIsList($value): void
     {
         /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
             static fn () => Assert::isList(
-                $argument,
+                $value,
                 sprintf(
                     'Cannot cast a non-array input argument into an array. Got the value "%s"',
-                    var_export($argument, true),
+                    self::castType($value),
                 ),
             ),
         );
     }
 
     /**
-     * @psalm-assert numeric $value
+     * @param ArgumentInput|OptionInput $value
      *
-     * @param mixed $argument
+     * @psalm-assert numeric $value
      */
-    public static function numeric($argument): void
+    public static function numeric($value): void
     {
         /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
             static fn () => Assert::numeric(
-                $argument,
+                $value,
                 sprintf(
                     'Expected a numeric. Got "%s"',
-                    var_export($argument, true),
+                    self::castType($value),
                 ),
             ),
         );
     }
 
     /**
-     * @psalm-assert int $value
+     * @param ArgumentInput|OptionInput $value
      *
-     * @param mixed $argument
+     * @psalm-assert string $value
      */
-    public static function integer($argument): void
+    public static function integerString($value): void
     {
-        /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
-            static fn () => Assert::digits(
-                $argument,
-                sprintf(
-                    'Expected an integer. Got "%s"',
-                    var_export($argument, true),
-                ),
-            ),
+            static function () use ($value): void {
+                self::assertIsNotArray($value);
+                Assert::string(
+                    $value,
+                    sprintf(
+                        'Expected an integer string. Got "%s"',
+                        self::castType($value),
+                    ),
+                );
+                Assert::digits(
+                    $value,
+                    sprintf(
+                        'Expected an integer. Got "%s"',
+                        self::castType($value),
+                    ),
+                );
+            },
         );
     }
 
@@ -173,5 +184,13 @@ final class ConsoleAssert
                 $exception,
             );
         }
+    }
+
+    /**
+     * @param ArgumentInput|OptionInput $value
+     */
+    private static function castType($value): string
+    {
+        return var_export($value, true);
     }
 }

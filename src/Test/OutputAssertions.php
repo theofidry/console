@@ -21,6 +21,9 @@ final class OutputAssertions
     {
     }
 
+    /**
+     * @param null|callable(string):string $extraNormalization
+     */
     public static function assertSameOutput(
         string $expectedOutput,
         int $expectedStatusCode,
