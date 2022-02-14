@@ -70,7 +70,7 @@ final class Configuration
     }
 
     /**
-     * @var InputArgument[]
+     * @return InputArgument[]
      */
     public function getArguments(): array
     {
@@ -78,7 +78,7 @@ final class Configuration
     }
 
     /**
-     * @var InputOption[]
+     * @return InputOption[]
      */
     public function getOptions(): array
     {

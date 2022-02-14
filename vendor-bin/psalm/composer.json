@@ -3,5 +3,10 @@
         "vimeo/psalm": "^4.7",
         "psalm/plugin-phpunit": "^0.15.1",
         "psalm/plugin-symfony": "^2.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     }
 }
