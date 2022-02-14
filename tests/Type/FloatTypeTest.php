@@ -15,6 +15,7 @@ namespace Fidry\Console\Tests\Type;
 
 use Fidry\Console\Tests\IO\TypeException;
 use Fidry\Console\Type\FloatType;
+use const PHP_VERSION_ID;
 
 /**
  * @covers \Fidry\Console\Type\FloatType
@@ -63,10 +64,17 @@ final class FloatTypeTest extends BaseTypeTest
             new TypeException('Expected a numeric. Got "\'foo\'"'),
         ];
 
-        yield 'float with trailing space' => [
-            '42 ',
-            new TypeException('Expected a numeric. Got "\'42 \'"'),
-        ];
+        if (PHP_VERSION_ID >= 80000) {
+            yield 'integer with trailing space' => [
+                '42 ',
+                42.,
+            ];
+        } else {
+            yield 'integer with trailing space' => [
+                '42 ',
+                new TypeException('Expected a numeric. Got "\'42 \'"'),
+            ];
+        }
 
         yield [
             [],

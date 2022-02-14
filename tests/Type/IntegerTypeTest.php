@@ -58,7 +58,7 @@ final class IntegerTypeTest extends BaseTypeTest
             new TypeException('Expected an integer. Got "\'foo\'"'),
         ];
 
-        yield 'float with trailing space' => [
+        yield 'integer with trailing space' => [
             '42 ',
             new TypeException('Expected an integer. Got "\'42 \'"'),
         ];
