@@ -1,0 +1,46 @@
+<?php
+
+/*
+ * This file is part of the Fidry\Console package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Fidry\Console\Tests\Type;
+
+use Fidry\Console\Type\IntegerType;
+use Fidry\Console\Type\NullableType;
+
+/**
+ * @covers \Fidry\Console\Type\NullableType
+ */
+final class NullableTypeTest extends BaseTypeTest
+{
+    protected function setUp(): void
+    {
+        $this->type = new NullableType(new IntegerType());
+    }
+
+    public static function valueProvider(): iterable
+    {
+        yield 'integer value' => [
+            '10',
+            10,
+        ];
+
+        yield 'empty integer value' => [
+            '0',
+            0,
+        ];
+
+        yield 'null value' => [
+            null,
+            null,
+        ];
+    }
+}
