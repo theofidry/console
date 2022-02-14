@@ -23,8 +23,13 @@ declare(strict_types=1);
 
 namespace Fidry\Console;
 
-use function array_map;
 use Fidry\Console\Command\ConsoleAssert;
+use Fidry\Console\Type\BooleanType;
+use Fidry\Console\Type\FloatType;
+use Fidry\Console\Type\IntegerType;
+use Fidry\Console\Type\ListType;
+use Fidry\Console\Type\NullableType;
+use Fidry\Console\Type\StringType;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
@@ -61,36 +66,36 @@ final class IO extends SymfonyStyle
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsNotArray($argument);
+        $type = new BooleanType();
 
-        return (bool) $argument;
+        return $type->castValue($argument);
     }
 
     public function getNullableBooleanArgument(string $name): ?bool
     {
-        if (null === $this->getArgument($name)) {
-            return null;
-        }
+        $argument = $this->getArgument($name);
 
-        return $this->getBooleanArgument($name);
+        $type = new NullableType(new BooleanType());
+
+        return $type->castValue($argument);
     }
 
     public function getStringArgument(string $name): string
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsNotArray($argument);
+        $type = new StringType();
 
-        return (string) $argument;
+        return $type->castValue($argument);
     }
 
     public function getNullableStringArgument(string $name): ?string
     {
-        if (null === $this->getArgument($name)) {
-            return null;
-        }
+        $argument = $this->getArgument($name);
 
-        return $this->getStringArgument($name);
+        $type = new NullableType(new StringType());
+
+        return $type->castValue($argument);
     }
 
     /**
@@ -100,27 +105,27 @@ final class IO extends SymfonyStyle
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsList($argument);
+        $type = new ListType(new StringType());
 
-        return $argument;
+        return $type->castValue($argument);
     }
 
     public function getIntegerArgument(string $name): int
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::integerString($argument);
+        $type = new IntegerType();
 
-        return (int) $argument;
+        return $type->castValue($argument);
     }
 
     public function getNullableIntegerArgument(string $name): ?int
     {
-        if (null === $this->getArgument($name)) {
-            return null;
-        }
+        $argument = $this->getArgument($name);
 
-        return $this->getIntegerArgument($name);
+        $type = new NullableType(new IntegerType());
+
+        return $type->castValue($argument);
     }
 
     /**
@@ -130,36 +135,27 @@ final class IO extends SymfonyStyle
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsList($argument);
+        $type = new ListType(new IntegerType());
 
-        return array_map(
-            static function ($element): int {
-                /** @psalm-suppress RedundantConditionGivenDocblockType */
-                ConsoleAssert::integerString($element);
-
-                return (int) $element;
-            },
-            $argument,
-        );
+        return $type->castValue($argument);
     }
 
     public function getFloatArgument(string $name): float
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsNotArray($argument);
-        ConsoleAssert::numeric($argument);
+        $type = new FloatType();
 
-        return (float) $argument;
+        return $type->castValue($argument);
     }
 
     public function getNullableFloatArgument(string $name): ?float
     {
-        if (null === $this->getArgument($name)) {
-            return null;
-        }
+        $argument = $this->getArgument($name);
 
-        return $this->getFloatArgument($name);
+        $type = new NullableType(new FloatType());
+
+        return $type->castValue($argument);
     }
 
     /**
@@ -169,52 +165,45 @@ final class IO extends SymfonyStyle
     {
         $argument = $this->getArgument($name);
 
-        ConsoleAssert::assertIsList($argument);
+        $type = new ListType(new FloatType());
 
-        return array_map(
-            static function ($element): float {
-                ConsoleAssert::numeric($element);
-
-                return (float) $element;
-            },
-            $argument,
-        );
+        return $type->castValue($argument);
     }
 
     public function getBooleanOption(string $name): bool
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsNotArray($option);
+        $type = new BooleanType();
 
-        return (bool) $option;
+        return $type->castValue($option);
     }
 
     public function getNullableBooleanOption(string $name): ?bool
     {
-        if (null === $this->getOption($name)) {
-            return null;
-        }
+        $option = $this->getOption($name);
 
-        return $this->getBooleanOption($name);
+        $type = new NullableType(new BooleanType());
+
+        return $type->castValue($option);
     }
 
     public function getStringOption(string $name): string
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsNotArray($option);
+        $type = new StringType();
 
-        return (string) $option;
+        return $type->castValue($option);
     }
 
     public function getNullableStringOption(string $name): ?string
     {
-        if (null === $this->getOption($name)) {
-            return null;
-        }
+        $option = $this->getOption($name);
 
-        return $this->getStringOption($name);
+        $type = new NullableType(new StringType());
+
+        return $type->castValue($option);
     }
 
     /**
@@ -224,27 +213,27 @@ final class IO extends SymfonyStyle
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsList($option);
+        $type = new ListType(new StringType());
 
-        return $option;
+        return $type->castValue($option);
     }
 
     public function getIntegerOption(string $name): int
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::integerString($option);
+        $type = new IntegerType();
 
-        return (int) $option;
+        return $type->castValue($option);
     }
 
     public function getNullableIntegerOption(string $name): ?int
     {
-        if (null === $this->getOption($name)) {
-            return null;
-        }
+        $option = $this->getOption($name);
 
-        return $this->getIntegerOption($name);
+        $type = new NullableType(new IntegerType());
+
+        return $type->castValue($option);
     }
 
     /**
@@ -254,36 +243,27 @@ final class IO extends SymfonyStyle
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsList($option);
+        $type = new ListType(new IntegerType());
 
-        return array_map(
-            static function ($element): int {
-                /** @psalm-suppress RedundantConditionGivenDocblockType */
-                ConsoleAssert::integerString($element);
-
-                return (int) $element;
-            },
-            $option,
-        );
+        return $type->castValue($option);
     }
 
     public function getFloatOption(string $name): float
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsNotArray($option);
-        ConsoleAssert::numeric($option);
+        $type = new FloatType();
 
-        return (float) $option;
+        return $type->castValue($option);
     }
 
     public function getNullableFloatOption(string $name): ?float
     {
-        if (null === $this->getOption($name)) {
-            return null;
-        }
+        $option = $this->getOption($name);
 
-        return $this->getFloatOption($name);
+        $type = new NullableType(new FloatType());
+
+        return $type->castValue($option);
     }
 
     /**
@@ -293,16 +273,9 @@ final class IO extends SymfonyStyle
     {
         $option = $this->getOption($name);
 
-        ConsoleAssert::assertIsList($option);
+        $type = new ListType(new FloatType());
 
-        return array_map(
-            static function ($element): float {
-                ConsoleAssert::numeric($element);
-
-                return (float) $element;
-            },
-            $option,
-        );
+        return $type->castValue($option);
     }
 
     public function isInteractive(): bool
