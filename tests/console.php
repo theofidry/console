@@ -24,7 +24,9 @@ set_time_limit(0);
 
 require dirname(__DIR__).'/vendor/autoload.php';
 
-$kernel = new Kernel('dev', true);
+$input = new ArgvInput();
+
+$kernel = new Kernel('test', true);
 
 $application = new Application($kernel);
-$application->run(new ArgvInput());
+$application->run($input);

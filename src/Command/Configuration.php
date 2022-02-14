@@ -39,6 +39,9 @@ final class Configuration
      * Beware that if the command is lazy, the name and description will be
      * overwritten by the values provided for the laziness (see the LazyCommand
      * API).
+     *
+     * @param InputArgument[] $arguments
+     * @param InputOption[]   $options
      */
     public function __construct(
         string $name,
