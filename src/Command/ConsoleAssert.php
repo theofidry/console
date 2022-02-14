@@ -26,7 +26,7 @@ use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;
 
 /**
  * @private
- * @psalm-type ArgumentInput = null|string|string[]
+ * @psalm-type ArgumentInput = null|string|list<string>
  * @psalm-type OptionInput = null|bool|string|list<string>
  */
 final class ConsoleAssert
@@ -163,6 +163,27 @@ final class ConsoleAssert
                     $value,
                     sprintf(
                         'Expected an integer. Got "%s"',
+                        self::castType($value),
+                    ),
+                );
+            },
+        );
+    }
+
+    /**
+     * @param ArgumentInput|OptionInput $value
+     *
+     * @psalm-assert string $value
+     */
+    public static function string($value): void
+    {
+        self::castThrowException(
+            static function () use ($value): void {
+                self::assertIsNotArray($value);
+                Assert::string(
+                    $value,
+                    sprintf(
+                        'Expected a string. Got "%s"',
                         self::castType($value),
                     ),
                 );
