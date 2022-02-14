@@ -41,6 +41,11 @@
         "sort-packages": true,
         "bamarni-bin": {
             "bin-links": false
+        },
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true,
+            "bamarni/composer-bin-plugin": true
         }
     },
     "extra": {
