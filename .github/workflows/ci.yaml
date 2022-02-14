@@ -33,10 +33,10 @@ jobs:
                         composer-
 
             -   name: 'Install dependencies'
-                run: composer install --no-interaction --no-progress --no-suggest --prefer-dist
+                run: composer install --no-interaction --no-progress --prefer-dist
 
             -   name: 'Install tools'
-                run: composer bin all install --no-interaction --no-progress --no-suggest --prefer-dist
+                run: composer bin all install --no-interaction --no-progress --prefer-dist
 
             -   name: 'Run tests'
                 run: make

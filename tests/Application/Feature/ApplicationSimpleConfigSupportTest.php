@@ -53,10 +53,11 @@ final class ApplicationSimpleConfigSupportTest extends TestCase
               -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
             
             Available commands:
-              help     Display help for a command
-              list     List commands
+              completion  Dump the shell completion script
+              help        Display help for a command
+              list        List commands
              app
-              app:foo  Description content
+              app:foo     Description content
 
             EOT;
 
