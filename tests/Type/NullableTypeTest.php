@@ -63,6 +63,7 @@ final class NullableTypeTest extends BaseTypeTest
 
     private function assertCastedTypeIsCorrectlyInferred(?int $_value): void
     {
+        /** @psalm-suppress InternalMethod */
         $this->addToAssertionCount(1);
     }
 }

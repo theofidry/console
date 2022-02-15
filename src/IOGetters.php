@@ -30,6 +30,9 @@ use Fidry\Console\Type\ListType;
 use Fidry\Console\Type\NullableType;
 use Fidry\Console\Type\StringType;
 
+/**
+ * @internal
+ */
 trait IOGetters
 {
     public function getBooleanArgument(string $name): bool
