@@ -54,7 +54,7 @@ final class BooleanTypeTest extends BaseTypeTest
             [],
             new TypeException(
                 <<<'TXT'
-                Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                Expected a null or scalar value. Got the value: "array (
                 )"
                 TXT,
             ),

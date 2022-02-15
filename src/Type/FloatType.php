@@ -22,8 +22,7 @@ final class FloatType implements ScalarType
 {
     public function castValue($value): float
     {
-        ConsoleAssert::assertIsNotArray($value);
-        ConsoleAssert::numeric($value);
+        ConsoleAssert::numericString($value);
 
         return (float) $value;
     }
