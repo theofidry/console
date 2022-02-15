@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Type;
 
 /**
- * @psalm-import-type ArgumentInput from \Fidry\Console\Command\ConsoleAssert
- * @psalm-import-type OptionInput from \Fidry\Console\Command\ConsoleAssert
+ * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert
+ * @psalm-import-type OptionInput from \Fidry\Console\InputAssert
  * @template ValueType
  */
 interface InputType

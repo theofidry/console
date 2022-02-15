@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Type;
 
-use Fidry\Console\Command\ConsoleAssert;
+use Fidry\Console\InputAssert;
 
 /**
  * @implements ScalarType<float>
@@ -22,7 +22,7 @@ final class FloatType implements ScalarType
 {
     public function castValue($value): float
     {
-        ConsoleAssert::numericString($value);
+        InputAssert::numericString($value);
 
         return (float) $value;
     }

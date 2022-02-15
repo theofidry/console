@@ -21,7 +21,7 @@ use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
 /**
- * @covers \Fidry\Console\Command\ConsoleAssert
+ * @covers \Fidry\Console\InputAssert
  * @covers \Fidry\Console\IO
  */
 final class IOOptionsTest extends TestCase

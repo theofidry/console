@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Command;
+namespace Fidry\Console;
 
 use function array_is_list;
 use function get_debug_type;
@@ -29,7 +29,7 @@ use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;
  * @psalm-type ArgumentInput = null|string|list<string>
  * @psalm-type OptionInput = null|bool|string|list<string>
  */
-final class ConsoleAssert
+final class InputAssert
 {
     private function __construct()
     {
