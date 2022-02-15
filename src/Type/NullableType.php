@@ -14,18 +14,18 @@ declare(strict_types=1);
 namespace Fidry\Console\Type;
 
 /**
- * @template InnerType
- * @implements InputType<InnerType|null>
+ * @template CastedValueType
+ * @implements InputType<CastedValueType|null>
  */
 final class NullableType implements InputType
 {
     /**
-     * @var InputType<InnerType>
+     * @var InputType<CastedValueType>
      */
     private InputType $innerType;
 
     /**
-     * @param InputType<InnerType> $innerType
+     * @param InputType<CastedValueType> $innerType
      */
     public function __construct(InputType $innerType)
     {

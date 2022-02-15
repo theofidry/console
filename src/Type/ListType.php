@@ -17,21 +17,18 @@ use function array_map;
 use Fidry\Console\InputAssert;
 
 /**
- * TODO: see if it really needs to contain a scalar type or if it could be anything else.
- *
- * @template InnerValueType of bool|int|float|string
- * @template InnerType of InputType<InnerValueType>
- * @implements InputType<list<InnerValueType>>
+ * @template CastedValueType
+ * @implements InputType<list<CastedValueType>>
  */
 final class ListType implements InputType
 {
     /**
-     * @var InputType<InnerValueType>
+     * @var InputType<CastedValueType>
      */
     private InputType $innerType;
 
     /**
-     * @param InputType<InnerValueType> $innerType
+     * @param InputType<CastedValueType> $innerType
      */
     public function __construct(InputType $innerType)
     {

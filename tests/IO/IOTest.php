@@ -77,8 +77,7 @@ final class IOTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidScalarArgumentTypeProvider
-     * @dataProvider invalidArrayArgumentTypeProvider
+     * @dataProvider invalidArgumentTypeProvider
      *
      * @param mixed $default
      */
@@ -107,6 +106,12 @@ final class IOTest extends TestCase
         $this->expectExceptionMessage($expectedMessage);
 
         $io->getStringArgument('arg');
+    }
+
+    public static function invalidArgumentTypeProvider(): iterable
+    {
+        yield from self::invalidScalarArgumentTypeProvider();
+        yield from self::invalidArrayArgumentTypeProvider();
     }
 
     public static function invalidScalarArgumentTypeProvider(): iterable
@@ -145,8 +150,7 @@ final class IOTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidScalarOptionTypeProvider
-     * @dataProvider invalidArrayOptionTypeProvider
+     * @dataProvider invalidOptionTypeProvider
      *
      * @param mixed $default
      */
@@ -176,6 +180,12 @@ final class IOTest extends TestCase
         $this->expectExceptionMessage($expectedMessage);
 
         $io->getStringOption('opt');
+    }
+
+    public static function invalidOptionTypeProvider(): iterable
+    {
+        yield from self::invalidScalarOptionTypeProvider();
+        yield from self::invalidArrayOptionTypeProvider();
     }
 
     public static function invalidScalarOptionTypeProvider(): iterable
