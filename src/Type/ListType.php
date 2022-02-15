@@ -20,20 +20,20 @@ use Fidry\Console\InputAssert;
  * TODO: see if it really needs to contain a scalar type or if it could be anything else.
  *
  * @template InnerValueType of bool|int|float|string
- * @template InnerType of ScalarType<InnerValueType>
+ * @template InnerType of InputType<InnerValueType>
  * @implements InputType<list<InnerValueType>>
  */
 final class ListType implements InputType
 {
     /**
-     * @var ScalarType<InnerValueType>
+     * @var InputType<InnerValueType>
      */
-    private ScalarType $innerType;
+    private InputType $innerType;
 
     /**
-     * @param ScalarType<InnerValueType> $innerType
+     * @param InputType<InnerValueType> $innerType
      */
-    public function __construct(ScalarType $innerType)
+    public function __construct(InputType $innerType)
     {
         $this->innerType = $innerType;
     }
