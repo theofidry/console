@@ -26,6 +26,18 @@ final class NullableTypeTest extends BaseTypeTest
         $this->type = new NullableType(new IntegerType());
     }
 
+    /**
+     * @dataProvider validTypeProvider
+     *
+     * @param null|bool|string|list<string> $value
+     */
+    public function test_it_properly_infers_the_type($value): void
+    {
+        $value = $this->type->castValue($value);
+
+        $this->assertCastedTypeIsCorrectlyInferred($value);
+    }
+
     public static function valueProvider(): iterable
     {
         yield 'integer value' => [
@@ -42,5 +54,16 @@ final class NullableTypeTest extends BaseTypeTest
             null,
             null,
         ];
+    }
+
+    public static function validTypeProvider(): iterable
+    {
+        yield from self::valueProvider();
+    }
+
+    private function assertCastedTypeIsCorrectlyInferred(?int $_value): void
+    {
+        /** @psalm-suppress InternalMethod */
+        $this->addToAssertionCount(1);
     }
 }
