@@ -26,4 +26,9 @@ final class IntegerType implements ScalarType
 
         return (int) $value;
     }
+
+    public function getTypeClassNames(): array
+    {
+        return [self::class];
+    }
 }

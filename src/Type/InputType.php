@@ -26,4 +26,9 @@ interface InputType
      * @return ValueType
      */
     public function castValue($value);
+
+    /**
+     * @return non-empty-list<class-string<InputType>>
+     */
+    public function getTypeClassNames(): array;
 }

@@ -26,4 +26,9 @@ final class FloatType implements ScalarType
 
         return (float) $value;
     }
+
+    public function getTypeClassNames(): array
+    {
+        return [self::class];
+    }
 }

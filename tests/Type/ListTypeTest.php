@@ -27,6 +27,18 @@ final class ListTypeTest extends BaseTypeTest
         $this->type = new ListType(new IntegerType());
     }
 
+    public function test_it_exposes_its_type_and_inner_type(): void
+    {
+        $expected = [
+            ListType::class,
+            IntegerType::class,
+        ];
+
+        $actual = $this->type->getTypeClassNames();
+
+        self::assertSame($expected, $actual);
+    }
+
     public static function valueProvider(): iterable
     {
         yield 'integer value' => [

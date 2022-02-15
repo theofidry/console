@@ -47,4 +47,12 @@ final class ListType implements InputType
             $value,
         );
     }
+
+    public function getTypeClassNames(): array
+    {
+        return [
+            self::class,
+            ...$this->innerType->getTypeClassNames(),
+        ];
+    }
 }

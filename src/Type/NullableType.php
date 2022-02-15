@@ -36,4 +36,12 @@ final class NullableType implements InputType
     {
         return null === $value ? $value : $this->innerType->castValue($value);
     }
+
+    public function getTypeClassNames(): array
+    {
+        return [
+            self::class,
+            ...$this->innerType->getTypeClassNames(),
+        ];
+    }
 }

@@ -38,6 +38,18 @@ final class NullableTypeTest extends BaseTypeTest
         $this->assertCastedTypeIsCorrectlyInferred($value);
     }
 
+    public function test_it_exposes_its_type_and_inner_type(): void
+    {
+        $expected = [
+            NullableType::class,
+            IntegerType::class,
+        ];
+
+        $actual = $this->type->getTypeClassNames();
+
+        self::assertSame($expected, $actual);
+    }
+
     public static function valueProvider(): iterable
     {
         yield 'integer value' => [

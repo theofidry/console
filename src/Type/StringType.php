@@ -26,4 +26,9 @@ final class StringType implements ScalarType
 
         return $value;
     }
+
+    public function getTypeClassNames(): array
+    {
+        return [self::class];
+    }
 }
