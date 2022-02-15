@@ -47,9 +47,17 @@ final class IOArgumentTest extends TestCase
 
     public static function combinedProvider(): iterable
     {
-        yield from self::requiredArgumentProvider();
-        yield from self::optionalArgumentProvider();
-        yield from self::arrayArgumentProvider();
+        foreach (self::requiredArgumentProvider() as $title => $set) {
+            yield '[required] '.$title => $set;
+        }
+
+        foreach (self::requiredArgumentProvider() as $title => $set) {
+            yield '[optional] '.$title => $set;
+        }
+
+        foreach (self::requiredArgumentProvider() as $title => $set) {
+            yield '[array] '.$title => $set;
+        }
     }
 
     public static function requiredArgumentProvider(): iterable
@@ -210,7 +218,7 @@ final class IOArgumentTest extends TestCase
 
     public static function optionalArgumentProvider(): iterable
     {
-        yield 'empty string' => [
+        yield 'no argument' => [
             new InputArgument(
                 self::ARGUMENT_NAME,
                 InputArgument::OPTIONAL,

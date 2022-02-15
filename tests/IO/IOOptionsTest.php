@@ -47,10 +47,21 @@ final class IOOptionsTest extends TestCase
 
     public static function combinedProvider(): iterable
     {
-        yield from self::requiredOptionProvider();
-        yield from self::optionalOptionProvider();
-        yield from self::noValueOptionProvider();
-        yield from self::arrayOptionProvider();
+        foreach (self::requiredOptionProvider() as $title => $set) {
+            yield '[required] '.$title => $set;
+        }
+
+        foreach (self::optionalOptionProvider() as $title => $set) {
+            yield '[optional] '.$title => $set;
+        }
+
+        foreach (self::noValueOptionProvider() as $title => $set) {
+            yield '[noValue] '.$title => $set;
+        }
+
+        foreach (self::arrayOptionProvider() as $title => $set) {
+            yield '[array] '.$title => $set;
+        }
     }
 
     public static function requiredOptionProvider(): iterable
@@ -231,7 +242,7 @@ final class IOOptionsTest extends TestCase
                 new TypeException('Cannot cast a non-array input argument into an array. Got "NULL"'),
                 false,
                 null,
-                '',
+                new TypeException('Expected a string. Got "NULL"'),
                 null,
                 new TypeException('Expected an integer string. Got "NULL"'),
                 null,
