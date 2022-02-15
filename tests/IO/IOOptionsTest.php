@@ -62,15 +62,15 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=""',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "\'\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'\'"'),
                 false,
                 false,
                 '',
                 '',
-                new TypeException('Expected an integer. Got "\'\'"'),
-                new TypeException('Expected an integer. Got "\'\'"'),
-                new TypeException('Expected a numeric. Got "\'\'"'),
-                new TypeException('Expected a numeric. Got "\'\'"'),
+                new TypeException('Expected an integer string. Got "\'\'"'),
+                new TypeException('Expected an integer string. Got "\'\'"'),
+                new TypeException('Expected a numeric string. Got "\'\'"'),
+                new TypeException('Expected a numeric string. Got "\'\'"'),
             ),
         ];
 
@@ -84,15 +84,15 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=foo',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "\'foo\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'foo\'"'),
                 true,
                 true,
                 'foo',
                 'foo',
-                new TypeException('Expected an integer. Got "\'foo\'"'),
-                new TypeException('Expected an integer. Got "\'foo\'"'),
-                new TypeException('Expected a numeric. Got "\'foo\'"'),
-                new TypeException('Expected a numeric. Got "\'foo\'"'),
+                new TypeException('Expected an integer string. Got "\'foo\'"'),
+                new TypeException('Expected an integer string. Got "\'foo\'"'),
+                new TypeException('Expected a numeric string. Got "\'foo\'"'),
+                new TypeException('Expected a numeric string. Got "\'foo\'"'),
             ),
         ];
 
@@ -106,15 +106,15 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=null',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "\'null\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'null\'"'),
                 true,
                 true,
                 'null',
                 'null',
-                new TypeException('Expected an integer. Got "\'null\'"'),
-                new TypeException('Expected an integer. Got "\'null\'"'),
-                new TypeException('Expected a numeric. Got "\'null\'"'),
-                new TypeException('Expected a numeric. Got "\'null\'"'),
+                new TypeException('Expected an integer string. Got "\'null\'"'),
+                new TypeException('Expected an integer string. Got "\'null\'"'),
+                new TypeException('Expected a numeric string. Got "\'null\'"'),
+                new TypeException('Expected a numeric string. Got "\'null\'"'),
             ),
         ];
 
@@ -128,7 +128,7 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=10',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "\'10\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'10\'"'),
                 true,
                 true,
                 '10',
@@ -152,7 +152,7 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=0',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "\'0\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'0\'"'),
                 false,
                 false,
                 '0',
@@ -174,13 +174,13 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=10.8',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "\'10.8\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'10.8\'"'),
                 true,
                 true,
                 '10.8',
                 '10.8',
-                new TypeException('Expected an integer. Got "\'10.8\'"'),
-                new TypeException('Expected an integer. Got "\'10.8\'"'),
+                new TypeException('Expected an integer string. Got "\'10.8\'"'),
+                new TypeException('Expected an integer string. Got "\'10.8\'"'),
                 10.8,
                 10.8,
             ),
@@ -198,13 +198,13 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=0.',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "\'0.\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'0.\'"'),
                 true,
                 true,
                 '0.',
                 '0.',
-                new TypeException('Expected an integer. Got "\'0.\'"'),
-                new TypeException('Expected an integer. Got "\'0.\'"'),
+                new TypeException('Expected an integer string. Got "\'0.\'"'),
+                new TypeException('Expected an integer string. Got "\'0.\'"'),
                 0.,
                 0.,
             ),
@@ -223,14 +223,14 @@ final class IOOptionsTest extends TestCase
             ),
             '',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "NULL"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "NULL"'),
                 false,
                 null,
                 '',
                 null,
-                new TypeException('Expected an integer. Got "NULL"'),
+                new TypeException('Expected an integer string. Got "NULL"'),
                 null,
-                new TypeException('Expected a numeric. Got "NULL"'),
+                new TypeException('Expected a numeric string. Got "NULL"'),
                 null,
             ),
         ];
@@ -250,15 +250,15 @@ final class IOOptionsTest extends TestCase
             ),
             '',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "false"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "false"'),
                 false,
                 false,
                 new TypeException('Expected a string. Got "false"'),
                 new TypeException('Expected a string. Got "false"'),
                 new TypeException('Expected an integer string. Got "false"'),
                 new TypeException('Expected an integer string. Got "false"'),
-                new TypeException('Expected a numeric. Got "false"'),
-                new TypeException('Expected a numeric. Got "false"'),
+                new TypeException('Expected a numeric string. Got "false"'),
+                new TypeException('Expected a numeric string. Got "false"'),
             ),
         ];
 
@@ -272,15 +272,15 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got the value "true"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "true"'),
                 true,
                 true,
                 new TypeException('Expected a string. Got "true"'),
                 new TypeException('Expected a string. Got "true"'),
                 new TypeException('Expected an integer string. Got "true"'),
                 new TypeException('Expected an integer string. Got "true"'),
-                new TypeException('Expected a numeric. Got "true"'),
-                new TypeException('Expected a numeric. Got "true"'),
+                new TypeException('Expected a numeric string. Got "true"'),
+                new TypeException('Expected a numeric string. Got "true"'),
             ),
         ];
     }
@@ -301,14 +301,14 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                    Expected a null or scalar value. Got the value: "array (
                       0 => '',
                     )"
                     TXT,
                 ),
                 [''],
-                new TypeException('Expected an integer. Got "\'\'"'),
-                new TypeException('Expected a numeric. Got "\'\'"'),
+                new TypeException('Expected an integer string. Got "\'\'"'),
+                new TypeException('Expected a numeric string. Got "\'\'"'),
             ),
         ];
 
@@ -324,14 +324,14 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                    Expected a null or scalar value. Got the value: "array (
                       0 => 'foo',
                     )"
                     TXT,
                 ),
                 ['foo'],
-                new TypeException('Expected an integer. Got "\'foo\'"'),
-                new TypeException('Expected a numeric. Got "\'foo\'"'),
+                new TypeException('Expected an integer string. Got "\'foo\'"'),
+                new TypeException('Expected a numeric string. Got "\'foo\'"'),
             ),
         ];
 
@@ -347,7 +347,7 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                    Expected a null or scalar value. Got the value: "array (
                       0 => 'foo',
                       1 => 'bar',
                       2 => 'baz',
@@ -355,8 +355,8 @@ final class IOOptionsTest extends TestCase
                     TXT,
                 ),
                 ['foo', 'bar', 'baz'],
-                new TypeException('Expected an integer. Got "\'foo\'"'),
-                new TypeException('Expected a numeric. Got "\'foo\'"'),
+                new TypeException('Expected an integer string. Got "\'foo\'"'),
+                new TypeException('Expected a numeric string. Got "\'foo\'"'),
             ),
         ];
 
@@ -372,14 +372,14 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                    Expected a null or scalar value. Got the value: "array (
                       0 => 'null',
                     )"
                     TXT,
                 ),
                 ['null'],
-                new TypeException('Expected an integer. Got "\'null\'"'),
-                new TypeException('Expected a numeric. Got "\'null\'"'),
+                new TypeException('Expected an integer string. Got "\'null\'"'),
+                new TypeException('Expected a numeric string. Got "\'null\'"'),
             ),
         ];
 
@@ -395,7 +395,7 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                    Expected a null or scalar value. Got the value: "array (
                       0 => '10',
                     )"
                     TXT,
@@ -420,7 +420,7 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                    Expected a null or scalar value. Got the value: "array (
                       0 => '0',
                     )"
                     TXT,
@@ -443,13 +443,13 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                    Expected a null or scalar value. Got the value: "array (
                       0 => '10.8',
                     )"
                     TXT,
                 ),
                 ['10.8'],
-                new TypeException('Expected an integer. Got "\'10.8\'"'),
+                new TypeException('Expected an integer string. Got "\'10.8\'"'),
                 [10.8],
             ),
         ];
@@ -468,13 +468,13 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                    Expected a null or scalar value. Got the value: "array (
                       0 => '0.',
                     )"
                     TXT,
                 ),
                 ['0.'],
-                new TypeException('Expected an integer. Got "\'0.\'"'),
+                new TypeException('Expected an integer string. Got "\'0.\'"'),
                 [0.],
             ),
         ];

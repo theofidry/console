@@ -23,7 +23,7 @@ final class BooleanType implements ScalarType
 {
     public function castValue($value): bool
     {
-        ConsoleAssert::assertIsNotArray($value);
+        ConsoleAssert::assertIsScalar($value);
 
         return (bool) $value;
     }

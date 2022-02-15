@@ -46,10 +46,10 @@ final class ConsoleAssert
             return;
         }
 
-        if (!is_array($argument)) {
+        if (!is_array($argument) || !array_is_list($argument)) {
             throw new ConsoleInvalidArgumentException(
                 sprintf(
-                    'Expected an argument value type to be "null|string|string[]". Got "%s"',
+                    'Expected an argument value type to be "null|string|list<string>". Got "%s"',
                     get_debug_type($argument),
                 ),
             );
@@ -88,19 +88,24 @@ final class ConsoleAssert
     /**
      * @param ArgumentInput|OptionInput $value
      *
-     * @psalm-assert !array $value
+     * @psalm-assert scalar|null $value
      */
-    public static function assertIsNotArray($value): void
+    public static function assertIsScalar($value): void
     {
-        /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
-            static fn () => Assert::false(
-                is_array($value),
-                sprintf(
-                    'Cannot cast an array input argument as a scalar. Got the argument value: "%s"',
-                    self::castType($value),
-                ),
-            ),
+            static function () use ($value): void {
+                if (null === $value) {
+                    return;
+                }
+
+                Assert::scalar(
+                    $value,
+                    sprintf(
+                        'Expected a null or scalar value. Got the value: "%s"',
+                        self::castType($value),
+                    ),
+                );
+            },
         );
     }
 
@@ -111,15 +116,24 @@ final class ConsoleAssert
      */
     public static function assertIsList($value): void
     {
-        /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
-            static fn () => Assert::isList(
-                $value,
-                sprintf(
-                    'Cannot cast a non-array input argument into an array. Got the value "%s"',
-                    self::castType($value),
-                ),
-            ),
+            static function () use ($value): void {
+                Assert::isArray(
+                    $value,
+                    sprintf(
+                        'Cannot cast a non-array input argument into an array. Got "%s"',
+                        self::castType($value),
+                    ),
+                );
+                /** @psalm-suppress RedundantConditionGivenDocblockType */
+                Assert::isList(
+                    $value,
+                    sprintf(
+                        'Expected array to be a list. Got "%s"',
+                        self::castType($value),
+                    ),
+                );
+            },
         );
     }
 
@@ -128,17 +142,26 @@ final class ConsoleAssert
      *
      * @psalm-assert numeric $value
      */
-    public static function numeric($value): void
+    public static function numericString($value): void
     {
-        /** @psalm-suppress MissingClosureReturnType */
         self::castThrowException(
-            static fn () => Assert::numeric(
-                $value,
-                sprintf(
-                    'Expected a numeric. Got "%s"',
-                    self::castType($value),
-                ),
-            ),
+            static function () use ($value): void {
+                self::assertIsScalar($value);
+                Assert::string(
+                    $value,
+                    sprintf(
+                        'Expected a numeric string. Got "%s"',
+                        self::castType($value),
+                    ),
+                );
+                Assert::numeric(
+                    $value,
+                    sprintf(
+                        'Expected a numeric string. Got "%s"',
+                        self::castType($value),
+                    ),
+                );
+            },
         );
     }
 
@@ -151,7 +174,7 @@ final class ConsoleAssert
     {
         self::castThrowException(
             static function () use ($value): void {
-                self::assertIsNotArray($value);
+                self::assertIsScalar($value);
                 Assert::string(
                     $value,
                     sprintf(
@@ -162,7 +185,7 @@ final class ConsoleAssert
                 Assert::digits(
                     $value,
                     sprintf(
-                        'Expected an integer. Got "%s"',
+                        'Expected an integer string. Got "%s"',
                         self::castType($value),
                     ),
                 );
@@ -179,7 +202,7 @@ final class ConsoleAssert
     {
         self::castThrowException(
             static function () use ($value): void {
-                self::assertIsNotArray($value);
+                self::assertIsScalar($value);
                 Assert::string(
                     $value,
                     sprintf(

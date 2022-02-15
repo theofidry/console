@@ -113,27 +113,27 @@ final class IOTest extends TestCase
     {
         yield 'boolean' => [
             false,
-            'Expected an argument value type to be "null|string|string[]". Got "bool"',
+            'Expected an argument value type to be "null|string|list<string>". Got "bool"',
         ];
 
         yield 'int' => [
             10,
-            'Expected an argument value type to be "null|string|string[]". Got "int"',
+            'Expected an argument value type to be "null|string|list<string>". Got "int"',
         ];
 
         yield 'float' => [
             10.8,
-            'Expected an argument value type to be "null|string|string[]". Got "float"',
+            'Expected an argument value type to be "null|string|list<string>". Got "float"',
         ];
 
         yield 'object' => [
             new stdClass(),
-            'Expected an argument value type to be "null|string|string[]". Got "stdClass"',
+            'Expected an argument value type to be "null|string|list<string>". Got "stdClass"',
         ];
 
         yield 'closure' => [
             static fn () => '',
-            'Expected an argument value type to be "null|string|string[]". Got "Closure"',
+            'Expected an argument value type to be "null|string|list<string>". Got "Closure"',
         ];
     }
 

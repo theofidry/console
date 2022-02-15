@@ -45,29 +45,29 @@ final class IntegerTypeTest extends BaseTypeTest
 
         yield '(string) negative integer' => [
             '-10',
-            new TypeException('Expected an integer. Got "\'-10\'"'),
+            new TypeException('Expected an integer string. Got "\'-10\'"'),
         ];
 
         yield '(string) float' => [
             '9.1',
-            new TypeException('Expected an integer. Got "\'9.1\'"'),
+            new TypeException('Expected an integer string. Got "\'9.1\'"'),
         ];
 
         yield 'string' => [
             'foo',
-            new TypeException('Expected an integer. Got "\'foo\'"'),
+            new TypeException('Expected an integer string. Got "\'foo\'"'),
         ];
 
         yield 'integer with trailing space' => [
             '42 ',
-            new TypeException('Expected an integer. Got "\'42 \'"'),
+            new TypeException('Expected an integer string. Got "\'42 \'"'),
         ];
 
         yield [
             [],
             new TypeException(
                 <<<'TXT'
-                Cannot cast an array input argument as a scalar. Got the argument value: "array (
+                Expected a null or scalar value. Got the value: "array (
                 )"
                 TXT,
             ),
