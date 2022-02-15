@@ -16,14 +16,14 @@ namespace Fidry\Console\Type;
 /**
  * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert
  * @psalm-import-type OptionInput from \Fidry\Console\InputAssert
- * @template ValueType
+ * @template CastedValueType
  */
 interface InputType
 {
     /**
      * @param ArgumentInput|OptionInput $value Valid argument or option value
      *
-     * @return ValueType
+     * @return CastedValueType
      */
     public function castValue($value);
 }
