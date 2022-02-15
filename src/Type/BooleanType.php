@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Type;
 
-use Fidry\Console\Command\ConsoleAssert;
+use Fidry\Console\InputAssert;
 
 // TODO: to split into safe & unsafe
 /**
@@ -23,7 +23,7 @@ final class BooleanType implements ScalarType
 {
     public function castValue($value): bool
     {
-        ConsoleAssert::assertIsScalar($value);
+        InputAssert::assertIsScalar($value);
 
         return (bool) $value;
     }

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Type;
 
-use Fidry\Console\Command\ConsoleAssert;
+use Fidry\Console\InputAssert;
 
 /**
  * @implements ScalarType<string>
@@ -22,7 +22,7 @@ final class StringType implements ScalarType
 {
     public function castValue($value): string
     {
-        ConsoleAssert::string($value);
+        InputAssert::string($value);
 
         return $value;
     }

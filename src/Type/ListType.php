@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Type;
 
 use function array_map;
-use Fidry\Console\Command\ConsoleAssert;
+use Fidry\Console\InputAssert;
 
 /**
  * TODO: see if it really needs to contain a scalar type or if it could be anything else.
@@ -40,7 +40,7 @@ final class ListType implements InputType
 
     public function castValue($value): array
     {
-        ConsoleAssert::assertIsList($value);
+        InputAssert::assertIsList($value);
 
         return array_map(
             fn (string $element) => $this->innerType->castValue($element),

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Type;
 
-use Fidry\Console\Command\ConsoleAssert;
+use Fidry\Console\InputAssert;
 
 /**
  * @implements ScalarType<int>
@@ -22,7 +22,7 @@ final class IntegerType implements ScalarType
 {
     public function castValue($value): int
     {
-        ConsoleAssert::integerString($value);
+        InputAssert::integerString($value);
 
         return (int) $value;
     }

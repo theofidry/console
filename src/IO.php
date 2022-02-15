@@ -23,7 +23,6 @@ declare(strict_types=1);
 
 namespace Fidry\Console;
 
-use Fidry\Console\Command\ConsoleAssert;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
@@ -75,7 +74,7 @@ final class IO extends SymfonyStyle
     {
         $argument = $this->input->getArgument($name);
 
-        ConsoleAssert::assertIsValidArgumentType($argument);
+        InputAssert::assertIsValidArgumentType($argument);
 
         return $argument;
     }
@@ -87,7 +86,7 @@ final class IO extends SymfonyStyle
     {
         $option = $this->input->getOption($name);
 
-        ConsoleAssert::assertIsValidOptionType($option);
+        InputAssert::assertIsValidOptionType($option);
 
         return $option;
     }

@@ -25,7 +25,7 @@
         },
         "CastInt": {
             "ignore": [
-                "Fidry\\Console\\Command\\ConsoleAssert::castThrowException"
+                "Fidry\\Console\\InputAssert::castThrowException"
             ]
         },
         "MethodCallRemoval": {
