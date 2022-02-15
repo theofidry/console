@@ -29,9 +29,7 @@ final class IOArgumentTest extends TestCase
     private const ARGUMENT_NAME = 'arg';
 
     /**
-     * @dataProvider requiredArgumentProvider
-     * @dataProvider optionalArgumentProvider
-     * @dataProvider arrayArgumentProvider
+     * @dataProvider combinedProvider
      */
     public function test_it_exposes_a_typed_api(
         InputArgument $inputArgument,
@@ -45,6 +43,13 @@ final class IOArgumentTest extends TestCase
             $io,
             self::ARGUMENT_NAME,
         );
+    }
+
+    public static function combinedProvider(): iterable
+    {
+        yield from self::requiredArgumentProvider();
+        yield from self::optionalArgumentProvider();
+        yield from self::arrayArgumentProvider();
     }
 
     public static function requiredArgumentProvider(): iterable
