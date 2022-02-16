@@ -215,27 +215,6 @@ final class InputAssert
     }
 
     /**
-     * @param ArgumentInput|OptionInput $value
-     *
-     * @psalm-assert string $value
-     */
-    public static function string($value): void
-    {
-        self::castThrowException(
-            static function () use ($value): void {
-                self::assertIsNotArray($value);
-                Assert::string(
-                    $value,
-                    sprintf(
-                        'Expected a string. Got "%s"',
-                        self::castType($value),
-                    ),
-                );
-            },
-        );
-    }
-
-    /**
      * @param callable(): void $callable
      */
     private static function castThrowException(callable $callable): void

@@ -52,6 +52,31 @@ final class NullableTypeTest extends BaseTypeTest
         self::assertSame($expected, $actual);
     }
 
+    /**
+     * @dataProvider nullableProvider
+     *
+     * @param mixed $_
+     */
+    public function test_it_exposes_its_psalm_declaration(NullableType $input, $_, string $expected): void
+    {
+        $actual = $input->getPsalmTypeDeclaration();
+
+        self::assertSame($expected, $actual);
+    }
+
+    /**
+     * @dataProvider nullableProvider
+     *
+     * @param mixed $_1
+     * @param mixed $_2
+     */
+    public function test_it_exposes_its_php_declaration(NullableType $input, $_1, $_2, string $expected): void
+    {
+        $actual = $input->getPhpTypeDeclaration();
+
+        self::assertSame($expected, $actual);
+    }
+
     public static function valueProvider(): iterable
     {
         yield 'integer value' => [
@@ -83,6 +108,8 @@ final class NullableTypeTest extends BaseTypeTest
                 NullableType::class,
                 IntegerType::class,
             ],
+            'null|int',
+            '?int',
         ];
 
         yield 'composed type' => [
@@ -92,6 +119,8 @@ final class NullableTypeTest extends BaseTypeTest
                 ListType::class,
                 IntegerType::class,
             ],
+            'null|list<int>',
+            '?array',
         ];
     }
 
