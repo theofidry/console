@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace Fidry\Console;
 
-use Fidry\Console\Generator\GettersGenerator;
-use Fidry\Console\Generator\ParameterType;
-use Fidry\Console\Generator\TypeMap;
+use Fidry\Console\Internal\Generator\GettersGenerator;
+use Fidry\Console\Internal\Generator\ParameterType;
+use Fidry\Console\Internal\Generator\TypeMap;
 use function Safe\file_put_contents;
 
 require __DIR__.'/../vendor/autoload.php';
