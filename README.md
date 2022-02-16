@@ -1,3 +1,4 @@
+
 ## Console
 
 Motivation: this library purpose is to provide a lighter and more robust API
@@ -77,7 +78,7 @@ use Acme\MyService;
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\ExitCode;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 
 final class CommandWithService implements Command
 {

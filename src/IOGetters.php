@@ -20,6 +20,9 @@ use Fidry\Console\Internal\Type\TypeFactory;
  */
 trait IOGetters
 {
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getBooleanArgument(string $name): bool
     {
         $argument = $this->getLegacyArgument($name);
@@ -31,6 +34,9 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getNullableBooleanArgument(string $name): ?bool
     {
         $argument = $this->getLegacyArgument($name);
@@ -43,6 +49,9 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getStringArgument(string $name): string
     {
         $argument = $this->getLegacyArgument($name);
@@ -54,6 +63,9 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getNullableStringArgument(string $name): ?string
     {
         $argument = $this->getLegacyArgument($name);
@@ -68,6 +80,8 @@ trait IOGetters
 
     /**
      * @return list<string>
+     *
+     * @deprecated Will be removed in 0.5.0
      */
     public function getStringListArgument(string $name): array
     {
@@ -81,6 +95,9 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getIntegerArgument(string $name): int
     {
         $argument = $this->getLegacyArgument($name);
@@ -92,6 +109,9 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getNullableIntegerArgument(string $name): ?int
     {
         $argument = $this->getLegacyArgument($name);
@@ -106,6 +126,8 @@ trait IOGetters
 
     /**
      * @return list<int>
+     *
+     * @deprecated Will be removed in 0.5.0
      */
     public function getIntegerListArgument(string $name): array
     {
@@ -119,6 +141,9 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getFloatArgument(string $name): float
     {
         $argument = $this->getLegacyArgument($name);
@@ -130,6 +155,9 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getNullableFloatArgument(string $name): ?float
     {
         $argument = $this->getLegacyArgument($name);
@@ -144,6 +172,8 @@ trait IOGetters
 
     /**
      * @return list<float>
+     *
+     * @deprecated Will be removed in 0.5.0
      */
     public function getFloatListArgument(string $name): array
     {
@@ -157,6 +187,9 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getBooleanOption(string $name): bool
     {
         $option = $this->getLegacyOption($name);
@@ -168,6 +201,9 @@ trait IOGetters
         return $type->castValue($option);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getNullableBooleanOption(string $name): ?bool
     {
         $option = $this->getLegacyOption($name);
@@ -180,6 +216,9 @@ trait IOGetters
         return $type->castValue($option);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getStringOption(string $name): string
     {
         $option = $this->getLegacyOption($name);
@@ -191,6 +230,9 @@ trait IOGetters
         return $type->castValue($option);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getNullableStringOption(string $name): ?string
     {
         $option = $this->getLegacyOption($name);
@@ -205,6 +247,8 @@ trait IOGetters
 
     /**
      * @return list<string>
+     *
+     * @deprecated Will be removed in 0.5.0
      */
     public function getStringListOption(string $name): array
     {
@@ -218,6 +262,9 @@ trait IOGetters
         return $type->castValue($option);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getIntegerOption(string $name): int
     {
         $option = $this->getLegacyOption($name);
@@ -229,6 +276,9 @@ trait IOGetters
         return $type->castValue($option);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getNullableIntegerOption(string $name): ?int
     {
         $option = $this->getLegacyOption($name);
@@ -243,6 +293,8 @@ trait IOGetters
 
     /**
      * @return list<int>
+     *
+     * @deprecated Will be removed in 0.5.0
      */
     public function getIntegerListOption(string $name): array
     {
@@ -256,6 +308,9 @@ trait IOGetters
         return $type->castValue($option);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getFloatOption(string $name): float
     {
         $option = $this->getLegacyOption($name);
@@ -267,6 +322,9 @@ trait IOGetters
         return $type->castValue($option);
     }
 
+    /**
+     * @deprecated Will be removed in 0.5.0
+     */
     public function getNullableFloatOption(string $name): ?float
     {
         $option = $this->getLegacyOption($name);
@@ -281,6 +339,8 @@ trait IOGetters
 
     /**
      * @return list<float>
+     *
+     * @deprecated Will be removed in 0.5.0
      */
     public function getFloatListOption(string $name): array
     {

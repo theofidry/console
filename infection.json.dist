@@ -31,7 +31,7 @@
         "MethodCallRemoval": {
             "ignore": [
                 "Fidry\\Console\\Command\\SymfonyCommand::setApplication",
-                "Fidry\\Console\\IO::__construct"
+                "Fidry\\Console\\Input\\IO::__construct"
             ]
         },
         "UnwrapStrReplace": {

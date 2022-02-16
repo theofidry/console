@@ -23,8 +23,8 @@ namespace App\Console\Command;
 
 use Fidry\Console\Command\CommandAware;
 use Fidry\Console\Command\CommandAwareness;
-use Fidry\Console\IO;
 use Fidry\Console\Command\Command;
+use Fidry\Console\Input\IO;
 use Symfony\Component\Console\Input\ArrayInput;
 
 final class CreateUserCommand implements Command, CommandAware

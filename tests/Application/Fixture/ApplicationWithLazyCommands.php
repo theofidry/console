@@ -17,7 +17,7 @@ use Fidry\Console\Application\Application;
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\Command\LazyCommand;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 use Fidry\Console\Tests\Command\Fixture\FakeCommand;
 
 final class ApplicationWithLazyCommands implements Application

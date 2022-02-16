@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\IO;
 
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputOption;
@@ -21,8 +21,8 @@ use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
 /**
+ * @covers \Fidry\Console\Input\IO
  * @covers \Fidry\Console\InputAssert
- * @covers \Fidry\Console\IO
  */
 final class IOOptionsTest extends TestCase
 {

@@ -16,7 +16,7 @@ namespace Fidry\Console\Tests\Command\Fixture;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\Command\LazyCommand;
 use Fidry\Console\ExitCode;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 use Fidry\Console\Tests\StatefulService;
 
 final class SimpleLazyCommand implements LazyCommand

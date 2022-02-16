@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Application;
 
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
