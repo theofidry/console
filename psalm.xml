@@ -39,6 +39,11 @@
             </errorLevel>
         </MissingConstructor>
         <PossiblyUnusedMethod errorLevel="suppress"/>
+        <PossiblyUnusedReturnValue>
+            <errorLevel type="suppress">
+                <file name="src/IOGetters.php"/>
+            </errorLevel>
+        </PossiblyUnusedReturnValue>
         <UndefinedClass>
             <errorLevel type="suppress">
                 <file name="tests/Generator/ClassNameTest.php"/>

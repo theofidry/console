@@ -83,7 +83,7 @@ final class TypedInput
     /**
      * @return list<int>
      */
-    public function asIntList(): array
+    public function asIntegerList(): array
     {
         return (new ListType(new IntegerType()))->castValue($this->value);
     }
