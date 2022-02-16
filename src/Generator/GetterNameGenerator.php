@@ -30,7 +30,7 @@ final class GetterNameGenerator
     }
 
     /**
-     * @param ParameterType::ARGUMENT|ParameterType::OPTION $parameterType  $parameterType
+     * @param ParameterType::ARGUMENT|ParameterType::OPTION $parameterType
      * @param list<class-string<InputType>>                 $typeClassNames
      */
     public static function generateMethodName(string $parameterType, array $typeClassNames): string
@@ -53,6 +53,9 @@ final class GetterNameGenerator
         return implode('', $nameParts);
     }
 
+    /**
+     * @param class-string<InputType> $typeClassName
+     */
     private static function normalizeTypeName(string $typeClassName): string
     {
         return substr(

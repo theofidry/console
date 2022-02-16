@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Generator;
 
+use Closure;
 use Fidry\Console\Generator\ClassName;
 use PHPUnit\Framework\TestCase;
 

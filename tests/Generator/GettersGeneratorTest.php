@@ -28,7 +28,7 @@ final class GettersGeneratorTest extends TestCase
     /**
      * @dataProvider typesProvider
      *
-     * @param list<InputType>                                     $types
+     * @param non-empty-list<InputType>                           $types
      * @param list<ParameterType::ARGUMENT|ParameterType::OPTION> $parameterTypes
      */
     public function test_it_can_generate_getters_for_the_given_types_and_parameters(
@@ -64,6 +64,9 @@ final class GettersGeneratorTest extends TestCase
 
             use Fidry\Console\Type\TypeFactory;
 
+            /**
+             * @internal
+             */
             trait IOGetters
             {
 

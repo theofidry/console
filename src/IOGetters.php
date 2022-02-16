@@ -15,6 +15,9 @@ namespace Fidry\Console;
 
 use Fidry\Console\Type\TypeFactory;
 
+/**
+ * @internal
+ */
 trait IOGetters
 {
     public function getBooleanArgument(string $name): bool

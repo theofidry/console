@@ -42,6 +42,9 @@ final class GettersGenerator
 
     use Fidry\Console\Type\TypeFactory;
 
+    /**
+     * @internal
+     */
     trait IOGetters
     {
         // __GETTERS_PLACEHOLDER__
