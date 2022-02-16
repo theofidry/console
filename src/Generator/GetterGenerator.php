@@ -22,7 +22,9 @@ use function Safe\sprintf;
 use function str_repeat;
 use function str_replace;
 
-// TODO: use \FQCN::class instead of string
+/**
+ * @private
+ */
 final class GetterGenerator
 {
     private const ARGUMENT_TEMPLATE = <<<'PHP'

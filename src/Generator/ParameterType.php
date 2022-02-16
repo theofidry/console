@@ -14,6 +14,9 @@ declare(strict_types=1);
 namespace Fidry\Console\Generator;
 
 // TODO: switch to an enum in PHP8.1
+/**
+ * @private
+ */
 final class ParameterType
 {
     public const ARGUMENT = 'ARGUMENT';

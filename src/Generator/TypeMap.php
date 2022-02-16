@@ -20,6 +20,9 @@ use Fidry\Console\Type\ListType;
 use Fidry\Console\Type\NullableType;
 use Fidry\Console\Type\StringType;
 
+/**
+ * @private
+ */
 final class TypeMap
 {
     private function __construct()

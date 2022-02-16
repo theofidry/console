@@ -15,6 +15,9 @@ namespace Fidry\Console\Generator;
 
 use function Safe\file_put_contents;
 
+/**
+ * @private
+ */
 final class IOGettersDumper
 {
     private const TARGET_PATH = __DIR__.'/../IOGetters.php';

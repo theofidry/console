@@ -20,6 +20,9 @@ use function implode;
 use function Safe\substr;
 use function ucfirst;
 
+/**
+ * @private
+ */
 final class GetterNameGenerator
 {
     private function __construct()

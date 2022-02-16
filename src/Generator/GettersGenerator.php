@@ -19,6 +19,9 @@ use Fidry\Console\Type\InputType;
 use function implode;
 use function str_replace;
 
+/**
+ * @private
+ */
 final class GettersGenerator
 {
     private const TEMPLATE = <<<'PHP'

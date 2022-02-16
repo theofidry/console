@@ -17,6 +17,9 @@ use function array_slice;
 use Fidry\Console\Type\InputType;
 use Fidry\Console\Type\ListType;
 
+/**
+ * @private
+ */
 final class TypeNameSorter
 {
     private function __construct()

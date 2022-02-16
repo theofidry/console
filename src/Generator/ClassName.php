@@ -16,6 +16,9 @@ namespace Fidry\Console\Generator;
 use function mb_strrpos;
 use function Safe\substr;
 
+/**
+ * @private
+ */
 final class ClassName
 {
     private function __construct()
