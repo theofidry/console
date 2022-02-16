@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Generator;
 
-use Fidry\Console\Command\ConsoleAssert;
-use Fidry\Console\Generator\Type\InputType;
+use Fidry\Console\Type\InputType;
 use function array_map;
 use function array_pop;
 use function array_shift;
@@ -26,9 +25,9 @@ final class GetterGenerator
     {
         $argument = $this->getArgument($name);
     
-        $type = TypeFactory::createTypeFromClassNames(
+        $type = TypeFactory::createTypeFromClassNames([
         __TYPE_CLASS_NAMES_PLACEHOLDER__
-        );
+        ]);
     
         return $type->castValue($argument);
     }
@@ -111,7 +110,7 @@ final class GetterGenerator
     private static function formatTypeClassName(string $typeClassName, int $indentSize): string
     {
         return sprintf(
-            '%s\'%s\',',
+            '%s\\%s::class,',
             str_repeat(' ', self::INDENT_SIZE * $indentSize),
             $typeClassName,
         );

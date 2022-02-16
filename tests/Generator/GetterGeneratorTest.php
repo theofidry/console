@@ -7,10 +7,10 @@ namespace Fidry\Console\Tests\Generator;
 use Fidry\Console\Generator\GetterGenerator;
 use Fidry\Console\Generator\GetterNameGenerator;
 use Fidry\Console\Generator\ParameterType;
-use Fidry\Console\Generator\Type\BooleanType;
-use Fidry\Console\Generator\Type\InputType;
-use Fidry\Console\Generator\Type\ListType;
-use Fidry\Console\Generator\Type\NullableType;
+use Fidry\Console\Type\BooleanType;
+use Fidry\Console\Type\InputType;
+use Fidry\Console\Type\ListType;
+use Fidry\Console\Type\NullableType;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,9 +42,9 @@ final class GetterGeneratorTest extends TestCase
         {
             $option = $this->getOption($name);
         
-            $type = TypeFactory::createTypeFromClassNames(
-                'Fidry\Console\Generator\Type\BooleanType',
-            );
+            $type = TypeFactory::createTypeFromClassNames([
+                \Fidry\Console\Type\BooleanType::class,
+            ]);
         
             return $type->castValue($option);
         }
@@ -70,9 +70,9 @@ final class GetterGeneratorTest extends TestCase
             {
                 $argument = $this->getArgument($name);
             
-                $type = TypeFactory::createTypeFromClassNames(
-                    'Fidry\Console\Generator\Type\BooleanType',
-                );
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Type\BooleanType::class,
+                ]);
             
                 return $type->castValue($argument);
             }
@@ -91,10 +91,10 @@ final class GetterGeneratorTest extends TestCase
             {
                 $argument = $this->getArgument($name);
             
-                $type = TypeFactory::createTypeFromClassNames(
-                    'Fidry\Console\Generator\Type\NullableType',
-                    'Fidry\Console\Generator\Type\BooleanType',
-                );
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Type\NullableType::class,
+                    \Fidry\Console\Type\BooleanType::class,
+                ]);
             
                 return $type->castValue($argument);
             }
@@ -113,10 +113,10 @@ final class GetterGeneratorTest extends TestCase
             {
                 $argument = $this->getArgument($name);
             
-                $type = TypeFactory::createTypeFromClassNames(
-                    'Fidry\Console\Generator\Type\ListType',
-                    'Fidry\Console\Generator\Type\BooleanType',
-                );
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Type\ListType::class,
+                    \Fidry\Console\Type\BooleanType::class,
+                ]);
             
                 return $type->castValue($argument);
             }
@@ -137,24 +137,40 @@ final class GetterGeneratorTest extends TestCase
             {
                 $argument = $this->getArgument($name);
             
-                $type = TypeFactory::createTypeFromClassNames(
-                    'Fidry\Console\Generator\Type\NullableType',
-                    'Fidry\Console\Generator\Type\ListType',
-                    'Fidry\Console\Generator\Type\BooleanType',
-                );
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Type\NullableType::class,
+                    \Fidry\Console\Type\ListType::class,
+                    \Fidry\Console\Type\BooleanType::class,
+                ]);
             
                 return $type->castValue($argument);
             }
             PHP,
         ];
 
-        // TODO: enable later
-//        yield 'list of nullable singular type' => [
-//            new ListType(
-//                new NullableType(
-//                    new BooleanType(),
-//                ),
-//            ),
-//        ];
+        yield 'list of nullable singular type' => [
+            new ListType(
+                new NullableType(
+                    new BooleanType(),
+                ),
+            ),
+            <<<'PHP'
+            /**
+             * @return list<null|bool>
+             */
+            public function getNullableBooleanListArgument(string $name): array
+            {
+                $argument = $this->getArgument($name);
+            
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Type\ListType::class,
+                    \Fidry\Console\Type\NullableType::class,
+                    \Fidry\Console\Type\BooleanType::class,
+                ]);
+            
+                return $type->castValue($argument);
+            }
+            PHP,
+        ];
     }
 }

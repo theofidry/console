@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Generator;
 
-use Fidry\Console\Generator\Type\ComposedType;
-use Fidry\Console\Generator\Type\InputType;
-use Fidry\Console\Generator\Type\ListType;
+use Fidry\Console\Type\InputType;
+use Fidry\Console\Type\ListType;
 use function array_reverse;
 use function array_slice;
 use function get_class;

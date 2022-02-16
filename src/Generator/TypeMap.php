@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Generator;
 
-use Fidry\Console\Generator\Type\BooleanType;
-use Fidry\Console\Generator\Type\FloatType;
-use Fidry\Console\Generator\Type\IntegerType;
-use Fidry\Console\Generator\Type\ListType;
-use Fidry\Console\Generator\Type\NullableType;
-use Fidry\Console\Generator\Type\StringType;
+use Fidry\Console\Type\BooleanType;
+use Fidry\Console\Type\FloatType;
+use Fidry\Console\Type\IntegerType;
+use Fidry\Console\Type\ListType;
+use Fidry\Console\Type\NullableType;
+use Fidry\Console\Type\StringType;
 
 final class TypeMap
 {
-    public function provideMap(): array
+    public static function provideTypes(): array
     {
         // TODO: this will be heavily refactored later
         return [
@@ -32,5 +32,9 @@ final class TypeMap
             new NullableType(new FloatType()),
             new ListType(new FloatType()),
         ];
+    }
+
+    private function __construct()
+    {
     }
 }

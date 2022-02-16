@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Generator;
 
-use Fidry\Console\Generator\Type\BooleanType;
-use Fidry\Console\Generator\Type\InputType;
-use Fidry\Console\Generator\Type\ListType;
-use Fidry\Console\Generator\Type\NullableType;
-use Fidry\Console\Generator\Type\StringType;
-use Fidry\Console\Generator\TypeNameCollector;
 use Fidry\Console\Generator\TypeNameSorter;
+use Fidry\Console\Type\BooleanType;
+use Fidry\Console\Type\InputType;
+use Fidry\Console\Type\ListType;
+use Fidry\Console\Type\NullableType;
+use Fidry\Console\Type\StringType;
 use PHPUnit\Framework\TestCase;
 
 /**

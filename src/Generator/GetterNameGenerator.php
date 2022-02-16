@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Generator;
 
-use Fidry\Console\Command\ConsoleAssert;
-use Fidry\Console\Generator\Type\InputType;
-use Fidry\Console\Generator\Type\ListType;
+use Fidry\Console\Type\InputType;
+use Fidry\Console\Type\ListType;
 use function array_map;
 use function array_shift;
 use function array_unshift;

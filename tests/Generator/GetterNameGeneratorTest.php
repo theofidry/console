@@ -6,10 +6,10 @@ namespace Fidry\Console\Tests\Generator;
 
 use Fidry\Console\Generator\GetterNameGenerator;
 use Fidry\Console\Generator\ParameterType;
-use Fidry\Console\Generator\Type\BooleanType;
-use Fidry\Console\Generator\Type\InputType;
-use Fidry\Console\Generator\Type\ListType;
-use Fidry\Console\Generator\Type\NullableType;
+use Fidry\Console\Type\BooleanType;
+use Fidry\Console\Type\InputType;
+use Fidry\Console\Type\ListType;
+use Fidry\Console\Type\NullableType;
 use PHPUnit\Framework\TestCase;
 
 /**
