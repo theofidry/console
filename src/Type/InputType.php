@@ -31,4 +31,8 @@ interface InputType
      * @return non-empty-list<class-string<InputType>>
      */
     public function getTypeClassNames(): array;
+
+    public function getPsalmTypeDeclaration(): string;
+
+    public function getPhpTypeDeclaration(): string;
 }

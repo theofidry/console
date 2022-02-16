@@ -31,4 +31,14 @@ final class StringType implements ScalarType
     {
         return [self::class];
     }
+
+    public function getPsalmTypeDeclaration(): string
+    {
+        return 'string';
+    }
+
+    public function getPhpTypeDeclaration(): string
+    {
+        return 'string';
+    }
 }

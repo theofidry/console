@@ -41,6 +41,18 @@ final class ListTypeTest extends BaseTypeTest
         self::assertSame($expected, $actual);
     }
 
+    /**
+     * @dataProvider listProvider
+     *
+     * @param mixed $_
+     */
+    public function test_it_exposes_its_psalm_declaration(ListType $input, $_, string $expected): void
+    {
+        $actual = $input->getPsalmTypeDeclaration();
+
+        self::assertSame($expected, $actual);
+    }
+
     public static function valueProvider(): iterable
     {
         yield 'integer value' => [
@@ -72,6 +84,7 @@ final class ListTypeTest extends BaseTypeTest
                 ListType::class,
                 IntegerType::class,
             ],
+            'list<int>',
         ];
 
         yield 'composed type' => [
@@ -81,6 +94,7 @@ final class ListTypeTest extends BaseTypeTest
                 NullableType::class,
                 IntegerType::class,
             ],
+            'list<null|int>',
         ];
     }
 }

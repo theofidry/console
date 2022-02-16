@@ -11,24 +11,8 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of the box project.
- *
- * (c) Kevin Herrera <kevin@herrera.io>
- *     Théo Fidry <theo.fidry@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace Fidry\Console;
 
-use Fidry\Console\Type\BooleanType;
-use Fidry\Console\Type\FloatType;
-use Fidry\Console\Type\IntegerType;
-use Fidry\Console\Type\ListType;
-use Fidry\Console\Type\NullableType;
-use Fidry\Console\Type\StringType;
 use Fidry\Console\Type\TypeFactory;
 
 /**
@@ -41,7 +25,7 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            BooleanType::class,
+            \Fidry\Console\Type\BooleanType::class,
         ]);
 
         return $type->castValue($argument);
@@ -52,8 +36,8 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            NullableType::class,
-            BooleanType::class,
+            \Fidry\Console\Type\NullableType::class,
+            \Fidry\Console\Type\BooleanType::class,
         ]);
 
         return $type->castValue($argument);
@@ -64,7 +48,7 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            StringType::class,
+            \Fidry\Console\Type\StringType::class,
         ]);
 
         return $type->castValue($argument);
@@ -75,8 +59,8 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            NullableType::class,
-            StringType::class,
+            \Fidry\Console\Type\NullableType::class,
+            \Fidry\Console\Type\StringType::class,
         ]);
 
         return $type->castValue($argument);
@@ -90,8 +74,8 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            ListType::class,
-            StringType::class,
+            \Fidry\Console\Type\ListType::class,
+            \Fidry\Console\Type\StringType::class,
         ]);
 
         return $type->castValue($argument);
@@ -102,7 +86,7 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            IntegerType::class,
+            \Fidry\Console\Type\IntegerType::class,
         ]);
 
         return $type->castValue($argument);
@@ -113,8 +97,8 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            NullableType::class,
-            IntegerType::class,
+            \Fidry\Console\Type\NullableType::class,
+            \Fidry\Console\Type\IntegerType::class,
         ]);
 
         return $type->castValue($argument);
@@ -128,8 +112,8 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            ListType::class,
-            IntegerType::class,
+            \Fidry\Console\Type\ListType::class,
+            \Fidry\Console\Type\IntegerType::class,
         ]);
 
         return $type->castValue($argument);
@@ -140,7 +124,7 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            FloatType::class,
+            \Fidry\Console\Type\FloatType::class,
         ]);
 
         return $type->castValue($argument);
@@ -151,8 +135,8 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            NullableType::class,
-            FloatType::class,
+            \Fidry\Console\Type\NullableType::class,
+            \Fidry\Console\Type\FloatType::class,
         ]);
 
         return $type->castValue($argument);
@@ -166,8 +150,8 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            ListType::class,
-            FloatType::class,
+            \Fidry\Console\Type\ListType::class,
+            \Fidry\Console\Type\FloatType::class,
         ]);
 
         return $type->castValue($argument);
@@ -178,7 +162,7 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            BooleanType::class,
+            \Fidry\Console\Type\BooleanType::class,
         ]);
 
         return $type->castValue($option);
@@ -189,8 +173,8 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            NullableType::class,
-            BooleanType::class,
+            \Fidry\Console\Type\NullableType::class,
+            \Fidry\Console\Type\BooleanType::class,
         ]);
 
         return $type->castValue($option);
@@ -201,7 +185,7 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            StringType::class,
+            \Fidry\Console\Type\StringType::class,
         ]);
 
         return $type->castValue($option);
@@ -212,8 +196,8 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            NullableType::class,
-            StringType::class,
+            \Fidry\Console\Type\NullableType::class,
+            \Fidry\Console\Type\StringType::class,
         ]);
 
         return $type->castValue($option);
@@ -227,8 +211,8 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            ListType::class,
-            StringType::class,
+            \Fidry\Console\Type\ListType::class,
+            \Fidry\Console\Type\StringType::class,
         ]);
 
         return $type->castValue($option);
@@ -239,7 +223,7 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            IntegerType::class,
+            \Fidry\Console\Type\IntegerType::class,
         ]);
 
         return $type->castValue($option);
@@ -250,8 +234,8 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            NullableType::class,
-            IntegerType::class,
+            \Fidry\Console\Type\NullableType::class,
+            \Fidry\Console\Type\IntegerType::class,
         ]);
 
         return $type->castValue($option);
@@ -265,8 +249,8 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            ListType::class,
-            IntegerType::class,
+            \Fidry\Console\Type\ListType::class,
+            \Fidry\Console\Type\IntegerType::class,
         ]);
 
         return $type->castValue($option);
@@ -277,7 +261,7 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            FloatType::class,
+            \Fidry\Console\Type\FloatType::class,
         ]);
 
         return $type->castValue($option);
@@ -288,8 +272,8 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            NullableType::class,
-            FloatType::class,
+            \Fidry\Console\Type\NullableType::class,
+            \Fidry\Console\Type\FloatType::class,
         ]);
 
         return $type->castValue($option);
@@ -303,8 +287,8 @@ trait IOGetters
         $option = $this->getOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            ListType::class,
-            FloatType::class,
+            \Fidry\Console\Type\ListType::class,
+            \Fidry\Console\Type\FloatType::class,
         ]);
 
         return $type->castValue($option);

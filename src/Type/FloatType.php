@@ -31,4 +31,14 @@ final class FloatType implements ScalarType
     {
         return [self::class];
     }
+
+    public function getPsalmTypeDeclaration(): string
+    {
+        return 'float';
+    }
+
+    public function getPhpTypeDeclaration(): string
+    {
+        return 'float';
+    }
 }

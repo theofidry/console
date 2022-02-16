@@ -15,6 +15,7 @@ namespace Fidry\Console\Type;
 
 use function array_map;
 use Fidry\Console\InputAssert;
+use function Safe\sprintf;
 
 /**
  * @template CastedValueType
@@ -51,5 +52,18 @@ final class ListType implements InputType
             self::class,
             ...$this->innerType->getTypeClassNames(),
         ];
+    }
+
+    public function getPsalmTypeDeclaration(): string
+    {
+        return sprintf(
+            'list<%s>',
+            $this->innerType->getPsalmTypeDeclaration(),
+        );
+    }
+
+    public function getPhpTypeDeclaration(): string
+    {
+        return 'array';
     }
 }
