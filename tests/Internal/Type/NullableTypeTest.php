@@ -11,15 +11,15 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Tests\Type;
+namespace Fidry\Console\Tests\Internal\Type;
 
-use Fidry\Console\Type\InputType;
-use Fidry\Console\Type\IntegerType;
-use Fidry\Console\Type\ListType;
-use Fidry\Console\Type\NullableType;
+use Fidry\Console\Internal\Type\InputType;
+use Fidry\Console\Internal\Type\IntegerType;
+use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NullableType;
 
 /**
- * @covers \Fidry\Console\Type\NullableType
+ * @covers \Fidry\Console\Internal\Type\NullableType
  */
 final class NullableTypeTest extends BaseTypeTest
 {

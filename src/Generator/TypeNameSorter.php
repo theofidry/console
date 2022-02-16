@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Generator;
 
 use function array_slice;
-use Fidry\Console\Type\InputType;
-use Fidry\Console\Type\ListType;
+use Fidry\Console\Internal\Type\InputType;
+use Fidry\Console\Internal\Type\ListType;
 
 /**
  * @private

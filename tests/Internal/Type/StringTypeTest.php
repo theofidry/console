@@ -11,43 +11,44 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Tests\Type;
+namespace Fidry\Console\Tests\Internal\Type;
 
+use Fidry\Console\Internal\Type\StringType;
 use Fidry\Console\Tests\IO\TypeException;
-use Fidry\Console\Type\BooleanType;
 
 /**
- * @covers \Fidry\Console\Type\BooleanType
+ * @covers \Fidry\Console\Internal\Type\StringType
  */
-final class BooleanTypeTest extends BaseTypeTest
+final class StringTypeTest extends BaseTypeTest
 {
     protected function setUp(): void
     {
-        $this->type = new BooleanType();
+        $this->type = new StringType();
     }
 
     public static function valueProvider(): iterable
     {
-        $trueishValues = [
-            true,
-            '1',
-            ' ',
-            '0 ',
-            'null',
-        ];
-
-        $falseishValues = [
+        yield [
             null,
-            false,
-            '0',
+            new TypeException('Expected a string. Got "NULL"'),
         ];
 
-        foreach ($trueishValues as $trueishValue) {
-            yield [$trueishValue, true];
-        }
+        yield [
+            true,
+            new TypeException('Expected a string. Got "true"'),
+        ];
 
-        foreach ($falseishValues as $falseishValue) {
-            yield [$falseishValue, false];
+        $stringValues = [
+            '10',
+            '9.1',
+            'null',
+            '',
+            ' ',
+            'foo',
+        ];
+
+        foreach ($stringValues as $stringValue) {
+            yield [$stringValue, $stringValue];
         }
 
         yield [

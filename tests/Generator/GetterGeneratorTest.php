@@ -15,10 +15,10 @@ namespace Fidry\Console\Tests\Generator;
 
 use Fidry\Console\Generator\GetterGenerator;
 use Fidry\Console\Generator\ParameterType;
-use Fidry\Console\Type\BooleanType;
-use Fidry\Console\Type\InputType;
-use Fidry\Console\Type\ListType;
-use Fidry\Console\Type\NullableType;
+use Fidry\Console\Internal\Type\BooleanType;
+use Fidry\Console\Internal\Type\InputType;
+use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NullableType;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -51,7 +51,7 @@ final class GetterGeneratorTest extends TestCase
             $option = $this->getLegacyOption($name);
         
             $type = TypeFactory::createTypeFromClassNames([
-                \Fidry\Console\Type\BooleanType::class,
+                \Fidry\Console\Internal\Type\BooleanType::class,
             ]);
         
             return $type->castValue($option);
@@ -79,7 +79,7 @@ final class GetterGeneratorTest extends TestCase
                 $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Type\BooleanType::class,
+                    \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
                 return $type->castValue($argument);
@@ -100,8 +100,8 @@ final class GetterGeneratorTest extends TestCase
                 $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Type\NullableType::class,
-                    \Fidry\Console\Type\BooleanType::class,
+                    \Fidry\Console\Internal\Type\NullableType::class,
+                    \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
                 return $type->castValue($argument);
@@ -122,8 +122,8 @@ final class GetterGeneratorTest extends TestCase
                 $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Type\ListType::class,
-                    \Fidry\Console\Type\BooleanType::class,
+                    \Fidry\Console\Internal\Type\ListType::class,
+                    \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
                 return $type->castValue($argument);
@@ -146,9 +146,9 @@ final class GetterGeneratorTest extends TestCase
                 $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Type\NullableType::class,
-                    \Fidry\Console\Type\ListType::class,
-                    \Fidry\Console\Type\BooleanType::class,
+                    \Fidry\Console\Internal\Type\NullableType::class,
+                    \Fidry\Console\Internal\Type\ListType::class,
+                    \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
                 return $type->castValue($argument);
@@ -171,9 +171,9 @@ final class GetterGeneratorTest extends TestCase
                 $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Type\ListType::class,
-                    \Fidry\Console\Type\NullableType::class,
-                    \Fidry\Console\Type\BooleanType::class,
+                    \Fidry\Console\Internal\Type\ListType::class,
+                    \Fidry\Console\Internal\Type\NullableType::class,
+                    \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
                 return $type->castValue($argument);

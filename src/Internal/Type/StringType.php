@@ -11,21 +11,20 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Type;
+namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\InputAssert;
 
-// TODO: to split into safe & unsafe
 /**
- * @implements ScalarType<bool>
+ * @implements ScalarType<string>
  */
-final class BooleanType implements ScalarType
+final class StringType implements ScalarType
 {
-    public function castValue($value): bool
+    public function castValue($value): string
     {
-        InputAssert::assertIsScalar($value);
+        InputAssert::string($value);
 
-        return (bool) $value;
+        return $value;
     }
 
     public function getTypeClassNames(): array
@@ -35,11 +34,11 @@ final class BooleanType implements ScalarType
 
     public function getPsalmTypeDeclaration(): string
     {
-        return 'bool';
+        return 'string';
     }
 
     public function getPhpTypeDeclaration(): string
     {
-        return 'bool';
+        return 'string';
     }
 }

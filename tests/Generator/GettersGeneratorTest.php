@@ -15,9 +15,9 @@ namespace Fidry\Console\Tests\Generator;
 
 use Fidry\Console\Generator\GettersGenerator;
 use Fidry\Console\Generator\ParameterType;
-use Fidry\Console\Type\BooleanType;
-use Fidry\Console\Type\InputType;
-use Fidry\Console\Type\StringType;
+use Fidry\Console\Internal\Type\BooleanType;
+use Fidry\Console\Internal\Type\InputType;
+use Fidry\Console\Internal\Type\StringType;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -62,7 +62,7 @@ final class GettersGeneratorTest extends TestCase
 
             namespace Fidry\Console;
 
-            use Fidry\Console\Type\TypeFactory;
+            use Fidry\Console\Internal\Type\TypeFactory;
 
             /**
              * @internal
@@ -78,7 +78,7 @@ final class GettersGeneratorTest extends TestCase
                     $argument = $this->getLegacyArgument($name);
 
                     $type = TypeFactory::createTypeFromClassNames([
-                        \Fidry\Console\Type\StringType::class,
+                        \Fidry\Console\Internal\Type\StringType::class,
                     ]);
 
                     return $type->castValue($argument);
@@ -92,7 +92,7 @@ final class GettersGeneratorTest extends TestCase
                     $argument = $this->getLegacyArgument($name);
             
                     $type = TypeFactory::createTypeFromClassNames([
-                        \Fidry\Console\Type\BooleanType::class,
+                        \Fidry\Console\Internal\Type\BooleanType::class,
                     ]);
             
                     return $type->castValue($argument);

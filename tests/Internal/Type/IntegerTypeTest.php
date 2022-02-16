@@ -11,70 +11,57 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Tests\Type;
+namespace Fidry\Console\Tests\Internal\Type;
 
+use Fidry\Console\Internal\Type\IntegerType;
 use Fidry\Console\Tests\IO\TypeException;
-use Fidry\Console\Type\FloatType;
-use const PHP_VERSION_ID;
 
 /**
- * @covers \Fidry\Console\Type\FloatType
+ * @covers \Fidry\Console\Internal\Type\IntegerType
  */
-final class FloatTypeTest extends BaseTypeTest
+final class IntegerTypeTest extends BaseTypeTest
 {
     protected function setUp(): void
     {
-        $this->type = new FloatType();
+        $this->type = new IntegerType();
     }
 
     public static function valueProvider(): iterable
     {
         yield [
             null,
-            new TypeException('Expected a numeric string. Got "NULL"'),
+            new TypeException('Expected an integer string. Got "NULL"'),
         ];
 
         yield [
             true,
-            new TypeException('Expected a numeric string. Got "true"'),
+            new TypeException('Expected an integer string. Got "true"'),
         ];
 
         yield '(string) integer' => [
             '10',
-            10.,
+            10,
         ];
 
         yield '(string) negative integer' => [
             '-10',
-            -10.,
+            new TypeException('Expected an integer string. Got "\'-10\'"'),
         ];
 
         yield '(string) float' => [
             '9.1',
-            9.1,
-        ];
-
-        yield '(string) negative float' => [
-            '-9.1',
-            -9.1,
+            new TypeException('Expected an integer string. Got "\'9.1\'"'),
         ];
 
         yield 'string' => [
             'foo',
-            new TypeException('Expected a numeric string. Got "\'foo\'"'),
+            new TypeException('Expected an integer string. Got "\'foo\'"'),
         ];
 
-        if (PHP_VERSION_ID >= 80000) {
-            yield 'integer with trailing space' => [
-                '42 ',
-                42.,
-            ];
-        } else {
-            yield 'integer with trailing space' => [
-                '42 ',
-                new TypeException('Expected a numeric string. Got "\'42 \'"'),
-            ];
-        }
+        yield 'integer with trailing space' => [
+            '42 ',
+            new TypeException('Expected an integer string. Got "\'42 \'"'),
+        ];
 
         yield [
             [],

@@ -15,7 +15,7 @@ namespace Fidry\Console\Generator;
 
 use function array_map;
 use function explode;
-use Fidry\Console\Type\InputType;
+use Fidry\Console\Internal\Type\InputType;
 use function implode;
 use function str_replace;
 
@@ -40,7 +40,7 @@ final class GettersGenerator
 
     namespace Fidry\Console;
 
-    use Fidry\Console\Type\TypeFactory;
+    use Fidry\Console\Internal\Type\TypeFactory;
 
     /**
      * @internal

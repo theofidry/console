@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Generator;
 
 use Fidry\Console\Generator\TypeNameSorter;
-use Fidry\Console\Type\BooleanType;
-use Fidry\Console\Type\InputType;
-use Fidry\Console\Type\ListType;
-use Fidry\Console\Type\NullableType;
-use Fidry\Console\Type\StringType;
+use Fidry\Console\Internal\Type\BooleanType;
+use Fidry\Console\Internal\Type\InputType;
+use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NullableType;
+use Fidry\Console\Internal\Type\StringType;
 use PHPUnit\Framework\TestCase;
 
 /**

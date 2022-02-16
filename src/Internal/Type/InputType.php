@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Type;
+namespace Fidry\Console\Internal\Type;
 
 /**
  * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert

@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Generator;
 
-use Fidry\Console\Type\BooleanType;
-use Fidry\Console\Type\FloatType;
-use Fidry\Console\Type\IntegerType;
-use Fidry\Console\Type\ListType;
-use Fidry\Console\Type\NullableType;
-use Fidry\Console\Type\StringType;
+use Fidry\Console\Internal\Type\BooleanType;
+use Fidry\Console\Internal\Type\FloatType;
+use Fidry\Console\Internal\Type\IntegerType;
+use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NullableType;
+use Fidry\Console\Internal\Type\StringType;
 
 /**
  * @private

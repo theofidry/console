@@ -11,17 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Tests\Type;
+namespace Fidry\Console\Tests\Internal\Type;
 
-use Fidry\Console\Type\BooleanType;
-use Fidry\Console\Type\InputType;
-use Fidry\Console\Type\ListType;
-use Fidry\Console\Type\NullableType;
-use Fidry\Console\Type\TypeFactory;
+use Fidry\Console\Internal\Type\BooleanType;
+use Fidry\Console\Internal\Type\InputType;
+use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NullableType;
+use Fidry\Console\Internal\Type\TypeFactory;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Fidry\Console\Type\TypeFactory
+ * @covers \Fidry\Console\Internal\Type\TypeFactory
  */
 final class TypeFactoryTest extends TestCase
 {

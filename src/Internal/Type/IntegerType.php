@@ -11,20 +11,20 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Type;
+namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\InputAssert;
 
 /**
- * @implements ScalarType<float>
+ * @implements ScalarType<int>
  */
-final class FloatType implements ScalarType
+final class IntegerType implements ScalarType
 {
-    public function castValue($value): float
+    public function castValue($value): int
     {
-        InputAssert::numericString($value);
+        InputAssert::integerString($value);
 
-        return (float) $value;
+        return (int) $value;
     }
 
     public function getTypeClassNames(): array
@@ -34,11 +34,11 @@ final class FloatType implements ScalarType
 
     public function getPsalmTypeDeclaration(): string
     {
-        return 'float';
+        return 'int';
     }
 
     public function getPhpTypeDeclaration(): string
     {
-        return 'float';
+        return 'int';
     }
 }

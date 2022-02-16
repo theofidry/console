@@ -11,10 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Tests\Type;
+namespace Fidry\Console\Tests\Internal\Type;
 
+use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Tests\IO\TypeException;
-use Fidry\Console\Type\InputType;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use function Safe\sprintf;

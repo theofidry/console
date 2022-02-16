@@ -15,7 +15,7 @@ namespace Fidry\Console\Generator;
 
 use function array_map;
 use function array_unshift;
-use Fidry\Console\Type\InputType;
+use Fidry\Console\Internal\Type\InputType;
 use function implode;
 use function Safe\substr;
 use function ucfirst;

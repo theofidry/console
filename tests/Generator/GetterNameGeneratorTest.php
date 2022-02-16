@@ -15,10 +15,10 @@ namespace Fidry\Console\Tests\Generator;
 
 use Fidry\Console\Generator\GetterNameGenerator;
 use Fidry\Console\Generator\ParameterType;
-use Fidry\Console\Type\BooleanType;
-use Fidry\Console\Type\InputType;
-use Fidry\Console\Type\ListType;
-use Fidry\Console\Type\NullableType;
+use Fidry\Console\Internal\Type\BooleanType;
+use Fidry\Console\Internal\Type\InputType;
+use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NullableType;
 use PHPUnit\Framework\TestCase;
 
 /**
