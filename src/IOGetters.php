@@ -52,7 +52,7 @@ trait IOGetters
         $argument = $this->getArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            NullableType::class,
+            //NullableType::class,
             BooleanType::class,
         ]);
 

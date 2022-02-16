@@ -51,11 +51,11 @@ final class IOArgumentTest extends TestCase
             yield '[required] '.$title => $set;
         }
 
-        foreach (self::requiredArgumentProvider() as $title => $set) {
+        foreach (self::optionalArgumentProvider() as $title => $set) {
             yield '[optional] '.$title => $set;
         }
 
-        foreach (self::requiredArgumentProvider() as $title => $set) {
+        foreach (self::arrayArgumentProvider() as $title => $set) {
             yield '[array] '.$title => $set;
         }
     }
@@ -64,26 +64,26 @@ final class IOArgumentTest extends TestCase
     {
         $mode = InputArgument::REQUIRED;
 
-//        yield 'empty string' => [
-//            new InputArgument(
-//                self::ARGUMENT_NAME,
-//                $mode,
-//                '',
-//                null,
-//            ),
-//            '""',
-//            TypedInput::createForScalar(
-//                new TypeException('Cannot cast a non-array input argument into an array. Got "\'\'"'),
-//                false,
-//                false,
-//                '',
-//                '',
-//                new TypeException('Expected an integer string. Got "\'\'"'),
-//                new TypeException('Expected an integer string. Got "\'\'"'),
-//                new TypeException('Expected a numeric string. Got "\'\'"'),
-//                new TypeException('Expected a numeric string. Got "\'\'"'),
-//            ),
-//        ];
+        yield 'empty string' => [
+            new InputArgument(
+                self::ARGUMENT_NAME,
+                $mode,
+                '',
+                null,
+            ),
+            '""',
+            TypedInput::createForScalar(
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'\'"'),
+                false,
+                false,
+                '',
+                '',
+                new TypeException('Expected an integer string. Got "\'\'"'),
+                new TypeException('Expected an integer string. Got "\'\'"'),
+                new TypeException('Expected a numeric string. Got "\'\'"'),
+                new TypeException('Expected a numeric string. Got "\'\'"'),
+            ),
+        ];
 
         yield 'nominal string' => [
             new InputArgument(
@@ -244,27 +244,27 @@ final class IOArgumentTest extends TestCase
     {
         $mode = InputArgument::IS_ARRAY;
 
-//        yield 'empty string' => [
-//            new InputArgument(
-//                self::ARGUMENT_NAME,
-//                $mode,
-//                '',
-//                null,
-//            ),
-//            '""',
-//            TypedInput::createForArray(
-//                new TypeException(
-//                    <<<'TXT'
-//                    Expected a null or scalar value. Got the value: "array (
-//                      0 => '',
-//                    )"
-//                    TXT,
-//                ),
-//                [''],
-//                new TypeException('Expected an integer string. Got "\'\'"'),
-//                new TypeException('Expected a numeric string. Got "\'\'"'),
-//            ),
-//        ];
+        yield 'empty string' => [
+            new InputArgument(
+                self::ARGUMENT_NAME,
+                $mode,
+                '',
+                null,
+            ),
+            '""',
+            TypedInput::createForArray(
+                new TypeException(
+                    <<<'TXT'
+                    Expected a null or scalar value. Got the value: "array (
+                      0 => '',
+                    )"
+                    TXT,
+                ),
+                [''],
+                new TypeException('Expected an integer string. Got "\'\'"'),
+                new TypeException('Expected a numeric string. Got "\'\'"'),
+            ),
+        ];
 
         yield 'single element string' => [
             new InputArgument(
