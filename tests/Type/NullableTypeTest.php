@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Type;
 
+use Fidry\Console\Type\InputType;
 use Fidry\Console\Type\IntegerType;
+use Fidry\Console\Type\ListType;
 use Fidry\Console\Type\NullableType;
 
 /**
@@ -38,14 +40,14 @@ final class NullableTypeTest extends BaseTypeTest
         $this->assertCastedTypeIsCorrectlyInferred($value);
     }
 
-    public function test_it_exposes_its_type_and_inner_type(): void
+    /**
+     * @dataProvider nullableProvider
+     *
+     * @param list<class-string<InputType>> $expected
+     */
+    public function test_it_exposes_its_type_and_inner_type(NullableType $input, array $expected): void
     {
-        $expected = [
-            NullableType::class,
-            IntegerType::class,
-        ];
-
-        $actual = $this->type->getTypeClassNames();
+        $actual = $input->getTypeClassNames();
 
         self::assertSame($expected, $actual);
     }
@@ -71,6 +73,26 @@ final class NullableTypeTest extends BaseTypeTest
     public static function validTypeProvider(): iterable
     {
         yield from self::valueProvider();
+    }
+
+    public static function nullableProvider(): iterable
+    {
+        yield 'scalar type' => [
+            new NullableType(new IntegerType()),
+            [
+                NullableType::class,
+                IntegerType::class,
+            ],
+        ];
+
+        yield 'composed type' => [
+            new NullableType(new ListType(new IntegerType())),
+            [
+                NullableType::class,
+                ListType::class,
+                IntegerType::class,
+            ],
+        ];
     }
 
     private function assertCastedTypeIsCorrectlyInferred(?int $_value): void

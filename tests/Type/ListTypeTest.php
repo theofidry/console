@@ -14,8 +14,10 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Type;
 
 use Fidry\Console\Tests\IO\TypeException;
+use Fidry\Console\Type\InputType;
 use Fidry\Console\Type\IntegerType;
 use Fidry\Console\Type\ListType;
+use Fidry\Console\Type\NullableType;
 
 /**
  * @covers \Fidry\Console\Type\ListType
@@ -27,14 +29,14 @@ final class ListTypeTest extends BaseTypeTest
         $this->type = new ListType(new IntegerType());
     }
 
-    public function test_it_exposes_its_type_and_inner_type(): void
+    /**
+     * @dataProvider listProvider
+     *
+     * @param list<class-string<InputType>> $expected
+     */
+    public function test_it_exposes_its_type_and_inner_type(ListType $input, array $expected): void
     {
-        $expected = [
-            ListType::class,
-            IntegerType::class,
-        ];
-
-        $actual = $this->type->getTypeClassNames();
+        $actual = $input->getTypeClassNames();
 
         self::assertSame($expected, $actual);
     }
@@ -59,6 +61,26 @@ final class ListTypeTest extends BaseTypeTest
         yield 'array with non-integers' => [
             ['10', 'foo'],
             new TypeException('Expected an integer string. Got "\'foo\'"'),
+        ];
+    }
+
+    public static function listProvider(): iterable
+    {
+        yield 'scalar type' => [
+            new ListType(new IntegerType()),
+            [
+                ListType::class,
+                IntegerType::class,
+            ],
+        ];
+
+        yield 'composed type' => [
+            new ListType(new NullableType(new IntegerType())),
+            [
+                ListType::class,
+                NullableType::class,
+                IntegerType::class,
+            ],
         ];
     }
 }
