@@ -17,7 +17,7 @@ use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\ExitCode;
 use Fidry\Console\Helper\QuestionHelper;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 use Symfony\Component\Console\Helper\DebugFormatterHelper;
 use Symfony\Component\Console\Helper\DescriptorHelper;
 use Symfony\Component\Console\Helper\FormatterHelper;

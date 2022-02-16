@@ -15,7 +15,7 @@ namespace Fidry\Console\Tests\Application\Fixture;
 
 use Fidry\Console\Application\Application;
 use Fidry\Console\Application\ConfigurableIO;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 use Fidry\Console\Tests\Command\Fixture\SimpleCommand;
 use Fidry\Console\Tests\StatefulService;
 

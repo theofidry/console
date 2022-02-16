@@ -19,7 +19,7 @@ use Fidry\Console\Command\CommandAwareness;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\Command\InitializableCommand;
 use Fidry\Console\ExitCode;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 
 final class CommandAwareCommand implements Command, CommandAware, InitializableCommand
 {

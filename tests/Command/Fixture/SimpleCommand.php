@@ -16,7 +16,7 @@ namespace Fidry\Console\Tests\Command\Fixture;
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\ExitCode;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 
 /**
  * Most basic command: only has a name & description and does not do anything

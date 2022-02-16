@@ -20,7 +20,7 @@ use Fidry\Console\Command\InitializableCommand;
 use Fidry\Console\Command\InteractiveCommand;
 use Fidry\Console\ExitCode;
 use Fidry\Console\Helper\QuestionHelper;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 use LogicException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Question\Question;

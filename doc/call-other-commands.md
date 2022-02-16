@@ -21,11 +21,7 @@ the returned code from the command (return value from command's `execute()` meth
 // src/Console/Command/CreateUserCommand.php
 namespace App\Console\Command;
 
-use Fidry\Console\Command\CommandAware;
-use Fidry\Console\Command\CommandAwareness;
-use Fidry\Console\IO;
-use Fidry\Console\Command\Command;
-use Symfony\Component\Console\Input\ArrayInput;
+use Fidry\Console\Command\Command;use Fidry\Console\Command\CommandAware;use Fidry\Console\Command\CommandAwareness;use Fidry\Console\Input\IO;use Symfony\Component\Console\Input\ArrayInput;
 
 final class CreateUserCommand implements Command, CommandAware
 {

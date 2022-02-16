@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\IO;
 
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
@@ -26,8 +26,8 @@ use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
 /**
+ * @covers \Fidry\Console\Input\IO
  * @covers \Fidry\Console\InputAssert
- * @covers \Fidry\Console\IO
  */
 final class IOTest extends TestCase
 {
@@ -105,6 +105,7 @@ final class IOTest extends TestCase
         $this->expectException(ConsoleInvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
 
+        /** @psalm-suppress DeprecatedMethod */
         $io->getStringArgument('arg');
     }
 
@@ -179,6 +180,7 @@ final class IOTest extends TestCase
         $this->expectException(ConsoleInvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
 
+        /** @psalm-suppress DeprecatedMethod */
         $io->getStringOption('opt');
     }
 

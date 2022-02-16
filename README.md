@@ -73,11 +73,7 @@ follows:
 
 namespace Acme;
 
-use Acme\MyService;
-use Fidry\Console\Command\Command;
-use Fidry\Console\Command\Configuration;
-use Fidry\Console\ExitCode;
-use Fidry\Console\IO;
+use Acme\MyService;use Fidry\Console\Command\Command;use Fidry\Console\Command\Configuration;use Fidry\Console\ExitCode;use Fidry\Console\Input\IO;
 
 final class CommandWithService implements Command
 {

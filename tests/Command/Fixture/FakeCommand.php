@@ -17,7 +17,7 @@ use DomainException;
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\ExitCode;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 
 final class FakeCommand implements Command
 {

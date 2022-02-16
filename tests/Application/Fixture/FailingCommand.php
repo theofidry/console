@@ -15,7 +15,7 @@ namespace Fidry\Console\Tests\Application\Fixture;
 
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
-use Fidry\Console\IO;
+use Fidry\Console\Input\IO;
 use UnexpectedValueException;
 
 final class FailingCommand implements Command
