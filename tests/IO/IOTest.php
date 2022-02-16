@@ -26,7 +26,7 @@ use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
 /**
- * @covers \Fidry\Console\Command\ConsoleAssert
+ * @covers \Fidry\Console\InputAssert
  * @covers \Fidry\Console\IO
  */
 final class IOTest extends TestCase
@@ -77,8 +77,7 @@ final class IOTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidScalarArgumentTypeProvider
-     * @dataProvider invalidArrayArgumentTypeProvider
+     * @dataProvider invalidArgumentTypeProvider
      *
      * @param mixed $default
      */
@@ -109,31 +108,37 @@ final class IOTest extends TestCase
         $io->getStringArgument('arg');
     }
 
+    public static function invalidArgumentTypeProvider(): iterable
+    {
+        yield from self::invalidScalarArgumentTypeProvider();
+        yield from self::invalidArrayArgumentTypeProvider();
+    }
+
     public static function invalidScalarArgumentTypeProvider(): iterable
     {
         yield 'boolean' => [
             false,
-            'Expected an argument value type to be "null|string|string[]". Got "bool"',
+            'Expected an argument value type to be "null|string|list<string>". Got "bool"',
         ];
 
         yield 'int' => [
             10,
-            'Expected an argument value type to be "null|string|string[]". Got "int"',
+            'Expected an argument value type to be "null|string|list<string>". Got "int"',
         ];
 
         yield 'float' => [
             10.8,
-            'Expected an argument value type to be "null|string|string[]". Got "float"',
+            'Expected an argument value type to be "null|string|list<string>". Got "float"',
         ];
 
         yield 'object' => [
             new stdClass(),
-            'Expected an argument value type to be "null|string|string[]". Got "stdClass"',
+            'Expected an argument value type to be "null|string|list<string>". Got "stdClass"',
         ];
 
         yield 'closure' => [
             static fn () => '',
-            'Expected an argument value type to be "null|string|string[]". Got "Closure"',
+            'Expected an argument value type to be "null|string|list<string>". Got "Closure"',
         ];
     }
 
@@ -145,8 +150,7 @@ final class IOTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidScalarOptionTypeProvider
-     * @dataProvider invalidArrayOptionTypeProvider
+     * @dataProvider invalidOptionTypeProvider
      *
      * @param mixed $default
      */
@@ -176,6 +180,12 @@ final class IOTest extends TestCase
         $this->expectExceptionMessage($expectedMessage);
 
         $io->getStringOption('opt');
+    }
+
+    public static function invalidOptionTypeProvider(): iterable
+    {
+        yield from self::invalidScalarOptionTypeProvider();
+        yield from self::invalidArrayOptionTypeProvider();
     }
 
     public static function invalidScalarOptionTypeProvider(): iterable
