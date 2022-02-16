@@ -29,7 +29,7 @@ final class IOOptionsTest extends TestCase
     private const OPTION_NAME = 'opt';
 
     /**
-     * @dataProvider combinedProvider
+     * @dataProvider optionProvider
      */
     public function test_it_exposes_a_typed_api(
         InputOption $inputOption,
@@ -45,7 +45,7 @@ final class IOOptionsTest extends TestCase
         );
     }
 
-    public static function combinedProvider(): iterable
+    public static function optionProvider(): iterable
     {
         foreach (self::requiredOptionProvider() as $title => $set) {
             yield '[required] '.$title => $set;
