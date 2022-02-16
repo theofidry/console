@@ -75,7 +75,7 @@ final class GettersGeneratorTest extends TestCase
                  */
                 public function getStringArgument(string $name): string
                 {
-                    $argument = $this->getArgument($name);
+                    $argument = $this->getLegacyArgument($name);
 
                     $type = TypeFactory::createTypeFromClassNames([
                         \Fidry\Console\Type\StringType::class,
@@ -89,7 +89,7 @@ final class GettersGeneratorTest extends TestCase
                  */
                 public function getBooleanArgument(string $name): bool
                 {
-                    $argument = $this->getArgument($name);
+                    $argument = $this->getLegacyArgument($name);
             
                     $type = TypeFactory::createTypeFromClassNames([
                         \Fidry\Console\Type\BooleanType::class,

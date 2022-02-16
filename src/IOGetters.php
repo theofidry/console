@@ -22,7 +22,7 @@ trait IOGetters
 {
     public function getBooleanArgument(string $name): bool
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\BooleanType::class,
@@ -33,7 +33,7 @@ trait IOGetters
 
     public function getNullableBooleanArgument(string $name): ?bool
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\NullableType::class,
@@ -45,7 +45,7 @@ trait IOGetters
 
     public function getStringArgument(string $name): string
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\StringType::class,
@@ -56,7 +56,7 @@ trait IOGetters
 
     public function getNullableStringArgument(string $name): ?string
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\NullableType::class,
@@ -71,7 +71,7 @@ trait IOGetters
      */
     public function getStringListArgument(string $name): array
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\ListType::class,
@@ -83,7 +83,7 @@ trait IOGetters
 
     public function getIntegerArgument(string $name): int
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\IntegerType::class,
@@ -94,7 +94,7 @@ trait IOGetters
 
     public function getNullableIntegerArgument(string $name): ?int
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\NullableType::class,
@@ -109,7 +109,7 @@ trait IOGetters
      */
     public function getIntegerListArgument(string $name): array
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\ListType::class,
@@ -121,7 +121,7 @@ trait IOGetters
 
     public function getFloatArgument(string $name): float
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\FloatType::class,
@@ -132,7 +132,7 @@ trait IOGetters
 
     public function getNullableFloatArgument(string $name): ?float
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\NullableType::class,
@@ -147,7 +147,7 @@ trait IOGetters
      */
     public function getFloatListArgument(string $name): array
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\ListType::class,
@@ -159,7 +159,7 @@ trait IOGetters
 
     public function getBooleanOption(string $name): bool
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\BooleanType::class,
@@ -170,7 +170,7 @@ trait IOGetters
 
     public function getNullableBooleanOption(string $name): ?bool
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\NullableType::class,
@@ -182,7 +182,7 @@ trait IOGetters
 
     public function getStringOption(string $name): string
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\StringType::class,
@@ -193,7 +193,7 @@ trait IOGetters
 
     public function getNullableStringOption(string $name): ?string
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\NullableType::class,
@@ -208,7 +208,7 @@ trait IOGetters
      */
     public function getStringListOption(string $name): array
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\ListType::class,
@@ -220,7 +220,7 @@ trait IOGetters
 
     public function getIntegerOption(string $name): int
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\IntegerType::class,
@@ -231,7 +231,7 @@ trait IOGetters
 
     public function getNullableIntegerOption(string $name): ?int
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\NullableType::class,
@@ -246,7 +246,7 @@ trait IOGetters
      */
     public function getIntegerListOption(string $name): array
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\ListType::class,
@@ -258,7 +258,7 @@ trait IOGetters
 
     public function getFloatOption(string $name): float
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\FloatType::class,
@@ -269,7 +269,7 @@ trait IOGetters
 
     public function getNullableFloatOption(string $name): ?float
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\NullableType::class,
@@ -284,7 +284,7 @@ trait IOGetters
      */
     public function getFloatListOption(string $name): array
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Type\ListType::class,

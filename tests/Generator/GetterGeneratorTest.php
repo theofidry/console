@@ -48,7 +48,7 @@ final class GetterGeneratorTest extends TestCase
          */
         public function getBooleanOption(string $name): bool
         {
-            $option = $this->getOption($name);
+            $option = $this->getLegacyOption($name);
         
             $type = TypeFactory::createTypeFromClassNames([
                 \Fidry\Console\Type\BooleanType::class,
@@ -76,7 +76,7 @@ final class GetterGeneratorTest extends TestCase
              */
             public function getBooleanArgument(string $name): bool
             {
-                $argument = $this->getArgument($name);
+                $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Type\BooleanType::class,
@@ -97,7 +97,7 @@ final class GetterGeneratorTest extends TestCase
              */
             public function getNullableBooleanArgument(string $name): ?bool
             {
-                $argument = $this->getArgument($name);
+                $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Type\NullableType::class,
@@ -119,7 +119,7 @@ final class GetterGeneratorTest extends TestCase
              */
             public function getBooleanListArgument(string $name): array
             {
-                $argument = $this->getArgument($name);
+                $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Type\ListType::class,
@@ -143,7 +143,7 @@ final class GetterGeneratorTest extends TestCase
              */
             public function getNullableBooleanListArgument(string $name): ?array
             {
-                $argument = $this->getArgument($name);
+                $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Type\NullableType::class,
@@ -168,7 +168,7 @@ final class GetterGeneratorTest extends TestCase
              */
             public function getNullableBooleanListArgument(string $name): array
             {
-                $argument = $this->getArgument($name);
+                $argument = $this->getLegacyArgument($name);
             
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Type\ListType::class,
