@@ -25,7 +25,10 @@ may want to create a command to create a user:
 // src/Console/Command/CreateUserCommand.php
 namespace App\Console\Command;
 
-use Fidry\Console\Command\Command;use Fidry\Console\Command\Configuration;use Fidry\Console\ExitCode;use Fidry\Console\Input\IO;
+use Symfony\Component\Console\Input\InputArgument;
+use Fidry\Console\Command\Command;
+use Fidry\Console\Command\Configuration;
+use Fidry\Console\Input\IO;
 
 final class CreateUserCommand implements Command
 {
@@ -261,7 +264,11 @@ already registered as a service, you can use normal dependency injection. Imagin
 // src/Command/CreateUserCommand.php
 namespace App\Command;
 
-use App\Service\UserManager;use Fidry\Console\Command\Command;use Fidry\Console\ExitCode;use Fidry\Console\Input\IO;
+use App\Service\UserManager;
+use Fidry\Console\ExitCode;
+use Fidry\Console\Command\Command;
+use Fidry\Console\Command\Configuration;
+use Fidry\Console\Input\IO;
 
 final class CreateUserCommand implements Command
 {
