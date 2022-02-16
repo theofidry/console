@@ -29,6 +29,7 @@ use Fidry\Console\Type\IntegerType;
 use Fidry\Console\Type\ListType;
 use Fidry\Console\Type\NullableType;
 use Fidry\Console\Type\StringType;
+use Fidry\Console\Type\TypeFactory;
 
 /**
  * @internal
@@ -39,7 +40,9 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new BooleanType();
+        $type = TypeFactory::createTypeFromClassNames([
+            BooleanType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -48,7 +51,10 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new NullableType(new BooleanType());
+        $type = TypeFactory::createTypeFromClassNames([
+            NullableType::class,
+            BooleanType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -57,7 +63,9 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new StringType();
+        $type = TypeFactory::createTypeFromClassNames([
+            StringType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -66,7 +74,10 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new NullableType(new StringType());
+        $type = TypeFactory::createTypeFromClassNames([
+            NullableType::class,
+            StringType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -78,7 +89,10 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new ListType(new StringType());
+        $type = TypeFactory::createTypeFromClassNames([
+            ListType::class,
+            StringType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -87,7 +101,9 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new IntegerType();
+        $type = TypeFactory::createTypeFromClassNames([
+            IntegerType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -96,7 +112,10 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new NullableType(new IntegerType());
+        $type = TypeFactory::createTypeFromClassNames([
+            NullableType::class,
+            IntegerType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -108,7 +127,10 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new ListType(new IntegerType());
+        $type = TypeFactory::createTypeFromClassNames([
+            ListType::class,
+            IntegerType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -117,7 +139,9 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new FloatType();
+        $type = TypeFactory::createTypeFromClassNames([
+            FloatType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -126,7 +150,10 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new NullableType(new FloatType());
+        $type = TypeFactory::createTypeFromClassNames([
+            NullableType::class,
+            FloatType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -138,7 +165,10 @@ trait IOGetters
     {
         $argument = $this->getArgument($name);
 
-        $type = new ListType(new FloatType());
+        $type = TypeFactory::createTypeFromClassNames([
+            ListType::class,
+            FloatType::class,
+        ]);
 
         return $type->castValue($argument);
     }
@@ -147,7 +177,9 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new BooleanType();
+        $type = TypeFactory::createTypeFromClassNames([
+            BooleanType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -156,7 +188,10 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new NullableType(new BooleanType());
+        $type = TypeFactory::createTypeFromClassNames([
+            NullableType::class,
+            BooleanType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -165,7 +200,9 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new StringType();
+        $type = TypeFactory::createTypeFromClassNames([
+            StringType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -174,7 +211,10 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new NullableType(new StringType());
+        $type = TypeFactory::createTypeFromClassNames([
+            NullableType::class,
+            StringType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -186,7 +226,10 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new ListType(new StringType());
+        $type = TypeFactory::createTypeFromClassNames([
+            ListType::class,
+            StringType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -195,7 +238,9 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new IntegerType();
+        $type = TypeFactory::createTypeFromClassNames([
+            IntegerType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -204,7 +249,10 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new NullableType(new IntegerType());
+        $type = TypeFactory::createTypeFromClassNames([
+            NullableType::class,
+            IntegerType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -216,7 +264,10 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new ListType(new IntegerType());
+        $type = TypeFactory::createTypeFromClassNames([
+            ListType::class,
+            IntegerType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -225,7 +276,9 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new FloatType();
+        $type = TypeFactory::createTypeFromClassNames([
+            FloatType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -234,7 +287,10 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new NullableType(new FloatType());
+        $type = TypeFactory::createTypeFromClassNames([
+            NullableType::class,
+            FloatType::class,
+        ]);
 
         return $type->castValue($option);
     }
@@ -246,7 +302,10 @@ trait IOGetters
     {
         $option = $this->getOption($name);
 
-        $type = new ListType(new FloatType());
+        $type = TypeFactory::createTypeFromClassNames([
+            ListType::class,
+            FloatType::class,
+        ]);
 
         return $type->castValue($option);
     }

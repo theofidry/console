@@ -27,4 +27,9 @@ final class BooleanType implements ScalarType
 
         return (bool) $value;
     }
+
+    public function getTypeClassNames(): array
+    {
+        return [self::class];
+    }
 }
