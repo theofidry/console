@@ -1,22 +1,19 @@
 <?php
 
+/*
+ * This file is part of the Fidry\Console package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Fidry\Console\Generator;
 
-use Fidry\Console\Command\ConsoleAssert;
-use Fidry\Console\Generator\Type\InputType;
-use function array_map;
-use function array_pop;
-use function array_shift;
-use function array_unshift;
-use function explode;
 use function Safe\file_put_contents;
-use function Safe\file_get_contents;
-use function implode;
-use function Safe\sprintf;
-use function str_repeat;
-use function str_replace;
 
 final class IOGettersDumper
 {

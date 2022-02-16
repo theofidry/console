@@ -1,17 +1,28 @@
 <?php
 
+/*
+ * This file is part of the Fidry\Console package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Fidry\Console\Generator;
 
+use function array_slice;
 use Fidry\Console\Type\InputType;
 use Fidry\Console\Type\ListType;
-use function array_reverse;
-use function array_slice;
-use function get_class;
 
 final class TypeNameSorter
 {
+    private function __construct()
+    {
+    }
+
     /**
      * @param list<class-string<InputType>> $typeClassNames
      *
@@ -49,9 +60,5 @@ final class TypeNameSorter
 
             break;
         }
-    }
-
-    private function __construct()
-    {
     }
 }

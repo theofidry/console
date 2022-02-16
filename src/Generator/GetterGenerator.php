@@ -1,14 +1,22 @@
 <?php
 
+/*
+ * This file is part of the Fidry\Console package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Fidry\Console\Generator;
 
-use Fidry\Console\Type\InputType;
 use function array_map;
-use function array_pop;
 use function array_shift;
 use function array_unshift;
+use Fidry\Console\Type\InputType;
 use function implode;
 use function Safe\sprintf;
 use function str_repeat;
@@ -55,6 +63,10 @@ final class GetterGenerator
     ];
 
     private const INDENT_SIZE = 4;
+
+    private function __construct()
+    {
+    }
 
     /**
      * @param ParameterType::ARGUMENT|ParameterType::OPTION $parameterType $parameterType
@@ -105,7 +117,7 @@ final class GetterGenerator
 
     /**
      * @param class-string<InputType> $typeClassName
-     * @param positive-int $indentSize
+     * @param positive-int            $indentSize
      */
     private static function formatTypeClassName(string $typeClassName, int $indentSize): string
     {
@@ -114,9 +126,5 @@ final class GetterGenerator
             str_repeat(' ', self::INDENT_SIZE * $indentSize),
             $typeClassName,
         );
-    }
-
-    private function __construct()
-    {
     }
 }

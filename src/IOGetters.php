@@ -17,10 +17,6 @@ use Fidry\Console\Type\TypeFactory;
 
 trait IOGetters
 {
-
-    /**
-     * @return bool
-     */
     public function getBooleanArgument(string $name): bool
     {
         $argument = $this->getArgument($name);
@@ -32,9 +28,6 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
-    /**
-     * @return null|bool
-     */
     public function getNullableBooleanArgument(string $name): ?bool
     {
         $argument = $this->getArgument($name);
@@ -47,9 +40,6 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
-    /**
-     * @return string
-     */
     public function getStringArgument(string $name): string
     {
         $argument = $this->getArgument($name);
@@ -61,9 +51,6 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
-    /**
-     * @return null|string
-     */
     public function getNullableStringArgument(string $name): ?string
     {
         $argument = $this->getArgument($name);
@@ -91,9 +78,6 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
-    /**
-     * @return int
-     */
     public function getIntegerArgument(string $name): int
     {
         $argument = $this->getArgument($name);
@@ -105,9 +89,6 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
-    /**
-     * @return null|int
-     */
     public function getNullableIntegerArgument(string $name): ?int
     {
         $argument = $this->getArgument($name);
@@ -135,9 +116,6 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
-    /**
-     * @return float
-     */
     public function getFloatArgument(string $name): float
     {
         $argument = $this->getArgument($name);
@@ -149,9 +127,6 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
-    /**
-     * @return null|float
-     */
     public function getNullableFloatArgument(string $name): ?float
     {
         $argument = $this->getArgument($name);
@@ -179,9 +154,6 @@ trait IOGetters
         return $type->castValue($argument);
     }
 
-    /**
-     * @return bool
-     */
     public function getBooleanOption(string $name): bool
     {
         $option = $this->getOption($name);
@@ -193,9 +165,6 @@ trait IOGetters
         return $type->castValue($option);
     }
 
-    /**
-     * @return null|bool
-     */
     public function getNullableBooleanOption(string $name): ?bool
     {
         $option = $this->getOption($name);
@@ -208,9 +177,6 @@ trait IOGetters
         return $type->castValue($option);
     }
 
-    /**
-     * @return string
-     */
     public function getStringOption(string $name): string
     {
         $option = $this->getOption($name);
@@ -222,9 +188,6 @@ trait IOGetters
         return $type->castValue($option);
     }
 
-    /**
-     * @return null|string
-     */
     public function getNullableStringOption(string $name): ?string
     {
         $option = $this->getOption($name);
@@ -252,9 +215,6 @@ trait IOGetters
         return $type->castValue($option);
     }
 
-    /**
-     * @return int
-     */
     public function getIntegerOption(string $name): int
     {
         $option = $this->getOption($name);
@@ -266,9 +226,6 @@ trait IOGetters
         return $type->castValue($option);
     }
 
-    /**
-     * @return null|int
-     */
     public function getNullableIntegerOption(string $name): ?int
     {
         $option = $this->getOption($name);
@@ -296,9 +253,6 @@ trait IOGetters
         return $type->castValue($option);
     }
 
-    /**
-     * @return float
-     */
     public function getFloatOption(string $name): float
     {
         $option = $this->getOption($name);
@@ -310,9 +264,6 @@ trait IOGetters
         return $type->castValue($option);
     }
 
-    /**
-     * @return null|float
-     */
     public function getNullableFloatOption(string $name): ?float
     {
         $option = $this->getOption($name);
@@ -339,5 +290,4 @@ trait IOGetters
 
         return $type->castValue($option);
     }
-
 }

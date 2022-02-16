@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Fidry\Console package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Fidry\Console\Generator;
@@ -13,6 +22,10 @@ use Fidry\Console\Type\StringType;
 
 final class TypeMap
 {
+    private function __construct()
+    {
+    }
+
     public static function provideTypes(): array
     {
         // TODO: this will be heavily refactored later
@@ -32,9 +45,5 @@ final class TypeMap
             new NullableType(new FloatType()),
             new ListType(new FloatType()),
         ];
-    }
-
-    private function __construct()
-    {
     }
 }

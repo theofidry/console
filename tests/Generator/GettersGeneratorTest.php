@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Fidry\Console package.
+ *
+ * (c) Théo FIDRY <theo.fidry@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Generator;
@@ -19,15 +28,14 @@ final class GettersGeneratorTest extends TestCase
     /**
      * @dataProvider typesProvider
      *
-     * @param list<InputType> $types
+     * @param list<InputType>                                     $types
      * @param list<ParameterType::ARGUMENT|ParameterType::OPTION> $parameterTypes
      */
     public function test_it_can_generate_getters_for_the_given_types_and_parameters(
         array $types,
         array $parameterTypes,
         string $expected
-    ): void
-    {
+    ): void {
         $actual = GettersGenerator::generate($types, $parameterTypes);
 
         self::assertSame($expected, $actual);
