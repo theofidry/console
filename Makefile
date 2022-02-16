@@ -38,7 +38,7 @@ help:
 
 .PHONY: default
 default: ## Runs the default task: CS fix and all the tests
-default: cs test
+default: src/IOGetters.php cs test
 
 
 .PHONY: cs
@@ -122,3 +122,6 @@ $(PSALM_BIN):
 
 $(COVERS_VALIDATOR_BIN):
 	composer bin covers-validator install
+
+src/IOGetters.php: src vendor
+	./bin/dump-io-getters
