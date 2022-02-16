@@ -32,4 +32,14 @@ final class BooleanType implements ScalarType
     {
         return [self::class];
     }
+
+    public function getPsalmTypeDeclaration(): string
+    {
+        return 'bool';
+    }
+
+    public function getPhpTypeDeclaration(): string
+    {
+        return 'bool';
+    }
 }

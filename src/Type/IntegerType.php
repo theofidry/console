@@ -31,4 +31,14 @@ final class IntegerType implements ScalarType
     {
         return [self::class];
     }
+
+    public function getPsalmTypeDeclaration(): string
+    {
+        return 'int';
+    }
+
+    public function getPhpTypeDeclaration(): string
+    {
+        return 'int';
+    }
 }

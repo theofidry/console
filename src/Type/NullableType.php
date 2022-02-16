@@ -44,4 +44,14 @@ final class NullableType implements InputType
             ...$this->innerType->getTypeClassNames(),
         ];
     }
+
+    public function getPsalmTypeDeclaration(): string
+    {
+        return 'null|'.$this->innerType->getPsalmTypeDeclaration();
+    }
+
+    public function getPhpTypeDeclaration(): string
+    {
+        return '?'.$this->innerType->getPhpTypeDeclaration();
+    }
 }
