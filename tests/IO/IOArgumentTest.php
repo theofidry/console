@@ -29,7 +29,7 @@ final class IOArgumentTest extends TestCase
     private const ARGUMENT_NAME = 'arg';
 
     /**
-     * @dataProvider combinedProvider
+     * @dataProvider argumentProvider
      */
     public function test_it_exposes_a_typed_api(
         InputArgument $inputArgument,
@@ -45,7 +45,7 @@ final class IOArgumentTest extends TestCase
         );
     }
 
-    public static function combinedProvider(): iterable
+    public static function argumentProvider(): iterable
     {
         foreach (self::requiredArgumentProvider() as $title => $set) {
             yield '[required] '.$title => $set;
@@ -230,7 +230,7 @@ final class IOArgumentTest extends TestCase
                 new TypeException('Cannot cast a non-array input argument into an array. Got "NULL"'),
                 false,
                 null,
-                '',
+                new TypeException('Expected a string. Got "NULL"'),
                 null,
                 new TypeException('Expected an integer string. Got "NULL"'),
                 null,
