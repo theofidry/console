@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Generator;
+namespace Fidry\Console\Internal\Generator;
 
 // TODO: switch to an enum in PHP8.1
 /**

@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Generator;
+namespace Fidry\Console\Internal\Generator;
 
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\FloatType;

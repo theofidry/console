@@ -46,7 +46,7 @@
         </PossiblyUnusedReturnValue>
         <UndefinedClass>
             <errorLevel type="suppress">
-                <file name="tests/Generator/ClassNameTest.php"/>
+                <file name="tests/Internal/Generator/ClassNameTest.php"/>
             </errorLevel>
         </UndefinedClass>
         <UnusedClass errorLevel="suppress"/>

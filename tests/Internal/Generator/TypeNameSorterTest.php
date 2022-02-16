@@ -11,9 +11,9 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Tests\Generator;
+namespace Fidry\Console\Tests\Internal\Generator;
 
-use Fidry\Console\Generator\TypeNameSorter;
+use Fidry\Console\Internal\Generator\TypeNameSorter;
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
@@ -22,7 +22,7 @@ use Fidry\Console\Internal\Type\StringType;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Fidry\Console\Generator\TypeNameSorter
+ * @covers \Fidry\Console\Internal\Generator\TypeNameSorter
  */
 final class TypeNameSorterTest extends TestCase
 {

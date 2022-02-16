@@ -11,14 +11,14 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Tests\Generator;
+namespace Fidry\Console\Tests\Internal\Generator;
 
 use Closure;
-use Fidry\Console\Generator\ClassName;
+use Fidry\Console\Internal\Generator\ClassName;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Fidry\Console\Generator\ClassName
+ * @covers \Fidry\Console\Internal\Generator\ClassName
  */
 final class ClassNameTest extends TestCase
 {

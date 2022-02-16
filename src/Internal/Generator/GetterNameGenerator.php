@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Generator;
+namespace Fidry\Console\Internal\Generator;
 
 use function array_map;
 use function array_unshift;
