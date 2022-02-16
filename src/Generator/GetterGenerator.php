@@ -33,7 +33,7 @@ final class GetterGenerator
      */
     public function __METHOD_NAME_PLACEHOLDER__(string $name): __PHP_RETURN_TYPE_PLACEHOLDER__
     {
-        $argument = $this->getArgument($name);
+        $argument = $this->getLegacyArgument($name);
     
         $type = TypeFactory::createTypeFromClassNames([
         __TYPE_CLASS_NAMES_PLACEHOLDER__
@@ -49,7 +49,7 @@ final class GetterGenerator
      */
     public function __METHOD_NAME_PLACEHOLDER__(string $name): __PHP_RETURN_TYPE_PLACEHOLDER__
     {
-        $option = $this->getOption($name);
+        $option = $this->getLegacyOption($name);
     
         $type = TypeFactory::createTypeFromClassNames([
         __TYPE_CLASS_NAMES_PLACEHOLDER__
