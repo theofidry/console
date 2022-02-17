@@ -50,7 +50,7 @@ final class NullableType implements InputType
         return 'null|'.$this->innerType->getPsalmTypeDeclaration();
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return '?'.$this->innerType->getPhpTypeDeclaration();
     }

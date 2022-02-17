@@ -37,7 +37,7 @@ final class UntrimmedStringType implements ScalarType
         return 'string';
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return 'string';
     }

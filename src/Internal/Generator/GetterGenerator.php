@@ -31,7 +31,7 @@ final class GetterGenerator
     /**
      * @return __PSALM_RETURN_TYPE_PLACEHOLDER__
      */
-    public function __METHOD_NAME_PLACEHOLDER__(): __PHP_RETURN_TYPE_PLACEHOLDER__
+    public function __METHOD_NAME_PLACEHOLDER__()__PHP_RETURN_TYPE_PLACEHOLDER__
     {
         $type = TypeFactory::createTypeFromClassNames([
         __TYPE_CLASS_NAMES_PLACEHOLDER__
@@ -51,6 +51,12 @@ final class GetterGenerator
     {
         $typeClassNames = $type->getTypeClassNames();
 
+        $phpReturnType = $type->getPhpTypeDeclaration();
+
+        if (null !== $phpReturnType) {
+            $phpReturnType = ': '.$phpReturnType;
+        }
+
         return str_replace(
             [
                 '__METHOD_NAME_PLACEHOLDER__',
@@ -61,7 +67,7 @@ final class GetterGenerator
             [
                 GetterNameGenerator::generateMethodName($typeClassNames),
                 $type->getPsalmTypeDeclaration(),
-                $type->getPhpTypeDeclaration(),
+                (string) $phpReturnType,
                 self::serializeTypeNames($typeClassNames),
             ],
             self::TEMPLATE,

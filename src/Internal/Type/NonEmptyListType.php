@@ -56,15 +56,17 @@ final class NonEmptyListType implements InputType
         ];
     }
 
+    /** @psalm-suppress MoreSpecificReturnType */
     public function getPsalmTypeDeclaration(): string
     {
+        /** @psalm-suppress LessSpecificReturnStatement */
         return sprintf(
             'non-empty-list<%s>',
             $this->innerType->getPsalmTypeDeclaration(),
         );
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return 'array';
     }
