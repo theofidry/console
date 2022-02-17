@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Type;
 
-use function array_map;
 use Fidry\Console\InputAssert;
 use function Safe\sprintf;
+use Webmozart\Assert\Assert;
 
 /**
  * @template TypedValue
- * @implements InputType<list<TypedValue>>
+ * @implements InputType<non-empty-list<TypedValue>>
  */
-final class ListType implements InputType
+final class NonEmptyListType implements InputType
 {
     /**
      * @var InputType<TypedValue>
@@ -38,12 +38,14 @@ final class ListType implements InputType
 
     public function coerceValue($value): array
     {
-        InputAssert::assertIsList($value);
+        $list = (new ListType($this->innerType))->coerceValue($value);
 
-        return array_map(
-            fn (string $element) => $this->innerType->coerceValue($element),
-            $value,
+        /** @psalm-suppress MissingClosureReturnType */
+        InputAssert::castThrowException(
+            static fn () => Assert::minCount($list, 1),
         );
+
+        return $list;
     }
 
     public function getTypeClassNames(): array
@@ -57,7 +59,7 @@ final class ListType implements InputType
     public function getPsalmTypeDeclaration(): string
     {
         return sprintf(
-            'list<%s>',
+            'non-empty-list<%s>',
             $this->innerType->getPsalmTypeDeclaration(),
         );
     }

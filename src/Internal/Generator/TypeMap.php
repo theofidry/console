@@ -15,8 +15,8 @@ namespace Fidry\Console\Internal\Generator;
 
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\FloatType;
-use Fidry\Console\Internal\Type\IntegerType;
 use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NaturalType;
 use Fidry\Console\Internal\Type\NullableType;
 use Fidry\Console\Internal\Type\StringType;
 
@@ -40,9 +40,9 @@ final class TypeMap
             new NullableType(new StringType()),
             new ListType(new StringType()),
 
-            new IntegerType(),
-            new NullableType(new IntegerType()),
-            new ListType(new IntegerType()),
+            new NaturalType(),
+            new NullableType(new NaturalType()),
+            new ListType(new NaturalType()),
 
             new FloatType(),
             new NullableType(new FloatType()),

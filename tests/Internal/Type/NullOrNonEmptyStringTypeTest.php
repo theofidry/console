@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Internal\Type;
 
-use Fidry\Console\Internal\Type\UntrimmedStringType;
+use Fidry\Console\Internal\Type\NullOrNonEmptyStringType;
 use Fidry\Console\Tests\IO\TypeException;
 
 /**
- * @covers \Fidry\Console\Internal\Type\UntrimmedStringType
+ * @covers \Fidry\Console\Internal\Type\NullOrNonEmptyStringType
  */
-final class UntrimmedStringTypeTest extends BaseTypeTest
+final class NullOrNonEmptyStringTypeTest extends BaseTypeTest
 {
     protected function setUp(): void
     {
-        $this->type = new UntrimmedStringType();
+        $this->type = new NullOrNonEmptyStringType();
     }
 
     public static function valueProvider(): iterable
@@ -42,14 +42,27 @@ final class UntrimmedStringTypeTest extends BaseTypeTest
             '10',
             '9.1',
             'null',
-            '',
-            ' ',
             'foo',
         ];
 
         foreach ($stringValues as $stringValue) {
             yield [$stringValue, $stringValue];
         }
+
+        yield 'empty string' => [
+            '',
+            null,
+        ];
+
+        yield 'blank string' => [
+            ' ',
+            null,
+        ];
+
+        yield 'string with spaces' => [
+            ' foo ',
+            'foo',
+        ];
 
         yield [
             [],

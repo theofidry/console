@@ -112,7 +112,7 @@ final class TypedInput
     public function asInteger(): int
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\IntegerType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
         return $type->coerceValue($this->value);
@@ -122,7 +122,7 @@ final class TypedInput
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
-            \Fidry\Console\Internal\Type\IntegerType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
         return $type->coerceValue($this->value);
@@ -135,7 +135,7 @@ final class TypedInput
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
-            \Fidry\Console\Internal\Type\IntegerType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
         return $type->coerceValue($this->value);

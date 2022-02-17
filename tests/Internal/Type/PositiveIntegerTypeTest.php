@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Internal\Type;
 
-use Fidry\Console\Internal\Type\IntegerType;
+use Fidry\Console\Internal\Type\PositiveIntegerType;
 use Fidry\Console\Tests\IO\TypeException;
 
 /**
- * @covers \Fidry\Console\Internal\Type\IntegerType
+ * @covers \Fidry\Console\Internal\Type\PositiveIntegerType
  */
-final class IntegerTypeTest extends BaseTypeTest
+final class PositiveIntegerTypeTest extends BaseTypeTest
 {
     protected function setUp(): void
     {
-        $this->type = new IntegerType();
+        $this->type = new PositiveIntegerType();
     }
 
     public static function valueProvider(): iterable

@@ -13,17 +13,26 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Type;
 
+use Fidry\Console\Input\InvalidInputValueType;
+use Fidry\Console\InputAssert;
+use function trim;
+
 /**
- * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert
- * @psalm-import-type OptionInput from \Fidry\Console\InputAssert
- * @implements InputType<ArgumentInput|OptionInput>
+ * @implements ScalarType<non-empty-string>
  */
-final class RawType implements InputType
+final class NonEmptyStringType implements ScalarType
 {
-    public function coerceValue($value)
+    public function coerceValue($value): string
     {
-        /** @psalm-suppress NullableReturnStatement */
-        return $value;
+        InputAssert::string($value);
+
+        $trimmedValue = trim($value);
+
+        if ('' === $trimmedValue) {
+            throw new InvalidInputValueType('Expected a non-empty string.');
+        }
+
+        return $trimmedValue;
     }
 
     public function getTypeClassNames(): array
@@ -33,11 +42,11 @@ final class RawType implements InputType
 
     public function getPsalmTypeDeclaration(): string
     {
-        return '';
+        return 'non-empty-string';
     }
 
     public function getPhpTypeDeclaration(): string
     {
-        return '';
+        return 'string';
     }
 }
