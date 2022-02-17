@@ -31,13 +31,13 @@ final class RawType implements InputType
         return [self::class];
     }
 
-    public function getPsalmTypeDeclaration(): string
+    public function getPsalmTypeDeclaration(): ?string
     {
-        return '';
+        return null;
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
-        return '';
+        return null;
     }
 }

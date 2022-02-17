@@ -57,7 +57,60 @@ final class TypedInput
 
     // The following part is auto-generated.
     // __AUTO_GENERATE_START__
+    /**
+     * @return
+     */
+    public function asRaw():
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\RawType::class,
+        ]);
 
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return null|
+     */
+    public function asNullableRaw(): ?
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullableType::class,
+            \Fidry\Console\Internal\Type\RawType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return list<>
+     */
+    public function asRawList(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\RawType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return non-empty-list<>
+     */
+    public function asNonEmptyListRaw(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NonEmptyListType::class,
+            \Fidry\Console\Internal\Type\RawType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return bool
+     */
     public function asBoolean(): bool
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -67,6 +120,9 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+    /**
+     * @return null|bool
+     */
     public function asNullableBoolean(): ?bool
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -77,33 +133,27 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
-    public function asString(): string
+    /**
+     * @return list<bool>
+     */
+    public function asBooleanList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\StringType::class,
-        ]);
-
-        return $type->coerceValue($this->value);
-    }
-
-    public function asNullableString(): ?string
-    {
-        $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NullableType::class,
-            \Fidry\Console\Internal\Type\StringType::class,
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
         return $type->coerceValue($this->value);
     }
 
     /**
-     * @return list<string>
+     * @return non-empty-list<bool>
      */
-    public function asStringList(): array
+    public function asNonEmptyListBoolean(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\ListType::class,
-            \Fidry\Console\Internal\Type\StringType::class,
+            \Fidry\Console\Internal\Type\NonEmptyListType::class,
+            \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
         return $type->coerceValue($this->value);
@@ -147,6 +197,73 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+    /**
+     * @return non-empty-list<positive-int|0>
+     */
+    public function asNonEmptyListNatural(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NonEmptyListType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return positive-int
+     */
+    public function asPositiveInteger(): int
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\PositiveIntegerType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return null|positive-int
+     */
+    public function asNullablePositiveInteger(): ?int
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullableType::class,
+            \Fidry\Console\Internal\Type\PositiveIntegerType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return list<positive-int>
+     */
+    public function asPositiveIntegerList(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\PositiveIntegerType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return non-empty-list<positive-int>
+     */
+    public function asNonEmptyListPositiveInteger(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NonEmptyListType::class,
+            \Fidry\Console\Internal\Type\PositiveIntegerType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return float
+     */
     public function asFloat(): float
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -156,6 +273,9 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+    /**
+     * @return null|float
+     */
     public function asNullableFloat(): ?float
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -174,6 +294,210 @@ final class TypedInput
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
             \Fidry\Console\Internal\Type\FloatType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return non-empty-list<float>
+     */
+    public function asNonEmptyListFloat(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NonEmptyListType::class,
+            \Fidry\Console\Internal\Type\FloatType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return string
+     */
+    public function asString(): string
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\StringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return null|string
+     */
+    public function asNullableString(): ?string
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullableType::class,
+            \Fidry\Console\Internal\Type\StringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function asStringList(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\StringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return non-empty-list<string>
+     */
+    public function asNonEmptyListString(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NonEmptyListType::class,
+            \Fidry\Console\Internal\Type\StringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return non-empty-string
+     */
+    public function asNonEmptyString(): string
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NonEmptyStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return null|non-empty-string
+     */
+    public function asNullableNonEmptyString(): ?string
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullableType::class,
+            \Fidry\Console\Internal\Type\NonEmptyStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return list<non-empty-string>
+     */
+    public function asNonEmptyStringList(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\NonEmptyStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return non-empty-list<non-empty-string>
+     */
+    public function asNonEmptyListNonEmptyString(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NonEmptyListType::class,
+            \Fidry\Console\Internal\Type\NonEmptyStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return string
+     */
+    public function asUntrimmedString(): string
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\UntrimmedStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return null|string
+     */
+    public function asNullableUntrimmedString(): ?string
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullableType::class,
+            \Fidry\Console\Internal\Type\UntrimmedStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function asUntrimmedStringList(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\UntrimmedStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return non-empty-list<string>
+     */
+    public function asNonEmptyListUntrimmedString(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NonEmptyListType::class,
+            \Fidry\Console\Internal\Type\UntrimmedStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return null|non-empty-string
+     */
+    public function asNullOrNonEmptyString(): ?string
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullOrNonEmptyStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return list<null|non-empty-string>
+     */
+    public function asNullOrNonEmptyStringList(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\NullOrNonEmptyStringType::class,
+        ]);
+
+        return $type->coerceValue($this->value);
+    }
+
+    /**
+     * @return non-empty-list<null|non-empty-string>
+     */
+    public function asNonEmptyListNullOrNonEmptyString(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NonEmptyListType::class,
+            \Fidry\Console\Internal\Type\NullOrNonEmptyStringType::class,
         ]);
 
         return $type->coerceValue($this->value);

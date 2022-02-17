@@ -32,7 +32,7 @@ interface InputType
      */
     public function getTypeClassNames(): array;
 
-    public function getPsalmTypeDeclaration(): string;
+    public function getPsalmTypeDeclaration(): ?string;
 
-    public function getPhpTypeDeclaration(): string;
+    public function getPhpTypeDeclaration(): ?string;
 }
