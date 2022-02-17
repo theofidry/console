@@ -14,9 +14,10 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Internal\Type;
 
 use Fidry\Console\Internal\Type\InputType;
-use Fidry\Console\Internal\Type\IntegerType;
 use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NaturalType;
 use Fidry\Console\Internal\Type\NullableType;
+use Fidry\Console\Internal\Type\StringType;
 
 /**
  * @covers \Fidry\Console\Internal\Type\NullableType
@@ -25,7 +26,7 @@ final class NullableTypeTest extends BaseTypeTest
 {
     protected function setUp(): void
     {
-        $this->type = new NullableType(new IntegerType());
+        $this->type = new NullableType(new NaturalType());
     }
 
     /**
@@ -45,7 +46,7 @@ final class NullableTypeTest extends BaseTypeTest
      *
      * @param list<class-string<InputType>> $expected
      */
-    public function test_it_exposes_its_type_and_inner_type(NullableType $input, array $expected): void
+    public function test_it_exposes_its_type_and_inner_type(InputType $input, array $expected): void
     {
         $actual = $input->getTypeClassNames();
 
@@ -57,7 +58,7 @@ final class NullableTypeTest extends BaseTypeTest
      *
      * @param mixed $_
      */
-    public function test_it_exposes_its_psalm_declaration(NullableType $input, $_, string $expected): void
+    public function test_it_exposes_its_psalm_declaration(InputType $input, $_, string $expected): void
     {
         $actual = $input->getPsalmTypeDeclaration();
 
@@ -70,7 +71,7 @@ final class NullableTypeTest extends BaseTypeTest
      * @param mixed $_1
      * @param mixed $_2
      */
-    public function test_it_exposes_its_php_declaration(NullableType $input, $_1, $_2, string $expected): void
+    public function test_it_exposes_its_php_declaration(InputType $input, $_1, $_2, string $expected): void
     {
         $actual = $input->getPhpTypeDeclaration();
 
@@ -103,23 +104,23 @@ final class NullableTypeTest extends BaseTypeTest
     public static function nullableProvider(): iterable
     {
         yield 'scalar type' => [
-            new NullableType(new IntegerType()),
+            new NullableType(new StringType()),
             [
                 NullableType::class,
-                IntegerType::class,
+                StringType::class,
             ],
-            'null|int',
-            '?int',
+            'null|string',
+            '?string',
         ];
 
         yield 'composed type' => [
-            new NullableType(new ListType(new IntegerType())),
+            new NullableType(new ListType(new StringType())),
             [
                 NullableType::class,
                 ListType::class,
-                IntegerType::class,
+                StringType::class,
             ],
-            'null|list<int>',
+            'null|list<string>',
             '?array',
         ];
     }

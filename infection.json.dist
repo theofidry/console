@@ -28,10 +28,17 @@
                 "Fidry\\Console\\InputAssert::castThrowException"
             ]
         },
+        "LessThan": {
+            "ignoreSourceCodeByRegex": [
+                ".*\\$min < \\$max.*"
+            ]
+        },
         "MethodCallRemoval": {
             "ignore": [
                 "Fidry\\Console\\Command\\SymfonyCommand::setApplication",
-                "Fidry\\Console\\Input\\IO::__construct"
+                "Fidry\\Console\\Input\\IO::__construct",
+                "Fidry\\Console\\Internal\\Type\\NaturalType::coerceValue",
+                "Fidry\\Console\\Internal\\Type\\PositiveIntegerType::coerceValue"
             ]
         },
         "UnwrapStrReplace": {

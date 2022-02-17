@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Internal\Type;
 
-use Fidry\Console\Internal\Type\StringType;
+use Fidry\Console\Internal\Type\StringChoiceType;
 use Fidry\Console\Tests\IO\TypeException;
 
 /**
- * @covers \Fidry\Console\Internal\Type\StringType
+ * @covers \Fidry\Console\Internal\Type\StringChoiceType
  */
-final class StringTypeTest extends BaseTypeTest
+final class StringChoiceTypeTest extends BaseTypeTest
 {
     protected function setUp(): void
     {
-        $this->type = new StringType();
+        $this->type = new StringChoiceType(['foo', 'Bar']);
     }
 
     public static function valueProvider(): iterable
@@ -38,36 +38,14 @@ final class StringTypeTest extends BaseTypeTest
             new TypeException('Expected a string. Got "true"'),
         ];
 
-        $stringValues = [
-            '10',
-            '9.1',
-            'null',
-            '',
+        yield 'valid choice' => [
+            'foo',
             'foo',
         ];
 
-        foreach ($stringValues as $stringValue) {
-            yield [$stringValue, $stringValue];
-        }
-
-        yield 'blank string' => [
-            ' ',
-            '',
-        ];
-
-        yield 'string with spaces' => [
-            ' foo ',
-            'foo',
-        ];
-
-        yield [
-            [],
-            new TypeException(
-                <<<'TXT'
-                Expected a null or scalar value. Got the value: "array (
-                )"
-                TXT,
-            ),
+        yield 'invalid choice (different case)' => [
+            'FOO',
+            new TypeException('Expected one of: "foo", "Bar". Got: "FOO"'),
         ];
     }
 }

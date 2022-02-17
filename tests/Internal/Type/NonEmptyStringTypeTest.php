@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Internal\Type;
 
-use Fidry\Console\Internal\Type\StringType;
+use Fidry\Console\Internal\Type\NonEmptyStringType;
 use Fidry\Console\Tests\IO\TypeException;
 
 /**
- * @covers \Fidry\Console\Internal\Type\StringType
+ * @covers \Fidry\Console\Internal\Type\NonEmptyStringType
  */
-final class StringTypeTest extends BaseTypeTest
+final class NonEmptyStringTypeTest extends BaseTypeTest
 {
     protected function setUp(): void
     {
-        $this->type = new StringType();
+        $this->type = new NonEmptyStringType();
     }
 
     public static function valueProvider(): iterable
@@ -42,7 +42,6 @@ final class StringTypeTest extends BaseTypeTest
             '10',
             '9.1',
             'null',
-            '',
             'foo',
         ];
 
@@ -50,10 +49,17 @@ final class StringTypeTest extends BaseTypeTest
             yield [$stringValue, $stringValue];
         }
 
-        yield 'blank string' => [
-            ' ',
+        $invalidStringValues = [
             '',
+            ' ',
         ];
+
+        foreach ($invalidStringValues as $invalidStringValue) {
+            yield [
+                $invalidStringValue,
+                new TypeException('Expected a non-empty string.'),
+            ];
+        }
 
         yield 'string with spaces' => [
             ' foo ',

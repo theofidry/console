@@ -33,6 +33,11 @@
                 <file name="src/Application/SymfonyApplication.php"/>
             </errorLevel>
         </DuplicateArrayKey>
+        <InvalidReturnType>
+            <errorLevel type="suppress">
+                <file name="src/Internal/Type/NullOrNonEmptyStringType.php"/>
+            </errorLevel>
+        </InvalidReturnType>
         <MissingConstructor>
             <errorLevel type="suppress">
                 <directory name="tests"/>

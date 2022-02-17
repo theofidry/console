@@ -14,17 +14,23 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\InputAssert;
+use Webmozart\Assert\Assert;
 
 /**
- * @implements ScalarType<int>
+ * @implements ScalarType<positive-int>
  */
-final class IntegerType implements ScalarType
+final class PositiveIntegerType implements ScalarType
 {
     public function coerceValue($value): int
     {
-        InputAssert::integerString($value);
+        $intValue = (new NaturalType())->coerceValue($value);
 
-        return (int) $value;
+        /** @psalm-suppress MissingClosureReturnType */
+        InputAssert::castThrowException(
+            static fn () => Assert::positiveInteger($intValue),
+        );
+
+        return $intValue;
     }
 
     public function getTypeClassNames(): array
@@ -34,7 +40,7 @@ final class IntegerType implements ScalarType
 
     public function getPsalmTypeDeclaration(): string
     {
-        return 'int';
+        return 'positive-int';
     }
 
     public function getPhpTypeDeclaration(): string

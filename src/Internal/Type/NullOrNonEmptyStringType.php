@@ -13,19 +13,17 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Type;
 
-use Fidry\Console\InputAssert;
-use function trim;
-
 /**
- * @implements ScalarType<string>
+ * @implements ScalarType<non-empty-string|null>
  */
-final class StringType implements ScalarType
+final class NullOrNonEmptyStringType implements ScalarType
 {
-    public function coerceValue($value): string
+    public function coerceValue($value): ?string
     {
-        InputAssert::string($value);
+        $trimmedValue = (new StringType())->coerceValue($value);
 
-        return trim($value);
+        /** @psalm-suppress InvalidReturnStatement */
+        return '' === $trimmedValue ? null : $trimmedValue;
     }
 
     public function getTypeClassNames(): array
@@ -35,11 +33,11 @@ final class StringType implements ScalarType
 
     public function getPsalmTypeDeclaration(): string
     {
-        return 'string';
+        return 'null|non-empty-string';
     }
 
     public function getPhpTypeDeclaration(): string
     {
-        return 'string';
+        return '?string';
     }
 }

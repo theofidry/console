@@ -51,15 +51,15 @@ final class TypeAssertions
         );
         self::assertExpectedType(
             $expected->integer,
-            static fn () => $io->getArgument($argumentName)->asInteger(),
+            static fn () => $io->getArgument($argumentName)->asNatural(),
         );
         self::assertExpectedType(
             $expected->nullableInteger,
-            static fn () => $io->getArgument($argumentName)->asNullableInteger(),
+            static fn () => $io->getArgument($argumentName)->asNullableNatural(),
         );
         self::assertExpectedType(
             $expected->integerArray,
-            static fn () => $io->getArgument($argumentName)->asIntegerList(),
+            static fn () => $io->getArgument($argumentName)->asNaturalList(),
         );
         self::assertExpectedType(
             $expected->float,
@@ -102,15 +102,15 @@ final class TypeAssertions
         );
         self::assertExpectedType(
             $expected->integer,
-            static fn () => $io->getOption($optionName)->asInteger(),
+            static fn () => $io->getOption($optionName)->asNatural(),
         );
         self::assertExpectedType(
             $expected->nullableInteger,
-            static fn () => $io->getOption($optionName)->asNullableInteger(),
+            static fn () => $io->getOption($optionName)->asNullableNatural(),
         );
         self::assertExpectedType(
             $expected->integerArray,
-            static fn () => $io->getOption($optionName)->asIntegerList(),
+            static fn () => $io->getOption($optionName)->asNaturalList(),
         );
         self::assertExpectedType(
             $expected->float,

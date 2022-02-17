@@ -14,18 +14,39 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\InputAssert;
-use function trim;
+use Webmozart\Assert\Assert;
 
 /**
  * @implements ScalarType<string>
  */
-final class StringType implements ScalarType
+final class StringChoiceType implements ScalarType
 {
+    /**
+     * @var list<string>
+     */
+    private array $choices;
+
+    /**
+     * @param list<string> $choices
+     */
+    public function __construct(array $choices)
+    {
+        $this->choices = $choices;
+    }
+
     public function coerceValue($value): string
     {
-        InputAssert::string($value);
+        $value = (new StringType())->coerceValue($value);
 
-        return trim($value);
+        /** @psalm-suppress MissingClosureReturnType */
+        InputAssert::castThrowException(
+            fn () => Assert::inArray(
+                $value,
+                $this->choices,
+            ),
+        );
+
+        return $value;
     }
 
     public function getTypeClassNames(): array

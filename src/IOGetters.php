@@ -103,7 +103,7 @@ trait IOGetters
         $argument = $this->getLegacyArgument($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\IntegerType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
         return $type->coerceValue($argument);
@@ -118,7 +118,7 @@ trait IOGetters
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
-            \Fidry\Console\Internal\Type\IntegerType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
         return $type->coerceValue($argument);
@@ -135,7 +135,7 @@ trait IOGetters
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
-            \Fidry\Console\Internal\Type\IntegerType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
         return $type->coerceValue($argument);
@@ -270,7 +270,7 @@ trait IOGetters
         $option = $this->getLegacyOption($name);
 
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\IntegerType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
         return $type->coerceValue($option);
@@ -285,7 +285,7 @@ trait IOGetters
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
-            \Fidry\Console\Internal\Type\IntegerType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
         return $type->coerceValue($option);
@@ -302,7 +302,7 @@ trait IOGetters
 
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
-            \Fidry\Console\Internal\Type\IntegerType::class,
+            \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
         return $type->coerceValue($option);

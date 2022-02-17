@@ -85,6 +85,27 @@ final class IOArgumentTest extends TestCase
             ),
         ];
 
+        yield 'blank string' => [
+            new InputArgument(
+                self::ARGUMENT_NAME,
+                $mode,
+                '',
+                null,
+            ),
+            '" "',
+            TypedInput::createForScalar(
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\' \'"'),
+                true,
+                true,
+                '',
+                '',
+                new TypeException('Expected an integer string. Got "\' \'"'),
+                new TypeException('Expected an integer string. Got "\' \'"'),
+                new TypeException('Expected a numeric string. Got "\' \'"'),
+                new TypeException('Expected a numeric string. Got "\' \'"'),
+            ),
+        ];
+
         yield 'nominal string' => [
             new InputArgument(
                 self::ARGUMENT_NAME,
@@ -103,6 +124,27 @@ final class IOArgumentTest extends TestCase
                 new TypeException('Expected an integer string. Got "\'foo\'"'),
                 new TypeException('Expected a numeric string. Got "\'foo\'"'),
                 new TypeException('Expected a numeric string. Got "\'foo\'"'),
+            ),
+        ];
+
+        yield 'string with spaces' => [
+            new InputArgument(
+                self::ARGUMENT_NAME,
+                $mode,
+                '',
+                null,
+            ),
+            '" foo "',
+            TypedInput::createForScalar(
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\' foo \'"'),
+                true,
+                true,
+                'foo',
+                'foo',
+                new TypeException('Expected an integer string. Got "\' foo \'"'),
+                new TypeException('Expected an integer string. Got "\' foo \'"'),
+                new TypeException('Expected a numeric string. Got "\' foo \'"'),
+                new TypeException('Expected a numeric string. Got "\' foo \'"'),
             ),
         ];
 

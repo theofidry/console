@@ -217,7 +217,7 @@ final class InputAssert
     /**
      * @param callable(): void $callable
      */
-    private static function castThrowException(callable $callable): void
+    public static function castThrowException(callable $callable): void
     {
         try {
             $callable();
