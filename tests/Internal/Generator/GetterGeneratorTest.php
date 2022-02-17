@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Internal\Generator;
 
 use Fidry\Console\Internal\Generator\GetterGenerator;
-use Fidry\Console\Internal\Generator\ParameterType;
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
@@ -31,37 +30,7 @@ final class GetterGeneratorTest extends TestCase
      */
     public function test_it_can_generate_a_getter_for_an_argument(InputType $type, string $expected): void
     {
-        $actual = GetterGenerator::generate(
-            ParameterType::ARGUMENT,
-            $type,
-        );
-
-        self::assertSame($expected, $actual);
-    }
-
-    public function test_it_can_generate_a_getter_for_an_option(): void
-    {
-        $type = new BooleanType();
-        $expected = <<<'PHP'
-        /**
-         * @return bool
-         */
-        public function getBooleanOption(string $name): bool
-        {
-            $option = $this->getLegacyOption($name);
-        
-            $type = TypeFactory::createTypeFromClassNames([
-                \Fidry\Console\Internal\Type\BooleanType::class,
-            ]);
-        
-            return $type->castValue($option);
-        }
-        PHP;
-
-        $actual = GetterGenerator::generate(
-            ParameterType::OPTION,
-            $type,
-        );
+        $actual = GetterGenerator::generate($type);
 
         self::assertSame($expected, $actual);
     }
@@ -74,15 +43,13 @@ final class GetterGeneratorTest extends TestCase
             /**
              * @return bool
              */
-            public function getBooleanArgument(string $name): bool
+            public function asBoolean(): bool
             {
-                $argument = $this->getLegacyArgument($name);
-            
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->castValue($argument);
+                return $type->castValue($this->value);
             }
             PHP,
         ];
@@ -95,16 +62,14 @@ final class GetterGeneratorTest extends TestCase
             /**
              * @return null|bool
              */
-            public function getNullableBooleanArgument(string $name): ?bool
+            public function asNullableBoolean(): ?bool
             {
-                $argument = $this->getLegacyArgument($name);
-            
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Internal\Type\NullableType::class,
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->castValue($argument);
+                return $type->castValue($this->value);
             }
             PHP,
         ];
@@ -117,16 +82,14 @@ final class GetterGeneratorTest extends TestCase
             /**
              * @return list<bool>
              */
-            public function getBooleanListArgument(string $name): array
+            public function asBooleanList(): array
             {
-                $argument = $this->getLegacyArgument($name);
-            
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Internal\Type\ListType::class,
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->castValue($argument);
+                return $type->castValue($this->value);
             }
             PHP,
         ];
@@ -141,17 +104,15 @@ final class GetterGeneratorTest extends TestCase
             /**
              * @return null|list<bool>
              */
-            public function getNullableBooleanListArgument(string $name): ?array
+            public function asNullableBooleanList(): ?array
             {
-                $argument = $this->getLegacyArgument($name);
-            
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Internal\Type\NullableType::class,
                     \Fidry\Console\Internal\Type\ListType::class,
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->castValue($argument);
+                return $type->castValue($this->value);
             }
             PHP,
         ];
@@ -166,17 +127,15 @@ final class GetterGeneratorTest extends TestCase
             /**
              * @return list<null|bool>
              */
-            public function getNullableBooleanListArgument(string $name): array
+            public function asNullableBooleanList(): array
             {
-                $argument = $this->getLegacyArgument($name);
-            
                 $type = TypeFactory::createTypeFromClassNames([
                     \Fidry\Console\Internal\Type\ListType::class,
                     \Fidry\Console\Internal\Type\NullableType::class,
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->castValue($argument);
+                return $type->castValue($this->value);
             }
             PHP,
         ];

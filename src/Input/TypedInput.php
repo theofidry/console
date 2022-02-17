@@ -14,12 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Input;
 
 use Fidry\Console\InputAssert;
-use Fidry\Console\Internal\Type\BooleanType;
-use Fidry\Console\Internal\Type\FloatType;
-use Fidry\Console\Internal\Type\IntegerType;
-use Fidry\Console\Internal\Type\ListType;
-use Fidry\Console\Internal\Type\NullableType;
-use Fidry\Console\Internal\Type\StringType;
+use Fidry\Console\Internal\Type\TypeFactory;
 
 /**
  * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert
@@ -60,60 +55,45 @@ final class TypedInput
         return new self($option);
     }
 
+    // The following part is auto-generated.
+    // __AUTO_GENERATE_START__
+
     public function asBoolean(): bool
     {
-        return (new BooleanType())->castValue($this->value);
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\BooleanType::class,
+        ]);
+
+        return $type->castValue($this->value);
     }
 
     public function asNullableBoolean(): ?bool
     {
-        return (new NullableType(new BooleanType()))->castValue($this->value);
-    }
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullableType::class,
+            \Fidry\Console\Internal\Type\BooleanType::class,
+        ]);
 
-    public function asInteger(): int
-    {
-        return (new IntegerType())->castValue($this->value);
-    }
-
-    public function asNullableInteger(): ?int
-    {
-        return (new NullableType(new IntegerType()))->castValue($this->value);
-    }
-
-    /**
-     * @return list<int>
-     */
-    public function asIntegerList(): array
-    {
-        return (new ListType(new IntegerType()))->castValue($this->value);
-    }
-
-    public function asFloat(): float
-    {
-        return (new FloatType())->castValue($this->value);
-    }
-
-    public function asNullableFloat(): ?float
-    {
-        return (new NullableType(new FloatType()))->castValue($this->value);
-    }
-
-    /**
-     * @return list<float>
-     */
-    public function asFloatList(): array
-    {
-        return (new ListType(new FloatType()))->castValue($this->value);
+        return $type->castValue($this->value);
     }
 
     public function asString(): string
     {
-        return (new StringType())->castValue($this->value);
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\StringType::class,
+        ]);
+
+        return $type->castValue($this->value);
     }
 
     public function asNullableString(): ?string
     {
-        return (new NullableType(new StringType()))->castValue($this->value);
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullableType::class,
+            \Fidry\Console\Internal\Type\StringType::class,
+        ]);
+
+        return $type->castValue($this->value);
     }
 
     /**
@@ -121,6 +101,76 @@ final class TypedInput
      */
     public function asStringList(): array
     {
-        return (new ListType(new StringType()))->castValue($this->value);
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\StringType::class,
+        ]);
+
+        return $type->castValue($this->value);
     }
+
+    public function asInteger(): int
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\IntegerType::class,
+        ]);
+
+        return $type->castValue($this->value);
+    }
+
+    public function asNullableInteger(): ?int
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullableType::class,
+            \Fidry\Console\Internal\Type\IntegerType::class,
+        ]);
+
+        return $type->castValue($this->value);
+    }
+
+    /**
+     * @return list<int>
+     */
+    public function asIntegerList(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\IntegerType::class,
+        ]);
+
+        return $type->castValue($this->value);
+    }
+
+    public function asFloat(): float
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\FloatType::class,
+        ]);
+
+        return $type->castValue($this->value);
+    }
+
+    public function asNullableFloat(): ?float
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\NullableType::class,
+            \Fidry\Console\Internal\Type\FloatType::class,
+        ]);
+
+        return $type->castValue($this->value);
+    }
+
+    /**
+     * @return list<float>
+     */
+    public function asFloatList(): array
+    {
+        $type = TypeFactory::createTypeFromClassNames([
+            \Fidry\Console\Internal\Type\ListType::class,
+            \Fidry\Console\Internal\Type\FloatType::class,
+        ]);
+
+        return $type->castValue($this->value);
+    }
+    // __AUTO_GENERATE_END__
 }

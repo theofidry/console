@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Generator;
 
 use function array_map;
+use function array_pop;
 use function explode;
 use Fidry\Console\Internal\Type\InputType;
 use function implode;
-use function str_replace;
 
 /**
  * @private
@@ -52,32 +52,24 @@ final class GettersGenerator
     PHP;
 
     /**
-     * @param non-empty-list<InputType>                           $types
-     * @param list<ParameterType::ARGUMENT|ParameterType::OPTION> $parameterTypes
+     * @param non-empty-list<InputType> $types
      */
-    public static function generate(array $types, array $parameterTypes): string
+    public static function generate(array $types): string
     {
         $getters = [];
 
-        foreach ($parameterTypes as $parameterType) {
-            foreach ($types as $type) {
-                $getters[] = self::indentGetter(
-                    GetterGenerator::generate(
-                        $parameterType,
-                        $type,
-                    ),
-                );
-                $getters[] = '';
-            }
+        foreach ($types as $type) {
+            $getters[] = self::indentGetter(
+                GetterGenerator::generate($type),
+            );
+            $getters[] = '';
         }
 
-        $content = str_replace(
-            '// __GETTERS_PLACEHOLDER__',
-            "\n".implode(
-                "\n",
-                $getters,
-            ),
-            self::TEMPLATE,
+        array_pop($getters);
+
+        $content = implode(
+            "\n",
+            $getters,
         );
 
         return self::trimTrailingSpaces($content);
