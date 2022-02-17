@@ -16,6 +16,7 @@ namespace Fidry\Console\Tests\IO;
 use Fidry\Console\Input\IO;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,6 +24,7 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\NullOutput;
 
 /**
@@ -180,8 +182,43 @@ final class IOTest extends TestCase
         $this->expectException(ConsoleInvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
 
-        /** @psalm-suppress DeprecatedMethod */
-        $io->getStringOption('opt');
+        $io->getOption('opt')->asString();
+    }
+
+    public function test_it_can_create_a_new_instance_with_a_new_input(): void
+    {
+        $input = new StringInput('');
+        $output = new NullOutput();
+
+        $io = new IO($input, $output);
+
+        $newInput = new CompletionInput();
+
+        $newIO = $io->withInput($newInput);
+
+        self::assertSame($input, $io->getInput());
+        self::assertSame($output, $io->getOutput());
+
+        self::assertSame($newInput, $newIO->getInput());
+        self::assertSame($output, $newIO->getOutput());
+    }
+
+    public function test_it_can_create_a_new_instance_with_a_new_output(): void
+    {
+        $input = new StringInput('');
+        $output = new NullOutput();
+
+        $io = new IO($input, $output);
+
+        $newOutput = new BufferedOutput();
+
+        $newIO = $io->withOutput($newOutput);
+
+        self::assertSame($input, $io->getInput());
+        self::assertSame($output, $io->getOutput());
+
+        self::assertSame($input, $newIO->getInput());
+        self::assertSame($newOutput, $newIO->getOutput());
     }
 
     public static function invalidOptionTypeProvider(): iterable
