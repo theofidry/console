@@ -109,7 +109,10 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
-    public function asInteger(): int
+    /**
+     * @return positive-int|0
+     */
+    public function asNatural(): int
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NaturalType::class,
@@ -118,7 +121,10 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
-    public function asNullableInteger(): ?int
+    /**
+     * @return null|positive-int|0
+     */
+    public function asNullableNatural(): ?int
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
@@ -129,9 +135,9 @@ final class TypedInput
     }
 
     /**
-     * @return list<int>
+     * @return list<positive-int|0>
      */
-    public function asIntegerList(): array
+    public function asNaturalList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
