@@ -61,7 +61,7 @@ final class NaturalRangeType implements InputType
         return 'positive-int|0';
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return 'int';
     }

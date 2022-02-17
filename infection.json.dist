@@ -20,7 +20,8 @@
         ],
         "CastString": {
             "ignore": [
-                "Fidry\\Console\\IO::getStringArgument"
+                "Fidry\\Console\\IO::getStringArgument",
+                "Fidry\\Console\\Internal\\Generator\\GetterGenerator::generate"
             ]
         },
         "CastInt": {

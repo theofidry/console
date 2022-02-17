@@ -33,11 +33,12 @@ final class RawType implements InputType
 
     public function getPsalmTypeDeclaration(): string
     {
-        return '';
+        return 'null|bool|string|list<string>';
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
-        return '';
+        // TODO: make it null|bool|string|array in PHP8.1
+        return null;
     }
 }

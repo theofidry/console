@@ -54,15 +54,17 @@ final class ListType implements InputType
         ];
     }
 
+    /** @psalm-suppress MoreSpecificReturnType */
     public function getPsalmTypeDeclaration(): string
     {
+        /** @psalm-suppress LessSpecificReturnStatement */
         return sprintf(
             'list<%s>',
             $this->innerType->getPsalmTypeDeclaration(),
         );
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return 'array';
     }

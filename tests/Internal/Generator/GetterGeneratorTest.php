@@ -18,6 +18,7 @@ use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NullableType;
+use Fidry\Console\Internal\Type\RawType;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -133,6 +134,23 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Internal\Type\ListType::class,
                     \Fidry\Console\Internal\Type\NullableType::class,
                     \Fidry\Console\Internal\Type\BooleanType::class,
+                ]);
+            
+                return $type->coerceValue($this->value);
+            }
+            PHP,
+        ];
+
+        yield 'typeless type' => [
+            new RawType(),
+            <<<'PHP'
+            /**
+             * @return null|bool|string|list<string>
+             */
+            public function asRaw()
+            {
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Internal\Type\RawType::class,
                 ]);
             
                 return $type->coerceValue($this->value);

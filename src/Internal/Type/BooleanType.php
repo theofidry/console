@@ -38,7 +38,7 @@ final class BooleanType implements ScalarType
         return 'bool';
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return 'bool';
     }

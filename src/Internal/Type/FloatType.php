@@ -37,7 +37,7 @@ final class FloatType implements ScalarType
         return 'float';
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return 'float';
     }

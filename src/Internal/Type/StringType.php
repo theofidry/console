@@ -38,7 +38,7 @@ final class StringType implements ScalarType
         return 'string';
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return 'string';
     }
