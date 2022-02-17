@@ -18,7 +18,6 @@ use function array_unshift;
 use Fidry\Console\Internal\Type\InputType;
 use function implode;
 use function Safe\substr;
-use function ucfirst;
 
 /**
  * @private
@@ -30,27 +29,18 @@ final class GetterNameGenerator
     }
 
     /**
-     * @param ParameterType::ARGUMENT|ParameterType::OPTION $parameterType
-     * @param list<class-string<InputType>>                 $typeClassNames
+     * @param list<class-string<InputType>> $typeClassNames
      */
-    public static function generateMethodName(string $parameterType, array $typeClassNames): string
+    public static function generateMethodName(array $typeClassNames): string
     {
         $typeParts = array_map(
             static fn (string $typeClassName) => self::normalizeTypeName($typeClassName),
             TypeNameSorter::sortClassNames($typeClassNames),
         );
 
-        $nameParts = array_map(
-            static fn (string $part) => ucfirst(mb_strtolower($part)),
-            [
-                ...$typeParts,
-                $parameterType,
-            ],
-        );
+        array_unshift($typeParts, 'as');
 
-        array_unshift($nameParts, 'get');
-
-        return implode('', $nameParts);
+        return implode('', $typeParts);
     }
 
     /**

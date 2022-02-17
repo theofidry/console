@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Internal\Generator;
 
 use Fidry\Console\Internal\Generator\GetterNameGenerator;
-use Fidry\Console\Internal\Generator\ParameterType;
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
@@ -32,7 +31,6 @@ final class GetterNameGeneratorTest extends TestCase
     public function test_it_can_generate_name(InputType $type, string $expected): void
     {
         $actual = GetterNameGenerator::generateMethodName(
-            ParameterType::ARGUMENT,
             $type->getTypeClassNames(),
         );
 
@@ -43,14 +41,14 @@ final class GetterNameGeneratorTest extends TestCase
     {
         yield 'singular type' => [
             new BooleanType(),
-            'getBooleanArgument',
+            'asBoolean',
         ];
 
         yield 'composed type' => [
             new NullableType(
                 new BooleanType(),
             ),
-            'getNullableBooleanArgument',
+            'asNullableBoolean',
         ];
 
         yield 'deep composed type' => [
@@ -59,7 +57,7 @@ final class GetterNameGeneratorTest extends TestCase
                     new BooleanType(),
                 ),
             ),
-            'getNullableBooleanListArgument',
+            'asNullableBooleanList',
         ];
     }
 }

@@ -27,42 +27,19 @@ use function str_replace;
  */
 final class GetterGenerator
 {
-    private const ARGUMENT_TEMPLATE = <<<'PHP'
+    private const TEMPLATE = <<<'PHP'
     /**
      * @return __PSALM_RETURN_TYPE_PLACEHOLDER__
      */
-    public function __METHOD_NAME_PLACEHOLDER__(string $name): __PHP_RETURN_TYPE_PLACEHOLDER__
+    public function __METHOD_NAME_PLACEHOLDER__(): __PHP_RETURN_TYPE_PLACEHOLDER__
     {
-        $argument = $this->getLegacyArgument($name);
-    
         $type = TypeFactory::createTypeFromClassNames([
         __TYPE_CLASS_NAMES_PLACEHOLDER__
         ]);
     
-        return $type->castValue($argument);
+        return $type->castValue($this->value);
     }
     PHP;
-
-    private const OPTION_TEMPLATE = <<<'PHP'
-    /**
-     * @return __PSALM_RETURN_TYPE_PLACEHOLDER__
-     */
-    public function __METHOD_NAME_PLACEHOLDER__(string $name): __PHP_RETURN_TYPE_PLACEHOLDER__
-    {
-        $option = $this->getLegacyOption($name);
-    
-        $type = TypeFactory::createTypeFromClassNames([
-        __TYPE_CLASS_NAMES_PLACEHOLDER__
-        ]);
-    
-        return $type->castValue($option);
-    }
-    PHP;
-
-    private const TEMPLATE_MAP = [
-        ParameterType::ARGUMENT => self::ARGUMENT_TEMPLATE,
-        ParameterType::OPTION => self::OPTION_TEMPLATE,
-    ];
 
     private const INDENT_SIZE = 4;
 
@@ -70,10 +47,7 @@ final class GetterGenerator
     {
     }
 
-    /**
-     * @param ParameterType::ARGUMENT|ParameterType::OPTION $parameterType $parameterType
-     */
-    public static function generate(string $parameterType, InputType $type): string
+    public static function generate(InputType $type): string
     {
         $typeClassNames = $type->getTypeClassNames();
 
@@ -85,15 +59,12 @@ final class GetterGenerator
                 '__TYPE_CLASS_NAMES_PLACEHOLDER__',
             ],
             [
-                GetterNameGenerator::generateMethodName(
-                    $parameterType,
-                    $typeClassNames,
-                ),
+                GetterNameGenerator::generateMethodName($typeClassNames),
                 $type->getPsalmTypeDeclaration(),
                 $type->getPhpTypeDeclaration(),
                 self::serializeTypeNames($typeClassNames),
             ],
-            self::TEMPLATE_MAP[$parameterType],
+            self::TEMPLATE,
         );
     }
 
