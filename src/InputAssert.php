@@ -20,7 +20,6 @@ use function is_array;
 use function is_bool;
 use function is_string;
 use function Safe\sprintf;
-use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
 use function var_export;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;
@@ -48,7 +47,7 @@ final class InputAssert
         }
 
         if (!is_array($argument) || !array_is_list($argument)) {
-            throw new ConsoleInvalidArgumentException(
+            throw new InvalidInputValueType(
                 sprintf(
                     'Expected an argument value type to be "null|string|list<string>". Got "%s"',
                     get_debug_type($argument),
@@ -73,7 +72,7 @@ final class InputAssert
         }
 
         if (!is_array($option) || !array_is_list($option)) {
-            throw new ConsoleInvalidArgumentException(
+            throw new InvalidInputValueType(
                 sprintf(
                     'Expected an option value type to be "null|bool|string|list<string>". Got "%s"',
                     get_debug_type($option),

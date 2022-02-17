@@ -35,7 +35,7 @@ final class NullableTypeTest extends BaseTypeTest
      */
     public function test_it_properly_infers_the_type($value): void
     {
-        $value = $this->type->castValue($value);
+        $value = $this->type->coerceValue($value);
 
         $this->assertCastedTypeIsCorrectlyInferred($value);
     }

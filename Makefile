@@ -41,6 +41,12 @@ default: ## Runs the default task: CS fix and all the tests
 default: src/Input/TypedInput.php cs test
 
 
+.PHONY: dump
+dump:	## Dumps the getter
+dump:
+	$(MAKE) --always-make src/Input/TypedInput.php
+
+
 .PHONY: cs
 cs: ## Runs PHP-CS-Fixer
 cs: $(PHP_CS_FIXER_BIN)
