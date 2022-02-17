@@ -9,6 +9,7 @@ services:
 
     Fidry\Console\Tests\Command\Fixture\:
         resource: '../Command/Fixture'
+        exclude: '../Command/Fixture/FakeCommand.php'
 
     app.simple_command:
         class: Fidry\Console\Tests\Command\Fixture\SimpleCommand
