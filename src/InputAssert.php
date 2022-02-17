@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console;
 
 use function array_is_list;
+use Fidry\Console\Input\InvalidInputValueType;
 use function get_debug_type;
 use function is_array;
 use function is_bool;
@@ -222,11 +223,7 @@ final class InputAssert
         try {
             $callable();
         } catch (AssertInvalidArgumentException $exception) {
-            throw new ConsoleInvalidArgumentException(
-                $exception->getMessage(),
-                (int) $exception->getCode(),
-                $exception,
-            );
+            throw InvalidInputValueType::fromAssert($exception);
         }
     }
 
