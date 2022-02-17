@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Type;
 
 /**
- * @template CastedValueType of scalar
- * @extends InputType<CastedValueType>
+ * @template TypedValue of scalar
+ * @extends InputType<TypedValue>
  */
 interface ScalarType extends InputType
 {

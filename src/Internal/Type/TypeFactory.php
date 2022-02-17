@@ -15,11 +15,6 @@ namespace Fidry\Console\Internal\Type;
 
 use function array_reverse;
 
-/**
- * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert
- * @psalm-import-type OptionInput from \Fidry\Console\InputAssert
- * @template ValueType
- */
 final class TypeFactory
 {
     private function __construct()

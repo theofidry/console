@@ -20,7 +20,7 @@ use Fidry\Console\InputAssert;
  */
 final class IntegerType implements ScalarType
 {
-    public function castValue($value): int
+    public function coerceValue($value): int
     {
         InputAssert::integerString($value);
 

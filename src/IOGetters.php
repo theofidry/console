@@ -31,7 +31,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -46,7 +46,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -60,7 +60,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -75,7 +75,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -92,7 +92,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -106,7 +106,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\IntegerType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -121,7 +121,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\IntegerType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -138,7 +138,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\IntegerType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -152,7 +152,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -167,7 +167,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -184,7 +184,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->castValue($argument);
+        return $type->coerceValue($argument);
     }
 
     /**
@@ -198,7 +198,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -213,7 +213,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -227,7 +227,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -242,7 +242,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -259,7 +259,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -273,7 +273,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\IntegerType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -288,7 +288,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\IntegerType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -305,7 +305,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\IntegerType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -319,7 +319,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -334,7 +334,7 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 
     /**
@@ -351,6 +351,6 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->castValue($option);
+        return $type->coerceValue($option);
     }
 }

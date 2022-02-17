@@ -36,12 +36,12 @@ final class ListType implements InputType
         $this->innerType = $innerType;
     }
 
-    public function castValue($value): array
+    public function coerceValue($value): array
     {
         InputAssert::assertIsList($value);
 
         return array_map(
-            fn (string $element) => $this->innerType->castValue($element),
+            fn (string $element) => $this->innerType->coerceValue($element),
             $value,
         );
     }

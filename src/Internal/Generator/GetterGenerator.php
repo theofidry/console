@@ -37,7 +37,7 @@ final class GetterGenerator
         __TYPE_CLASS_NAMES_PLACEHOLDER__
         ]);
     
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
     PHP;
 

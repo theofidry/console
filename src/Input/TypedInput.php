@@ -64,7 +64,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     public function asNullableBoolean(): ?bool
@@ -74,7 +74,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     public function asString(): string
@@ -83,7 +83,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     public function asNullableString(): ?string
@@ -93,7 +93,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     /**
@@ -106,7 +106,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     public function asInteger(): int
@@ -115,7 +115,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\IntegerType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     public function asNullableInteger(): ?int
@@ -125,7 +125,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\IntegerType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     /**
@@ -138,7 +138,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\IntegerType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     public function asFloat(): float
@@ -147,7 +147,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     public function asNullableFloat(): ?float
@@ -157,7 +157,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
 
     /**
@@ -170,7 +170,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->castValue($this->value);
+        return $type->coerceValue($this->value);
     }
     // __AUTO_GENERATE_END__
 }
