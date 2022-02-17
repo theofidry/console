@@ -41,9 +41,7 @@ final class GetterGeneratorTest extends TestCase
         yield 'singular type' => [
             new BooleanType(),
             <<<'PHP'
-            /**
-             * @return bool
-             */
+            
             public function asBoolean(): bool
             {
                 $type = TypeFactory::createTypeFromClassNames([
@@ -60,9 +58,7 @@ final class GetterGeneratorTest extends TestCase
                 new BooleanType(),
             ),
             <<<'PHP'
-            /**
-             * @return null|bool
-             */
+
             public function asNullableBoolean(): ?bool
             {
                 $type = TypeFactory::createTypeFromClassNames([
