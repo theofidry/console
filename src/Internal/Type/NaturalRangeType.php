@@ -39,7 +39,7 @@ final class NaturalRangeType implements InputType
     {
         $intValue = (new NaturalType())->coerceValue($value);
 
-        /** @psalm-suppress InvalidDocblock,MissingClosureReturnType */
+        /** @psalm-suppress MissingClosureReturnType */
         InputAssert::castThrowException(
             fn () => Assert::range(
                 $intValue,

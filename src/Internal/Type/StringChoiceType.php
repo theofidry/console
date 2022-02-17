@@ -38,7 +38,7 @@ final class StringChoiceType implements ScalarType
     {
         $value = (new StringType())->coerceValue($value);
 
-        /** @psalm-suppress InvalidDocblock,MissingClosureReturnType */
+        /** @psalm-suppress MissingClosureReturnType */
         InputAssert::castThrowException(
             fn () => Assert::inArray(
                 $value,
