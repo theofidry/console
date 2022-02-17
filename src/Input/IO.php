@@ -57,6 +57,11 @@ class IO extends SymfonyStyle
         );
     }
 
+    public function withInput(InputInterface $input): self
+    {
+        return new self($input, $this->output);
+    }
+
     public function getInput(): InputInterface
     {
         return $this->input;
@@ -65,6 +70,11 @@ class IO extends SymfonyStyle
     public function isInteractive(): bool
     {
         return $this->input->isInteractive();
+    }
+
+    public function withOutput(OutputInterface $output): self
+    {
+        return new self($this->input, $output);
     }
 
     public function getOutput(): OutputInterface
