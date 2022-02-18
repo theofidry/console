@@ -122,7 +122,7 @@ final class TypedInput
     /**
      * @return non-empty-list<null|bool|string|list<string>>
      */
-    public function asNonEmptyListRaw(): array
+    public function asRawNonEmptyList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
@@ -132,6 +132,7 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+
     public function asBoolean(): bool
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -140,6 +141,7 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
+
 
     public function asNullableBoolean(): ?bool
     {
@@ -167,7 +169,7 @@ final class TypedInput
     /**
      * @return non-empty-list<bool>
      */
-    public function asNonEmptyListBoolean(): array
+    public function asBooleanNonEmptyList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
@@ -218,7 +220,7 @@ final class TypedInput
     /**
      * @return non-empty-list<positive-int|0>
      */
-    public function asNonEmptyListNatural(): array
+    public function asNaturalNonEmptyList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
@@ -269,7 +271,7 @@ final class TypedInput
     /**
      * @return non-empty-list<positive-int>
      */
-    public function asNonEmptyListPositiveInteger(): array
+    public function asPositiveIntegerNonEmptyList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
@@ -279,6 +281,7 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+
     public function asFloat(): float
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -287,6 +290,7 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
+
 
     public function asNullableFloat(): ?float
     {
@@ -314,7 +318,7 @@ final class TypedInput
     /**
      * @return non-empty-list<float>
      */
-    public function asNonEmptyListFloat(): array
+    public function asFloatNonEmptyList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
@@ -324,6 +328,7 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+
     public function asString(): string
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -332,6 +337,7 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
+
 
     public function asNullableString(): ?string
     {
@@ -359,7 +365,7 @@ final class TypedInput
     /**
      * @return non-empty-list<string>
      */
-    public function asNonEmptyListString(): array
+    public function asStringNonEmptyList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
@@ -410,7 +416,7 @@ final class TypedInput
     /**
      * @return non-empty-list<non-empty-string>
      */
-    public function asNonEmptyListNonEmptyString(): array
+    public function asNonEmptyStringNonEmptyList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
@@ -420,6 +426,7 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+
     public function asUntrimmedString(): string
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -428,6 +435,7 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
+
 
     public function asNullableUntrimmedString(): ?string
     {
@@ -455,7 +463,7 @@ final class TypedInput
     /**
      * @return non-empty-list<string>
      */
-    public function asNonEmptyListUntrimmedString(): array
+    public function asUntrimmedStringNonEmptyList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
@@ -493,7 +501,7 @@ final class TypedInput
     /**
      * @return non-empty-list<null|non-empty-string>
      */
-    public function asNonEmptyListNullOrNonEmptyString(): array
+    public function asNullOrNonEmptyStringNonEmptyList(): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
