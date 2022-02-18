@@ -43,7 +43,7 @@ final class PositiveIntegerType implements ScalarType
         return 'positive-int';
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return 'int';
     }

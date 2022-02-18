@@ -36,7 +36,7 @@ final class NullOrNonEmptyStringType implements ScalarType
         return 'null|non-empty-string';
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return '?string';
     }

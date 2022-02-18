@@ -49,7 +49,7 @@ final class NaturalType implements ScalarType
         return 'positive-int|0';
     }
 
-    public function getPhpTypeDeclaration(): string
+    public function getPhpTypeDeclaration(): ?string
     {
         return 'int';
     }

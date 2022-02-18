@@ -18,6 +18,7 @@ use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NullableType;
+use Fidry\Console\Tests\Internal\Type\ConfigurableType;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,9 +41,7 @@ final class GetterGeneratorTest extends TestCase
         yield 'singular type' => [
             new BooleanType(),
             <<<'PHP'
-            /**
-             * @return bool
-             */
+            
             public function asBoolean(): bool
             {
                 $type = TypeFactory::createTypeFromClassNames([
@@ -59,9 +58,7 @@ final class GetterGeneratorTest extends TestCase
                 new BooleanType(),
             ),
             <<<'PHP'
-            /**
-             * @return null|bool
-             */
+
             public function asNullableBoolean(): ?bool
             {
                 $type = TypeFactory::createTypeFromClassNames([
@@ -133,6 +130,86 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Internal\Type\ListType::class,
                     \Fidry\Console\Internal\Type\NullableType::class,
                     \Fidry\Console\Internal\Type\BooleanType::class,
+                ]);
+            
+                return $type->coerceValue($this->value);
+            }
+            PHP,
+        ];
+
+        yield 'typeless type' => [
+            new ConfigurableType(
+                'bool',
+                null,
+            ),
+            <<<'PHP'
+            /**
+             * @return bool
+             */
+            public function asConfigurable()
+            {
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                ]);
+            
+                return $type->coerceValue($this->value);
+            }
+            PHP,
+        ];
+
+        yield 'non native PHP type' => [
+            new ConfigurableType(
+                'int<0,1>',
+                'int',
+            ),
+            <<<'PHP'
+            /**
+             * @return int<0,1>
+             */
+            public function asConfigurable(): int
+            {
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                ]);
+            
+                return $type->coerceValue($this->value);
+            }
+            PHP,
+        ];
+
+        yield 'Psalm has extra types' => [
+            new ConfigurableType(
+                'int|float',
+                'int',
+            ),
+            <<<'PHP'
+            /**
+             * @return int|float
+             */
+            public function asConfigurable(): int
+            {
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                ]);
+            
+                return $type->coerceValue($this->value);
+            }
+            PHP,
+        ];
+
+        yield 'PHP has extra types' => [
+            new ConfigurableType(
+                'int',
+                'int|float',
+            ),
+            <<<'PHP'
+            /**
+             * @return int
+             */
+            public function asConfigurable(): int|float
+            {
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
                 ]);
             
                 return $type->coerceValue($this->value);
