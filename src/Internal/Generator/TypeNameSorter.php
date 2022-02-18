@@ -16,12 +16,19 @@ namespace Fidry\Console\Internal\Generator;
 use function array_slice;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NonEmptyListType;
+use function in_array;
 
 /**
  * @private
  */
 final class TypeNameSorter
 {
+    private const INVERSE_TYPE_CLASS_NAMES = [
+        ListType::class,
+        NonEmptyListType::class,
+    ];
+
     private function __construct()
     {
     }
@@ -47,7 +54,7 @@ final class TypeNameSorter
     private static function traverseAndCollectTypes(array $unsortedTypes, array &$sortedTypes): void
     {
         foreach ($unsortedTypes as $index => $unsortedType) {
-            if (ListType::class !== $unsortedType) {
+            if (!in_array($unsortedType, self::INVERSE_TYPE_CLASS_NAMES, true)) {
                 $sortedTypes[] = $unsortedType;
 
                 continue;

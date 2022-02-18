@@ -17,6 +17,7 @@ use Fidry\Console\Internal\Generator\TypeNameSorter;
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NonEmptyListType;
 use Fidry\Console\Internal\Type\NullableType;
 use Fidry\Console\Internal\Type\StringType;
 use PHPUnit\Framework\TestCase;
@@ -65,6 +66,17 @@ final class TypeNameSorterTest extends TestCase
             [
                 BooleanType::class,
                 ListType::class,
+            ],
+        ];
+
+        yield 'non-empty-list type' => [
+            [
+                NonEmptyListType::class,
+                BooleanType::class,
+            ],
+            [
+                BooleanType::class,
+                NonEmptyListType::class,
             ],
         ];
 
