@@ -176,5 +176,45 @@ final class GetterGeneratorTest extends TestCase
             }
             PHP,
         ];
+
+        yield 'Psalm has extra types' => [
+            new ConfigurableType(
+                'int|float',
+                'int',
+            ),
+            <<<'PHP'
+            /**
+             * @return int|float
+             */
+            public function asConfigurable(): int
+            {
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                ]);
+            
+                return $type->coerceValue($this->value);
+            }
+            PHP,
+        ];
+
+        yield 'PHP has extra types' => [
+            new ConfigurableType(
+                'int',
+                'int|float',
+            ),
+            <<<'PHP'
+            /**
+             * @return int
+             */
+            public function asConfigurable(): int|float
+            {
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                ]);
+            
+                return $type->coerceValue($this->value);
+            }
+            PHP,
+        ];
     }
 }
