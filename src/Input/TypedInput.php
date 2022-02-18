@@ -66,6 +66,8 @@ final class TypedInput
     }
 
     /**
+     * @psalm-suppress MoreSpecificReturnType
+     *
      * @param positive-int|0 $min
      * @param positive-int|0 $max
      *
