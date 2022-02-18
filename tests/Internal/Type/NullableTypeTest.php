@@ -71,7 +71,7 @@ final class NullableTypeTest extends BaseTypeTest
      * @param mixed $_1
      * @param mixed $_2
      */
-    public function test_it_exposes_its_php_declaration(InputType $input, $_1, $_2, string $expected): void
+    public function test_it_exposes_its_php_declaration(InputType $input, $_1, $_2, ?string $expected): void
     {
         $actual = $input->getPhpTypeDeclaration();
 
@@ -122,6 +122,16 @@ final class NullableTypeTest extends BaseTypeTest
             ],
             'null|list<string>',
             '?array',
+        ];
+
+        yield 'typeless' => [
+            new NullableType(new ConfigurableType('mixed', null)),
+            [
+                NullableType::class,
+                ConfigurableType::class,
+            ],
+            'null|mixed',
+            null,
         ];
     }
 

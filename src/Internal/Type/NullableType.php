@@ -52,6 +52,8 @@ final class NullableType implements InputType
 
     public function getPhpTypeDeclaration(): ?string
     {
-        return '?'.$this->innerType->getPhpTypeDeclaration();
+        $innerPhpTypeDeclaration = $this->innerType->getPhpTypeDeclaration();
+
+        return null === $innerPhpTypeDeclaration ? null : '?'.$innerPhpTypeDeclaration;
     }
 }
