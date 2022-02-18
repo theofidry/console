@@ -43,9 +43,7 @@ final class GettersGeneratorTest extends TestCase
         yield 'nominal' => [
             [new StringType(), new BooleanType()],
             <<<'PHP'
-                /**
-                 * @return string
-                 */
+
                 public function asString(): string
                 {
                     $type = TypeFactory::createTypeFromClassNames([
@@ -55,9 +53,7 @@ final class GettersGeneratorTest extends TestCase
                     return $type->coerceValue($this->value);
                 }
 
-                /**
-                 * @return bool
-                 */
+
                 public function asBoolean(): bool
                 {
                     $type = TypeFactory::createTypeFromClassNames([

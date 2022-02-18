@@ -13,11 +13,15 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Generator;
 
+use function array_diff;
 use function array_map;
 use function array_shift;
 use function array_unshift;
+use function count;
+use function explode;
 use Fidry\Console\Internal\Type\InputType;
 use function implode;
+use function preg_match;
 use function Safe\sprintf;
 use function str_repeat;
 use function str_replace;
@@ -51,13 +55,20 @@ final class GetterGenerator
     {
         $typeClassNames = $type->getTypeClassNames();
 
+        $psalmTypeDeclaration = $type->getPsalmTypeDeclaration();
         $phpReturnType = $type->getPhpTypeDeclaration();
+
+        if (self::isPsalmTypeRedundant($psalmTypeDeclaration, $phpReturnType)) {
+            $psalmTypeDeclaration = '';
+        }
 
         if (null !== $phpReturnType) {
             $phpReturnType = ': '.$phpReturnType;
+        } else {
+            $phpReturnType = '';
         }
 
-        return str_replace(
+        $content = str_replace(
             [
                 '__METHOD_NAME_PLACEHOLDER__',
                 '__PSALM_RETURN_TYPE_PLACEHOLDER__',
@@ -66,12 +77,14 @@ final class GetterGenerator
             ],
             [
                 GetterNameGenerator::generateMethodName($typeClassNames),
-                $type->getPsalmTypeDeclaration(),
-                (string) $phpReturnType,
+                $psalmTypeDeclaration,
+                $phpReturnType,
                 self::serializeTypeNames($typeClassNames),
             ],
             self::TEMPLATE,
         );
+
+        return self::removeEmptyReturn($content);
     }
 
     /**
@@ -104,6 +117,41 @@ final class GetterGenerator
             '%s\\%s::class,',
             str_repeat(' ', self::INDENT_SIZE * $indentSize),
             $typeClassName,
+        );
+    }
+
+    private static function isPsalmTypeRedundant(
+        string $psalmTypeDeclaration,
+        ?string $phpReturnType
+    ): bool {
+        if (null === $phpReturnType
+            || preg_match('/.+<.+>/', $psalmTypeDeclaration)
+        ) {
+            return false;
+        }
+
+        $psalmTypes = explode('|', $psalmTypeDeclaration);
+        $phpTypes = explode(
+            '|',
+            str_replace('?', 'null|', $phpReturnType),
+        );
+
+        $extraPsalmTypes = array_diff($psalmTypes, $phpTypes);
+        $extraPhpTypes = array_diff($phpTypes, $psalmTypes);
+
+        return 0 === count($extraPsalmTypes) && 0 === count($extraPhpTypes);
+    }
+
+    private static function removeEmptyReturn(string $value): string
+    {
+        return str_replace(
+            <<<'PHP'
+            /**
+             * @return 
+             */
+            PHP,
+            '',
+            $value,
         );
     }
 }
