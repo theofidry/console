@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Generator;
 
+use function array_merge;
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\FloatType;
 use Fidry\Console\Internal\Type\InputType;
@@ -26,9 +27,6 @@ use Fidry\Console\Internal\Type\PositiveIntegerType;
 use Fidry\Console\Internal\Type\RawType;
 use Fidry\Console\Internal\Type\StringType;
 use Fidry\Console\Internal\Type\UntrimmedStringType;
-use phpDocumentor\Reflection\PseudoTypes\NonEmptyString;
-use phpDocumentor\Reflection\PseudoTypes\PositiveInteger;
-use function array_merge;
 
 /**
  * @private
@@ -74,8 +72,7 @@ final class TypeMap
         string $typeClassName,
         bool $nullable,
         bool $list
-    ): array
-    {
+    ): array {
         $types = [$type = new $typeClassName()];
 
         if ($nullable) {
