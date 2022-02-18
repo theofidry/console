@@ -17,6 +17,7 @@ use Fidry\Console\Internal\Generator\GetterNameGenerator;
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
+use Fidry\Console\Internal\Type\NonEmptyListType;
 use Fidry\Console\Internal\Type\NullableType;
 use PHPUnit\Framework\TestCase;
 
@@ -49,6 +50,20 @@ final class GetterNameGeneratorTest extends TestCase
                 new BooleanType(),
             ),
             'asNullableBoolean',
+        ];
+
+        yield 'list type' => [
+            new ListType(
+                new BooleanType(),
+            ),
+            'asBooleanList',
+        ];
+
+        yield 'non-empty list type' => [
+            new NonEmptyListType(
+                new BooleanType(),
+            ),
+            'asBooleanNonEmptyList',
         ];
 
         yield 'deep composed type' => [
