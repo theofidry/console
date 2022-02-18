@@ -75,6 +75,7 @@ final class TypedInput
      */
     public function asNaturalWithinRange(int $min, int $max): int
     {
+        /** @psalm-suppress LessSpecificReturnStatement */
         return (new NaturalRangeType($min, $max))->coerceValue($this->value);
     }
 
@@ -95,7 +96,7 @@ final class TypedInput
     /**
      * @return null|null|bool|string|list<string>
      */
-    public function asNullableRaw(): ?
+    public function asNullableRaw()
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
@@ -131,7 +132,6 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
-
     public function asBoolean(): bool
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -140,7 +140,6 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
-
 
     public function asNullableBoolean(): ?bool
     {
@@ -280,7 +279,6 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
-
     public function asFloat(): float
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -289,7 +287,6 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
-
 
     public function asNullableFloat(): ?float
     {
@@ -327,7 +324,6 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
-
     public function asString(): string
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -336,7 +332,6 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
-
 
     public function asNullableString(): ?string
     {
@@ -425,7 +420,6 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
-
     public function asUntrimmedString(): string
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -434,7 +428,6 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
-
 
     public function asNullableUntrimmedString(): ?string
     {
