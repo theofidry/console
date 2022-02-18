@@ -24,6 +24,7 @@
         <ignoreFiles>
             <directory name="vendor"/>
             <directory name="tests/Integration/var"/>
+            <file name="tests/Internal/Type/ConfigurableType.php"/>
         </ignoreFiles>
     </projectFiles>
 

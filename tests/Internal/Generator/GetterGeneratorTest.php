@@ -18,7 +18,7 @@ use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NullableType;
-use Fidry\Console\Internal\Type\RawType;
+use Fidry\Console\Tests\Internal\Type\ConfigurableType;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -138,15 +138,38 @@ final class GetterGeneratorTest extends TestCase
         ];
 
         yield 'typeless type' => [
-            new RawType(),
+            new ConfigurableType(
+                'bool',
+                null,
+            ),
             <<<'PHP'
             /**
-             * @return null|bool|string|list<string>
+             * @return bool
              */
-            public function asRaw()
+            public function asConfigurable()
             {
                 $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Internal\Type\RawType::class,
+                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                ]);
+            
+                return $type->coerceValue($this->value);
+            }
+            PHP,
+        ];
+
+        yield 'non native PHP type' => [
+            new ConfigurableType(
+                'int<0,1>',
+                'int',
+            ),
+            <<<'PHP'
+            /**
+             * @return int<0,1>
+             */
+            public function asConfigurable(): int
+            {
+                $type = TypeFactory::createTypeFromClassNames([
+                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
                 ]);
             
                 return $type->coerceValue($this->value);
