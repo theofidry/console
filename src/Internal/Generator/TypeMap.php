@@ -13,12 +13,20 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Generator;
 
+use function array_merge;
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\FloatType;
+use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NaturalType;
+use Fidry\Console\Internal\Type\NonEmptyListType;
+use Fidry\Console\Internal\Type\NonEmptyStringType;
 use Fidry\Console\Internal\Type\NullableType;
+use Fidry\Console\Internal\Type\NullOrNonEmptyStringType;
+use Fidry\Console\Internal\Type\PositiveIntegerType;
+use Fidry\Console\Internal\Type\RawType;
 use Fidry\Console\Internal\Type\StringType;
+use Fidry\Console\Internal\Type\UntrimmedStringType;
 
 /**
  * @private
@@ -31,22 +39,51 @@ final class TypeMap
 
     public static function provideTypes(): array
     {
-        // TODO: this will be heavily refactored later
-        return [
-            new BooleanType(),
-            new NullableType(new BooleanType()),
-
-            new StringType(),
-            new NullableType(new StringType()),
-            new ListType(new StringType()),
-
-            new NaturalType(),
-            new NullableType(new NaturalType()),
-            new ListType(new NaturalType()),
-
-            new FloatType(),
-            new NullableType(new FloatType()),
-            new ListType(new FloatType()),
+        $baseTypes = [
+            RawType::class,
+            BooleanType::class,
+            NaturalType::class,
+            PositiveIntegerType::class,
+            FloatType::class,
+            StringType::class,
+            NonEmptyStringType::class,
+            UntrimmedStringType::class,
         ];
+
+        $types = [];
+
+        foreach ($baseTypes as $baseType) {
+            $types[] = self::createTypes($baseType, true, true);
+        }
+
+        $types[] = self::createTypes(
+            NullOrNonEmptyStringType::class,
+            false,
+            true,
+        );
+
+        return array_merge(...$types);
+    }
+
+    /**
+     * @param class-string<InputType> $typeClassName
+     */
+    private static function createTypes(
+        string $typeClassName,
+        bool $nullable,
+        bool $list
+    ): array {
+        $types = [$type = new $typeClassName()];
+
+        if ($nullable) {
+            $types[] = new NullableType($type);
+        }
+
+        if ($list) {
+            $types[] = new ListType($type);
+            $types[] = new NonEmptyListType($type);
+        }
+
+        return $types;
     }
 }
