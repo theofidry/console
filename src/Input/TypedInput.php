@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Input;
 
 use Fidry\Console\InputAssert;
+use Fidry\Console\Internal\Type\NaturalRangeType;
+use Fidry\Console\Internal\Type\StringChoiceType;
 use Fidry\Console\Internal\Type\TypeFactory;
 
 /**
@@ -53,6 +55,25 @@ final class TypedInput
         InputAssert::assertIsValidOptionType($option);
 
         return new self($option);
+    }
+
+    /**
+     * @param list<string> $choices
+     */
+    public function asStringChoice(array $choices): string
+    {
+        return (new StringChoiceType($choices))->coerceValue($this->value);
+    }
+
+    /**
+     * @param positive-int|0 $min
+     * @param positive-int|0 $max
+     *
+     * @return positive-int|0
+     */
+    public function asNaturalWithinRange(int $min, int $max): int
+    {
+        return (new NaturalRangeType($min, $max))->coerceValue($this->value);
     }
 
     // The following part is auto-generated.
