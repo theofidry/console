@@ -40,7 +40,6 @@ final class TypeMap
     public static function provideTypes(): array
     {
         $baseTypes = [
-            RawType::class,
             BooleanType::class,
             NaturalType::class,
             PositiveIntegerType::class,
@@ -50,7 +49,13 @@ final class TypeMap
             UntrimmedStringType::class,
         ];
 
-        $types = [];
+        $types = [
+            self::createTypes(
+                RawType::class,
+                false,
+                false,
+            )
+        ];
 
         foreach ($baseTypes as $baseType) {
             $types[] = self::createTypes($baseType, true, true);

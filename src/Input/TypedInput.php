@@ -93,44 +93,6 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
-    /**
-     * @return null|null|bool|string|list<string>
-     */
-    public function asNullableRaw()
-    {
-        $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NullableType::class,
-            \Fidry\Console\Internal\Type\RawType::class,
-        ]);
-
-        return $type->coerceValue($this->value);
-    }
-
-    /**
-     * @return list<null|bool|string|list<string>>
-     */
-    public function asRawList(): array
-    {
-        $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\ListType::class,
-            \Fidry\Console\Internal\Type\RawType::class,
-        ]);
-
-        return $type->coerceValue($this->value);
-    }
-
-    /**
-     * @return non-empty-list<null|bool|string|list<string>>
-     */
-    public function asRawNonEmptyList(): array
-    {
-        $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NonEmptyListType::class,
-            \Fidry\Console\Internal\Type\RawType::class,
-        ]);
-
-        return $type->coerceValue($this->value);
-    }
 
     public function asBoolean(): bool
     {
@@ -140,6 +102,7 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
+
 
     public function asNullableBoolean(): ?bool
     {
@@ -279,6 +242,7 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+
     public function asFloat(): float
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -287,6 +251,7 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
+
 
     public function asNullableFloat(): ?float
     {
@@ -324,6 +289,7 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+
     public function asString(): string
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -332,6 +298,7 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
+
 
     public function asNullableString(): ?string
     {
@@ -420,6 +387,7 @@ final class TypedInput
         return $type->coerceValue($this->value);
     }
 
+
     public function asUntrimmedString(): string
     {
         $type = TypeFactory::createTypeFromClassNames([
@@ -428,6 +396,7 @@ final class TypedInput
 
         return $type->coerceValue($this->value);
     }
+
 
     public function asNullableUntrimmedString(): ?string
     {
