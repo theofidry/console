@@ -75,10 +75,8 @@ follows:
 namespace Acme;
 
 use Acme\MyService;
-use Fidry\Console\Command\Command;
-use Fidry\Console\Command\Configuration;
-use Fidry\Console\ExitCode;
-use Fidry\Console\Input\IO;
+use Fidry\Console\{ Command\Command, Command\Configuration, ExitCode, Input\IO };
+use Symfony\Component\Console\Input\InputArgument;
 
 final class CommandWithService implements Command
 {
@@ -97,12 +95,27 @@ final class CommandWithService implements Command
             <<<'EOT'
             The <info>%command.name</info> command calls MyService
             EOT,
+            [
+                new InputArgument(
+                    'username',
+                    InputArgument::REQUIRED,
+                    'Name of the user',
+                ),
+                new InputArgument(
+                    'age',
+                    InputArgument::OPTIONAL,
+                    'Age of the user',
+                ),
+            ],
         );
     }
 
     public function execute(IO $io): int
     {
-        $this->service->call();
+        $this->service->call(
+            $io->getArgument('username')->asStringNonEmptyList(),
+            $io->getArgument('age')->asNullablePositiveInteger(),
+        );
 
         return ExitCode::SUCCESS;
     }
@@ -121,7 +134,7 @@ of the use case presented.
 - Support for hidden commands ([see doc][hidden-commands])
 - Support for command aliases
 - Support for command usage configuration
-- Some methods of `Application`
+- Some obscure methods of `Application`
 
 
 ### Contributing
@@ -140,4 +153,3 @@ make help
 [hidden-commands]: https://symfony.com/doc/current/console/hide_commands.html
 [FrameworkBundle]: https://github.com/symfony/framework-bundle
 [SymfonyConsole]: https://github.com/symfony/console
-
