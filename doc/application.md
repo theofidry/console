@@ -132,7 +132,7 @@ API to a regular Symfony application execution.
 <br />
 <hr />
 
-« [How to Make Commands Lazily Loaded](lazy-command.md) • [Table of Contents](../README.md#table-of-contents) »
+« [How to Make Commands Lazily Loaded](lazy-command.md) • [Testing](testing.md) »
 
 
 [demo-console]: https://github.com/symfony/demo/blob/main/bin/console
