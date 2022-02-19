@@ -54,7 +54,7 @@ final class TypeMap
                 RawType::class,
                 false,
                 false,
-            )
+            ),
         ];
 
         foreach ($baseTypes as $baseType) {
