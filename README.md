@@ -39,6 +39,9 @@ Key differences:
     - [Application](./doc/application.md)
         - [Creating an application](./doc/application.md#creating-an-application)
         - [Executing an Application](./doc/application.md#executing-an-application)
+    - [Testing](./doc/testing.md)
+        - [Testing an Application](./doc/testing.md#testing-an-application)
+        - [Testing a Command](./doc/testing.md#testing-a-command)
 - [Known Limitations](#known-limitations)
 - [Contributing](#contributing)
 
