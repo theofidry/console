@@ -28,7 +28,7 @@ jobs:
                 with:
                     php-version: ${{ matrix.php }}
                     tools: composer
-                    coverage: pcov
+                    coverage: ${{ matrix.skip_static_checks == 'true' ? 'none' : 'pcov' }}
 
             -   name: Install Composer dependencies
                 uses: ramsey/composer-install@v2
@@ -56,6 +56,7 @@ jobs:
                 run: |
                     echo "SKIP_CS=1" >> $GITHUB_ENV
                     echo "SKIP_PSALM=1" >> $GITHUB_ENV
+                    echo "SKIP_INFECTION=1" >> $GITHUB_ENV
 
             # TODO: pending on https://github.com/oradwell/covers-validator/pull/40
             # Meanwhile we do the check on a lower version

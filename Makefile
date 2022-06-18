@@ -66,8 +66,9 @@ endif
 .PHONY: infection
 infection: ## Runs infection
 infection: $(INFECTION_BIN) $(COVERAGE_DIR) vendor
+ifndef SKIP_INFECTION
 	if [ -d $(COVERAGE_DIR)/coverage-xml ]; then $(INFECTION); fi
-
+endif
 
 .PHONY: test
 test: ## Runs all the tests
