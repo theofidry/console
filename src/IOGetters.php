@@ -21,6 +21,8 @@ use Fidry\Console\Internal\Type\TypeFactory;
 trait IOGetters
 {
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getBooleanArgument(string $name): bool
@@ -31,10 +33,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getNullableBooleanArgument(string $name): ?bool
@@ -46,10 +50,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getStringArgument(string $name): string
@@ -60,10 +66,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getNullableStringArgument(string $name): ?string
@@ -75,10 +83,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @return list<string>
      *
      * @deprecated Will be removed in 0.5.0
@@ -92,10 +102,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getIntegerArgument(string $name): int
@@ -106,11 +118,13 @@ trait IOGetters
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
-     * @deprecated Will be removed in 0.5.0
+     *@param non-empty-string $name
+     *
+     *  @deprecated Will be removed in 0.5.0
      */
     public function getNullableIntegerArgument(string $name): ?int
     {
@@ -121,10 +135,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @return list<int>
      *
      * @deprecated Will be removed in 0.5.0
@@ -138,10 +154,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getFloatArgument(string $name): float
@@ -152,10 +170,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getNullableFloatArgument(string $name): ?float
@@ -167,10 +187,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @return list<float>
      *
      * @deprecated Will be removed in 0.5.0
@@ -184,10 +206,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($argument);
+        return $type->coerceValue($argument, $this->label);
     }
 
     /**
+     *@param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getBooleanOption(string $name): bool
@@ -198,10 +222,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getNullableBooleanOption(string $name): ?bool
@@ -213,10 +239,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getStringOption(string $name): string
@@ -227,10 +255,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getNullableStringOption(string $name): ?string
@@ -242,10 +272,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @return list<string>
      *
      * @deprecated Will be removed in 0.5.0
@@ -259,10 +291,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getIntegerOption(string $name): int
@@ -273,10 +307,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getNullableIntegerOption(string $name): ?int
@@ -288,10 +324,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @return list<int>
      *
      * @deprecated Will be removed in 0.5.0
@@ -305,10 +343,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getFloatOption(string $name): float
@@ -319,10 +359,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @deprecated Will be removed in 0.5.0
      */
     public function getNullableFloatOption(string $name): ?float
@@ -334,10 +376,12 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @return list<float>
      *
      * @deprecated Will be removed in 0.5.0
@@ -351,6 +395,6 @@ trait IOGetters
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($option);
+        return $type->coerceValue($option, $this->label);
     }
 }

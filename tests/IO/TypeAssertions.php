@@ -24,6 +24,9 @@ final class TypeAssertions
     {
     }
 
+    /**
+     * @param non-empty-string $argumentName
+     */
     public static function assertExpectedArgumentTypes(
         TypedInput $expected,
         IO $io,
@@ -75,6 +78,9 @@ final class TypeAssertions
         );
     }
 
+    /**
+     * @param non-empty-string $optionName
+     */
     public static function assertExpectedOptionTypes(
         TypedInput $expected,
         IO $io,

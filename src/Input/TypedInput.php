@@ -18,6 +18,7 @@ use Fidry\Console\Internal\Type\NaturalRangeType;
 use Fidry\Console\Internal\Type\StringChoiceType;
 use Fidry\Console\Internal\Type\TypeFactory;
 use function Safe\sprintf;
+use Webmozart\Assert\Assert;
 
 /**
  * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert
@@ -29,6 +30,10 @@ final class TypedInput
      * @var ArgumentInput|OptionInput
      */
     private $value;
+
+    /**
+     * @var non-empty-string
+     */
     private string $label;
 
     /**
@@ -36,12 +41,15 @@ final class TypedInput
      */
     private function __construct($value, string $label)
     {
+        Assert::stringNotEmpty($label);
+
         $this->value = $value;
         $this->label = $label;
     }
 
     /**
-     * @param ArgumentInput $argument
+     * @param ArgumentInput    $argument
+     * @param non-empty-string $name
      */
     public static function fromArgument($argument, string $name): self
     {
@@ -57,7 +65,8 @@ final class TypedInput
     }
 
     /**
-     * @param OptionInput $option
+     * @param OptionInput      $option
+     * @param non-empty-string $name
      */
     public static function fromOption($option, string $name): self
     {

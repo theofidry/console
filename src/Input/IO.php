@@ -82,6 +82,9 @@ class IO extends SymfonyStyle
         return $this->output;
     }
 
+    /**
+     * @param non-empty-string $name
+     */
     public function getArgument(string $name): TypedInput
     {
         return TypedInput::fromArgument(
@@ -90,6 +93,9 @@ class IO extends SymfonyStyle
         );
     }
 
+    /**
+     * @param non-empty-string $name
+     */
     public function getOption(string $name): TypedInput
     {
         return TypedInput::fromOption(
@@ -99,6 +105,8 @@ class IO extends SymfonyStyle
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @return null|string|list<string>
      */
     private function getLegacyArgument(string $name)
@@ -111,6 +119,8 @@ class IO extends SymfonyStyle
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @return null|bool|string|list<string>
      */
     private function getLegacyOption(string $name)
