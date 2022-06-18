@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Fidry\Console;
 
 use function array_map;
-use function array_reduce;
 use function explode;
 use function implode;
 use const PHP_EOL;
@@ -35,21 +34,20 @@ final class DisplayNormalizer
     public static function removeTrailingSpaces(
         string $display,
         callable ...$extraNormalizers
-    ): string
-    {
+    ): string {
         $display = str_replace(PHP_EOL, "\n", $display);
         $lines = explode("\n", $display);
 
         $trimmedLines = array_map(
             'rtrim',
-            $lines
+            $lines,
         );
 
         $normalizedDisplay = implode("\n", $trimmedLines);
 
         return array_reduce(
             $extraNormalizers,
-            static fn (string $display, $extraNormalizer) => $extraNormalizer($display),
+            static fn (string $display, $extraNormalizer): string => $extraNormalizer($display),
             $normalizedDisplay,
         );
     }

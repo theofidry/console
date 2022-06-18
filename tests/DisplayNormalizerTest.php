@@ -36,8 +36,8 @@ final class DisplayNormalizerTest extends TestCase
     {
         $value = ' foo ';
 
-        $extraNormalizer1 = static fn (string $value) => sprintf('extraNormalizer1(%s)', $value);
-        $extraNormalizer2 = static fn (string $value) => sprintf('extraNormalizer2(%s)', $value);
+        $extraNormalizer1 = static fn (string $value): string => sprintf('extraNormalizer1(%s)', $value);
+        $extraNormalizer2 = static fn (string $value): string => sprintf('extraNormalizer2(%s)', $value);
 
         $expected = 'extraNormalizer2(extraNormalizer1( foo))';
 

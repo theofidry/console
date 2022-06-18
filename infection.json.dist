@@ -33,6 +33,11 @@
                 ".*\\$min < \\$max.*"
             ]
         },
+        "LogicalOr": {
+            "ignore": [
+                "Fidry\\Console\\Internal\\Generator\\GetterGenerator::isPsalmTypeRedundant"
+            ]
+        },
         "MethodCallRemoval": {
             "ignore": [
                 "Fidry\\Console\\Command\\SymfonyCommand::setApplication",

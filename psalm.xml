@@ -10,7 +10,8 @@
         findUnusedCode="true"
         findUnusedPsalmSuppress="true"
         ensureArrayStringOffsetsExist="true"
-        ensureArrayIntOffsetsExist="true">
+        ensureArrayIntOffsetsExist="true"
+        phpVersion="8.1">
 
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin" />

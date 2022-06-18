@@ -16,6 +16,7 @@ namespace Fidry\Console\Internal\Generator;
 use function Safe\file_get_contents;
 use function Safe\file_put_contents;
 use function Safe\preg_replace;
+use function str_replace;
 
 /**
  * @private
@@ -38,6 +39,8 @@ final class GettersDumper
             $existingContent,
         );
 
-        file_put_contents(self::TARGET_PATH, $newContent);
+        $cleanedNewContent = str_replace("\n\n\n", "\n\n", $newContent);
+
+        file_put_contents(self::TARGET_PATH, $cleanedNewContent);
     }
 }

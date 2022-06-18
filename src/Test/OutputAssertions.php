@@ -22,15 +22,23 @@ final class OutputAssertions
     }
 
     /**
+     * @param AppTester|CommandTester $actual
      * @param null|callable(string):string $extraNormalizers
      */
     public static function assertSameOutput(
         string $expectedOutput,
         int $expectedStatusCode,
-        // TODO: add support for Symfony App & CommandTester
-        AppTester|CommandTester $actual,
+        $actual,
         callable ...$extraNormalizers
     ): void {
+        \Webmozart\Assert\Assert::isInstanceOfAny(
+            $actual,
+            [
+                AppTester::class,
+                CommandTester::class,
+            ],
+        );
+
         $actualOutput = $actual->getNormalizedDisplay(...$extraNormalizers);
 
         Assert::assertSame($expectedOutput, $actualOutput);

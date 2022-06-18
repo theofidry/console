@@ -25,7 +25,8 @@ use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;
 
 /**
- * TODO: move this under Internal
+ * TODO: move this under Internal.
+ *
  * @private
  * @psalm-type ArgumentInput = null|string|list<string>
  * @psalm-type OptionInput = null|bool|string|list<string>
