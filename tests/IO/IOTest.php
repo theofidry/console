@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\IO;
 
+use Composer\InstalledVersions;
+use Composer\Semver\VersionParser;
 use Fidry\Console\Input\IO;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -26,6 +28,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\NullOutput;
+use TypeError;
 
 /**
  * @covers \Fidry\Console\Input\IO
@@ -87,19 +90,31 @@ final class IOTest extends TestCase
         $default,
         string $expectedMessage
     ): void {
+        try {
+            $inputArgument = new InputArgument(
+                'arg',
+                InputArgument::OPTIONAL,
+                '',
+                $default,
+            );
+        } catch (TypeError $invalidDefaultValueType) {
+            if (self::isSymfony6OrMore()) {
+                // Symfony updated the Console component to have union types
+                // solving the issue.
+                /** @psalm-suppress InternalMethod */
+                $this->addToAssertionCount(1);
+
+                return;
+            }
+            self::throwException($invalidDefaultValueType);
+        }
+
+        self::assertTrue(isset($inputArgument));
+
         $io = new IO(
             new ArrayInput(
                 [],
-                new InputDefinition(
-                    [
-                        new InputArgument(
-                            'arg',
-                            InputArgument::OPTIONAL,
-                            '',
-                            $default,
-                        ),
-                    ],
-                ),
+                new InputDefinition([$inputArgument]),
             ),
             new NullOutput(),
         );
@@ -161,20 +176,32 @@ final class IOTest extends TestCase
         $default,
         string $expectedMessage
     ): void {
+        try {
+            $inputOption = new InputOption(
+                'opt',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                '',
+                $default,
+            );
+        } catch (TypeError $invalidDefaultValueType) {
+            if (self::isSymfony6OrMore()) {
+                // Symfony updated the Console component to have union types
+                // solving the issue.
+                /** @psalm-suppress InternalMethod */
+                $this->addToAssertionCount(1);
+
+                return;
+            }
+            self::throwException($invalidDefaultValueType);
+        }
+
+        self::assertTrue(isset($inputOption));
+
         $io = new IO(
             new ArrayInput(
                 [],
-                new InputDefinition(
-                    [
-                        new InputOption(
-                            'opt',
-                            null,
-                            InputOption::VALUE_OPTIONAL,
-                            '',
-                            $default,
-                        ),
-                    ],
-                ),
+                new InputDefinition([$inputOption]),
             ),
             new NullOutput(),
         );
@@ -263,5 +290,22 @@ final class IOTest extends TestCase
         $input->setInteractive($interactive);
 
         return $input;
+    }
+
+    private static function isSymfony6OrMore(): bool
+    {
+        static $result;
+
+        if (isset($result)) {
+            return $result;
+        }
+
+        $result = InstalledVersions::satisfies(
+            new VersionParser(),
+            'symfony/console',
+            '6.*',
+        );
+
+        return $result;
     }
 }

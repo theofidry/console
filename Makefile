@@ -50,20 +50,25 @@ dump:
 .PHONY: cs
 cs: ## Runs PHP-CS-Fixer
 cs: $(PHP_CS_FIXER_BIN)
+ifndef SKIP_CS
 	$(PHP_CS_FIXER)
+endif
 
 
 .PHONY: psalm
 psalm: ## Runs Psalm
 psalm: $(PSALM_BIN) vendor
+ifndef SKIP_PSALM
 	$(PSALM)
+endif
 
 
 .PHONY: infection
 infection: ## Runs infection
 infection: $(INFECTION_BIN) $(COVERAGE_DIR) vendor
+ifndef SKIP_INFECTION
 	if [ -d $(COVERAGE_DIR)/coverage-xml ]; then $(INFECTION); fi
-
+endif
 
 .PHONY: test
 test: ## Runs all the tests
@@ -79,7 +84,9 @@ validate-package: vendor
 .PHONY: covers-validator
 covers-validator: ## Validates the PHPUnit @covers annotations
 covers-validator: $(COVERS_VALIDATOR_BIN) vendor
+ifndef SKIP_COVERS_VALIDATOR
 	$(COVERS_VALIDATOR)
+endif
 
 
 .PHONY: phpunit
@@ -120,14 +127,20 @@ $(COVERAGE_DIR): $(PHPUNIT_BIN) src tests phpunit.xml.dist
 	$(PHPUNIT_COVERAGE)
 	$(TOUCH) "$@"
 
-$(PHP_CS_FIXER_BIN):
+$(PHP_CS_FIXER_BIN): vendor
+ifndef SKIP_CS
 	composer bin php-cs-fixer install
+endif
 
-$(PSALM_BIN):
+$(PSALM_BIN): vendor
+ifndef SKIP_PSALM
 	composer bin psalm install
+endif
 
-$(COVERS_VALIDATOR_BIN):
+$(COVERS_VALIDATOR_BIN): vendor
+ifndef SKIP_COVERS_VALIDATOR
 	composer bin covers-validator install
+endif
 
 src/Input/TypedInput.php: src vendor
 	./bin/dump-getters
