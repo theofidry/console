@@ -53,5 +53,8 @@ jobs:
             - name: 'debug'
               run: echo "start- $SKIP_CS -end"
 
+            - name: 'debug2'
+              run: echo "start- $$SKIP_CS -end"
+
             -   name: 'Run tests'
                 run: make
