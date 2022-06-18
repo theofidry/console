@@ -125,6 +125,10 @@ final class GetterGenerator
         ?string $phpReturnType
     ): bool {
         if (null === $phpReturnType
+            // If contains Psalm/PHPStan specific tags, for sure it cannot
+            // be redundant.
+            // Note that this is simply a shortcut as the code bellow would
+            // detect as well that there is no redundancy.
             || preg_match('/.+<.+>/', $psalmTypeDeclaration)
         ) {
             return false;
