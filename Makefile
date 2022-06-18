@@ -58,7 +58,9 @@ endif
 .PHONY: psalm
 psalm: ## Runs Psalm
 psalm: $(PSALM_BIN) vendor
+ifndef SKIP_PSALM
 	$(PSALM)
+endif
 
 
 .PHONY: infection
@@ -81,7 +83,7 @@ validate-package: vendor
 .PHONY: covers-validator
 covers-validator: ## Validates the PHPUnit @covers annotations
 covers-validator: $(COVERS_VALIDATOR_BIN) vendor
-ifndef SKIP_CS
+ifndef SKIP_COVERS_VALIDATOR
 	$(COVERS_VALIDATOR)
 endif
 

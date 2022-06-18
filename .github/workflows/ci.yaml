@@ -12,12 +12,12 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                php: [ '7.4' ]
+                php: [ '8.1' ]
                 include:
+                    - php: '7.4'
+                      skip_static_checks: 'true'
                     - php: '8.0'
-                      skip_cs: 'true'
-                    - php: '8.1'
-                      skip_cs: 'true'
+                      skip_static_checks: 'true'
 
         steps:
             -   name: 'Check out repository code'
@@ -48,12 +48,12 @@ jobs:
                 with:
                     working-directory: 'vendor-bin/psalm'
 
-            -   name: Mark skip CS
-                if: matrix.skip_cs == 'true'
-                run: echo "SKIP_CS=1" >> $GITHUB_ENV
-
-            - name: 'debug2'
-              run: echo "start- $SKIP_CS -end"
+            -   name: Mark skip static checks
+                if: matrix.skip_static_checks == 'true'
+                run: |
+                    echo "SKIP_CS=1" >> $GITHUB_ENV
+                    echo "SKIP_COVERS_VALIDATOR=1" >> $GITHUB_ENV
+                    echo "SKIP_PSALM=1" >> $GITHUB_ENV
 
             -   name: 'Run tests'
                 run: make
