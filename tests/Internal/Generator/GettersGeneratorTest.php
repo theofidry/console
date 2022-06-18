@@ -50,7 +50,7 @@ final class GettersGeneratorTest extends TestCase
                         \Fidry\Console\Internal\Type\StringType::class,
                     ]);
 
-                    return $type->coerceValue($this->value);
+                    return $type->coerceValue($this->value, $this->label);
                 }
 
 
@@ -60,7 +60,7 @@ final class GettersGeneratorTest extends TestCase
                         \Fidry\Console\Internal\Type\BooleanType::class,
                     ]);
             
-                    return $type->coerceValue($this->value);
+                    return $type->coerceValue($this->value, $this->label);
                 }
             PHP,
         ];

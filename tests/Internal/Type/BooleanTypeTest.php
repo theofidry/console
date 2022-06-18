@@ -55,7 +55,7 @@ final class BooleanTypeTest extends BaseTypeTest
             new TypeException(
                 <<<'TXT'
                 Expected a null or scalar value. Got the value: "array (
-                )"
+                )" for the argument or option "test".
                 TXT,
             ),
         ];

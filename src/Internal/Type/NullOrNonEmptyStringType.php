@@ -18,9 +18,9 @@ namespace Fidry\Console\Internal\Type;
  */
 final class NullOrNonEmptyStringType implements ScalarType
 {
-    public function coerceValue($value): ?string
+    public function coerceValue($value, string $label): ?string
     {
-        $trimmedValue = (new StringType())->coerceValue($value);
+        $trimmedValue = (new StringType())->coerceValue($value, $label);
 
         /** @psalm-suppress InvalidReturnStatement */
         return '' === $trimmedValue ? null : $trimmedValue;

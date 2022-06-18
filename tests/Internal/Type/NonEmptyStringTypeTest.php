@@ -30,12 +30,12 @@ final class NonEmptyStringTypeTest extends BaseTypeTest
     {
         yield [
             null,
-            new TypeException('Expected a string. Got "NULL"'),
+            new TypeException('Expected a string. Got "NULL" for the argument or option "test".'),
         ];
 
         yield [
             true,
-            new TypeException('Expected a string. Got "true"'),
+            new TypeException('Expected a string. Got "true" for the argument or option "test".'),
         ];
 
         $stringValues = [
@@ -57,7 +57,7 @@ final class NonEmptyStringTypeTest extends BaseTypeTest
         foreach ($invalidStringValues as $invalidStringValue) {
             yield [
                 $invalidStringValue,
-                new TypeException('Expected a non-empty string.'),
+                new TypeException('Expected a non-empty string for the argument or option "test".'),
             ];
         }
 
@@ -71,7 +71,7 @@ final class NonEmptyStringTypeTest extends BaseTypeTest
             new TypeException(
                 <<<'TXT'
                 Expected a null or scalar value. Got the value: "array (
-                )"
+                )" for the argument or option "test".
                 TXT,
             ),
         ];

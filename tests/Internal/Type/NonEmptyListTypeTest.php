@@ -58,12 +58,12 @@ final class NonEmptyListTypeTest extends BaseTypeTest
     {
         yield 'integer value' => [
             '10',
-            new TypeException('Cannot cast a non-array input argument into an array. Got "\'10\'"'),
+            new TypeException('Cannot cast a non-array input argument into an array. Got "\'10\'" for the argument or option "test".'),
         ];
 
         yield 'empty array' => [
             [],
-            new TypeException('Expected an array to contain at least 1 elements. Got: 0'),
+            new TypeException('Expected an array to contain at least 1 elements. Got: 0 for the argument or option "test".'),
         ];
 
         yield 'array with integers' => [
@@ -73,7 +73,7 @@ final class NonEmptyListTypeTest extends BaseTypeTest
 
         yield 'array with non-integers' => [
             ['10', 'foo'],
-            new TypeException('Expected an integer string. Got "\'foo\'"'),
+            new TypeException('Expected an integer string. Got "\'foo\'" for the argument or option "test".'),
         ];
     }
 

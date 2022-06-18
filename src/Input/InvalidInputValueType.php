@@ -13,15 +13,25 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
+use function Safe\sprintf;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
 use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;
 
 final class InvalidInputValueType extends ConsoleInvalidArgumentException
 {
-    public static function fromAssert(AssertInvalidArgumentException $exception): self
-    {
+    /**
+     * @param non-empty-string $inputLabel
+     */
+    public static function fromAssert(
+        AssertInvalidArgumentException $exception,
+        string $inputLabel
+    ): self {
         return new self(
-            $exception->getMessage(),
+            sprintf(
+                '%s for %s.',
+                $exception->getMessage(),
+                $inputLabel,
+            ),
             (int) $exception->getCode(),
             $exception,
         );

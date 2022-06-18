@@ -136,27 +136,27 @@ final class IOTest extends TestCase
     {
         yield 'boolean' => [
             false,
-            'Expected an argument value type to be "null|string|list<string>". Got "bool"',
+            'Expected an argument value type to be "null|string|list<string>". Got "bool" for the argument "arg".',
         ];
 
         yield 'int' => [
             10,
-            'Expected an argument value type to be "null|string|list<string>". Got "int"',
+            'Expected an argument value type to be "null|string|list<string>". Got "int" for the argument "arg".',
         ];
 
         yield 'float' => [
             10.8,
-            'Expected an argument value type to be "null|string|list<string>". Got "float"',
+            'Expected an argument value type to be "null|string|list<string>". Got "float" for the argument "arg".',
         ];
 
         yield 'object' => [
             new stdClass(),
-            'Expected an argument value type to be "null|string|list<string>". Got "stdClass"',
+            'Expected an argument value type to be "null|string|list<string>". Got "stdClass" for the argument "arg".',
         ];
 
         yield 'closure' => [
             static fn () => '',
-            'Expected an argument value type to be "null|string|list<string>". Got "Closure"',
+            'Expected an argument value type to be "null|string|list<string>". Got "Closure" for the argument "arg".',
         ];
     }
 
@@ -258,22 +258,22 @@ final class IOTest extends TestCase
     {
         yield 'int' => [
             10,
-            'Expected an option value type to be "null|bool|string|list<string>". Got "int"',
+            'Expected an option value type to be "null|bool|string|list<string>". Got "int" for the option "opt".',
         ];
 
         yield 'float' => [
             10.8,
-            'Expected an option value type to be "null|bool|string|list<string>". Got "float"',
+            'Expected an option value type to be "null|bool|string|list<string>". Got "float" for the option "opt".',
         ];
 
         yield 'object' => [
             new stdClass(),
-            'Expected an option value type to be "null|bool|string|list<string>". Got "stdClass"',
+            'Expected an option value type to be "null|bool|string|list<string>". Got "stdClass" for the option "opt".',
         ];
 
         yield 'closure' => [
             static fn () => '',
-            'Expected an option value type to be "null|bool|string|list<string>". Got "Closure"',
+            'Expected an option value type to be "null|bool|string|list<string>". Got "Closure" for the option "opt".',
         ];
     }
 

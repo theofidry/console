@@ -35,9 +35,9 @@ final class NaturalRangeType implements InputType
         }
     }
 
-    public function coerceValue($value): int
+    public function coerceValue($value, string $label): int
     {
-        $intValue = (new NaturalType())->coerceValue($value);
+        $intValue = (new NaturalType())->coerceValue($value, $label);
 
         /** @psalm-suppress MissingClosureReturnType */
         InputAssert::castThrowException(
@@ -46,6 +46,7 @@ final class NaturalRangeType implements InputType
                 $this->min,
                 $this->max,
             ),
+            $label,
         );
 
         return $intValue;

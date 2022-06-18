@@ -82,40 +82,52 @@ class IO extends SymfonyStyle
         return $this->output;
     }
 
+    /**
+     * @param non-empty-string $name
+     */
     public function getArgument(string $name): TypedInput
     {
         return TypedInput::fromArgument(
-            $this->input->getArgument($name)
-        );
-    }
-
-    public function getOption(string $name): TypedInput
-    {
-        return TypedInput::fromOption(
-            $this->input->getOption($name)
+            $this->input->getArgument($name),
+            $name,
         );
     }
 
     /**
+     * @param non-empty-string $name
+     */
+    public function getOption(string $name): TypedInput
+    {
+        return TypedInput::fromOption(
+            $this->input->getOption($name),
+            $name,
+        );
+    }
+
+    /**
+     * @param non-empty-string $name
+     *
      * @return null|string|list<string>
      */
     private function getLegacyArgument(string $name)
     {
         $argument = $this->input->getArgument($name);
 
-        InputAssert::assertIsValidArgumentType($argument);
+        InputAssert::assertIsValidArgumentType($argument, $name);
 
         return $argument;
     }
 
     /**
+     * @param non-empty-string $name
+     *
      * @return null|bool|string|list<string>
      */
     private function getLegacyOption(string $name)
     {
         $option = $this->input->getOption($name);
 
-        InputAssert::assertIsValidOptionType($option);
+        InputAssert::assertIsValidOptionType($option, $name);
 
         return $option;
     }

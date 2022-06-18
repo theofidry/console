@@ -42,7 +42,7 @@ final class InputAssert
      *
      * @psalm-assert ArgumentInput $argument
      */
-    public static function assertIsValidArgumentType($argument): void
+    public static function assertIsValidArgumentType($argument, string $name): void
     {
         if (null === $argument || is_string($argument)) {
             return;
@@ -51,14 +51,15 @@ final class InputAssert
         if (!is_array($argument) || !array_is_list($argument)) {
             throw new InvalidInputValueType(
                 sprintf(
-                    'Expected an argument value type to be "null|string|list<string>". Got "%s"',
+                    'Expected an argument value type to be "null|string|list<string>". Got "%s" for the argument "%s".',
                     get_debug_type($argument),
+                    $name,
                 ),
             );
         }
 
         foreach ($argument as $item) {
-            self::assertIsValidArgumentType($item);
+            self::assertIsValidArgumentType($item, $name);
         }
     }
 
@@ -67,7 +68,7 @@ final class InputAssert
      *
      * @psalm-assert OptionInput $option
      */
-    public static function assertIsValidOptionType($option): void
+    public static function assertIsValidOptionType($option, string $name): void
     {
         if (null === $option || is_bool($option) || is_string($option)) {
             return;
@@ -76,23 +77,25 @@ final class InputAssert
         if (!is_array($option) || !array_is_list($option)) {
             throw new InvalidInputValueType(
                 sprintf(
-                    'Expected an option value type to be "null|bool|string|list<string>". Got "%s"',
+                    'Expected an option value type to be "null|bool|string|list<string>". Got "%s" for the option "%s".',
                     get_debug_type($option),
+                    $name,
                 ),
             );
         }
 
         foreach ($option as $item) {
-            self::assertIsValidOptionType($item);
+            self::assertIsValidOptionType($item, $name);
         }
     }
 
     /**
      * @param ArgumentInput|OptionInput $value
+     * @param non-empty-string          $label
      *
      * @psalm-assert scalar|null $value
      */
-    public static function assertIsScalar($value): void
+    public static function assertIsScalar($value, string $label): void
     {
         self::castThrowException(
             static function () use ($value): void {
@@ -108,15 +111,17 @@ final class InputAssert
                     ),
                 );
             },
+            $label,
         );
     }
 
     /**
      * @param ArgumentInput|OptionInput $value
+     * @param non-empty-string          $label
      *
      * @psalm-assert list $value
      */
-    public static function assertIsList($value): void
+    public static function assertIsList($value, string $label): void
     {
         self::castThrowException(
             static function () use ($value): void {
@@ -136,19 +141,21 @@ final class InputAssert
                     ),
                 );
             },
+            $label,
         );
     }
 
     /**
      * @param ArgumentInput|OptionInput $value
+     * @param non-empty-string          $label
      *
      * @psalm-assert numeric $value
      */
-    public static function numericString($value): void
+    public static function numericString($value, string $label): void
     {
         self::castThrowException(
-            static function () use ($value): void {
-                self::assertIsScalar($value);
+            static function () use ($value, $label): void {
+                self::assertIsScalar($value, $label);
                 Assert::string(
                     $value,
                     sprintf(
@@ -164,19 +171,21 @@ final class InputAssert
                     ),
                 );
             },
+            $label,
         );
     }
 
     /**
      * @param ArgumentInput|OptionInput $value
+     * @param non-empty-string          $label
      *
      * @psalm-assert string $value
      */
-    public static function integerString($value): void
+    public static function integerString($value, string $label): void
     {
         self::castThrowException(
-            static function () use ($value): void {
-                self::assertIsScalar($value);
+            static function () use ($value, $label): void {
+                self::assertIsScalar($value, $label);
                 Assert::string(
                     $value,
                     sprintf(
@@ -192,19 +201,21 @@ final class InputAssert
                     ),
                 );
             },
+            $label,
         );
     }
 
     /**
      * @param ArgumentInput|OptionInput $value
+     * @param non-empty-string          $label
      *
      * @psalm-assert string $value
      */
-    public static function string($value): void
+    public static function string($value, string $label): void
     {
         self::castThrowException(
-            static function () use ($value): void {
-                self::assertIsScalar($value);
+            static function () use ($value, $label): void {
+                self::assertIsScalar($value, $label);
                 Assert::string(
                     $value,
                     sprintf(
@@ -213,18 +224,20 @@ final class InputAssert
                     ),
                 );
             },
+            $label,
         );
     }
 
     /**
      * @param callable(): void $callable
+     * @param non-empty-string $label
      */
-    public static function castThrowException(callable $callable): void
+    public static function castThrowException(callable $callable, string $label): void
     {
         try {
             $callable();
         } catch (AssertInvalidArgumentException $exception) {
-            throw InvalidInputValueType::fromAssert($exception);
+            throw InvalidInputValueType::fromAssert($exception, $label);
         }
     }
 

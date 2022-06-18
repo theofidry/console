@@ -30,12 +30,12 @@ final class NullOrNonEmptyStringTypeTest extends BaseTypeTest
     {
         yield [
             null,
-            new TypeException('Expected a string. Got "NULL"'),
+            new TypeException('Expected a string. Got "NULL" for the argument or option "test".'),
         ];
 
         yield [
             true,
-            new TypeException('Expected a string. Got "true"'),
+            new TypeException('Expected a string. Got "true" for the argument or option "test".'),
         ];
 
         $stringValues = [
@@ -69,7 +69,7 @@ final class NullOrNonEmptyStringTypeTest extends BaseTypeTest
             new TypeException(
                 <<<'TXT'
                 Expected a null or scalar value. Got the value: "array (
-                )"
+                )" for the argument or option "test".
                 TXT,
             ),
         ];

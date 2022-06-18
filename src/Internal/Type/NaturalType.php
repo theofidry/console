@@ -25,15 +25,16 @@ use Webmozart\Assert\Assert;
  */
 final class NaturalType implements ScalarType
 {
-    public function coerceValue($value): int
+    public function coerceValue($value, string $label): int
     {
-        InputAssert::integerString($value);
+        InputAssert::integerString($value, $label);
 
         $intValue = (int) $value;
 
         /** @psalm-suppress InvalidDocblock,MissingClosureReturnType */
         InputAssert::castThrowException(
             static fn () => Assert::natural($intValue),
+            $label,
         );
 
         return (int) $value;

@@ -32,9 +32,11 @@ final class NullableType implements InputType
         $this->innerType = $innerType;
     }
 
-    public function coerceValue($value)
+    public function coerceValue($value, string $label)
     {
-        return null === $value ? $value : $this->innerType->coerceValue($value);
+        return null === $value
+            ? $value
+            : $this->innerType->coerceValue($value, $label);
     }
 
     public function getTypeClassNames(): array

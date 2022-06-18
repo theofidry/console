@@ -58,7 +58,7 @@ final class ListTypeTest extends BaseTypeTest
     {
         yield 'integer value' => [
             '10',
-            new TypeException('Cannot cast a non-array input argument into an array. Got "\'10\'"'),
+            new TypeException('Cannot cast a non-array input argument into an array. Got "\'10\'" for the argument or option "test".'),
         ];
 
         yield 'empty array' => [
@@ -73,7 +73,7 @@ final class ListTypeTest extends BaseTypeTest
 
         yield 'array with non-integers' => [
             ['10', 'foo'],
-            new TypeException('Expected an integer string. Got "\'foo\'"'),
+            new TypeException('Expected an integer string. Got "\'foo\'" for the argument or option "test".'),
         ];
     }
 

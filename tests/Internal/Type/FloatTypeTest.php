@@ -31,12 +31,12 @@ final class FloatTypeTest extends BaseTypeTest
     {
         yield [
             null,
-            new TypeException('Expected a numeric string. Got "NULL"'),
+            new TypeException('Expected a numeric string. Got "NULL" for the argument or option "test".'),
         ];
 
         yield [
             true,
-            new TypeException('Expected a numeric string. Got "true"'),
+            new TypeException('Expected a numeric string. Got "true" for the argument or option "test".'),
         ];
 
         yield '(string) integer' => [
@@ -61,7 +61,7 @@ final class FloatTypeTest extends BaseTypeTest
 
         yield 'string' => [
             'foo',
-            new TypeException('Expected a numeric string. Got "\'foo\'"'),
+            new TypeException('Expected a numeric string. Got "\'foo\'" for the argument or option "test".'),
         ];
 
         if (PHP_VERSION_ID >= 80000) {
@@ -72,7 +72,7 @@ final class FloatTypeTest extends BaseTypeTest
         } else {
             yield 'integer with trailing space' => [
                 '42 ',
-                new TypeException('Expected a numeric string. Got "\'42 \'"'),
+                new TypeException('Expected a numeric string. Got "\'42 \'" for the argument or option "test".'),
             ];
         }
 
@@ -81,7 +81,7 @@ final class FloatTypeTest extends BaseTypeTest
             new TypeException(
                 <<<'TXT'
                 Expected a null or scalar value. Got the value: "array (
-                )"
+                )" for the argument or option "test".
                 TXT,
             ),
         ];
