@@ -50,7 +50,9 @@ dump:
 .PHONY: cs
 cs: ## Runs PHP-CS-Fixer
 cs: $(PHP_CS_FIXER_BIN)
+ifndef SKIP_CS
 	$(PHP_CS_FIXER)
+endif
 
 
 .PHONY: psalm
