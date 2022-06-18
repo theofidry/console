@@ -13,7 +13,10 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Test;
 
+use Fidry\Console\DisplayNormalizer;
 use PHPUnit\Framework\Assert;
+use Symfony\Component\Console\Tester\ApplicationTester as SymfonyAppTester;
+use Symfony\Component\Console\Tester\CommandTester as SymfonyCommandTester;
 
 final class OutputAssertions
 {
@@ -22,8 +25,8 @@ final class OutputAssertions
     }
 
     /**
-     * @param AppTester|CommandTester $actual
-     * @param callable(string):string $extraNormalizers
+     * @param AppTester|SymfonyAppTester|CommandTester|SymfonyCommandTester $actual
+     * @param callable(string):string                                       $extraNormalizers
      */
     public static function assertSameOutput(
         string $expectedOutput,
@@ -31,7 +34,10 @@ final class OutputAssertions
         $actual,
         callable ...$extraNormalizers
     ): void {
-        $actualOutput = $actual->getNormalizedDisplay(...$extraNormalizers);
+        $actualOutput = DisplayNormalizer::removeTrailingSpaces(
+            $actual->getDisplay(),
+            ...$extraNormalizers,
+        );
 
         Assert::assertSame($expectedOutput, $actualOutput);
         Assert::assertSame($expectedStatusCode, $actual->getStatusCode());

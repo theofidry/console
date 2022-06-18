@@ -46,6 +46,7 @@
                 "Fidry\\Console\\Internal\\Type\\PositiveIntegerType::coerceValue"
             ]
         },
+        "PublicVisibility": false,
         "UnwrapStrReplace": {
             "ignore": [
                 "Fidry\\Console\\DisplayNormalizer::removeTrailingSpaces"
