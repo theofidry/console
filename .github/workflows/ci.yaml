@@ -55,8 +55,13 @@ jobs:
                 if: matrix.skip_static_checks == 'true'
                 run: |
                     echo "SKIP_CS=1" >> $GITHUB_ENV
-                    echo "SKIP_COVERS_VALIDATOR=1" >> $GITHUB_ENV
                     echo "SKIP_PSALM=1" >> $GITHUB_ENV
+
+            # TODO: pending on https://github.com/oradwell/covers-validator/pull/40
+            # Meanwhile we do the check on a lower version
+            -   name: Mark skip static checks
+                if: matrix.php != '7.4'
+                run: echo "SKIP_COVERS_VALIDATOR=1" >> $GITHUB_ENV
 
             -   name: 'Run tests'
                 run: make
