@@ -15,11 +15,9 @@ jobs:
                 php: [ '7.4' ]
                 include:
                     - php: '8.0'
-                      env:
-                        SKIP_CS: 'true'
+                      skip_ci: 'true'
                     - php: '8.1'
-                      env:
-                        SKIP_CS: 'true'
+                      skip_ci: 'true'
 
         steps:
             -   name: 'Check out repository code'
@@ -50,11 +48,12 @@ jobs:
                 with:
                     working-directory: 'vendor-bin/psalm'
 
-            - name: 'debug'
-              run: echo "start- $SKIP_CS -end"
+            -   name: Mark skip CS
+                if: matrix.skip_ci == 'true'
+                run: export SKIP_CS=1
 
             - name: 'debug2'
-              run: echo "start- $$SKIP_CS -end"
+              run: echo "start- $SKIP_CS -end"
 
             -   name: 'Run tests'
                 run: make
