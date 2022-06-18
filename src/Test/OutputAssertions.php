@@ -22,15 +22,16 @@ final class OutputAssertions
     }
 
     /**
-     * @param null|callable(string):string $extraNormalization
+     * @param null|callable(string):string $extraNormalizers
      */
     public static function assertSameOutput(
         string $expectedOutput,
         int $expectedStatusCode,
-        AppTester $actual,
-        ?callable $extraNormalization = null
+        // TODO: add support for Symfony App & CommandTester
+        AppTester|CommandTester $actual,
+        callable ...$extraNormalizers
     ): void {
-        $actualOutput = $actual->getNormalizedDisplay($extraNormalization);
+        $actualOutput = $actual->getNormalizedDisplay(...$extraNormalizers);
 
         Assert::assertSame($expectedOutput, $actualOutput);
         Assert::assertSame($expectedStatusCode, $actual->getStatusCode());
