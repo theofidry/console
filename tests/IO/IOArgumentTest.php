@@ -73,15 +73,15 @@ final class IOArgumentTest extends TestCase
             ),
             '""',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "\'\'" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'\'" for the argument "arg".'),
                 false,
                 false,
                 '',
                 '',
-                 new TypeException('Expected an integer string. Got "\'\'" for the argument "arg".'),
-                 new TypeException('Expected an integer string. Got "\'\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'\'" for the argument "arg".'),
             ),
         ];
 
@@ -94,15 +94,15 @@ final class IOArgumentTest extends TestCase
             ),
             '" "',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "\' \'" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\' \'" for the argument "arg".'),
                 true,
                 true,
                 '',
                 '',
-                 new TypeException('Expected an integer string. Got "\' \'" for the argument "arg".'),
-                 new TypeException('Expected an integer string. Got "\' \'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\' \'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\' \'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\' \'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\' \'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\' \'" for the argument "arg".'),
+               new TypeException('Expected a numeric string. Got "\' \'" for the argument "arg".'),
             ),
         ];
 
@@ -115,15 +115,15 @@ final class IOArgumentTest extends TestCase
             ),
             'foo',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "\'foo\'" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'foo\'" for the argument "arg".'),
                 true,
                 true,
                 'foo',
                 'foo',
-                 new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
-                 new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'foo\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'foo\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'foo\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'foo\'" for the argument "arg".'),
             ),
         ];
 
@@ -136,15 +136,15 @@ final class IOArgumentTest extends TestCase
             ),
             '" foo "',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "\' foo \'" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\' foo \'" for the argument "arg".'),
                 true,
                 true,
                 'foo',
                 'foo',
-                 new TypeException('Expected an integer string. Got "\' foo \'" for the argument "arg".'),
-                 new TypeException('Expected an integer string. Got "\' foo \'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\' foo \'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\' foo \'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\' foo \'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\' foo \'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\' foo \'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\' foo \'" for the argument "arg".'),
             ),
         ];
 
@@ -157,15 +157,15 @@ final class IOArgumentTest extends TestCase
             ),
             'null',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "\'null\'" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'null\'" for the argument "arg".'),
                 true,
                 true,
                 'null',
                 'null',
-                 new TypeException('Expected an integer string. Got "\'null\'" for the argument "arg".'),
-                 new TypeException('Expected an integer string. Got "\'null\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'null\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'null\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'null\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'null\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'null\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'null\'" for the argument "arg".'),
             ),
         ];
 
@@ -178,7 +178,7 @@ final class IOArgumentTest extends TestCase
             ),
             '10',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "\'10\'" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'10\'" for the argument "arg".'),
                 true,
                 true,
                 '10',
@@ -201,7 +201,7 @@ final class IOArgumentTest extends TestCase
             ),
             '0',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "\'0\'" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'0\'" for the argument "arg".'),
                 false,
                 false,
                 '0',
@@ -222,13 +222,13 @@ final class IOArgumentTest extends TestCase
             ),
             '10.8',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "\'10.8\'" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'10.8\'" for the argument "arg".'),
                 true,
                 true,
                 '10.8',
                 '10.8',
-                 new TypeException('Expected an integer string. Got "\'10.8\'" for the argument "arg".'),
-                 new TypeException('Expected an integer string. Got "\'10.8\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'10.8\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'10.8\'" for the argument "arg".'),
                 10.8,
                 10.8,
             ),
@@ -245,13 +245,13 @@ final class IOArgumentTest extends TestCase
             ),
             '0.',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "\'0.\'" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'0.\'" for the argument "arg".'),
                 true,
                 true,
                 '0.',
                 '0.',
-                 new TypeException('Expected an integer string. Got "\'0.\'" for the argument "arg".'),
-                 new TypeException('Expected an integer string. Got "\'0.\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'0.\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'0.\'" for the argument "arg".'),
                 0.,
                 0.,
             ),
@@ -269,14 +269,14 @@ final class IOArgumentTest extends TestCase
             ),
             '',
             TypedInput::createForScalar(
-                 new TypeException('Cannot cast a non-array input argument into an array. Got "NULL" for the argument "arg".'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "NULL" for the argument "arg".'),
                 false,
                 null,
-                 new TypeException('Expected a string. Got "NULL" for the argument "arg".'),
+                new TypeException('Expected a string. Got "NULL" for the argument "arg".'),
                 null,
-                 new TypeException('Expected an integer string. Got "NULL" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "NULL" for the argument "arg".'),
                 null,
-                 new TypeException('Expected a numeric string. Got "NULL" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "NULL" for the argument "arg".'),
                 null,
             ),
         ];
@@ -303,8 +303,8 @@ final class IOArgumentTest extends TestCase
                     TXT,
                 ),
                 [''],
-                 new TypeException('Expected an integer string. Got "\'\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'\'" for the argument "arg".'),
             ),
         ];
 
@@ -317,7 +317,7 @@ final class IOArgumentTest extends TestCase
             ),
             'foo',
             TypedInput::createForArray(
-                new TypeException(
+               new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => 'foo',
@@ -325,8 +325,8 @@ final class IOArgumentTest extends TestCase
                     TXT,
                 ),
                 ['foo'],
-                 new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'foo\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'foo\'" for the argument "arg".'),
             ),
         ];
 
@@ -339,7 +339,7 @@ final class IOArgumentTest extends TestCase
             ),
             'foo bar baz',
             TypedInput::createForArray(
-                new TypeException(
+               new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => 'foo',
@@ -349,8 +349,8 @@ final class IOArgumentTest extends TestCase
                     TXT,
                 ),
                 ['foo', 'bar', 'baz'],
-                 new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'foo\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'foo\'" for the argument "arg".'),
             ),
         ];
 
@@ -363,7 +363,7 @@ final class IOArgumentTest extends TestCase
             ),
             'null',
             TypedInput::createForArray(
-                new TypeException(
+               new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => 'null',
@@ -371,8 +371,8 @@ final class IOArgumentTest extends TestCase
                     TXT,
                 ),
                 ['null'],
-                 new TypeException('Expected an integer string. Got "\'null\'" for the argument "arg".'),
-                 new TypeException('Expected a numeric string. Got "\'null\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'null\'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\'null\'" for the argument "arg".'),
             ),
         ];
 
@@ -385,7 +385,7 @@ final class IOArgumentTest extends TestCase
             ),
             '10',
             TypedInput::createForArray(
-                new TypeException(
+               new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '10',
@@ -409,7 +409,7 @@ final class IOArgumentTest extends TestCase
             ),
             '0',
             TypedInput::createForArray(
-                new TypeException(
+               new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '0',
@@ -431,7 +431,7 @@ final class IOArgumentTest extends TestCase
             ),
             '10.8',
             TypedInput::createForArray(
-                new TypeException(
+               new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '10.8',
@@ -439,7 +439,7 @@ final class IOArgumentTest extends TestCase
                     TXT,
                 ),
                 ['10.8'],
-                 new TypeException('Expected an integer string. Got "\'10.8\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'10.8\'" for the argument "arg".'),
                 [10.8],
             ),
         ];
@@ -455,7 +455,7 @@ final class IOArgumentTest extends TestCase
             ),
             '0.',
             TypedInput::createForArray(
-                new TypeException(
+               new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '0.',
@@ -463,7 +463,7 @@ final class IOArgumentTest extends TestCase
                     TXT,
                 ),
                 ['0.'],
-                 new TypeException('Expected an integer string. Got "\'0.\'" for the argument "arg".'),
+                new TypeException('Expected an integer string. Got "\'0.\'" for the argument "arg".'),
                 [0.],
             ),
         ];
