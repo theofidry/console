@@ -50,10 +50,10 @@ jobs:
 
             -   name: Mark skip CS
                 if: matrix.skip_ci == 'true'
-                run: export SKIP_CS=1
+                run: echo "SKIP_CI=1" >> $GITHUB_ENV
 
             - name: 'debug2'
               run: echo "start- $SKIP_CS -end"
 
             -   name: 'Run tests'
-                run: make
+                run: matrix.skip_ci == 'true' make
