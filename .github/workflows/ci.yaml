@@ -50,5 +50,8 @@ jobs:
                 with:
                     working-directory: 'vendor-bin/psalm'
 
+            - name: 'debug'
+              - run: echo $SKIP_CI
+
             -   name: 'Run tests'
                 run: make
