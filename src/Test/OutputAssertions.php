@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Test;
 
+use Fidry\Console\DisplayNormalizer;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\Console\Tester\ApplicationTester as SymfonyAppTester;
 use Symfony\Component\Console\Tester\CommandTester as SymfonyCommandTester;
@@ -35,7 +36,10 @@ final class OutputAssertions
     ): void {
         $actualOutput = $actual instanceof AppTester || $actual instanceof CommandTester
             ? $actual->getNormalizedDisplay(...$extraNormalizers)
-            : $actual->getDisplay();
+            : DisplayNormalizer::removeTrailingSpaces(
+                $actual->getDisplay(),
+                ...$extraNormalizers,
+            );
 
         Assert::assertSame($expectedOutput, $actualOutput);
         Assert::assertSame($expectedStatusCode, $actual->getStatusCode());
