@@ -124,13 +124,13 @@ $(COVERAGE_DIR): $(PHPUNIT_BIN) src tests phpunit.xml.dist
 	$(PHPUNIT_COVERAGE)
 	$(TOUCH) "$@"
 
-$(PHP_CS_FIXER_BIN):
+$(PHP_CS_FIXER_BIN): vendor
 	composer bin php-cs-fixer install
 
-$(PSALM_BIN):
+$(PSALM_BIN): vendor
 	composer bin psalm install
 
-$(COVERS_VALIDATOR_BIN):
+$(COVERS_VALIDATOR_BIN): vendor
 	composer bin covers-validator install
 
 src/Input/TypedInput.php: src vendor

@@ -23,25 +23,30 @@ jobs:
             -   name: 'Check out repository code'
                 uses: actions/checkout@v2
 
-            -   name: 'Get composer cache directory'
-                id: composercache
-                run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-            -   name: 'Cache composer dependencies'
-                uses: actions/cache@v2
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
                 with:
-                    path: ${{ steps.composercache.outputs.dir }}
-                    key: composer-${{ runner.os }}-${{ matrix.php }}-${{ hashFiles('composer.*') }}
-                    restore-keys: |
-                        composer-${{ runner.os }}-${{ matrix.php }}-
-                        composer-${{ runner.os }}-
-                        composer-
+                    php-version: ${{ matrix.php }}
+                    tools: composer
+                    coverage: pcov
 
-            -   name: 'Install dependencies'
-                run: composer install --no-interaction --no-progress --prefer-dist
+            -   name: Install Composer dependencies
+                uses: ramsey/composer-install@v2
 
-            -   name: 'Install tools'
-                run: composer bin all install --no-interaction --no-progress --prefer-dist
+            -   name: Install CoversValidator Composer dependencies
+                uses: ramsey/composer-install@v2
+                with:
+                    working-directory: 'covers-validator'
+
+            -   name: Install PHP-CS-Fixer Composer dependencies
+                uses: ramsey/composer-install@v2
+                with:
+                    working-directory: 'php-cs-fixer'
+
+            -   name: Install Psalm Composer dependencies
+                uses: ramsey/composer-install@v2
+                with:
+                    working-directory: 'psalm'
 
             -   name: 'Run tests'
                 run: make
