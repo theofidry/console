@@ -13,7 +13,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4.0 || ^8.0.0",
-        "symfony/console": "^6.1",
+        "symfony/console": "^5.4 || ^6.1",
         "symfony/event-dispatcher-contracts": "^2.4",
         "symfony/service-contracts": "^v2.4.0",
         "thecodingmachine/safe": "^1.3",
