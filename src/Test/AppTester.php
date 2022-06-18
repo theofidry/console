@@ -30,6 +30,9 @@ final class AppTester extends ApplicationTester
         );
     }
 
+    /**
+     * @param callable(string):string $extraNormalizers
+     */
     public function getNormalizedDisplay(
         callable ...$extraNormalizers
     ): string {

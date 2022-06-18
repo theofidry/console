@@ -22,12 +22,13 @@ final class OutputAssertions
     }
 
     /**
+     * @param AppTester|CommandTester $actual
      * @param callable(string):string $extraNormalizers
      */
     public static function assertSameOutput(
         string $expectedOutput,
         int $expectedStatusCode,
-        AppTester $actual,
+        $actual,
         callable ...$extraNormalizers
     ): void {
         $actualOutput = $actual->getNormalizedDisplay(...$extraNormalizers);

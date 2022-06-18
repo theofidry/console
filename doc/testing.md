@@ -78,13 +78,55 @@ final class AppTesterTest extends TestCase
 
 ```
 
+
 ### Testing a Command
 
-I did not find any use for anything special other than the bare Symfony testing
-API for testing commands. Everything can be tested the traditional way leveraging
-`Symfony\Component\Console\Tester\CommandTester`.
+This library provides a `Fidry\Console\Test\CommandTester` class which is a tiny
+layer on top of the traditional `Symfony\Component\Console\Tester\CommandTester`.
+It differs in two regards:
 
-See the [Symfony doc][symfony-console-testing] for complete examples.
+- It provides an API to create an instance from a ConsoleApplication: `::fromConsoleCommand()`
+- It can be used combined with `Fidry\Console\Test\OutputAssertions::assertSameOutput()`
+
+See the following example:
+
+```php
+<?php declare(strict_types=1);
+
+namespace Fidry\Console\Tests\Test;
+
+use Fidry\Console\{ ExitCode, Test\CommandTester, Test\OutputAssertions, Tests\Test\Fixture\Application };
+use PHPUnit\Framework\TestCase;
+use function str_replace;
+
+final class CommandTesterTest extends TestCase
+{
+    private CommandTester $commandTester;
+
+    protected function setUp(): void
+    {
+        $this->commandTester = CommandTester::fromConsoleCommand(
+            new PathCommand(),
+        );
+    }
+
+    public function test_it_can_assert_the_output_via_the_app_tester(): void
+    {
+        $this->commandTester->execute([]);
+
+        OutputAssertions::assertSameOutput(
+            <<<'EOT'
+
+            The project path is /home/runner/work/console/console.
+            
+            EOT,
+            ExitCode::SUCCESS,
+            $this->commandTester,
+        );
+    }
+```
+
+More examples can be found on [Symfony doc][symfony-console-testing].
 
 
 <br />
