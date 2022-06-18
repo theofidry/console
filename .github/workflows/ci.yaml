@@ -28,7 +28,7 @@ jobs:
                 with:
                     php-version: ${{ matrix.php }}
                     tools: composer
-                    coverage: ${{ matrix.skip_static_checks == 'true' ? 'none' : 'pcov' }}
+                    coverage: pcov
 
             -   name: Install Composer dependencies
                 uses: ramsey/composer-install@v2
