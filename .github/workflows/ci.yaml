@@ -15,9 +15,11 @@ jobs:
                 php: [ '7.4' ]
                 include:
                     - php: '8.0'
-                      env: SKIP_CS=1
+                      env:
+                        SKIP_CS: '1'
                     - php: '8.1'
-                      env: SKIP_CS=1
+                      env:
+                        SKIP_CS: '1'
 
         steps:
             -   name: 'Check out repository code'
