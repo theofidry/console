@@ -34,12 +34,10 @@ final class OutputAssertions
         $actual,
         callable ...$extraNormalizers
     ): void {
-        $actualOutput = $actual instanceof AppTester || $actual instanceof CommandTester
-            ? $actual->getNormalizedDisplay(...$extraNormalizers)
-            : DisplayNormalizer::removeTrailingSpaces(
-                $actual->getDisplay(),
-                ...$extraNormalizers,
-            );
+        $actualOutput = DisplayNormalizer::removeTrailingSpaces(
+            $actual->getDisplay(),
+            ...$extraNormalizers,
+        );
 
         Assert::assertSame($expectedOutput, $actualOutput);
         Assert::assertSame($expectedStatusCode, $actual->getStatusCode());
