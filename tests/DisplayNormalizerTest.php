@@ -15,6 +15,7 @@ namespace Fidry\Console\Tests;
 
 use Fidry\Console\DisplayNormalizer;
 use PHPUnit\Framework\TestCase;
+use function Safe\sprintf;
 
 /**
  * @covers \Fidry\Console\DisplayNormalizer
@@ -27,6 +28,24 @@ final class DisplayNormalizerTest extends TestCase
     public function test_it_normalizes_the_given_output(string $value, string $expected): void
     {
         $actual = DisplayNormalizer::removeTrailingSpaces($value);
+
+        self::assertSame($expected, $actual);
+    }
+
+    public function test_it_normalizes_the_given_output_and_apply_the_given_extra_normalizers(): void
+    {
+        $value = ' foo ';
+
+        $extraNormalizer1 = static fn (string $value) => sprintf('extraNormalizer1(%s)', $value);
+        $extraNormalizer2 = static fn (string $value) => sprintf('extraNormalizer2(%s)', $value);
+
+        $expected = 'extraNormalizer2(extraNormalizer1( foo))';
+
+        $actual = DisplayNormalizer::removeTrailingSpaces(
+            $value,
+            $extraNormalizer1,
+            $extraNormalizer2,
+        );
 
         self::assertSame($expected, $actual);
     }
