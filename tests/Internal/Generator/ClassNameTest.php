@@ -29,7 +29,7 @@ final class ClassNameTest extends TestCase
      */
     public function test_it_can_get_a_class_short_name(
         string $className,
-        string $expectedShortName
+        string $expectedShortName,
     ): void {
         $actual = ClassName::getShortClassName($className);
 

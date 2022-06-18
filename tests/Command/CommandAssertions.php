@@ -28,7 +28,7 @@ final class CommandAssertions
         string $expectedName,
         string $expectedDescription,
         string $expectedHelp,
-        string $expectedSynopsis
+        string $expectedSynopsis,
     ): void {
         Assert::assertSame($expectedName, $command->getName());
         Assert::assertSame($expectedDescription, $command->getDescription());
@@ -39,7 +39,7 @@ final class CommandAssertions
     public static function assertSameOutput(
         CommandTester $executedCommand,
         int $expectedExitCode,
-        string $expectedDisplay
+        string $expectedDisplay,
     ): void {
         Assert::assertSame($expectedExitCode, $executedCommand->getStatusCode());
         Assert::assertSame($expectedDisplay, $executedCommand->getDisplay(true));

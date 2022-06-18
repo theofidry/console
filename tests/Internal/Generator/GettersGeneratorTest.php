@@ -31,7 +31,7 @@ final class GettersGeneratorTest extends TestCase
      */
     public function test_it_can_generate_getters_for_the_given_types_and_parameters(
         array $types,
-        string $expected
+        string $expected,
     ): void {
         $actual = GettersGenerator::generate($types);
 

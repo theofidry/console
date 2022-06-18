@@ -34,7 +34,7 @@ final class IOArgumentTest extends TestCase
     public function test_it_exposes_a_typed_api(
         InputArgument $inputArgument,
         string $argument,
-        TypedInput $expected
+        TypedInput $expected,
     ): void {
         $io = $this->getIO($inputArgument, $argument);
 
@@ -471,7 +471,7 @@ final class IOArgumentTest extends TestCase
 
     private function getIO(
         InputArgument $inputArgument,
-        string $argument
+        string $argument,
     ): IO {
         $application = new Application();
         $application->add(

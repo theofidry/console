@@ -52,7 +52,7 @@ final class IOTest extends TestCase
      */
     public function test_it_exposes_if_its_input_is_interactive(
         InputInterface $input,
-        bool $expectedInteractivity
+        bool $expectedInteractivity,
     ): void {
         $output = new NullOutput();
 
@@ -88,7 +88,7 @@ final class IOTest extends TestCase
      */
     public function test_it_checks_against_invalid_argument_default_types(
         $default,
-        string $expectedMessage
+        string $expectedMessage,
     ): void {
         try {
             $inputArgument = new InputArgument(
@@ -174,7 +174,7 @@ final class IOTest extends TestCase
      */
     public function test_it_checks_against_invalid_option_default_types(
         $default,
-        string $expectedMessage
+        string $expectedMessage,
     ): void {
         try {
             $inputOption = new InputOption(

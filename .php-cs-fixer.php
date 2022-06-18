@@ -20,6 +20,7 @@ return (new Config())
         '@PHPUnit75Migration:risky' => true,
         'align_multiline_comment' => true,
         'array_indentation' => true,
+        'array_syntax' => false,
         'backtick_to_shell_exec' => true,
         'combine_consecutive_issets' => true,
         'combine_consecutive_unsets' => true,
@@ -78,6 +79,8 @@ return (new Config())
         'ordered_imports' => true,
         'phpdoc_order_by_value' => true,
         'phpdoc_to_comment' => false,
+        // Exclude "meta" which renames "Resource" to "resource"
+        'phpdoc_types' => ['groups' => ['simple', 'alias']],
         'php_unit_construct' => true,
         'php_unit_method_casing' => [
             'case' => 'snake_case',
@@ -88,16 +91,18 @@ return (new Config())
         ],
         'php_unit_test_class_requires_covers' => false,
         'phpdoc_order' => true,
+        'phpdoc_types_order' => false,
         'phpdoc_var_annotation_correct_order' => true,
         'pow_to_exponentiation' => true,
         'protected_to_private' => true,
         'self_static_accessor' => true,
         'single_line_throw' => false,
-        'phpdoc_types_order' => false,
-        'array_syntax' => false,
         'single_trait_insert_per_statement' => false,
-        // Exclude "meta" which renames "Resource" to "resource"
-        'phpdoc_types' => ['groups' => ['simple', 'alias']],
+// TODO: enable once we are on 8.1 min
+//        'trailing_comma_in_multiline' => [
+//            'after_heredoc' => true,
+//            'elements' => ['arrays', 'arguments', 'parameters'],
+//        ],
     ])
     ->setFinder(
         Finder::create()

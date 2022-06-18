@@ -27,7 +27,7 @@ final class TypeAssertions
     public static function assertExpectedArgumentTypes(
         TypedInput $expected,
         IO $io,
-        string $argumentName
+        string $argumentName,
     ): void {
         self::assertExpectedType(
             $expected->boolean,
@@ -78,7 +78,7 @@ final class TypeAssertions
     public static function assertExpectedOptionTypes(
         TypedInput $expected,
         IO $io,
-        string $optionName
+        string $optionName,
     ): void {
         self::assertExpectedType(
             $expected->boolean,
