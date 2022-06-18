@@ -78,15 +78,15 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=""',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "\'\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'\'" for the option "opt".'),
                 false,
                 false,
                 '',
                 '',
-                new TypeException('Expected an integer string. Got "\'\'"'),
-                new TypeException('Expected an integer string. Got "\'\'"'),
-                new TypeException('Expected a numeric string. Got "\'\'"'),
-                new TypeException('Expected a numeric string. Got "\'\'"'),
+                new TypeException('Expected an integer string. Got "\'\'" for the option "opt".'),
+                new TypeException('Expected an integer string. Got "\'\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'\'" for the option "opt".'),
             ),
         ];
 
@@ -100,15 +100,15 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=foo',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "\'foo\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'foo\'" for the option "opt".'),
                 true,
                 true,
                 'foo',
                 'foo',
-                new TypeException('Expected an integer string. Got "\'foo\'"'),
-                new TypeException('Expected an integer string. Got "\'foo\'"'),
-                new TypeException('Expected a numeric string. Got "\'foo\'"'),
-                new TypeException('Expected a numeric string. Got "\'foo\'"'),
+                new TypeException('Expected an integer string. Got "\'foo\'" for the option "opt".'),
+                new TypeException('Expected an integer string. Got "\'foo\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'foo\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'foo\'" for the option "opt".'),
             ),
         ];
 
@@ -122,15 +122,15 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=null',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "\'null\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'null\'" for the option "opt".'),
                 true,
                 true,
                 'null',
                 'null',
-                new TypeException('Expected an integer string. Got "\'null\'"'),
-                new TypeException('Expected an integer string. Got "\'null\'"'),
-                new TypeException('Expected a numeric string. Got "\'null\'"'),
-                new TypeException('Expected a numeric string. Got "\'null\'"'),
+                new TypeException('Expected an integer string. Got "\'null\'" for the option "opt".'),
+                new TypeException('Expected an integer string. Got "\'null\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'null\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'null\'" for the option "opt".'),
             ),
         ];
 
@@ -144,7 +144,7 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=10',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "\'10\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'10\'" for the option "opt".'),
                 true,
                 true,
                 '10',
@@ -168,7 +168,7 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=0',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "\'0\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'0\'" for the option "opt".'),
                 false,
                 false,
                 '0',
@@ -190,13 +190,13 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=10.8',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "\'10.8\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'10.8\'" for the option "opt".'),
                 true,
                 true,
                 '10.8',
                 '10.8',
-                new TypeException('Expected an integer string. Got "\'10.8\'"'),
-                new TypeException('Expected an integer string. Got "\'10.8\'"'),
+                new TypeException('Expected an integer string. Got "\'10.8\'" for the option "opt".'),
+                new TypeException('Expected an integer string. Got "\'10.8\'" for the option "opt".'),
                 10.8,
                 10.8,
             ),
@@ -214,13 +214,13 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt=0.',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "\'0.\'"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "\'0.\'" for the option "opt".'),
                 true,
                 true,
                 '0.',
                 '0.',
-                new TypeException('Expected an integer string. Got "\'0.\'"'),
-                new TypeException('Expected an integer string. Got "\'0.\'"'),
+                new TypeException('Expected an integer string. Got "\'0.\'" for the option "opt".'),
+                new TypeException('Expected an integer string. Got "\'0.\'" for the option "opt".'),
                 0.,
                 0.,
             ),
@@ -239,14 +239,14 @@ final class IOOptionsTest extends TestCase
             ),
             '',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "NULL"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "NULL" for the option "opt".'),
                 false,
                 null,
-                new TypeException('Expected a string. Got "NULL"'),
+                new TypeException('Expected a string. Got "NULL" for the option "opt".'),
                 null,
-                new TypeException('Expected an integer string. Got "NULL"'),
+                new TypeException('Expected an integer string. Got "NULL" for the option "opt".'),
                 null,
-                new TypeException('Expected a numeric string. Got "NULL"'),
+                new TypeException('Expected a numeric string. Got "NULL" for the option "opt".'),
                 null,
             ),
         ];
@@ -266,15 +266,15 @@ final class IOOptionsTest extends TestCase
             ),
             '',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "false"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "false" for the option "opt".'),
                 false,
                 false,
-                new TypeException('Expected a string. Got "false"'),
-                new TypeException('Expected a string. Got "false"'),
-                new TypeException('Expected an integer string. Got "false"'),
-                new TypeException('Expected an integer string. Got "false"'),
-                new TypeException('Expected a numeric string. Got "false"'),
-                new TypeException('Expected a numeric string. Got "false"'),
+                new TypeException('Expected a string. Got "false" for the option "opt".'),
+                new TypeException('Expected a string. Got "false" for the option "opt".'),
+                new TypeException('Expected an integer string. Got "false" for the option "opt".'),
+                new TypeException('Expected an integer string. Got "false" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "false" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "false" for the option "opt".'),
             ),
         ];
 
@@ -288,15 +288,15 @@ final class IOOptionsTest extends TestCase
             ),
             '--opt',
             TypedInput::createForScalar(
-                new TypeException('Cannot cast a non-array input argument into an array. Got "true"'),
+                new TypeException('Cannot cast a non-array input argument into an array. Got "true" for the option "opt".'),
                 true,
                 true,
-                new TypeException('Expected a string. Got "true"'),
-                new TypeException('Expected a string. Got "true"'),
-                new TypeException('Expected an integer string. Got "true"'),
-                new TypeException('Expected an integer string. Got "true"'),
-                new TypeException('Expected a numeric string. Got "true"'),
-                new TypeException('Expected a numeric string. Got "true"'),
+                new TypeException('Expected a string. Got "true" for the option "opt".'),
+                new TypeException('Expected a string. Got "true" for the option "opt".'),
+                new TypeException('Expected an integer string. Got "true" for the option "opt".'),
+                new TypeException('Expected an integer string. Got "true" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "true" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "true" for the option "opt".'),
             ),
         ];
     }
@@ -319,12 +319,12 @@ final class IOOptionsTest extends TestCase
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '',
-                    )"
+                    )" for the option "opt".
                     TXT,
                 ),
                 [''],
-                new TypeException('Expected an integer string. Got "\'\'"'),
-                new TypeException('Expected a numeric string. Got "\'\'"'),
+                new TypeException('Expected an integer string. Got "\'\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'\'" for the option "opt".'),
             ),
         ];
 
@@ -342,12 +342,12 @@ final class IOOptionsTest extends TestCase
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => 'foo',
-                    )"
+                    )" for the option "opt".
                     TXT,
                 ),
                 ['foo'],
-                new TypeException('Expected an integer string. Got "\'foo\'"'),
-                new TypeException('Expected a numeric string. Got "\'foo\'"'),
+                new TypeException('Expected an integer string. Got "\'foo\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'foo\'" for the option "opt".'),
             ),
         ];
 
@@ -367,12 +367,12 @@ final class IOOptionsTest extends TestCase
                       0 => 'foo',
                       1 => 'bar',
                       2 => 'baz',
-                    )"
+                    )" for the option "opt".
                     TXT,
                 ),
                 ['foo', 'bar', 'baz'],
-                new TypeException('Expected an integer string. Got "\'foo\'"'),
-                new TypeException('Expected a numeric string. Got "\'foo\'"'),
+                new TypeException('Expected an integer string. Got "\'foo\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'foo\'" for the option "opt".'),
             ),
         ];
 
@@ -390,12 +390,12 @@ final class IOOptionsTest extends TestCase
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => 'null',
-                    )"
+                    )" for the option "opt".
                     TXT,
                 ),
                 ['null'],
-                new TypeException('Expected an integer string. Got "\'null\'"'),
-                new TypeException('Expected a numeric string. Got "\'null\'"'),
+                new TypeException('Expected an integer string. Got "\'null\'" for the option "opt".'),
+                new TypeException('Expected a numeric string. Got "\'null\'" for the option "opt".'),
             ),
         ];
 
@@ -413,7 +413,7 @@ final class IOOptionsTest extends TestCase
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '10',
-                    )"
+                    )" for the option "opt".
                     TXT,
                 ),
                 ['10'],
@@ -438,7 +438,7 @@ final class IOOptionsTest extends TestCase
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '0',
-                    )"
+                    )" for the option "opt".
                     TXT,
                 ),
                 ['0'],
@@ -461,11 +461,11 @@ final class IOOptionsTest extends TestCase
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '10.8',
-                    )"
+                    )" for the option "opt".
                     TXT,
                 ),
                 ['10.8'],
-                new TypeException('Expected an integer string. Got "\'10.8\'"'),
+                new TypeException('Expected an integer string. Got "\'10.8\'" for the option "opt".'),
                 [10.8],
             ),
         ];
@@ -486,11 +486,11 @@ final class IOOptionsTest extends TestCase
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '0.',
-                    )"
+                    )" for the option "opt".
                     TXT,
                 ),
                 ['0.'],
-                new TypeException('Expected an integer string. Got "\'0.\'"'),
+                new TypeException('Expected an integer string. Got "\'0.\'" for the option "opt".'),
                 [0.],
             ),
         ];

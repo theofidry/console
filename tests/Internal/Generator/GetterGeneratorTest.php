@@ -48,7 +48,7 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->coerceValue($this->value);
+                return $type->coerceValue($this->value, $this->label);
             }
             PHP,
         ];
@@ -66,7 +66,7 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->coerceValue($this->value);
+                return $type->coerceValue($this->value, $this->label);
             }
             PHP,
         ];
@@ -86,7 +86,7 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->coerceValue($this->value);
+                return $type->coerceValue($this->value, $this->label);
             }
             PHP,
         ];
@@ -109,7 +109,7 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->coerceValue($this->value);
+                return $type->coerceValue($this->value, $this->label);
             }
             PHP,
         ];
@@ -132,7 +132,7 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Internal\Type\BooleanType::class,
                 ]);
             
-                return $type->coerceValue($this->value);
+                return $type->coerceValue($this->value, $this->label);
             }
             PHP,
         ];
@@ -152,7 +152,7 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
                 ]);
             
-                return $type->coerceValue($this->value);
+                return $type->coerceValue($this->value, $this->label);
             }
             PHP,
         ];
@@ -172,7 +172,7 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
                 ]);
             
-                return $type->coerceValue($this->value);
+                return $type->coerceValue($this->value, $this->label);
             }
             PHP,
         ];
@@ -192,7 +192,7 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
                 ]);
             
-                return $type->coerceValue($this->value);
+                return $type->coerceValue($this->value, $this->label);
             }
             PHP,
         ];
@@ -212,7 +212,7 @@ final class GetterGeneratorTest extends TestCase
                     \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
                 ]);
             
-                return $type->coerceValue($this->value);
+                return $type->coerceValue($this->value, $this->label);
             }
             PHP,
         ];

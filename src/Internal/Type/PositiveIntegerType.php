@@ -21,13 +21,14 @@ use Webmozart\Assert\Assert;
  */
 final class PositiveIntegerType implements ScalarType
 {
-    public function coerceValue($value): int
+    public function coerceValue($value, string $label): int
     {
-        $intValue = (new NaturalType())->coerceValue($value);
+        $intValue = (new NaturalType())->coerceValue($value, $label);
 
         /** @psalm-suppress MissingClosureReturnType */
         InputAssert::castThrowException(
             static fn () => Assert::positiveInteger($intValue),
+            $label,
         );
 
         return $intValue;

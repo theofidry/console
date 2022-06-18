@@ -30,12 +30,12 @@ final class StringChoiceTypeTest extends BaseTypeTest
     {
         yield [
             null,
-            new TypeException('Expected a string. Got "NULL"'),
+            new TypeException('Expected a string. Got "NULL" for the argument or option "test".'),
         ];
 
         yield [
             true,
-            new TypeException('Expected a string. Got "true"'),
+            new TypeException('Expected a string. Got "true" for the argument or option "test".'),
         ];
 
         yield 'valid choice' => [
@@ -45,7 +45,7 @@ final class StringChoiceTypeTest extends BaseTypeTest
 
         yield 'invalid choice (different case)' => [
             'FOO',
-            new TypeException('Expected one of: "foo", "Bar". Got: "FOO"'),
+            new TypeException('Expected one of: "foo", "Bar". Got: "FOO" for the argument or option "test".'),
         ];
     }
 }

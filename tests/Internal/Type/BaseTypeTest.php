@@ -33,7 +33,7 @@ abstract class BaseTypeTest extends TestCase
     final public function test_it_can_cast_values($value, $expected): void
     {
         try {
-            $actual = $this->type->coerceValue($value);
+            $actual = $this->type->coerceValue($value, 'the argument or option "test"');
 
             if ($expected instanceof TypeException) {
                 Assert::fail(

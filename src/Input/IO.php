@@ -85,14 +85,16 @@ class IO extends SymfonyStyle
     public function getArgument(string $name): TypedInput
     {
         return TypedInput::fromArgument(
-            $this->input->getArgument($name)
+            $this->input->getArgument($name),
+            $name,
         );
     }
 
     public function getOption(string $name): TypedInput
     {
         return TypedInput::fromOption(
-            $this->input->getOption($name)
+            $this->input->getOption($name),
+            $name,
         );
     }
 
@@ -103,7 +105,7 @@ class IO extends SymfonyStyle
     {
         $argument = $this->input->getArgument($name);
 
-        InputAssert::assertIsValidArgumentType($argument);
+        InputAssert::assertIsValidArgumentType($argument, $name);
 
         return $argument;
     }
@@ -115,7 +117,7 @@ class IO extends SymfonyStyle
     {
         $option = $this->input->getOption($name);
 
-        InputAssert::assertIsValidOptionType($option);
+        InputAssert::assertIsValidOptionType($option, $name);
 
         return $option;
     }

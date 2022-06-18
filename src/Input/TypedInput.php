@@ -17,6 +17,7 @@ use Fidry\Console\InputAssert;
 use Fidry\Console\Internal\Type\NaturalRangeType;
 use Fidry\Console\Internal\Type\StringChoiceType;
 use Fidry\Console\Internal\Type\TypeFactory;
+use function Safe\sprintf;
 
 /**
  * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert
@@ -28,33 +29,47 @@ final class TypedInput
      * @var ArgumentInput|OptionInput
      */
     private $value;
+    private string $label;
 
     /**
      * @param ArgumentInput|OptionInput $value
      */
-    private function __construct($value)
+    private function __construct($value, string $label)
     {
         $this->value = $value;
+        $this->label = $label;
     }
 
     /**
      * @param ArgumentInput $argument
      */
-    public static function fromArgument($argument): self
+    public static function fromArgument($argument, string $name): self
     {
-        InputAssert::assertIsValidArgumentType($argument);
+        InputAssert::assertIsValidArgumentType($argument, $name);
 
-        return new self($argument);
+        return new self(
+            $argument,
+            sprintf(
+                'the argument "%s"',
+                $name,
+            ),
+        );
     }
 
     /**
      * @param OptionInput $option
      */
-    public static function fromOption($option): self
+    public static function fromOption($option, string $name): self
     {
-        InputAssert::assertIsValidOptionType($option);
+        InputAssert::assertIsValidOptionType($option, $name);
 
-        return new self($option);
+        return new self(
+            $option,
+            sprintf(
+                'the option "%s"',
+                $name,
+            ),
+        );
     }
 
     /**
@@ -62,7 +77,10 @@ final class TypedInput
      */
     public function asStringChoice(array $choices): string
     {
-        return (new StringChoiceType($choices))->coerceValue($this->value);
+        return (new StringChoiceType($choices))->coerceValue(
+            $this->value,
+            $this->label,
+        );
     }
 
     /**
@@ -76,7 +94,10 @@ final class TypedInput
     public function asNaturalWithinRange(int $min, int $max): int
     {
         /** @psalm-suppress LessSpecificReturnStatement */
-        return (new NaturalRangeType($min, $max))->coerceValue($this->value);
+        return (new NaturalRangeType($min, $max))->coerceValue(
+            $this->value,
+            $this->label,
+        );
     }
 
     // The following part is auto-generated.
@@ -90,7 +111,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\RawType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     public function asBoolean(): bool
@@ -99,7 +120,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     public function asNullableBoolean(): ?bool
@@ -109,7 +130,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -122,7 +143,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -135,7 +156,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -147,7 +168,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -160,7 +181,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -173,7 +194,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -186,7 +207,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -198,7 +219,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\PositiveIntegerType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -211,7 +232,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\PositiveIntegerType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -224,7 +245,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\PositiveIntegerType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -237,7 +258,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\PositiveIntegerType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     public function asFloat(): float
@@ -246,7 +267,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     public function asNullableFloat(): ?float
@@ -256,7 +277,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -269,7 +290,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -282,7 +303,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     public function asString(): string
@@ -291,7 +312,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     public function asNullableString(): ?string
@@ -301,7 +322,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -314,7 +335,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -327,7 +348,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -339,7 +360,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -352,7 +373,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -365,7 +386,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -378,7 +399,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     public function asUntrimmedString(): string
@@ -387,7 +408,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\UntrimmedStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     public function asNullableUntrimmedString(): ?string
@@ -397,7 +418,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\UntrimmedStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -410,7 +431,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\UntrimmedStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -423,7 +444,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\UntrimmedStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -435,7 +456,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NullOrNonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -448,7 +469,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NullOrNonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
 
     /**
@@ -461,7 +482,7 @@ final class TypedInput
             \Fidry\Console\Internal\Type\NullOrNonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
     // __AUTO_GENERATE_END__
 }

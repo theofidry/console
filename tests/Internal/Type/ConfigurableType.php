@@ -34,7 +34,7 @@ final class ConfigurableType implements InputType
         $this->typeClassNames = $typeClassNames ?? [self::class];
     }
 
-    public function coerceValue($value)
+    public function coerceValue($value, string $label)
     {
         return $value;
     }

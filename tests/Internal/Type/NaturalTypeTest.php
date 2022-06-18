@@ -30,12 +30,12 @@ final class NaturalTypeTest extends BaseTypeTest
     {
         yield [
             null,
-            new TypeException('Expected an integer string. Got "NULL"'),
+            new TypeException('Expected an integer string. Got "NULL" for the argument or option "test".'),
         ];
 
         yield [
             true,
-            new TypeException('Expected an integer string. Got "true"'),
+            new TypeException('Expected an integer string. Got "true" for the argument or option "test".'),
         ];
 
         yield '(string) integer' => [
@@ -45,22 +45,22 @@ final class NaturalTypeTest extends BaseTypeTest
 
         yield '(string) negative integer' => [
             '-10',
-            new TypeException('Expected an integer string. Got "\'-10\'"'),
+            new TypeException('Expected an integer string. Got "\'-10\'" for the argument or option "test".'),
         ];
 
         yield '(string) float' => [
             '9.1',
-            new TypeException('Expected an integer string. Got "\'9.1\'"'),
+            new TypeException('Expected an integer string. Got "\'9.1\'" for the argument or option "test".'),
         ];
 
         yield 'string' => [
             'foo',
-            new TypeException('Expected an integer string. Got "\'foo\'"'),
+            new TypeException('Expected an integer string. Got "\'foo\'" for the argument or option "test".'),
         ];
 
         yield 'integer with trailing space' => [
             '42 ',
-            new TypeException('Expected an integer string. Got "\'42 \'"'),
+            new TypeException('Expected an integer string. Got "\'42 \'" for the argument or option "test".'),
         ];
 
         yield [
@@ -68,7 +68,7 @@ final class NaturalTypeTest extends BaseTypeTest
             new TypeException(
                 <<<'TXT'
                 Expected a null or scalar value. Got the value: "array (
-                )"
+                )" for the argument or option "test".
                 TXT,
             ),
         ];

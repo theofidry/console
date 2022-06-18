@@ -15,6 +15,7 @@ namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\Input\InvalidInputValueType;
 use Fidry\Console\InputAssert;
+use function Safe\sprintf;
 use function trim;
 
 /**
@@ -22,14 +23,19 @@ use function trim;
  */
 final class NonEmptyStringType implements ScalarType
 {
-    public function coerceValue($value): string
+    public function coerceValue($value, string $label): string
     {
-        InputAssert::string($value);
+        InputAssert::string($value, $label);
 
         $trimmedValue = trim($value);
 
         if ('' === $trimmedValue) {
-            throw new InvalidInputValueType('Expected a non-empty string.');
+            throw new InvalidInputValueType(
+                sprintf(
+                    'Expected a non-empty string for %s.',
+                    $label,
+                ),
+            );
         }
 
         return $trimmedValue;

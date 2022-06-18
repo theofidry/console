@@ -30,17 +30,17 @@ final class NaturalRangeTypeTest extends BaseTypeTest
     {
         yield [
             null,
-            new TypeException('Expected an integer string. Got "NULL"'),
+            new TypeException('Expected an integer string. Got "NULL" for the argument or option "test".'),
         ];
 
         yield [
             true,
-            new TypeException('Expected an integer string. Got "true"'),
+            new TypeException('Expected an integer string. Got "true" for the argument or option "test".'),
         ];
 
         yield '(string) integer outside of bound (min)' => [
             '1',
-            new TypeException('Expected a value between 2 and 5. Got: 1'),
+            new TypeException('Expected a value between 2 and 5. Got: 1 for the argument or option "test".'),
         ];
 
         yield '(string) integer at limit (min)' => [
@@ -60,27 +60,27 @@ final class NaturalRangeTypeTest extends BaseTypeTest
 
         yield '(string) integer outside of bound (max)' => [
             '6',
-            new TypeException('Expected a value between 2 and 5. Got: 6'),
+            new TypeException('Expected a value between 2 and 5. Got: 6 for the argument or option "test".'),
         ];
 
         yield '(string) negative integer' => [
             '-10',
-            new TypeException('Expected an integer string. Got "\'-10\'"'),
+            new TypeException('Expected an integer string. Got "\'-10\'" for the argument or option "test".'),
         ];
 
         yield '(string) float' => [
             '9.1',
-            new TypeException('Expected an integer string. Got "\'9.1\'"'),
+            new TypeException('Expected an integer string. Got "\'9.1\'" for the argument or option "test".'),
         ];
 
         yield 'string' => [
             'foo',
-            new TypeException('Expected an integer string. Got "\'foo\'"'),
+            new TypeException('Expected an integer string. Got "\'foo\'" for the argument or option "test".'),
         ];
 
         yield 'integer with trailing space' => [
             '42 ',
-            new TypeException('Expected an integer string. Got "\'42 \'"'),
+            new TypeException('Expected an integer string. Got "\'42 \'" for the argument or option "test".'),
         ];
 
         yield [
@@ -88,7 +88,7 @@ final class NaturalRangeTypeTest extends BaseTypeTest
             new TypeException(
                 <<<'TXT'
                 Expected a null or scalar value. Got the value: "array (
-                )"
+                )" for the argument or option "test".
                 TXT,
             ),
         ];

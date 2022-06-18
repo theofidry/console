@@ -22,10 +22,11 @@ interface InputType
 {
     /**
      * @param ArgumentInput|OptionInput $value Valid argument or option value
+     * @param non-empty-string          $label
      *
      * @return TypedValue
      */
-    public function coerceValue($value);
+    public function coerceValue($value, string $label);
 
     /**
      * @return non-empty-list<class-string<InputType>>

@@ -36,13 +36,14 @@ final class NonEmptyListType implements InputType
         $this->innerType = $innerType;
     }
 
-    public function coerceValue($value): array
+    public function coerceValue($value, string $label): array
     {
-        $list = (new ListType($this->innerType))->coerceValue($value);
+        $list = (new ListType($this->innerType))->coerceValue($value, $label);
 
         /** @psalm-suppress MissingClosureReturnType */
         InputAssert::castThrowException(
             static fn () => Assert::minCount($list, 1),
+            $label,
         );
 
         return $list;

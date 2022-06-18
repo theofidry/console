@@ -41,7 +41,7 @@ final class GetterGenerator
         __TYPE_CLASS_NAMES_PLACEHOLDER__
         ]);
     
-        return $type->coerceValue($this->value);
+        return $type->coerceValue($this->value, $this->label);
     }
     PHP;
 

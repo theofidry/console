@@ -34,9 +34,9 @@ final class StringChoiceType implements ScalarType
         $this->choices = $choices;
     }
 
-    public function coerceValue($value): string
+    public function coerceValue($value, string $label): string
     {
-        $value = (new StringType())->coerceValue($value);
+        $value = (new StringType())->coerceValue($value, $label);
 
         /** @psalm-suppress MissingClosureReturnType */
         InputAssert::castThrowException(
@@ -44,6 +44,7 @@ final class StringChoiceType implements ScalarType
                 $value,
                 $this->choices,
             ),
+            $label,
         );
 
         return $value;
