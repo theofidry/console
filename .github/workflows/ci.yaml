@@ -36,17 +36,17 @@ jobs:
             -   name: Install CoversValidator Composer dependencies
                 uses: ramsey/composer-install@v2
                 with:
-                    working-directory: 'covers-validator'
+                    working-directory: 'vendor-bin/covers-validator'
 
             -   name: Install PHP-CS-Fixer Composer dependencies
                 uses: ramsey/composer-install@v2
                 with:
-                    working-directory: 'php-cs-fixer'
+                    working-directory: 'vendor-bin/php-cs-fixer'
 
             -   name: Install Psalm Composer dependencies
                 uses: ramsey/composer-install@v2
                 with:
-                    working-directory: 'psalm'
+                    working-directory: 'vendor-bin/psalm'
 
             -   name: 'Run tests'
                 run: make
