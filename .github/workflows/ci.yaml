@@ -16,10 +16,10 @@ jobs:
                 include:
                     - php: '8.0'
                       env:
-                        SKIP_CS: '1'
+                        SKIP_CS: 'true'
                     - php: '8.1'
                       env:
-                        SKIP_CS: '1'
+                        SKIP_CS: 'true'
 
         steps:
             -   name: 'Check out repository code'
