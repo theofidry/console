@@ -13,13 +13,10 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Test;
 
-use Fidry\Console\Application\Application as ConsoleApplication;
-use Fidry\Console\Application\SymfonyApplication;
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\SymfonyCommand;
 use Fidry\Console\DisplayNormalizer;
 use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Tester\ApplicationTester;
 use Symfony\Component\Console\Tester\CommandTester as SymfonyCommandTester;
 use Webmozart\Assert\Assert;
 
@@ -47,9 +44,6 @@ final class CommandTester extends SymfonyCommandTester
         return new self($executableCommand);
     }
 
-    /**
-     * @param null|callable(string):string $extraNormalization
-     */
     public function getNormalizedDisplay(
         callable ...$extraNormalizers
     ): string {

@@ -41,7 +41,6 @@
         "MethodCallRemoval": {
             "ignore": [
                 "Fidry\\Console\\Command\\SymfonyCommand::setApplication",
-                "Fidry\\Console\\Test\\OutputAssertions::assertSameOutput",
                 "Fidry\\Console\\Input\\IO::__construct",
                 "Fidry\\Console\\Internal\\Type\\NaturalType::coerceValue",
                 "Fidry\\Console\\Internal\\Type\\PositiveIntegerType::coerceValue"

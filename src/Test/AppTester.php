@@ -31,7 +31,7 @@ final class AppTester extends ApplicationTester
     }
 
     /**
-     * @param callable(string):string $extraNormalization
+     * @param callable(string):string $extraNormalizers
      */
     public function getNormalizedDisplay(
         callable ...$extraNormalizers

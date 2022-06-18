@@ -14,11 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Test;
 
 use Fidry\Console\ExitCode;
-use Fidry\Console\Test\AppTester;
 use Fidry\Console\Test\CommandTester;
 use Fidry\Console\Test\OutputAssertions;
-use Fidry\Console\Tests\Command\Fixture\SimpleCommand;
-use Fidry\Console\Tests\Test\Fixture\Application;
 use Fidry\Console\Tests\Test\Fixture\PathCommand;
 use PHPUnit\Framework\TestCase;
 use function str_replace;
