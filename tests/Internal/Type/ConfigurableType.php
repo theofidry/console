@@ -27,7 +27,7 @@ final class ConfigurableType implements InputType
     public function __construct(
         string $psalmTypeDeclaration,
         ?string $phpTypeDeclaration,
-        ?array $typeClassNames = null,
+        ?array $typeClassNames = null
     ) {
         $this->psalmTypeDeclaration = $psalmTypeDeclaration;
         $this->phpTypeDeclaration = $phpTypeDeclaration;

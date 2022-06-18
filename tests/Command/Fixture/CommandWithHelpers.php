@@ -30,7 +30,7 @@ final class CommandWithHelpers implements Command
         DescriptorHelper $descriptorHelper,
         FormatterHelper $formatterHelper,
         ProcessHelper $processHelper,
-        QuestionHelper $questionHelper,
+        QuestionHelper $questionHelper
     ) {
     }
 

@@ -100,7 +100,7 @@ final class ConfigurationTest extends TestCase
         string $expectedDescription,
         string $expectedHelp,
         array $expectedArguments,
-        array $expectedOptions,
+        array $expectedOptions
     ): void {
         self::assertSame($expectedName, $configuration->getName());
         self::assertSame($expectedDescription, $configuration->getDescription());

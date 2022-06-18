@@ -94,7 +94,7 @@ final class TypedInput
         $integerArray,
         $float,
         $nullableFloat,
-        $floatArray,
+        $floatArray
     ) {
         $this->boolean = $boolean;
         $this->nullableBoolean = $nullableBoolean;
@@ -128,7 +128,7 @@ final class TypedInput
         $integer,
         $nullableInteger,
         $float,
-        $nullableFloat,
+        $nullableFloat
     ): self {
         return new self(
             $boolean,
@@ -154,7 +154,7 @@ final class TypedInput
         TypeException $scalarToArrayTypeException,
         $stringArray,
         $integerArray,
-        $floatArray,
+        $floatArray
     ): self {
         return new self(
             $scalarToArrayTypeException,

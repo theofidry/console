@@ -34,7 +34,7 @@ final class IOOptionsTest extends TestCase
     public function test_it_exposes_a_typed_api(
         InputOption $inputOption,
         string $option,
-        TypedInput $expected,
+        TypedInput $expected
     ): void {
         $io = $this->getIO($inputOption, $option);
 
@@ -498,7 +498,7 @@ final class IOOptionsTest extends TestCase
 
     private function getIO(
         InputOption $inputOption,
-        string $option,
+        string $option
     ): IO {
         $application = new Application();
         $application->add(
