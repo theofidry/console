@@ -81,7 +81,9 @@ validate-package: vendor
 .PHONY: covers-validator
 covers-validator: ## Validates the PHPUnit @covers annotations
 covers-validator: $(COVERS_VALIDATOR_BIN) vendor
+ifndef SKIP_CS
 	$(COVERS_VALIDATOR)
+endif
 
 
 .PHONY: phpunit
