@@ -30,18 +30,12 @@ final class AppTester extends ApplicationTester
         );
     }
 
-    /**
-     * @param null|callable(string):string $extraNormalization
-     */
     public function getNormalizedDisplay(
-        ?callable $extraNormalization = null
+        callable ...$extraNormalizers
     ): string {
-        $extraNormalization = $extraNormalization ?? static fn (string $display): string => $display;
-
-        $display = DisplayNormalizer::removeTrailingSpaces(
+        return DisplayNormalizer::removeTrailingSpaces(
             $this->getDisplay(),
+            ...$extraNormalizers,
         );
-
-        return $extraNormalization($display);
     }
 }

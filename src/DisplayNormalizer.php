@@ -28,16 +28,27 @@ final class DisplayNormalizer
     {
     }
 
-    public static function removeTrailingSpaces(string $display): string
-    {
+    /**
+     * @param callable(string):string $extraNormalizers
+     */
+    public static function removeTrailingSpaces(
+        string $display,
+        callable ...$extraNormalizers
+    ): string {
         $display = str_replace(PHP_EOL, "\n", $display);
         $lines = explode("\n", $display);
 
-        $lines = array_map(
+        $trimmedLines = array_map(
             'rtrim',
-            $lines
+            $lines,
         );
 
-        return implode("\n", $lines);
+        $normalizedDisplay = implode("\n", $trimmedLines);
+
+        return array_reduce(
+            $extraNormalizers,
+            static fn (string $display, $extraNormalizer): string => $extraNormalizer($display),
+            $normalizedDisplay,
+        );
     }
 }
