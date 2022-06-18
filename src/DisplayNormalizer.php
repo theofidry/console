@@ -47,7 +47,7 @@ final class DisplayNormalizer
 
         return array_reduce(
             $extraNormalizers,
-            static fn (string $display, $extraNormalizer) => $extraNormalizer($display),
+            static fn (string $display, $extraNormalizer): string => $extraNormalizer($display),
             $normalizedDisplay,
         );
     }
