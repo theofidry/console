@@ -24,7 +24,6 @@ declare(strict_types=1);
 namespace Fidry\Console\Input;
 
 use Fidry\Console\InputAssert;
-use Fidry\Console\IOGetters;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
@@ -38,8 +37,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class IO extends SymfonyStyle
 {
-    use IOGetters;
-
     private InputInterface $input;
     private OutputInterface $output;
 
