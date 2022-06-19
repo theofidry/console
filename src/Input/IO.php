@@ -23,8 +23,6 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
-use Fidry\Console\InputAssert;
-use Fidry\Console\IOGetters;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
@@ -38,8 +36,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class IO extends SymfonyStyle
 {
-    use IOGetters;
-
     private InputInterface $input;
     private OutputInterface $output;
 
@@ -120,33 +116,5 @@ class IO extends SymfonyStyle
     public function hasOption(string $name, bool $onlyRealParams = false): bool
     {
         return $this->input->hasParameterOption($name, $onlyRealParams);
-    }
-
-    /**
-     * @param non-empty-string $name
-     *
-     * @return null|string|list<string>
-     */
-    private function getLegacyArgument(string $name)
-    {
-        $argument = $this->input->getArgument($name);
-
-        InputAssert::assertIsValidArgumentType($argument, $name);
-
-        return $argument;
-    }
-
-    /**
-     * @param non-empty-string $name
-     *
-     * @return null|bool|string|list<string>
-     */
-    private function getLegacyOption(string $name)
-    {
-        $option = $this->input->getOption($name);
-
-        InputAssert::assertIsValidOptionType($option, $name);
-
-        return $option;
     }
 }

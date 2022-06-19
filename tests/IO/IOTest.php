@@ -134,8 +134,7 @@ final class IOTest extends TestCase
         $this->expectException(ConsoleInvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
 
-        /** @psalm-suppress DeprecatedMethod */
-        $io->getStringArgument('arg');
+        $io->getArgument('arg')->asString();
     }
 
     public static function invalidArgumentTypeProvider(): iterable
@@ -300,7 +299,8 @@ final class IOTest extends TestCase
         self::assertSame($expected, $actual);
     }
 
-    public function test_it_does_not_check_real_params_by_default_when_checking_an_option_presence(): void {
+    public function test_it_does_not_check_real_params_by_default_when_checking_an_option_presence(): void
+    {
         $io = new IO(
             new ArgvInput(['cli.php', '--', '--foo']),
             new NullOutput(),
