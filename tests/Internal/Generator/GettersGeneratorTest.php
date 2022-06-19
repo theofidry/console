@@ -44,23 +44,45 @@ final class GettersGeneratorTest extends TestCase
             [new StringType(), new BooleanType()],
             <<<'PHP'
 
-                public function asString(): string
+                public function asString(?string $errorMessage = null): string
                 {
                     $type = TypeFactory::createTypeFromClassNames([
                         \Fidry\Console\Internal\Type\StringType::class,
                     ]);
 
-                    return $type->coerceValue($this->value, $this->label);
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+            
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
 
 
-                public function asBoolean(): bool
+                public function asBoolean(?string $errorMessage = null): bool
                 {
                     $type = TypeFactory::createTypeFromClassNames([
                         \Fidry\Console\Internal\Type\BooleanType::class,
                     ]);
             
-                    return $type->coerceValue($this->value, $this->label);
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+            
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
             PHP,
         ];

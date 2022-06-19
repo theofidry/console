@@ -36,4 +36,18 @@ final class InvalidInputValueType extends ConsoleInvalidArgumentException
             $exception,
         );
     }
+
+    public static function withErrorMessage(
+        self $exception,
+        string $errorMessage
+    ): self {
+        return new self(
+            sprintf(
+                $errorMessage,
+                $exception->getMessage(),
+            ),
+            (int) $exception->getCode(),
+            $exception,
+        );
+    }
 }
