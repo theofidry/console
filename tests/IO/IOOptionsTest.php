@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\IO;
 
+use Fidry\Console\Input\InvalidInputValueType;
 use Fidry\Console\Input\IO;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
@@ -43,6 +44,27 @@ final class IOOptionsTest extends TestCase
             $io,
         self::OPTION_NAME,
         );
+    }
+
+    public function test_it_can_throw_a_custom_error_message_on_failure(): void
+    {
+        $io = $this->getIO(
+            new InputOption(
+                self::OPTION_NAME,
+                null,
+                InputOption::VALUE_REQUIRED,
+                '',
+                null,
+            ),
+            '--opt=""',
+        );
+
+        $this->expectException(InvalidInputValueType::class);
+        $this->expectExceptionMessage('This is my custom error message. Previous message: Expected an integer string. Got "\'\'" for the option "opt".');
+
+        $io
+            ->getOption(self::OPTION_NAME)
+            ->asNatural('This is my custom error message. Previous message: %s');
     }
 
     public static function optionProvider(): iterable

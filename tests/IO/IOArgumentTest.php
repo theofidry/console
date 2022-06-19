@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\IO;
 
+use Fidry\Console\Input\InvalidInputValueType;
 use Fidry\Console\Input\IO;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
@@ -43,6 +44,26 @@ final class IOArgumentTest extends TestCase
             $io,
             self::ARGUMENT_NAME,
         );
+    }
+
+    public function test_it_can_throw_a_custom_error_message_on_failure(): void
+    {
+        $io = $this->getIO(
+            new InputArgument(
+                self::ARGUMENT_NAME,
+                InputArgument::REQUIRED,
+                '',
+                null,
+            ),
+            'foo',
+        );
+
+        $this->expectException(InvalidInputValueType::class);
+        $this->expectExceptionMessage('This is my custom error message. Previous message: Expected an integer string. Got "\'foo\'" for the argument "arg".');
+
+        $io
+            ->getArgument(self::ARGUMENT_NAME)
+            ->asNatural('This is my custom error message. Previous message: %s');
     }
 
     public static function argumentProvider(): iterable

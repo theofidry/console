@@ -84,12 +84,24 @@ final class TypedInput
     /**
      * @param list<string> $choices
      */
-    public function asStringChoice(array $choices): string
-    {
-        return (new StringChoiceType($choices))->coerceValue(
-            $this->value,
-            $this->label,
-        );
+    public function asStringChoice(
+        array $choices,
+        ?string $errorMessage = null
+    ): string {
+        $type = new StringChoiceType($choices);
+
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
@@ -100,13 +112,27 @@ final class TypedInput
      *
      * @return positive-int|0
      */
-    public function asNaturalWithinRange(int $min, int $max): int
-    {
-        /** @psalm-suppress LessSpecificReturnStatement */
-        return (new NaturalRangeType($min, $max))->coerceValue(
-            $this->value,
-            $this->label,
-        );
+    public function asNaturalWithinRange(
+        int $min,
+        int $max,
+        ?string $errorMessage = null
+    ): int {
+        $type = new NaturalRangeType($min, $max);
+
+        if (null === $errorMessage) {
+            /** @psalm-suppress LessSpecificReturnStatement */
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            /** @psalm-suppress LessSpecificReturnStatement */
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     // The following part is auto-generated.
@@ -114,384 +140,736 @@ final class TypedInput
     /**
      * @return null|bool|string|list<string>
      */
-    public function asRaw()
+    public function asRaw(?string $errorMessage = null)
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\RawType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
-    public function asBoolean(): bool
+    public function asBoolean(?string $errorMessage = null): bool
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
-    public function asNullableBoolean(): ?bool
+    public function asNullableBoolean(?string $errorMessage = null): ?bool
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return list<bool>
      */
-    public function asBooleanList(): array
+    public function asBooleanList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return non-empty-list<bool>
      */
-    public function asBooleanNonEmptyList(): array
+    public function asBooleanNonEmptyList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return positive-int|0
      */
-    public function asNatural(): int
+    public function asNatural(?string $errorMessage = null): int
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return null|positive-int|0
      */
-    public function asNullableNatural(): ?int
+    public function asNullableNatural(?string $errorMessage = null): ?int
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return list<positive-int|0>
      */
-    public function asNaturalList(): array
+    public function asNaturalList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return non-empty-list<positive-int|0>
      */
-    public function asNaturalNonEmptyList(): array
+    public function asNaturalNonEmptyList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return positive-int
      */
-    public function asPositiveInteger(): int
+    public function asPositiveInteger(?string $errorMessage = null): int
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\PositiveIntegerType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return null|positive-int
      */
-    public function asNullablePositiveInteger(): ?int
+    public function asNullablePositiveInteger(?string $errorMessage = null): ?int
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
             \Fidry\Console\Internal\Type\PositiveIntegerType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return list<positive-int>
      */
-    public function asPositiveIntegerList(): array
+    public function asPositiveIntegerList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
             \Fidry\Console\Internal\Type\PositiveIntegerType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return non-empty-list<positive-int>
      */
-    public function asPositiveIntegerNonEmptyList(): array
+    public function asPositiveIntegerNonEmptyList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
             \Fidry\Console\Internal\Type\PositiveIntegerType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
-    public function asFloat(): float
+    public function asFloat(?string $errorMessage = null): float
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
-    public function asNullableFloat(): ?float
+    public function asNullableFloat(?string $errorMessage = null): ?float
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return list<float>
      */
-    public function asFloatList(): array
+    public function asFloatList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return non-empty-list<float>
      */
-    public function asFloatNonEmptyList(): array
+    public function asFloatNonEmptyList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
-    public function asString(): string
+    public function asString(?string $errorMessage = null): string
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
-    public function asNullableString(): ?string
+    public function asNullableString(?string $errorMessage = null): ?string
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return list<string>
      */
-    public function asStringList(): array
+    public function asStringList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return non-empty-list<string>
      */
-    public function asStringNonEmptyList(): array
+    public function asStringNonEmptyList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return non-empty-string
      */
-    public function asNonEmptyString(): string
+    public function asNonEmptyString(?string $errorMessage = null): string
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return null|non-empty-string
      */
-    public function asNullableNonEmptyString(): ?string
+    public function asNullableNonEmptyString(?string $errorMessage = null): ?string
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
             \Fidry\Console\Internal\Type\NonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return list<non-empty-string>
      */
-    public function asNonEmptyStringList(): array
+    public function asNonEmptyStringList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
             \Fidry\Console\Internal\Type\NonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return non-empty-list<non-empty-string>
      */
-    public function asNonEmptyStringNonEmptyList(): array
+    public function asNonEmptyStringNonEmptyList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
             \Fidry\Console\Internal\Type\NonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
-    public function asUntrimmedString(): string
+    public function asUntrimmedString(?string $errorMessage = null): string
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\UntrimmedStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
-    public function asNullableUntrimmedString(): ?string
+    public function asNullableUntrimmedString(?string $errorMessage = null): ?string
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullableType::class,
             \Fidry\Console\Internal\Type\UntrimmedStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return list<string>
      */
-    public function asUntrimmedStringList(): array
+    public function asUntrimmedStringList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
             \Fidry\Console\Internal\Type\UntrimmedStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return non-empty-list<string>
      */
-    public function asUntrimmedStringNonEmptyList(): array
+    public function asUntrimmedStringNonEmptyList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
             \Fidry\Console\Internal\Type\UntrimmedStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return null|non-empty-string
      */
-    public function asNullOrNonEmptyString(): ?string
+    public function asNullOrNonEmptyString(?string $errorMessage = null): ?string
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NullOrNonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return list<null|non-empty-string>
      */
-    public function asNullOrNonEmptyStringList(): array
+    public function asNullOrNonEmptyStringList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\ListType::class,
             \Fidry\Console\Internal\Type\NullOrNonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
 
     /**
      * @return non-empty-list<null|non-empty-string>
      */
-    public function asNullOrNonEmptyStringNonEmptyList(): array
+    public function asNullOrNonEmptyStringNonEmptyList(?string $errorMessage = null): array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\NonEmptyListType::class,
             \Fidry\Console\Internal\Type\NullOrNonEmptyStringType::class,
         ]);
 
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
     // __AUTO_GENERATE_END__
 }

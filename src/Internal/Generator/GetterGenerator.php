@@ -35,13 +35,24 @@ final class GetterGenerator
     /**
      * @return __PSALM_RETURN_TYPE_PLACEHOLDER__
      */
-    public function __METHOD_NAME_PLACEHOLDER__()__PHP_RETURN_TYPE_PLACEHOLDER__
+    public function __METHOD_NAME_PLACEHOLDER__(?string $errorMessage = null)__PHP_RETURN_TYPE_PLACEHOLDER__
     {
         $type = TypeFactory::createTypeFromClassNames([
         __TYPE_CLASS_NAMES_PLACEHOLDER__
         ]);
     
-        return $type->coerceValue($this->value, $this->label);
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
     }
     PHP;
 
