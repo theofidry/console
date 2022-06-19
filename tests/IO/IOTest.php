@@ -27,6 +27,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
 use TypeError;
 
@@ -69,6 +70,16 @@ final class IOTest extends TestCase
                 $interactive,
             ];
         }
+    }
+
+    public function test_it_can_create_a_io_with_default_values_for_standard_usage(): void
+    {
+        $io = IO::createDefault();
+
+        self::assertCount(0, $io->getInput()->getArguments());
+        self::assertCount(0, $io->getInput()->getOptions());
+
+        self::assertInstanceOf(ConsoleOutput::class, $io->getOutput());
     }
 
     public function test_it_can_create_a_null_io(): void
