@@ -65,13 +65,12 @@ final class TypeFactoryTest extends TestCase
             ),
         ];
 
-        // TODO: enable later
-//        yield 'list of nullable singular type' => [
-//            new ListType(
-//                new NullableType(
-//                    new BooleanType(),
-//                ),
-//            ),
-//        ];
+        yield 'list of nullable singular type' => [
+            new ListType(
+                new NullableType(
+                    new BooleanType(),
+                ),
+            ),
+        ];
     }
 }
