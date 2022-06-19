@@ -45,7 +45,7 @@ abstract class BaseTypeTest extends TestCase
             }
         } catch (ConsoleInvalidArgumentException $exception) {
             if ($expected instanceof TypeException) {
-                Assert::assertSame(
+                self::assertSame(
                     $expected->message,
                     $exception->getMessage(),
                 );
@@ -56,7 +56,7 @@ abstract class BaseTypeTest extends TestCase
             throw $exception;
         }
 
-        Assert::assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     abstract public static function valueProvider(): iterable;
