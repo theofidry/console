@@ -1,68 +1,71 @@
-name: CI
+name: "CI"
 
 on:
     push:
-        branches: [ main ]
-    pull_request:
+        branches:
+            - "main"
+    pull_request: null
 
 jobs:
     tests:
-        runs-on: 'ubuntu-latest'
+        runs-on: "ubuntu-latest"
         name: "Test ${{ matrix.php }}"
         strategy:
             fail-fast: true
             matrix:
-                php: [ '8.1' ]
+                php:
+                    - "8.1"
                 include:
-                    - php: '7.4'
-                      skip_static_checks: 'true'
-                    - php: '8.0'
-                      skip_static_checks: 'true'
+                    - php: "7.4"
+                      skip_static_checks: true
+                    - php: "8.0"
+                      skip_static_checks: true
 
         steps:
-            -   name: 'Check out repository code'
-                uses: actions/checkout@v2
+            -   name: "Check out repository code"
+                uses: "actions/checkout@v2"
 
-            -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
+            -   name: "Setup PHP"
+                uses: "shivammathur/setup-php@v2"
                 with:
-                    php-version: ${{ matrix.php }}
-                    tools: composer
-                    coverage: pcov
+                    php-version: "${{ matrix.php }}"
+                    tools: "composer"
+                    coverage: "pcov"
 
-            -   name: Install Composer dependencies
-                uses: ramsey/composer-install@v2
+            -   name: "Install Composer dependencies"
+                uses: "ramsey/composer-install@v2"
 
-            -   name: Install CoversValidator Composer dependencies
-                if: matrix.skip_static_checks != 'true'
-                uses: ramsey/composer-install@v2
+            -   name: "Install CoversValidator Composer dependencies"
+                if: "matrix.skip_static_checks"
+                uses: "ramsey/composer-install@v2"
                 with:
-                    working-directory: 'vendor-bin/covers-validator'
+                    working-directory: "vendor-bin/covers-validator"
 
-            -   name: Install PHP-CS-Fixer Composer dependencies
-                if: matrix.skip_static_checks != 'true'
-                uses: ramsey/composer-install@v2
+            -   name: "Install PHP-CS-Fixer Composer dependencies"
+                if: "matrix.skip_static_checks"
+                uses: "ramsey/composer-install@v2"
                 with:
-                    working-directory: 'vendor-bin/php-cs-fixer'
+                    working-directory: "vendor-bin/php-cs-fixer"
 
-            -   name: Install Psalm Composer dependencies
-                if: matrix.skip_static_checks != 'true'
-                uses: ramsey/composer-install@v2
+            -   name: "Install Psalm Composer dependencies"
+                if: "matrix.skip_static_checks"
+                uses: "ramsey/composer-install@v2"
                 with:
-                    working-directory: 'vendor-bin/psalm'
+                    working-directory: "vendor-bin/psalm"
 
-            -   name: Mark skip static checks
-                if: matrix.skip_static_checks == 'true'
+            -   name: "Mark skip static checks"
+                if: "matrix.skip_static_checks"
                 run: |
-                    echo "SKIP_CS=1" >> $GITHUB_ENV
-                    echo "SKIP_PSALM=1" >> $GITHUB_ENV
-                    echo "SKIP_INFECTION=1" >> $GITHUB_ENV
+                    echo "SKIP_CS=1" >> "$GITHUB_ENV"
+                    echo "SKIP_PSALM=1" >> "$GITHUB_ENV"
+                    echo "SKIP_INFECTION=1" >> "$GITHUB_ENV"
 
-            # TODO: pending on https://github.com/oradwell/covers-validator/pull/40
+            # @TODO Pending on https://github.com/oradwell/covers-validator/pull/40
             # Meanwhile we do the check on a lower version
-            -   name: Mark skip static checks
-                if: matrix.php != '7.4'
-                run: echo "SKIP_COVERS_VALIDATOR=1" >> $GITHUB_ENV
+            -   name: "Mark skip static checks"
+                if: "matrix.php != '7.4'"
+                run: |
+                    echo "SKIP_COVERS_VALIDATOR=1" >> "$GITHUB_ENV"
 
-            -   name: 'Run tests'
-                run: make
+            -   name: "Run tests"
+                run: "make"
