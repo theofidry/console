@@ -36,25 +36,25 @@ jobs:
                 uses: "ramsey/composer-install@v2"
 
             -   name: "Install CoversValidator Composer dependencies"
-                if: "matrix.skip_static_checks"
+                if: "! matrix.skip_static_checks"
                 uses: "ramsey/composer-install@v2"
                 with:
                     working-directory: "vendor-bin/covers-validator"
 
             -   name: "Install PHP-CS-Fixer Composer dependencies"
-                if: "matrix.skip_static_checks"
+                if: "! matrix.skip_static_checks"
                 uses: "ramsey/composer-install@v2"
                 with:
                     working-directory: "vendor-bin/php-cs-fixer"
 
             -   name: "Install Psalm Composer dependencies"
-                if: "matrix.skip_static_checks"
+                if: "! matrix.skip_static_checks"
                 uses: "ramsey/composer-install@v2"
                 with:
                     working-directory: "vendor-bin/psalm"
 
             -   name: "Mark skip static checks"
-                if: "matrix.skip_static_checks"
+                if: "! matrix.skip_static_checks"
                 run: |
                     echo "SKIP_CS=1" >> "$GITHUB_ENV"
                     echo "SKIP_PSALM=1" >> "$GITHUB_ENV"
