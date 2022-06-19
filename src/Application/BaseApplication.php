@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Application;
 
-use function sprintf;
+use function Safe\sprintf;
 
 /**
  * Base class for an application which mimics the behaviour contained by the
