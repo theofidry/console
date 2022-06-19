@@ -54,7 +54,7 @@ jobs:
                     working-directory: "vendor-bin/psalm"
 
             -   name: "Mark skip static checks"
-                if: "! matrix.skip_static_checks"
+                if: "matrix.skip_static_checks"
                 run: |
                     echo "SKIP_CS=1" >> "$GITHUB_ENV"
                     echo "SKIP_PSALM=1" >> "$GITHUB_ENV"
