@@ -17,7 +17,7 @@ use Fidry\Console\InputAssert;
 use Fidry\Console\Internal\Type\NaturalRangeType;
 use Fidry\Console\Internal\Type\StringChoiceType;
 use Fidry\Console\Internal\Type\TypeFactory;
-use function Safe\sprintf;
+use function sprintf;
 use Webmozart\Assert\Assert;
 
 /**

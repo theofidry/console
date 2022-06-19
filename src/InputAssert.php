@@ -19,7 +19,7 @@ use function get_debug_type;
 use function is_array;
 use function is_bool;
 use function is_string;
-use function Safe\sprintf;
+use function sprintf;
 use function var_export;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;

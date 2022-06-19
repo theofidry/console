@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\InputAssert;
-use function Safe\sprintf;
+use function sprintf;
 use Webmozart\Assert\Assert;
 
 /**

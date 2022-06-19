@@ -15,7 +15,7 @@ namespace Fidry\Console\Internal\Type;
 
 use function array_map;
 use Fidry\Console\InputAssert;
-use function Safe\sprintf;
+use function sprintf;
 
 /**
  * @template TypedValue

@@ -17,7 +17,6 @@ use function array_map;
 use function array_unshift;
 use Fidry\Console\Internal\Type\InputType;
 use function implode;
-use function Safe\substr;
 
 /**
  * @private
@@ -48,7 +47,7 @@ final class GetterNameGenerator
      */
     private static function normalizeTypeName(string $typeClassName): string
     {
-        return substr(
+        return mb_substr(
             ClassName::getShortClassName($typeClassName),
             0,
             -4,

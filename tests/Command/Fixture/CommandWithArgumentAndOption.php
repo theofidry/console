@@ -17,7 +17,7 @@ use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\ExitCode;
 use Fidry\Console\Input\IO;
-use function Safe\sprintf;
+use function sprintf;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 

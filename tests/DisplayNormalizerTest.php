@@ -15,7 +15,7 @@ namespace Fidry\Console\Tests;
 
 use Fidry\Console\DisplayNormalizer;
 use PHPUnit\Framework\TestCase;
-use function Safe\sprintf;
+use function sprintf;
 
 /**
  * @covers \Fidry\Console\DisplayNormalizer
