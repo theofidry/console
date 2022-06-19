@@ -39,8 +39,8 @@ final class ApplicationRunner
      */
     public static function runApplication(
         Application $application,
-        ?InputInterface $input,
-        ?OutputInterface $output
+        ?InputInterface $input = null,
+        ?OutputInterface $output = null
     ): int {
         return (new self($application))->run(
             new IO(
