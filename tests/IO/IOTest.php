@@ -20,6 +20,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
+use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -259,6 +260,46 @@ final class IOTest extends TestCase
         self::assertSame($newOutput, $newIO->getOutput());
     }
 
+    /**
+     * @dataProvider optionProvider
+     *
+     * @param non-empty-string $option
+     */
+    public function test_it_can_tell_if_an_option_is_present(
+        InputInterface $input,
+        string $option,
+        bool $expected
+    ): void {
+        $io = new IO(
+            $input,
+            new NullOutput(),
+        );
+
+        $actual = $io->hasOption($option);
+
+        self::assertSame($expected, $actual);
+    }
+
+    /**
+     * @dataProvider optionWithOnlyOptionsProvider
+     *
+     * @param non-empty-string $option
+     */
+    public function test_it_can_tell_if_an_option_with_only_real_params_is_present(
+        InputInterface $input,
+        string $option,
+        bool $expected
+    ): void {
+        $io = new IO(
+            $input,
+            new NullOutput(),
+        );
+
+        $actual = $io->hasOption($option, true);
+
+        self::assertSame($expected, $actual);
+    }
+
     public static function invalidOptionTypeProvider(): iterable
     {
         yield from self::invalidScalarOptionTypeProvider();
@@ -293,6 +334,164 @@ final class IOTest extends TestCase
         foreach (self::invalidScalarOptionTypeProvider() as [$item, $message]) {
             yield [[$item], $message];
         }
+    }
+
+    public static function optionProvider(): iterable
+    {
+        $createLongOptionSet = static function (string $title, InputInterface $input): iterable {
+            yield $title.' (present)' => [
+                $input,
+                '--opt',
+                true,
+            ];
+
+            yield $title.' (missing)' => [
+                $input,
+                '--anotherOpt',
+                false,
+            ];
+        };
+
+        $createShortOptionSet = static function (string $title, InputInterface $input): iterable {
+            yield $title.' (present)' => [
+                $input,
+                '-opt',
+                true,
+            ];
+
+            yield $title.' (missing)' => [
+                $input,
+                '-anotherOpt',
+                false,
+            ];
+        };
+
+        yield from $createLongOptionSet(
+            'long option with value after',
+            new ArgvInput(['cli.php', '--opt', 'foo']),
+        );
+
+        yield from $createLongOptionSet(
+            'long option without value after',
+            new ArgvInput(['cli.php', '--opt']),
+        );
+
+        yield from $createLongOptionSet(
+            'long option with value assigned after',
+            new ArgvInput(['cli.php', '--opt=foo']),
+        );
+
+        yield from $createShortOptionSet(
+            'short option with value after',
+            new ArgvInput(['cli.php', '-opt', 'foo']),
+        );
+
+        yield from $createShortOptionSet(
+            'short option without value after',
+            new ArgvInput(['cli.php', '-opt']),
+        );
+
+        yield from $createShortOptionSet(
+            'short option with value assigned after',
+            new ArgvInput(['cli.php', '-opt=foo']),
+        );
+    }
+
+    public static function optionWithOnlyOptionsProvider(): iterable
+    {
+        $createLongOptionSet = static function (string $title, InputInterface $input): iterable {
+            yield $title.' (present)' => [
+                $input,
+                '--opt',
+                true,
+            ];
+
+            yield $title.' (missing)' => [
+                $input,
+                '--anotherOpt',
+                false,
+            ];
+        };
+
+        $createShortOptionSet = static function (string $title, InputInterface $input): iterable {
+            yield $title.' (present)' => [
+                $input,
+                '-opt',
+                true,
+            ];
+
+            yield $title.' (missing)' => [
+                $input,
+                '-anotherOpt',
+                false,
+            ];
+        };
+
+        yield from $createLongOptionSet(
+            'long option with value after',
+            new ArgvInput(['cli.php', '--opt', 'foo', '--']),
+        );
+
+        yield '(non real param) long option with value after' => [
+            new ArgvInput(['cli.php', '--', '--opt', 'foo']),
+            '--opt',
+            false,
+        ];
+
+        yield from $createLongOptionSet(
+            'long option without value after',
+            new ArgvInput(['cli.php', '--opt']),
+        );
+
+        yield '(non real param) long option without value after' => [
+            new ArgvInput(['cli.php', '--', '--opt']),
+            '--opt',
+            false,
+        ];
+
+        yield from $createLongOptionSet(
+            'long option with value assigned after',
+            new ArgvInput(['cli.php', '--opt=foo']),
+        );
+
+        yield '(non real param) long option with value assigned after' => [
+            new ArgvInput(['cli.php', '--', '--opt=foo']),
+            '--opt',
+            false,
+        ];
+
+        yield from $createShortOptionSet(
+            'short option with value after',
+            new ArgvInput(['cli.php', '-opt', 'foo']),
+        );
+
+        yield '(non real param) short option with value after' => [
+            new ArgvInput(['cli.php', '--', '-opt', 'foo']),
+            '-opt',
+            false,
+        ];
+
+        yield from $createShortOptionSet(
+            'short option without value after',
+            new ArgvInput(['cli.php', '-opt']),
+        );
+
+        yield '(non real param) short option without value after' => [
+            new ArgvInput(['cli.php', '--', '-opt']),
+            '-opt',
+            false,
+        ];
+
+        yield from $createShortOptionSet(
+            'short option with value assigned after',
+            new ArgvInput(['cli.php', '-opt=foo']),
+        );
+
+        yield '(non real param) short option with value assigned after' => [
+            new ArgvInput(['cli.php', '--', '-opt=foo']),
+            '-opt',
+            false,
+        ];
     }
 
     private static function createInput(bool $interactive): InputInterface

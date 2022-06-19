@@ -116,6 +116,14 @@ class IO extends SymfonyStyle
 
     /**
      * @param non-empty-string $name
+     */
+    public function hasOption(string $name, bool $onlyRealParams = false): bool
+    {
+        return $this->input->hasParameterOption($name, $onlyRealParams);
+    }
+
+    /**
+     * @param non-empty-string $name
      *
      * @return null|string|list<string>
      */
