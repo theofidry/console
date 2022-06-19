@@ -300,6 +300,17 @@ final class IOTest extends TestCase
         self::assertSame($expected, $actual);
     }
 
+    public function test_it_does_not_check_real_params_by_default_when_checking_an_option_presence(): void {
+        $io = new IO(
+            new ArgvInput(['cli.php', '--', '--foo']),
+            new NullOutput(),
+        );
+
+        $result = $io->hasOption('--foo');
+
+        self::assertTrue($result);
+    }
+
     public static function invalidOptionTypeProvider(): iterable
     {
         yield from self::invalidScalarOptionTypeProvider();
