@@ -17,7 +17,7 @@ use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Tests\IO\TypeException;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
-use function Safe\sprintf;
+use function sprintf;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
 
 abstract class BaseTypeTest extends TestCase

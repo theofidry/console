@@ -22,7 +22,7 @@ use function explode;
 use Fidry\Console\Internal\Type\InputType;
 use function implode;
 use function preg_match;
-use function Safe\sprintf;
+use function sprintf;
 use function str_repeat;
 use function str_replace;
 

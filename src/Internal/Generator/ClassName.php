@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Generator;
 
 use function mb_strrpos;
-use function Safe\substr;
 
 /**
  * @private
@@ -34,7 +33,7 @@ final class ClassName
     public static function getShortClassName(string $className): string
     {
         if (false !== ($pos = mb_strrpos($className, '\\'))) {
-            return substr($className, $pos + 1);
+            return mb_substr($className, $pos + 1);
         }
 
         return $className;

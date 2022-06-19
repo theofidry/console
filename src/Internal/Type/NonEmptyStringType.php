@@ -15,7 +15,7 @@ namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\Input\InvalidInputValueType;
 use Fidry\Console\InputAssert;
-use function Safe\sprintf;
+use function sprintf;
 use function trim;
 
 /**
