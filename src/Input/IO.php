@@ -63,6 +63,14 @@ class IO extends SymfonyStyle
         );
     }
 
+    public function getErrorIO(): self
+    {
+        return new self(
+            $this->input,
+            $this->getErrorOutput(),
+        );
+    }
+
     public function withInput(InputInterface $input): self
     {
         return new self($input, $this->output);
