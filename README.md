@@ -10,10 +10,11 @@ application app.
 
 Key differences:
 
-- Implement interfaces instead of extending classes
 - Leverages an `IO` object instead of Input + Output + SymfonyStyle which offers:
     - The API of SymfonyStyle but still access to the Input and Output objects
-    - A typed API for arguments and options
+    - A typed API for arguments and options (the input is validated when
+      coercing it to a stricter type)
+- Implement explicit interfaces instead of extending classes god classes
 
 
 ## Table of Contents
