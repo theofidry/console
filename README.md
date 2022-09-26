@@ -14,7 +14,7 @@ Key differences:
     - The API of SymfonyStyle but still access to the Input and Output objects
     - A typed API for arguments and options (the input is validated when
       coercing it to a stricter type)
-- Implement explicit interfaces instead of extending classes god classes
+- Implement explicit interfaces instead of extending god classes
 
 
 ## Table of Contents
