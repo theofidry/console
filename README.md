@@ -44,6 +44,7 @@ Key differences:
         - [Testing an Application](./doc/testing.md#testing-an-application)
         - [Testing a Command](./doc/testing.md#testing-a-command)
 - [Known Limitations](#known-limitations)
+- [Inspirations](#inspirations)
 - [Contributing](#contributing)
 
 
@@ -139,6 +140,13 @@ of the use case presented.
 - Support for command aliases
 - Support for command usage configuration
 - Some obscure methods of `Application`
+
+
+### Inspirations
+
+- [zenstruck/console-extra](https://github.com/zenstruck/console-extra)
+- [zenstruck/console-test](https://github.com/zenstruck/console-test)
+- [webignition/symfony-console-typed-input](https://github.com/webignition/symfony-console-typed-input)
 
 
 ### Contributing
