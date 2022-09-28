@@ -42,7 +42,7 @@ final class IOOptionsTest extends TestCase
         TypeAssertions::assertExpectedOptionTypes(
             $expected,
             $io,
-        self::OPTION_NAME,
+            self::OPTION_NAME,
         );
     }
 

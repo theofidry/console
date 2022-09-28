@@ -123,7 +123,7 @@ final class IOArgumentTest extends TestCase
                 new TypeException('Expected an integer string. Got "\' \'" for the argument "arg".'),
                 new TypeException('Expected an integer string. Got "\' \'" for the argument "arg".'),
                 new TypeException('Expected a numeric string. Got "\' \'" for the argument "arg".'),
-               new TypeException('Expected a numeric string. Got "\' \'" for the argument "arg".'),
+                new TypeException('Expected a numeric string. Got "\' \'" for the argument "arg".'),
             ),
         ];
 
@@ -338,7 +338,7 @@ final class IOArgumentTest extends TestCase
             ),
             'foo',
             TypedInput::createForArray(
-               new TypeException(
+                new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => 'foo',
@@ -360,7 +360,7 @@ final class IOArgumentTest extends TestCase
             ),
             'foo bar baz',
             TypedInput::createForArray(
-               new TypeException(
+                new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => 'foo',
@@ -384,7 +384,7 @@ final class IOArgumentTest extends TestCase
             ),
             'null',
             TypedInput::createForArray(
-               new TypeException(
+                new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => 'null',
@@ -406,7 +406,7 @@ final class IOArgumentTest extends TestCase
             ),
             '10',
             TypedInput::createForArray(
-               new TypeException(
+                new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '10',
@@ -430,7 +430,7 @@ final class IOArgumentTest extends TestCase
             ),
             '0',
             TypedInput::createForArray(
-               new TypeException(
+                new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '0',
@@ -452,7 +452,7 @@ final class IOArgumentTest extends TestCase
             ),
             '10.8',
             TypedInput::createForArray(
-               new TypeException(
+                new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '10.8',
@@ -476,7 +476,7 @@ final class IOArgumentTest extends TestCase
             ),
             '0.',
             TypedInput::createForArray(
-               new TypeException(
+                new TypeException(
                     <<<'TXT'
                     Expected a null or scalar value. Got the value: "array (
                       0 => '0.',

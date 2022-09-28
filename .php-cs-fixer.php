@@ -22,6 +22,7 @@ return (new Config())
         'array_indentation' => true,
         'array_syntax' => false,
         'backtick_to_shell_exec' => true,
+        'blank_line_between_import_groups' => false,
         'combine_consecutive_issets' => true,
         'combine_consecutive_unsets' => true,
         'combine_nested_dirname' => true,
@@ -78,6 +79,7 @@ return (new Config())
         'ordered_class_elements' => true,
         'ordered_imports' => true,
         'phpdoc_order_by_value' => true,
+        'phpdoc_separation' => false,
         'phpdoc_to_comment' => false,
         // Exclude "meta" which renames "Resource" to "resource"
         'phpdoc_types' => ['groups' => ['simple', 'alias']],
