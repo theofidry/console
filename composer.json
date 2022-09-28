@@ -41,7 +41,8 @@
     "config": {
         "sort-packages": true,
         "bamarni-bin": {
-            "bin-links": false
+            "bin-links": false,
+            "forward-command": false
         },
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
