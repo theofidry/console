@@ -40,10 +40,6 @@
     },
     "config": {
         "sort-packages": true,
-        "bamarni-bin": {
-            "bin-links": false,
-            "forward-command": false
-        },
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
             "infection/extension-installer": true,
@@ -51,6 +47,10 @@
         }
     },
     "extra": {
+        "bamarni-bin": {
+            "bin-links": false,
+            "forward-command": false
+        },
         "branch-alias": {
             "dev-main": "1.0.x-dev"
         }
