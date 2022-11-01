@@ -25,6 +25,8 @@ use Symfony\Component\Console\Output\NullOutput;
 /**
  * @covers \Fidry\Console\Application\ApplicationRunner
  * @covers \Fidry\Console\Application\SymfonyApplication
+ *
+ * @internal
  */
 final class IOConfigurationSupportTest extends TestCase
 {

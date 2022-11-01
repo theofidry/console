@@ -35,6 +35,8 @@ use TypeError;
 /**
  * @covers \Fidry\Console\Input\IO
  * @covers \Fidry\Console\InputAssert
+ *
+ * @internal
  */
 final class IOTest extends TestCase
 {

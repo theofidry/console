@@ -23,6 +23,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * @covers \Fidry\Console\Command\SymfonyCommand
+ *
+ * @internal
  */
 final class CommandFullLifeCycleSupportTest extends KernelTestCase
 {
@@ -47,10 +49,10 @@ final class CommandFullLifeCycleSupportTest extends KernelTestCase
             $this->tester,
             ExitCode::SUCCESS,
             <<<'TEXT'
-            Please choose a username:
-            Jean
+                Please choose a username:
+                Jean
 
-            TEXT,
+                TEXT,
         );
     }
 

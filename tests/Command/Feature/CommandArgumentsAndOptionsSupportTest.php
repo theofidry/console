@@ -22,6 +22,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * @covers \Fidry\Console\Command\SymfonyCommand
+ *
+ * @internal
  */
 final class CommandArgumentsAndOptionsSupportTest extends KernelTestCase
 {
@@ -59,9 +61,9 @@ final class CommandArgumentsAndOptionsSupportTest extends KernelTestCase
             $this->tester,
             ExitCode::SUCCESS,
             <<<'TEXT'
-            arg: Hello world!; opt: false
-            
-            TEXT,
+                arg: Hello world!; opt: false
+
+                TEXT,
         );
     }
 
@@ -79,9 +81,9 @@ final class CommandArgumentsAndOptionsSupportTest extends KernelTestCase
             $this->tester,
             ExitCode::SUCCESS,
             <<<'TEXT'
-            arg: Hello world!; opt: true
-            
-            TEXT,
+                arg: Hello world!; opt: true
+
+                TEXT,
         );
     }
 }

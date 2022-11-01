@@ -17,9 +17,9 @@ use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\ExitCode;
 use Fidry\Console\Input\IO;
-use function sprintf;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use function sprintf;
 
 /**
  * A simple command with a required argument and displaying the argument value

@@ -19,6 +19,8 @@ use function sprintf;
 
 /**
  * @covers \Fidry\Console\DisplayNormalizer
+ *
+ * @internal
  */
 final class DisplayNormalizerTest extends TestCase
 {
@@ -69,32 +71,32 @@ final class DisplayNormalizerTest extends TestCase
 
         yield 'empty line returns' => [
             <<<'EOT'
-            
-             
-            EOT,
+
+
+                EOT,
             <<<'EOT'
-            
-            
-            EOT,
+
+
+                EOT,
         ];
 
         yield 'windows line returns' => [
             "\n\r",
             <<<'EOT'
-            
-            
-            EOT,
+
+
+                EOT,
         ];
 
         yield 'line returns with leading and trailing spaces' => [
             <<<'EOT'
-             foo 
-            bar  
-            EOT,
+                 foo
+                bar
+                EOT,
             <<<'EOT'
-             foo
-            bar
-            EOT,
+                 foo
+                bar
+                EOT,
         ];
     }
 }

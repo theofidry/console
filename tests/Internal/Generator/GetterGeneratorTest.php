@@ -23,6 +23,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Fidry\Console\Internal\Generator\GetterGenerator
+ *
+ * @internal
  */
 final class GetterGeneratorTest extends TestCase
 {
@@ -41,27 +43,27 @@ final class GetterGeneratorTest extends TestCase
         yield 'singular type' => [
             new BooleanType(),
             <<<'PHP'
-            
-            public function asBoolean(?string $errorMessage = null): bool
-            {
-                $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Internal\Type\BooleanType::class,
-                ]);
-            
-                if (null === $errorMessage) {
-                    return $type->coerceValue($this->value, $this->label);
-                }
 
-                try {
-                    return $type->coerceValue($this->value, $this->label);
-                } catch (InvalidInputValueType $coercingFailed) {
-                    throw InvalidInputValueType::withErrorMessage(
-                        $coercingFailed,
-                        $errorMessage,
-                    );
+                public function asBoolean(?string $errorMessage = null): bool
+                {
+                    $type = TypeFactory::createTypeFromClassNames([
+                        \Fidry\Console\Internal\Type\BooleanType::class,
+                    ]);
+
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
-            }
-            PHP,
+                PHP,
         ];
 
         yield 'nullable singular type' => [
@@ -70,27 +72,27 @@ final class GetterGeneratorTest extends TestCase
             ),
             <<<'PHP'
 
-            public function asNullableBoolean(?string $errorMessage = null): ?bool
-            {
-                $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Internal\Type\NullableType::class,
-                    \Fidry\Console\Internal\Type\BooleanType::class,
-                ]);
-            
-                if (null === $errorMessage) {
-                    return $type->coerceValue($this->value, $this->label);
-                }
+                public function asNullableBoolean(?string $errorMessage = null): ?bool
+                {
+                    $type = TypeFactory::createTypeFromClassNames([
+                        \Fidry\Console\Internal\Type\NullableType::class,
+                        \Fidry\Console\Internal\Type\BooleanType::class,
+                    ]);
 
-                try {
-                    return $type->coerceValue($this->value, $this->label);
-                } catch (InvalidInputValueType $coercingFailed) {
-                    throw InvalidInputValueType::withErrorMessage(
-                        $coercingFailed,
-                        $errorMessage,
-                    );
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
-            }
-            PHP,
+                PHP,
         ];
 
         yield 'list of singular type' => [
@@ -98,30 +100,30 @@ final class GetterGeneratorTest extends TestCase
                 new BooleanType(),
             ),
             <<<'PHP'
-            /**
-             * @return list<bool>
-             */
-            public function asBooleanList(?string $errorMessage = null): array
-            {
-                $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Internal\Type\ListType::class,
-                    \Fidry\Console\Internal\Type\BooleanType::class,
-                ]);
-            
-                if (null === $errorMessage) {
-                    return $type->coerceValue($this->value, $this->label);
-                }
+                /**
+                 * @return list<bool>
+                 */
+                public function asBooleanList(?string $errorMessage = null): array
+                {
+                    $type = TypeFactory::createTypeFromClassNames([
+                        \Fidry\Console\Internal\Type\ListType::class,
+                        \Fidry\Console\Internal\Type\BooleanType::class,
+                    ]);
 
-                try {
-                    return $type->coerceValue($this->value, $this->label);
-                } catch (InvalidInputValueType $coercingFailed) {
-                    throw InvalidInputValueType::withErrorMessage(
-                        $coercingFailed,
-                        $errorMessage,
-                    );
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
-            }
-            PHP,
+                PHP,
         ];
 
         yield 'nullable list of singular type' => [
@@ -131,31 +133,31 @@ final class GetterGeneratorTest extends TestCase
                 ),
             ),
             <<<'PHP'
-            /**
-             * @return null|list<bool>
-             */
-            public function asNullableBooleanList(?string $errorMessage = null): ?array
-            {
-                $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Internal\Type\NullableType::class,
-                    \Fidry\Console\Internal\Type\ListType::class,
-                    \Fidry\Console\Internal\Type\BooleanType::class,
-                ]);
-            
-                if (null === $errorMessage) {
-                    return $type->coerceValue($this->value, $this->label);
-                }
+                /**
+                 * @return null|list<bool>
+                 */
+                public function asNullableBooleanList(?string $errorMessage = null): ?array
+                {
+                    $type = TypeFactory::createTypeFromClassNames([
+                        \Fidry\Console\Internal\Type\NullableType::class,
+                        \Fidry\Console\Internal\Type\ListType::class,
+                        \Fidry\Console\Internal\Type\BooleanType::class,
+                    ]);
 
-                try {
-                    return $type->coerceValue($this->value, $this->label);
-                } catch (InvalidInputValueType $coercingFailed) {
-                    throw InvalidInputValueType::withErrorMessage(
-                        $coercingFailed,
-                        $errorMessage,
-                    );
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
-            }
-            PHP,
+                PHP,
         ];
 
         yield 'list of nullable singular type' => [
@@ -165,31 +167,31 @@ final class GetterGeneratorTest extends TestCase
                 ),
             ),
             <<<'PHP'
-            /**
-             * @return list<null|bool>
-             */
-            public function asNullableBooleanList(?string $errorMessage = null): array
-            {
-                $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Internal\Type\ListType::class,
-                    \Fidry\Console\Internal\Type\NullableType::class,
-                    \Fidry\Console\Internal\Type\BooleanType::class,
-                ]);
-            
-                if (null === $errorMessage) {
-                    return $type->coerceValue($this->value, $this->label);
-                }
+                /**
+                 * @return list<null|bool>
+                 */
+                public function asNullableBooleanList(?string $errorMessage = null): array
+                {
+                    $type = TypeFactory::createTypeFromClassNames([
+                        \Fidry\Console\Internal\Type\ListType::class,
+                        \Fidry\Console\Internal\Type\NullableType::class,
+                        \Fidry\Console\Internal\Type\BooleanType::class,
+                    ]);
 
-                try {
-                    return $type->coerceValue($this->value, $this->label);
-                } catch (InvalidInputValueType $coercingFailed) {
-                    throw InvalidInputValueType::withErrorMessage(
-                        $coercingFailed,
-                        $errorMessage,
-                    );
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
-            }
-            PHP,
+                PHP,
         ];
 
         yield 'typeless type' => [
@@ -198,29 +200,29 @@ final class GetterGeneratorTest extends TestCase
                 null,
             ),
             <<<'PHP'
-            /**
-             * @return bool
-             */
-            public function asConfigurable(?string $errorMessage = null)
-            {
-                $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
-                ]);
-            
-                if (null === $errorMessage) {
-                    return $type->coerceValue($this->value, $this->label);
-                }
+                /**
+                 * @return bool
+                 */
+                public function asConfigurable(?string $errorMessage = null)
+                {
+                    $type = TypeFactory::createTypeFromClassNames([
+                        \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                    ]);
 
-                try {
-                    return $type->coerceValue($this->value, $this->label);
-                } catch (InvalidInputValueType $coercingFailed) {
-                    throw InvalidInputValueType::withErrorMessage(
-                        $coercingFailed,
-                        $errorMessage,
-                    );
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
-            }
-            PHP,
+                PHP,
         ];
 
         yield 'non native PHP type' => [
@@ -229,29 +231,29 @@ final class GetterGeneratorTest extends TestCase
                 'int',
             ),
             <<<'PHP'
-            /**
-             * @return int<0,1>
-             */
-            public function asConfigurable(?string $errorMessage = null): int
-            {
-                $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
-                ]);
-            
-                if (null === $errorMessage) {
-                    return $type->coerceValue($this->value, $this->label);
-                }
+                /**
+                 * @return int<0,1>
+                 */
+                public function asConfigurable(?string $errorMessage = null): int
+                {
+                    $type = TypeFactory::createTypeFromClassNames([
+                        \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                    ]);
 
-                try {
-                    return $type->coerceValue($this->value, $this->label);
-                } catch (InvalidInputValueType $coercingFailed) {
-                    throw InvalidInputValueType::withErrorMessage(
-                        $coercingFailed,
-                        $errorMessage,
-                    );
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
-            }
-            PHP,
+                PHP,
         ];
 
         yield 'Psalm has extra types' => [
@@ -260,29 +262,29 @@ final class GetterGeneratorTest extends TestCase
                 'int',
             ),
             <<<'PHP'
-            /**
-             * @return int|float
-             */
-            public function asConfigurable(?string $errorMessage = null): int
-            {
-                $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
-                ]);
-            
-                if (null === $errorMessage) {
-                    return $type->coerceValue($this->value, $this->label);
-                }
+                /**
+                 * @return int|float
+                 */
+                public function asConfigurable(?string $errorMessage = null): int
+                {
+                    $type = TypeFactory::createTypeFromClassNames([
+                        \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                    ]);
 
-                try {
-                    return $type->coerceValue($this->value, $this->label);
-                } catch (InvalidInputValueType $coercingFailed) {
-                    throw InvalidInputValueType::withErrorMessage(
-                        $coercingFailed,
-                        $errorMessage,
-                    );
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
-            }
-            PHP,
+                PHP,
         ];
 
         yield 'PHP has extra types' => [
@@ -291,29 +293,29 @@ final class GetterGeneratorTest extends TestCase
                 'int|float',
             ),
             <<<'PHP'
-            /**
-             * @return int
-             */
-            public function asConfigurable(?string $errorMessage = null): int|float
-            {
-                $type = TypeFactory::createTypeFromClassNames([
-                    \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
-                ]);
-            
-                if (null === $errorMessage) {
-                    return $type->coerceValue($this->value, $this->label);
-                }
+                /**
+                 * @return int
+                 */
+                public function asConfigurable(?string $errorMessage = null): int|float
+                {
+                    $type = TypeFactory::createTypeFromClassNames([
+                        \Fidry\Console\Tests\Internal\Type\ConfigurableType::class,
+                    ]);
 
-                try {
-                    return $type->coerceValue($this->value, $this->label);
-                } catch (InvalidInputValueType $coercingFailed) {
-                    throw InvalidInputValueType::withErrorMessage(
-                        $coercingFailed,
-                        $errorMessage,
-                    );
+                    if (null === $errorMessage) {
+                        return $type->coerceValue($this->value, $this->label);
+                    }
+
+                    try {
+                        return $type->coerceValue($this->value, $this->label);
+                    } catch (InvalidInputValueType $coercingFailed) {
+                        throw InvalidInputValueType::withErrorMessage(
+                            $coercingFailed,
+                            $errorMessage,
+                        );
+                    }
                 }
-            }
-            PHP,
+                PHP,
         ];
     }
 }

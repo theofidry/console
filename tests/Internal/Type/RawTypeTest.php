@@ -17,6 +17,8 @@ use Fidry\Console\Internal\Type\RawType;
 
 /**
  * @covers \Fidry\Console\Internal\Type\RawType
+ *
+ * @internal
  */
 final class RawTypeTest extends BaseTypeTest
 {

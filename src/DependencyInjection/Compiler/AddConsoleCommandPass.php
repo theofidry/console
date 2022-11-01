@@ -16,10 +16,10 @@ namespace Fidry\Console\DependencyInjection\Compiler;
 use Fidry\Console\Command\LazyCommand;
 use Fidry\Console\Command\SymfonyCommand;
 use InvalidArgumentException;
-use function sprintf;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use function sprintf;
 
 /**
  * Looks for all the console commands registered and registers them as regular

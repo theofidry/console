@@ -13,15 +13,17 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Generator;
 
+use Fidry\Console\Internal\Type\InputType;
+use Webmozart\Assert\Assert;
 use function array_diff;
 use function array_map;
 use function array_shift;
 use function array_unshift;
 use function count;
 use function explode;
-use Fidry\Console\Internal\Type\InputType;
 use function implode;
 use function preg_match;
+use function preg_replace;
 use function sprintf;
 use function str_repeat;
 use function str_replace;
@@ -32,29 +34,29 @@ use function str_replace;
 final class GetterGenerator
 {
     private const TEMPLATE = <<<'PHP'
-    /**
-     * @return __PSALM_RETURN_TYPE_PLACEHOLDER__
-     */
-    public function __METHOD_NAME_PLACEHOLDER__(?string $errorMessage = null)__PHP_RETURN_TYPE_PLACEHOLDER__
-    {
-        $type = TypeFactory::createTypeFromClassNames([
-        __TYPE_CLASS_NAMES_PLACEHOLDER__
-        ]);
-    
-        if (null === $errorMessage) {
-            return $type->coerceValue($this->value, $this->label);
-        }
+        /**
+         * @return __PSALM_RETURN_TYPE_PLACEHOLDER__
+         */
+        public function __METHOD_NAME_PLACEHOLDER__(?string $errorMessage = null)__PHP_RETURN_TYPE_PLACEHOLDER__
+        {
+            $type = TypeFactory::createTypeFromClassNames([
+            __TYPE_CLASS_NAMES_PLACEHOLDER__
+            ]);
 
-        try {
-            return $type->coerceValue($this->value, $this->label);
-        } catch (InvalidInputValueType $coercingFailed) {
-            throw InvalidInputValueType::withErrorMessage(
-                $coercingFailed,
-                $errorMessage,
-            );
+            if (null === $errorMessage) {
+                return $type->coerceValue($this->value, $this->label);
+            }
+
+            try {
+                return $type->coerceValue($this->value, $this->label);
+            } catch (InvalidInputValueType $coercingFailed) {
+                throw InvalidInputValueType::withErrorMessage(
+                    $coercingFailed,
+                    $errorMessage,
+                );
+            }
         }
-    }
-    PHP;
+        PHP;
 
     private const INDENT_SIZE = 4;
 
@@ -159,14 +161,14 @@ final class GetterGenerator
 
     private static function removeEmptyReturn(string $value): string
     {
-        return str_replace(
-            <<<'PHP'
-            /**
-             * @return 
-             */
-            PHP,
+        $value = preg_replace(
+            '#\/\*\*[\s\n]+\* @return\s?[\s\n]+\*\/#',
             '',
             $value,
         );
+
+        Assert::string($value);
+
+        return $value;
     }
 }

@@ -21,6 +21,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Fidry\Console\Internal\Generator\GettersGenerator
+ *
+ * @internal
  */
 final class GettersGeneratorTest extends TestCase
 {
@@ -44,47 +46,47 @@ final class GettersGeneratorTest extends TestCase
             [new StringType(), new BooleanType()],
             <<<'PHP'
 
-                public function asString(?string $errorMessage = null): string
-                {
-                    $type = TypeFactory::createTypeFromClassNames([
-                        \Fidry\Console\Internal\Type\StringType::class,
-                    ]);
+                    public function asString(?string $errorMessage = null): string
+                    {
+                        $type = TypeFactory::createTypeFromClassNames([
+                            \Fidry\Console\Internal\Type\StringType::class,
+                        ]);
 
-                    if (null === $errorMessage) {
-                        return $type->coerceValue($this->value, $this->label);
+                        if (null === $errorMessage) {
+                            return $type->coerceValue($this->value, $this->label);
+                        }
+
+                        try {
+                            return $type->coerceValue($this->value, $this->label);
+                        } catch (InvalidInputValueType $coercingFailed) {
+                            throw InvalidInputValueType::withErrorMessage(
+                                $coercingFailed,
+                                $errorMessage,
+                            );
+                        }
                     }
-            
-                    try {
-                        return $type->coerceValue($this->value, $this->label);
-                    } catch (InvalidInputValueType $coercingFailed) {
-                        throw InvalidInputValueType::withErrorMessage(
-                            $coercingFailed,
-                            $errorMessage,
-                        );
-                    }
-                }
 
 
-                public function asBoolean(?string $errorMessage = null): bool
-                {
-                    $type = TypeFactory::createTypeFromClassNames([
-                        \Fidry\Console\Internal\Type\BooleanType::class,
-                    ]);
-            
-                    if (null === $errorMessage) {
-                        return $type->coerceValue($this->value, $this->label);
+                    public function asBoolean(?string $errorMessage = null): bool
+                    {
+                        $type = TypeFactory::createTypeFromClassNames([
+                            \Fidry\Console\Internal\Type\BooleanType::class,
+                        ]);
+
+                        if (null === $errorMessage) {
+                            return $type->coerceValue($this->value, $this->label);
+                        }
+
+                        try {
+                            return $type->coerceValue($this->value, $this->label);
+                        } catch (InvalidInputValueType $coercingFailed) {
+                            throw InvalidInputValueType::withErrorMessage(
+                                $coercingFailed,
+                                $errorMessage,
+                            );
+                        }
                     }
-            
-                    try {
-                        return $type->coerceValue($this->value, $this->label);
-                    } catch (InvalidInputValueType $coercingFailed) {
-                        throw InvalidInputValueType::withErrorMessage(
-                            $coercingFailed,
-                            $errorMessage,
-                        );
-                    }
-                }
-            PHP,
+                PHP,
         ];
     }
 }

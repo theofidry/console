@@ -18,6 +18,8 @@ use Fidry\Console\Tests\IO\TypeException;
 
 /**
  * @covers \Fidry\Console\Internal\Type\StringChoiceType
+ *
+ * @internal
  */
 final class StringChoiceTypeTest extends BaseTypeTest
 {

@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Generator;
 
-use function array_slice;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NonEmptyListType;
+use function array_slice;
 use function in_array;
 
 /**

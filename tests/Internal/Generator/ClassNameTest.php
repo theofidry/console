@@ -19,6 +19,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Fidry\Console\Internal\Generator\ClassName
+ *
+ * @internal
  */
 final class ClassNameTest extends TestCase
 {

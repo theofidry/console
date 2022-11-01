@@ -22,6 +22,8 @@ use Fidry\Console\Tests\IO\TypeException;
 
 /**
  * @covers \Fidry\Console\Internal\Type\NonEmptyListType
+ *
+ * @internal
  */
 final class NonEmptyListTypeTest extends BaseTypeTest
 {

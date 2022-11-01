@@ -21,6 +21,8 @@ use Fidry\Console\Internal\Type\StringType;
 
 /**
  * @covers \Fidry\Console\Internal\Type\NullableType
+ *
+ * @internal
  */
 final class NullableTypeTest extends BaseTypeTest
 {

@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\InputAssert;
-use function sprintf;
 use Webmozart\Assert\Assert;
+use function sprintf;
 
 /**
  * @template TypedValue

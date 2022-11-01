@@ -20,6 +20,8 @@ use Symfony\Component\Console\Input\InputOption;
 
 /**
  * @covers \Fidry\Console\Command\Configuration
+ *
+ * @internal
  */
 final class ConfigurationTest extends TestCase
 {

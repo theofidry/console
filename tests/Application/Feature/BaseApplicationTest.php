@@ -25,32 +25,34 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @covers \Fidry\Console\Application\ApplicationRunner
  * @covers \Fidry\Console\Application\BaseApplication
  * @covers \Fidry\Console\Application\SymfonyApplication
+ *
+ * @internal
  */
 final class BaseApplicationTest extends TestCase
 {
     private const EXPECTED = <<<'EOT'
-    BaseApp 1.0.0
-    
-    Usage:
-      command [options] [arguments]
-    
-    Options:
-      -h, --help            Display help for the given command. When no command is given display help for the list command
-      -q, --quiet           Do not output any message
-      -V, --version         Display this application version
-          --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
-      -n, --no-interaction  Do not ask any interactive question
-      -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
-    
-    Available commands:
-      completion  Dump the shell completion script
-      help        Display help for a command
-      list        List commands
-     app
-      app:fail
-      app:foo     Description content
+        BaseApp 1.0.0
 
-    EOT;
+        Usage:
+          command [options] [arguments]
+
+        Options:
+          -h, --help            Display help for the given command. When no command is given display help for the list command
+          -q, --quiet           Do not output any message
+          -V, --version         Display this application version
+              --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
+          -n, --no-interaction  Do not ask any interactive question
+          -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+        Available commands:
+          completion  Dump the shell completion script
+          help        Display help for a command
+          list        List commands
+         app
+          app:fail
+          app:foo     Description content
+
+        EOT;
 
     public function test_it_can_be_run(): void
     {
@@ -99,16 +101,16 @@ final class BaseApplicationTest extends TestCase
 
         OutputAssertions::assertSameOutput(
             <<<'EOT'
-            
-            In FailingCommand.php line 34:
-            
-              Fail
-            
-            
-            app:fail
-            
-            
-            EOT,
+
+                In FailingCommand.php line 34:
+
+                  Fail
+
+
+                app:fail
+
+
+                EOT,
             $output->fetch(),
         );
     }

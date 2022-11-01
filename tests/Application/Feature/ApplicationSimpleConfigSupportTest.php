@@ -23,6 +23,8 @@ use Symfony\Component\Console\Output\BufferedOutput;
 /**
  * @covers \Fidry\Console\Application\ApplicationRunner
  * @covers \Fidry\Console\Application\SymfonyApplication
+ *
+ * @internal
  */
 final class ApplicationSimpleConfigSupportTest extends TestCase
 {
@@ -40,10 +42,10 @@ final class ApplicationSimpleConfigSupportTest extends TestCase
         $actual = $output->fetch();
         $expected = <<<'EOT'
             help message
-            
+
             Usage:
               command [options] [arguments]
-            
+
             Options:
               -h, --help            Display help for the given command. When no command is given display help for the app:foo command
               -q, --quiet           Do not output any message
@@ -51,7 +53,7 @@ final class ApplicationSimpleConfigSupportTest extends TestCase
                   --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
               -n, --no-interaction  Do not ask any interactive question
               -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
-            
+
             Available commands:
               completion  Dump the shell completion script
               help        Display help for a command

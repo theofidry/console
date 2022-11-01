@@ -18,6 +18,8 @@ use Fidry\Console\Tests\IO\TypeException;
 
 /**
  * @covers \Fidry\Console\Internal\Type\BooleanType
+ *
+ * @internal
  */
 final class BooleanTypeTest extends BaseTypeTest
 {
@@ -54,9 +56,9 @@ final class BooleanTypeTest extends BaseTypeTest
             [],
             new TypeException(
                 <<<'TXT'
-                Expected a null or scalar value. Got the value: "array (
-                )" for the argument or option "test".
-                TXT,
+                    Expected a null or scalar value. Got the value: "array (
+                    )" for the argument or option "test".
+                    TXT,
             ),
         ];
     }

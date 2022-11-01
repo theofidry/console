@@ -18,6 +18,8 @@ use Fidry\Console\Tests\IO\TypeException;
 
 /**
  * @covers \Fidry\Console\Internal\Type\PositiveIntegerType
+ *
+ * @internal
  */
 final class PositiveIntegerTypeTest extends BaseTypeTest
 {
@@ -67,9 +69,9 @@ final class PositiveIntegerTypeTest extends BaseTypeTest
             [],
             new TypeException(
                 <<<'TXT'
-                Expected a null or scalar value. Got the value: "array (
-                )" for the argument or option "test".
-                TXT,
+                    Expected a null or scalar value. Got the value: "array (
+                    )" for the argument or option "test".
+                    TXT,
             ),
         ];
     }

@@ -22,6 +22,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * @covers \Fidry\Console\Command\CommandAwareness
  * @covers \Fidry\Console\Command\SymfonyCommand
+ *
+ * @internal
  */
 final class CommandAwarenessSupportTest extends KernelTestCase
 {

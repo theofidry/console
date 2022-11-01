@@ -24,6 +24,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Fidry\Console\Internal\Generator\TypeNameSorter
+ *
+ * @internal
  */
 final class TypeNameSorterTest extends TestCase
 {
