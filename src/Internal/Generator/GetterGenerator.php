@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Generator;
 
 use Fidry\Console\Internal\Type\InputType;
+use Webmozart\Assert\Assert;
 use function array_diff;
 use function array_map;
 use function array_shift;
@@ -22,6 +23,7 @@ use function count;
 use function explode;
 use function implode;
 use function preg_match;
+use function preg_replace;
 use function sprintf;
 use function str_repeat;
 use function str_replace;
@@ -159,14 +161,14 @@ final class GetterGenerator
 
     private static function removeEmptyReturn(string $value): string
     {
-        return str_replace(
-            <<<'PHP'
-                /**
-                 * @return
-                 */
-                PHP,
+        $value = preg_replace(
+            '#\/\*\*[\s\n]+\* @return\s?[\s\n]+\*\/#',
             '',
             $value,
         );
+
+        Assert::string($value);
+
+        return $value;
     }
 }
