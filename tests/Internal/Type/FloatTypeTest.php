@@ -19,6 +19,8 @@ use const PHP_VERSION_ID;
 
 /**
  * @covers \Fidry\Console\Internal\Type\FloatType
+ *
+ * @internal
  */
 final class FloatTypeTest extends BaseTypeTest
 {
@@ -80,9 +82,9 @@ final class FloatTypeTest extends BaseTypeTest
             [],
             new TypeException(
                 <<<'TXT'
-                Expected a null or scalar value. Got the value: "array (
-                )" for the argument or option "test".
-                TXT,
+                    Expected a null or scalar value. Got the value: "array (
+                    )" for the argument or option "test".
+                    TXT,
             ),
         ];
     }

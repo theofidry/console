@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
-use function sprintf;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
 use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;
+use function sprintf;
 
 final class InvalidInputValueType extends ConsoleInvalidArgumentException
 {

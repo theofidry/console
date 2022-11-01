@@ -23,6 +23,8 @@ use UnexpectedValueException;
 /**
  * @covers \Fidry\Console\Application\ApplicationRunner
  * @covers \Fidry\Console\Application\SymfonyApplication
+ *
+ * @internal
  */
 final class ApplicationCatchingExceptionSupportTest extends TestCase
 {

@@ -22,6 +22,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Fidry\Console\Internal\Type\TypeFactory
+ *
+ * @internal
  */
 final class TypeFactoryTest extends TestCase
 {

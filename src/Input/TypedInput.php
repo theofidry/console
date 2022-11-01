@@ -17,8 +17,8 @@ use Fidry\Console\InputAssert;
 use Fidry\Console\Internal\Type\NaturalRangeType;
 use Fidry\Console\Internal\Type\StringChoiceType;
 use Fidry\Console\Internal\Type\TypeFactory;
-use function sprintf;
 use Webmozart\Assert\Assert;
+use function sprintf;
 
 /**
  * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert

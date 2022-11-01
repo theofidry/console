@@ -24,6 +24,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * @covers \Fidry\Console\Test\OutputAssertions
+ *
+ * @internal
  */
 final class SymfonyOutputAssertionsTest extends TestCase
 {
@@ -41,9 +43,9 @@ final class SymfonyOutputAssertionsTest extends TestCase
         OutputAssertions::assertSameOutput(
             <<<'EOT'
 
-            The project path is /home/runner/work/console/console.
+                The project path is /home/runner/work/console/console.
 
-            EOT,
+                EOT,
             ExitCode::SUCCESS,
             $appTester,
         );
@@ -60,9 +62,9 @@ final class SymfonyOutputAssertionsTest extends TestCase
         OutputAssertions::assertSameOutput(
             <<<'EOT'
 
-            The project path is /home/runner/work/console/console.
-            
-            EOT,
+                The project path is /home/runner/work/console/console.
+
+                EOT,
             ExitCode::SUCCESS,
             $commandTester,
         );

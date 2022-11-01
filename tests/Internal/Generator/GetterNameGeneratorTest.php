@@ -23,6 +23,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Fidry\Console\Internal\Generator\GetterNameGenerator
+ *
+ * @internal
  */
 final class GetterNameGeneratorTest extends TestCase
 {

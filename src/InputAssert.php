@@ -13,16 +13,16 @@ declare(strict_types=1);
 
 namespace Fidry\Console;
 
-use function array_is_list;
 use Fidry\Console\Input\InvalidInputValueType;
+use Webmozart\Assert\Assert;
+use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;
+use function array_is_list;
 use function get_debug_type;
 use function is_array;
 use function is_bool;
 use function is_string;
 use function sprintf;
 use function var_export;
-use Webmozart\Assert\Assert;
-use Webmozart\Assert\InvalidArgumentException as AssertInvalidArgumentException;
 
 /**
  * TODO: move this under Internal.

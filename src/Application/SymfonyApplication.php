@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Application;
 
-use function array_map;
-use function array_values;
 use Fidry\Console\Command\Command as FidryCommand;
 use Fidry\Console\Command\LazyCommand as FidryLazyCommand;
 use Fidry\Console\Command\SymfonyCommand;
@@ -29,6 +27,8 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\Service\ResetInterface;
+use function array_map;
+use function array_values;
 
 /**
  * Bridge to create a traditional Symfony application from the new Application

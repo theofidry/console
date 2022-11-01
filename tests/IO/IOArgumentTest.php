@@ -24,6 +24,8 @@ use Symfony\Component\Console\Output\NullOutput;
 /**
  * @covers \Fidry\Console\Input\IO
  * @covers \Fidry\Console\InputAssert
+ *
+ * @internal
  */
 final class IOArgumentTest extends TestCase
 {
@@ -318,10 +320,10 @@ final class IOArgumentTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '',
-                    )" for the argument "arg".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '',
+                        )" for the argument "arg".
+                        TXT,
                 ),
                 [''],
                 new TypeException('Expected an integer string. Got "\'\'" for the argument "arg".'),
@@ -340,10 +342,10 @@ final class IOArgumentTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => 'foo',
-                    )" for the argument "arg".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => 'foo',
+                        )" for the argument "arg".
+                        TXT,
                 ),
                 ['foo'],
                 new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
@@ -362,12 +364,12 @@ final class IOArgumentTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => 'foo',
-                      1 => 'bar',
-                      2 => 'baz',
-                    )" for the argument "arg".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => 'foo',
+                          1 => 'bar',
+                          2 => 'baz',
+                        )" for the argument "arg".
+                        TXT,
                 ),
                 ['foo', 'bar', 'baz'],
                 new TypeException('Expected an integer string. Got "\'foo\'" for the argument "arg".'),
@@ -386,10 +388,10 @@ final class IOArgumentTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => 'null',
-                    )" for the argument "arg".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => 'null',
+                        )" for the argument "arg".
+                        TXT,
                 ),
                 ['null'],
                 new TypeException('Expected an integer string. Got "\'null\'" for the argument "arg".'),
@@ -408,10 +410,10 @@ final class IOArgumentTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '10',
-                    )" for the argument "arg".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '10',
+                        )" for the argument "arg".
+                        TXT,
                 ),
                 ['10'],
                 [10],
@@ -432,10 +434,10 @@ final class IOArgumentTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '0',
-                    )" for the argument "arg".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '0',
+                        )" for the argument "arg".
+                        TXT,
                 ),
                 ['0'],
                 [0],
@@ -454,10 +456,10 @@ final class IOArgumentTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '10.8',
-                    )" for the argument "arg".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '10.8',
+                        )" for the argument "arg".
+                        TXT,
                 ),
                 ['10.8'],
                 new TypeException('Expected an integer string. Got "\'10.8\'" for the argument "arg".'),
@@ -478,10 +480,10 @@ final class IOArgumentTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '0.',
-                    )" for the argument "arg".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '0.',
+                        )" for the argument "arg".
+                        TXT,
                 ),
                 ['0.'],
                 new TypeException('Expected an integer string. Got "\'0.\'" for the argument "arg".'),

@@ -24,6 +24,8 @@ use Symfony\Component\Console\Output\NullOutput;
 /**
  * @covers \Fidry\Console\Input\IO
  * @covers \Fidry\Console\InputAssert
+ *
+ * @internal
  */
 final class IOOptionsTest extends TestCase
 {
@@ -339,10 +341,10 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '',
-                    )" for the option "opt".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '',
+                        )" for the option "opt".
+                        TXT,
                 ),
                 [''],
                 new TypeException('Expected an integer string. Got "\'\'" for the option "opt".'),
@@ -362,10 +364,10 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => 'foo',
-                    )" for the option "opt".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => 'foo',
+                        )" for the option "opt".
+                        TXT,
                 ),
                 ['foo'],
                 new TypeException('Expected an integer string. Got "\'foo\'" for the option "opt".'),
@@ -385,12 +387,12 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => 'foo',
-                      1 => 'bar',
-                      2 => 'baz',
-                    )" for the option "opt".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => 'foo',
+                          1 => 'bar',
+                          2 => 'baz',
+                        )" for the option "opt".
+                        TXT,
                 ),
                 ['foo', 'bar', 'baz'],
                 new TypeException('Expected an integer string. Got "\'foo\'" for the option "opt".'),
@@ -410,10 +412,10 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => 'null',
-                    )" for the option "opt".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => 'null',
+                        )" for the option "opt".
+                        TXT,
                 ),
                 ['null'],
                 new TypeException('Expected an integer string. Got "\'null\'" for the option "opt".'),
@@ -433,10 +435,10 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '10',
-                    )" for the option "opt".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '10',
+                        )" for the option "opt".
+                        TXT,
                 ),
                 ['10'],
                 [10],
@@ -458,10 +460,10 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '0',
-                    )" for the option "opt".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '0',
+                        )" for the option "opt".
+                        TXT,
                 ),
                 ['0'],
                 [0],
@@ -481,10 +483,10 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '10.8',
-                    )" for the option "opt".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '10.8',
+                        )" for the option "opt".
+                        TXT,
                 ),
                 ['10.8'],
                 new TypeException('Expected an integer string. Got "\'10.8\'" for the option "opt".'),
@@ -506,10 +508,10 @@ final class IOOptionsTest extends TestCase
             TypedInput::createForArray(
                 new TypeException(
                     <<<'TXT'
-                    Expected a null or scalar value. Got the value: "array (
-                      0 => '0.',
-                    )" for the option "opt".
-                    TXT,
+                        Expected a null or scalar value. Got the value: "array (
+                          0 => '0.',
+                        )" for the option "opt".
+                        TXT,
                 ),
                 ['0.'],
                 new TypeException('Expected an integer string. Got "\'0.\'" for the option "opt".'),

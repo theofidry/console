@@ -15,8 +15,8 @@ namespace Fidry\Console\Tests\IO;
 
 use Fidry\Console\Input\IO;
 use PHPUnit\Framework\Assert;
-use function sprintf;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
+use function sprintf;
 
 final class TypeAssertions
 {

@@ -16,8 +16,8 @@ namespace Fidry\Console;
 use function array_map;
 use function explode;
 use function implode;
-use const PHP_EOL;
 use function str_replace;
+use const PHP_EOL;
 
 /**
  * Utility class which helps to compare command outputs.

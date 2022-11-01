@@ -23,6 +23,8 @@ use function str_replace;
 /**
  * @covers \Fidry\Console\Test\AppTester
  * @covers \Fidry\Console\Test\OutputAssertions
+ *
+ * @internal
  */
 final class AppTesterTest extends TestCase
 {
@@ -42,9 +44,9 @@ final class AppTesterTest extends TestCase
         OutputAssertions::assertSameOutput(
             <<<'EOT'
 
-            The project path is /home/runner/work/console/console.
-            
-            EOT,
+                The project path is /home/runner/work/console/console.
+
+                EOT,
             ExitCode::SUCCESS,
             $this->appTester,
         );
@@ -63,9 +65,9 @@ final class AppTesterTest extends TestCase
         OutputAssertions::assertSameOutput(
             <<<'EOT'
 
-            The project path is /path/to/console.
+                The project path is /path/to/console.
 
-            EOT,
+                EOT,
             ExitCode::SUCCESS,
             $this->appTester,
             $extraNormalization,

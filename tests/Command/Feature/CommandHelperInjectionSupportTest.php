@@ -19,6 +19,8 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * @covers \Fidry\Console\Command\SymfonyCommand
+ *
+ * @internal
  */
 final class CommandHelperInjectionSupportTest extends KernelTestCase
 {

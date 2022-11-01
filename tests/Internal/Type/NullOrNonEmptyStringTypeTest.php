@@ -18,6 +18,8 @@ use Fidry\Console\Tests\IO\TypeException;
 
 /**
  * @covers \Fidry\Console\Internal\Type\NullOrNonEmptyStringType
+ *
+ * @internal
  */
 final class NullOrNonEmptyStringTypeTest extends BaseTypeTest
 {
@@ -68,9 +70,9 @@ final class NullOrNonEmptyStringTypeTest extends BaseTypeTest
             [],
             new TypeException(
                 <<<'TXT'
-                Expected a null or scalar value. Got the value: "array (
-                )" for the argument or option "test".
-                TXT,
+                    Expected a null or scalar value. Got the value: "array (
+                    )" for the argument or option "test".
+                    TXT,
             ),
         ];
     }

@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Type;
 
-use function array_map;
 use Fidry\Console\InputAssert;
+use function array_map;
 use function sprintf;
 
 /**

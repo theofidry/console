@@ -24,31 +24,33 @@ use Symfony\Component\Console\Output\BufferedOutput;
  * @covers \Fidry\Console\Application\ApplicationRunner
  * @covers \Fidry\Console\Application\BaseApplication
  * @covers \Fidry\Console\Application\SymfonyApplication
+ *
+ * @internal
  */
 final class ApplicationWithLazyCommandsTest extends TestCase
 {
     private const EXPECTED = <<<'EOT'
-    help message
-    
-    Usage:
-      command [options] [arguments]
-    
-    Options:
-      -h, --help            Display help for the given command. When no command is given display help for the app:foo command
-      -q, --quiet           Do not output any message
-      -V, --version         Display this application version
-          --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
-      -n, --no-interaction  Do not ask any interactive question
-      -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
-    
-    Available commands:
-      completion    Dump the shell completion script
-      help          Display help for a command
-      list          List commands
-     app
-      app:lazy-foo  Lazy foo description
+        help message
 
-    EOT;
+        Usage:
+          command [options] [arguments]
+
+        Options:
+          -h, --help            Display help for the given command. When no command is given display help for the app:foo command
+          -q, --quiet           Do not output any message
+          -V, --version         Display this application version
+              --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
+          -n, --no-interaction  Do not ask any interactive question
+          -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+        Available commands:
+          completion    Dump the shell completion script
+          help          Display help for a command
+          list          List commands
+         app
+          app:lazy-foo  Lazy foo description
+
+        EOT;
 
     public function test_it_can_be_run(): void
     {

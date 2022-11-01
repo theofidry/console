@@ -59,7 +59,7 @@ class IO extends SymfonyStyle
     {
         return new self(
             new StringInput(''),
-            new NullOutput()
+            new NullOutput(),
         );
     }
 

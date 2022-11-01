@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Generator;
 
+use Fidry\Console\Internal\Type\InputType;
 use function array_map;
 use function array_unshift;
-use Fidry\Console\Internal\Type\InputType;
 use function implode;
 
 /**
