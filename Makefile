@@ -115,32 +115,38 @@ clear-cache:
 # or committed.
 vendor: composer.json
 	$(COMPOSER) update --no-scripts
-	$(TOUCH) "$@"
+	touch -c $@
+	touch -c $(PHPUNIT_BIN)
+	touch -c $(INFECTION_BIN)
 
 $(PHPUNIT_BIN): vendor
-	$(TOUCH) "$@"
+	touch -c $@
 
 $(INFECTION_BIN): vendor
-	$(TOUCH) "$@"
+	touch -c $@
 
 $(COVERAGE_DIR): $(PHPUNIT_BIN) src tests phpunit.xml.dist
 	$(PHPUNIT_COVERAGE)
-	$(TOUCH) "$@"
+	touch -c $@
 
 $(PHP_CS_FIXER_BIN): vendor
 ifndef SKIP_CS
 	composer bin php-cs-fixer install
+	touch -c $@
 endif
 
 $(PSALM_BIN): vendor
 ifndef SKIP_PSALM
 	composer bin psalm install
+	touch -c $@
 endif
 
 $(COVERS_VALIDATOR_BIN): vendor
 ifndef SKIP_COVERS_VALIDATOR
 	composer bin covers-validator install
+	touch -c $@
 endif
 
 src/Input/TypedInput.php: src vendor
 	./bin/dump-getters
+	touch -c $@
