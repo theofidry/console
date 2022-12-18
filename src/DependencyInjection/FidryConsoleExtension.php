@@ -25,7 +25,7 @@ final class FidryConsoleExtension extends Extension
     private const SERVICES_DIR = __DIR__.'/../../resources/config';
     private const HELPER_PATHS = [
         __DIR__.'/../../vendor/symfony/console/Helper',
-        __DIR__.'/../../../../vendor/symfony/console/Helper',
+        __DIR__.'/../../../../../vendor/symfony/console/Helper',
     ];
 
     public function load(array $configs, ContainerBuilder $container): void
