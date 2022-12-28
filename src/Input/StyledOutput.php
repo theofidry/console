@@ -20,6 +20,10 @@ use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\StyleInterface;
 use function key;
 
+/**
+ * Complements the Symfony Style interface with the methods present in
+ * SymfonyStyle that are not in the interface due to BC breaks concerns.
+ */
 interface StyledOutput extends StyleInterface
 {
     /**
