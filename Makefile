@@ -128,15 +128,39 @@ clean:
 	rm -rf tests/Integration/**/cache || true
 
 
+.PHONY: install_symfony4
+install_symfony4: ## Installs latest dependencies with Symfony4
+install_symfony4: vendor
+	SYMFONY_REQUIRE="4.4.*" composer update --no-scripts
+	touch -c vendor $(PHPUNIT_BIN) $(INFECTION_BIN)
+
+
+.PHONY: install_symfony5
+install_symfony5: ## Installs latest dependencies with Symfony5
+install_symfony5: vendor
+	SYMFONY_REQUIRE="5.4.*" composer update --no-scripts
+	touch -c vendor $(PHPUNIT_BIN) $(INFECTION_BIN)
+
+
+.PHONY: install_symfony6
+install_symfony6: ## Installs latest dependencies with Symfony6
+install_symfony6: vendor
+	SYMFONY_REQUIRE="6.*.*" composer update --no-scripts
+	touch -c vendor $(PHPUNIT_BIN) $(INFECTION_BIN)
+
+
 #
 # Rules
 #---------------------------------------------------------------------------
 
-vendor: composer.json $(wildcard composer.lock)
+vendor_install: composer.json $(wildcard composer.lock)
 	composer update --no-scripts
-	touch -c $@
+	touch -c vendor
 	touch -c $(PHPUNIT_BIN)
 	touch -c $(INFECTION_BIN)
+
+vendor:
+	$(MAKE) vendor_install
 
 $(PHPUNIT_BIN): vendor
 	touch -c $@

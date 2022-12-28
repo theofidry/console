@@ -8,6 +8,7 @@
     <php>
         <ini name="error_reporting" value="-1"/>
         <server name="APP_ENV" value="test" force="true" />
+        <env name="APP_SECRET" value="91990bb4e07bb964fc2eaae3066c17dc"/>
         <server name="KERNEL_CLASS" value="Fidry\Console\Tests\Integration\Kernel" force="true" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[self]=0"/>
     </php>

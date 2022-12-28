@@ -27,8 +27,6 @@ jobs:
                       symfony-version: '6.*.*'
                     - php: '8.0'
                       symfony-version: '6.*.*'
-        env:
-            SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
 
         steps:
             -   name: Check out repository code
@@ -46,6 +44,8 @@ jobs:
                 run: composer config extra.symfony.require ${{ matrix.symfony-version }}
 
             # See https://symfony.com/doc/current/bundles/best_practices.html#require-a-specific-symfony-version
+            # This is done despite having flex locally because locally the dependencies are already
+            # installed once. Here the local flex will not kick in yet because not installed yet.
             -   name: Install Flex
                 if: ${{ matrix.symfony-version }}
                 run: |
