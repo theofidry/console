@@ -41,17 +41,6 @@ jobs:
                     tools: composer
                     coverage: none
 
-            -   name: Enforce the Symfony version used
-                if: ${{ matrix.symfony-version }}
-                run: composer config extra.symfony.require ${{ matrix.symfony-version }}
-
-            # See https://symfony.com/doc/current/bundles/best_practices.html#require-a-specific-symfony-version
-            -   name: Install Flex
-                if: ${{ matrix.symfony-version }}
-                run: |
-                    composer global config --no-plugins allow-plugins.symfony/flex true
-                    composer global require --no-progress --no-scripts --no-plugins symfony/flex
-
             -   name: Install Composer dependencies
                 uses: ramsey/composer-install@v2
                 with:

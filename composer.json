@@ -29,6 +29,7 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.4.3",
         "symfony/dependency-injection": "^4.4 || ^5.4 || ^6.1",
+        "symfony/flex": "^2.2",
         "symfony/framework-bundle": "^4.4 || ^5.4 || ^6.1",
         "symfony/http-kernel": "^4.4 || ^5.4 || ^6.1",
         "symfony/phpunit-bridge": "^4.4.47 || ^5.4 || ^6.0",
@@ -45,7 +46,8 @@
         "allow-plugins": {
             "ergebnis/composer-normalize": true,
             "infection/extension-installer": true,
-            "bamarni/composer-bin-plugin": true
+            "bamarni/composer-bin-plugin": true,
+            "symfony/flex": true
         }
     },
     "extra": {
@@ -65,6 +67,12 @@
     "autoload-dev": {
         "psr-4": {
             "Fidry\\Console\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         }
     }
 }
