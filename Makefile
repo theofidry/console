@@ -54,6 +54,11 @@ ifndef SKIP_CS
 	$(PHP_CS_FIXER)
 endif
 
+.PHONY: cs_lint
+cs_lint: ## Runs the CS linters
+cs_lint: $(PHP_CS_FIXER_BIN)
+	$(PHP_CS_FIXER) --dry-run --verbose
+
 
 .PHONY: psalm
 psalm: ## Runs Psalm
