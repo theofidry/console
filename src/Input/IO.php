@@ -34,7 +34,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 /**
  * @final
  */
-class IO extends SymfonyStyle
+class IO extends SymfonyStyle implements StyledOutput
 {
     private InputInterface $input;
     private OutputInterface $output;

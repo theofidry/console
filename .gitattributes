@@ -5,3 +5,4 @@ bin export-ignore
 doc export-ignore
 tests export-ignore
 vendor-bin export-ignore
+stubs export-ignore
