@@ -29,7 +29,7 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.4.3",
         "symfony/dependency-injection": "^4.4 || ^5.4 || ^6.1",
-        "symfony/flex": "^2.2",
+        "symfony/flex": "^1.19 || ^2.2",
         "symfony/framework-bundle": "^4.4 || ^5.4 || ^6.1",
         "symfony/http-kernel": "^4.4 || ^5.4 || ^6.1",
         "symfony/phpunit-bridge": "^4.4.47 || ^5.4 || ^6.0",
