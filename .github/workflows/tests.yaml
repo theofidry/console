@@ -40,7 +40,17 @@ jobs:
                     coverage: none
 
             -   name: Enforce the Symfony version used
+                if: ${{ matrix.symfony-version }}
                 run: composer config extra.symfony.require ${{ matrix.symfony-version }}
+
+            # See https://symfony.com/doc/current/bundles/best_practices.html#require-a-specific-symfony-version
+            # This is done despite having flex locally because locally the dependencies are already
+            # installed once. Here the local flex will not kick in yet because not installed yet.
+            -   name: Install Flex
+                if: ${{ matrix.symfony-version }}
+                run: |
+                    composer global config --no-plugins allow-plugins.symfony/flex true
+                    composer global require --no-progress --no-scripts --no-plugins symfony/flex
 
             -   name: Install Composer dependencies
                 uses: ramsey/composer-install@v2
