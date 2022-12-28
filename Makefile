@@ -134,11 +134,17 @@ $(COVERAGE_DIR): $(PHPUNIT_BIN) src tests phpunit.xml.dist
 	$(PHPUNIT_COVERAGE)
 	touch -c $@
 
+php_cs_fixer_install: $(PHP_CS_FIXER_BIN)
+	# Nothing to do
+
 $(PHP_CS_FIXER_BIN): vendor
 ifndef SKIP_CS
 	composer bin php-cs-fixer install
 	touch -c $@
 endif
+
+psalm_install: $(PSALM_BIN)
+	# Nothing to do
 
 $(PSALM_BIN): vendor
 ifndef SKIP_PSALM
