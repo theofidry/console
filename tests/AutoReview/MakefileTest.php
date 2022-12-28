@@ -34,19 +34,16 @@ final class MakefileTest extends BaseMakefileTestCase
             [32m#
             # Commands
             #---------------------------------------------------------------------------[0m
-            [33mhelp:[0m  Shows the help
-            [33mdefault:[0m  Runs the default task
+            [33mhelp:[0m 	 Shows the help
             [33mdump:[0m	 Dumps the getter
-            [33mcs:[0m  Runs PHP-CS-Fixer
+            [33mcheck:[0m   Runs all the checks
             [33mautoreview:[0m  Runs the AutoReview checks
-            [33mcs_lint:[0m  Runs the CS linters
-            [33mpsalm:[0m  Runs Psalm
-            [33minfection:[0m  Runs infection
-            [33mtest:[0m  Runs all the tests
-            [33mvalidate-package:[0m  Validates the Composer package
-            [33mphpunit:[0m  Runs PHPUnit
-            [33mcoverage:[0m  Runs PHPUnit with code coverage
-            [33mclear-cache:[0m  Clears the integration test app cache
+            [33mtest:[0m 	     Runs the tests
+            [33mcs:[0m 	     Runs the CS fixers
+            [33mcs_lint:[0m     Runs the CS linters
+            [33mphpunit_coverage_infection:[0m  Runs PHPUnit tests with test coverage
+            [33mphpunit_coverage_html:[0m	     Runs PHPUnit with code coverage with HTML report
+            [33mclean:[0m   Cleans up all artefacts
 
             EOF;
     }
