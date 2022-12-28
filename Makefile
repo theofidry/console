@@ -57,7 +57,7 @@ endif
 
 .PHONY: autoreview
 autoreview: ## Runs the AutoReview checks
-autoreview: cs_lint psalm phpunit_autoreview
+autoreview: cs_lint psalm covers_validator phpunit_autoreview
 
 
 .PHONY: cs_lint
@@ -83,7 +83,7 @@ endif
 
 .PHONY: test
 test: ## Runs all the tests
-test: clear-cache validate-package covers-validator psalm coverage infection
+test: clear-cache validate-package covers_validator psalm coverage infection
 
 
 .PHONY: validate-package
@@ -92,9 +92,8 @@ validate-package: vendor
 	composer validate --strict
 
 
-.PHONY: covers-validator
-covers-validator: ## Validates the PHPUnit @covers annotations
-covers-validator: $(COVERS_VALIDATOR_BIN) vendor
+.PHONY: covers_validator
+covers_validator: $(COVERS_VALIDATOR_BIN) vendor
 ifndef SKIP_COVERS_VALIDATOR
 	$(COVERS_VALIDATOR)
 endif
@@ -162,6 +161,9 @@ ifndef SKIP_PSALM
 	composer bin psalm install
 	touch -c $@
 endif
+
+covers_validator_install: $(COVERS_VALIDATOR_BIN)
+	# Nothing to do
 
 $(COVERS_VALIDATOR_BIN): vendor
 ifndef SKIP_COVERS_VALIDATOR
