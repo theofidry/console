@@ -22,6 +22,11 @@ jobs:
                     - '4.4.*'
                     - '5.4.*'
                     - '6.*.*'
+                exclude:
+                    - php: '7.4'
+                      symfony-version: '6.*.*'
+                    - php: '8.0'
+                      symfony-version: '6.*.*'
         env:
             SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
 
