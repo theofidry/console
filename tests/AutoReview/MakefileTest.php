@@ -44,7 +44,6 @@ final class MakefileTest extends BaseMakefileTestCase
             [33minfection:[0m  Runs infection
             [33mtest:[0m  Runs all the tests
             [33mvalidate-package:[0m  Validates the Composer package
-            [33mcovers-validator:[0m  Validates the PHPUnit @covers annotations
             [33mphpunit:[0m  Runs PHPUnit
             [33mcoverage:[0m  Runs PHPUnit with code coverage
             [33mclear-cache:[0m  Clears the integration test app cache
