@@ -1,0 +1,50 @@
+name: AutoReview
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        name: AutoReview
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.1'
+                    tools: composer
+                    coverage: none
+
+            -   name: Install Composer dependencies
+                uses: ramsey/composer-install@v2
+
+            -   name: Install PHP-CS-Fixer Composer dependencies
+                uses: ramsey/composer-install@v2
+                with:
+                    working-directory: 'vendor-bin/php-cs-fixer'
+
+            -   name: Ensure PHP-CS-Fixer is properly installed
+                run: make php_cs_fixer_install
+
+            -   name: Install Psalm Composer dependencies
+                uses: ramsey/composer-install@v2
+                with:
+                    working-directory: 'vendor-bin/psalm'
+
+            -   name: Ensure Psalm is properly installed
+                run: make psalm_install
+
+            -   name: Install CoversValidator Composer dependencies
+                uses: ramsey/composer-install@v2
+                with:
+                    working-directory: 'vendor-bin/covers-validator'
+
+            -   name: Ensure CoversValidator is properly installed
+                run: make covers_validator_install
+
+            -   run: make autoreview --keep-going

@@ -55,6 +55,17 @@ ifndef SKIP_CS
 endif
 
 
+.PHONY: autoreview
+autoreview: ## Runs the AutoReview checks
+autoreview: cs_lint psalm covers_validator phpunit_autoreview
+
+
+.PHONY: cs_lint
+cs_lint: ## Runs the CS linters
+cs_lint: $(PHP_CS_FIXER_BIN)
+	$(PHP_CS_FIXER) --dry-run --verbose
+
+
 .PHONY: psalm
 psalm: ## Runs Psalm
 psalm: $(PSALM_BIN) vendor
@@ -72,7 +83,7 @@ endif
 
 .PHONY: test
 test: ## Runs all the tests
-test: clear-cache validate-package covers-validator psalm coverage infection
+test: clear-cache validate-package covers_validator psalm coverage infection
 
 
 .PHONY: validate-package
@@ -81,9 +92,8 @@ validate-package: vendor
 	composer validate --strict
 
 
-.PHONY: covers-validator
-covers-validator: ## Validates the PHPUnit @covers annotations
-covers-validator: $(COVERS_VALIDATOR_BIN) vendor
+.PHONY: covers_validator
+covers_validator: $(COVERS_VALIDATOR_BIN) vendor
 ifndef SKIP_COVERS_VALIDATOR
 	$(COVERS_VALIDATOR)
 endif
@@ -93,6 +103,11 @@ endif
 phpunit: ## Runs PHPUnit
 phpunit: $(PHPUNIT_BIN) vendor
 	$(PHPUNIT)
+
+
+.PHONY: phpunit_autoreview
+phpunit_autoreview: $(PHPUNIT_BIN) vendor
+	$(PHPUNIT) --testsuite=AutoReview
 
 
 .PHONY: coverage
@@ -129,17 +144,26 @@ $(COVERAGE_DIR): $(PHPUNIT_BIN) src tests phpunit.xml.dist
 	$(PHPUNIT_COVERAGE)
 	touch -c $@
 
+php_cs_fixer_install: $(PHP_CS_FIXER_BIN)
+	# Nothing to do
+
 $(PHP_CS_FIXER_BIN): vendor
 ifndef SKIP_CS
 	composer bin php-cs-fixer install
 	touch -c $@
 endif
 
+psalm_install: $(PSALM_BIN)
+	# Nothing to do
+
 $(PSALM_BIN): vendor
 ifndef SKIP_PSALM
 	composer bin psalm install
 	touch -c $@
 endif
+
+covers_validator_install: $(COVERS_VALIDATOR_BIN)
+	# Nothing to do
 
 $(COVERS_VALIDATOR_BIN): vendor
 ifndef SKIP_COVERS_VALIDATOR
