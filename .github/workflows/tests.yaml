@@ -27,8 +27,6 @@ jobs:
                       symfony-version: '6.*.*'
                     - php: '8.0'
                       symfony-version: '6.*.*'
-        env:
-            SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
 
         steps:
             -   name: Check out repository code
@@ -40,6 +38,9 @@ jobs:
                     php-version: "${{ matrix.php }}"
                     tools: composer
                     coverage: none
+
+            -   name: Enforce the Symfony version used
+                run: composer config extra.symfony.require ${{ matrix.symfony-version }}
 
             -   name: Install Composer dependencies
                 uses: ramsey/composer-install@v2
