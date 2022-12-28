@@ -8,7 +8,7 @@ on:
 jobs:
     tests:
         runs-on: ubuntu-latest
-        name: Test ${{ matrix.php }}
+        name: Test ${{ matrix.php }}; Symfony ${{ matrix.symfony-version }} (${{ matrix.dependency }})
         strategy:
             fail-fast: false
             matrix:
@@ -17,6 +17,18 @@ jobs:
                     - '8.0'
                     - '8.1'
                     - '8.2'
+                dependency: [ highest, lowest ]
+                symfony-version:
+                    - '4.4.*'
+                    - '5.4.*'
+                    - '6.*.*'
+                exclude:
+                    - php: '7.4'
+                      symfony-version: '6.*.*'
+                    - php: '8.0'
+                      symfony-version: '6.*.*'
+        env:
+            SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
 
         steps:
             -   name: Check out repository code
@@ -29,8 +41,21 @@ jobs:
                     tools: composer
                     coverage: none
 
+            -   name: Enforce the Symfony version used
+                if: ${{ matrix.symfony-version }}
+                run: composer config extra.symfony.require ${{ matrix.symfony-version }}
+
+            # See https://symfony.com/doc/current/bundles/best_practices.html#require-a-specific-symfony-version
+            -   name: Install Flex
+                if: ${{ matrix.symfony-version }}
+                run: |
+                    composer global config --no-plugins allow-plugins.symfony/flex true
+                    composer global require --no-progress --no-scripts --no-plugins symfony/flex
+
             -   name: Install Composer dependencies
                 uses: ramsey/composer-install@v2
+                with:
+                    dependency-versions: ${{ matrix.dependency }}
 
             -   run: make phpunit
 
@@ -52,3 +77,22 @@ jobs:
                 uses: ramsey/composer-install@v2
 
             -   run: make infection
+
+    # This is a "trick", a meta task which does not change, and we can use in
+    # the protected branch rules as opposed to the individual tests which
+    # may change regularly.
+    validate-tests:
+        name: Check status
+        runs-on: ubuntu-latest
+        needs:
+            - tests
+            - infection
+        if: always()
+        steps:
+            - name: Successful run
+              if: ${{ !(contains(needs.*.result, 'failure')) }}
+              run: exit 0
+
+            - name: Failing run
+              if: ${{ contains(needs.*.result, 'failure') }}
+              run: exit 1
