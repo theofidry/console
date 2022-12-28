@@ -61,3 +61,23 @@ jobs:
 
             -   name: Run Psalm
                 run: make psalm
+
+    phpunit:
+        runs-on: ubuntu-latest
+        name: PHPUnit
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.1'
+                    tools: composer
+                    coverage: none
+
+            -   name: Install Composer dependencies
+                uses: ramsey/composer-install@v2
+
+            -   name: Run PHPUnit AutoReview test suite
+                run: make phpunit_autoreview

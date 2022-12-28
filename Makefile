@@ -100,6 +100,11 @@ phpunit: $(PHPUNIT_BIN) vendor
 	$(PHPUNIT)
 
 
+.PHONY: phpunit_autoreview
+phpunit_autoreview: $(PHPUNIT_BIN) vendor
+	$(PHPUNIT) --testsuite=AutoReview
+
+
 .PHONY: coverage
 coverage: ## Runs PHPUnit with code coverage
 coverage: $(PHPUNIT_BIN) vendor
