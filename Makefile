@@ -54,6 +54,11 @@ ifndef SKIP_CS
 	$(PHP_CS_FIXER)
 endif
 
+.PHONY: cs_lint
+cs_lint: ## Runs the CS linters
+cs_lint: $(PHP_CS_FIXER_BIN)
+	$(PHP_CS_FIXER) --dry-run --verbose
+
 
 .PHONY: psalm
 psalm: ## Runs Psalm
@@ -129,11 +134,17 @@ $(COVERAGE_DIR): $(PHPUNIT_BIN) src tests phpunit.xml.dist
 	$(PHPUNIT_COVERAGE)
 	touch -c $@
 
+php_cs_fixer_install: $(PHP_CS_FIXER_BIN)
+	# Nothing to do
+
 $(PHP_CS_FIXER_BIN): vendor
 ifndef SKIP_CS
 	composer bin php-cs-fixer install
 	touch -c $@
 endif
+
+psalm_install: $(PSALM_BIN)
+	# Nothing to do
 
 $(PSALM_BIN): vendor
 ifndef SKIP_PSALM

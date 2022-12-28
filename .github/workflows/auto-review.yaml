@@ -1,0 +1,63 @@
+name: AutoReview
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+
+jobs:
+    cs-lint:
+        runs-on: ubuntu-latest
+        name: CS Lint
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.1'
+                    tools: composer
+                    coverage: none
+
+            -   name: Install Composer dependencies
+                uses: ramsey/composer-install@v2
+
+            -   name: Install PHP-CS-Fixer Composer dependencies
+                uses: ramsey/composer-install@v2
+                with:
+                    working-directory: 'vendor-bin/php-cs-fixer'
+
+            -   name: Ensure PHP-CS-Fixer is properly installed
+                run: make php_cs_fixer_install
+
+            -   name: Lint CS
+                run: make cs_lint
+
+    psalm:
+        runs-on: ubuntu-latest
+        name: Psalm
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.1'
+                    tools: composer
+                    coverage: none
+
+            -   name: Install Composer dependencies
+                uses: ramsey/composer-install@v2
+
+            -   name: Install Psalm Composer dependencies
+                uses: ramsey/composer-install@v2
+                with:
+                    working-directory: 'vendor-bin/psalm'
+
+            -   name: Ensure Psalm is properly installed
+                run: make psalm_install
+
+            -   name: Run Psalm
+                run: make psalm
