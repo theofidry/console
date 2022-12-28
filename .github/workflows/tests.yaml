@@ -8,7 +8,7 @@ on:
 jobs:
     tests:
         runs-on: ubuntu-latest
-        name: Test ${{ matrix.php }}
+        name: Test ${{ matrix.php }}; Symfony ${{ matrix.symfony-version }} (${{ matrix.dependency }})
         strategy:
             fail-fast: false
             matrix:
