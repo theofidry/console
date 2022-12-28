@@ -30,7 +30,7 @@ final class MakefileTest extends BaseMakefileTestCase
         return <<<'EOF'
             [33mUsage:[0m
               make TARGET
-            
+
             [32m#
             # Commands
             #---------------------------------------------------------------------------[0m
