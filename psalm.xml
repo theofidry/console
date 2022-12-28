@@ -20,9 +20,13 @@
 
     <projectFiles>
         <directory name="src"/>
+        <file name="stubs/StyledOutput.php"/>
         <directory name="tests"/>
 
         <ignoreFiles>
+            <file name="src/Input/StyledOutput.php"/>
+            <file name="src/Input/StyledOutputSymfony5.php"/>
+            <file name="src/Input/StyledOutputSymfony6.php"/>
             <directory name="vendor"/>
             <directory name="tests/Integration/var"/>
             <file name="tests/Internal/Type/ConfigurableType.php"/>
@@ -51,7 +55,7 @@
         <MissingReturnType>
             <errorLevel type="suppress">
                 <!-- Can be removed once 7.4 & Symfony 5.4 support is dropped. -->
-                <file name="src/Input/StyledOutput.php"/>
+                <file name="stubs/StyledOutput.php"/>
             </errorLevel>
         </MissingReturnType>
 

@@ -13,59 +13,17 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Helper\TableSeparator;
-use Symfony\Component\Console\Question\Question;
-use Symfony\Component\Console\Style\StyleInterface;
-use function key;
+use Composer\InstalledVersions;
+use function Safe\class_alias;
+use function version_compare;
 
-/**
- * Complements the Symfony Style interface with the methods present in
- * SymfonyStyle that are not in the interface due to BC breaks concerns.
- */
-interface StyledOutput extends StyleInterface
-{
-    /**
-     * Formats a command comment.
-     *
-     * @param string|array $message
-     */
-    public function comment($message);
-
-    /**
-     * Formats an info message.
-     *
-     * @param string|array $message
-     */
-    public function info($message);
-
-    /**
-     * Formats a horizontal table.
-     */
-    public function horizontalTable(array $headers, array $rows);
-
-    /**
-     * Formats a list of key/value horizontally.
-     *
-     * Each row can be one of:
-     * * 'A title'
-     * * ['key' => 'value']
-     * * new TableSeparator()
-     *
-     * @param string|array|TableSeparator $list
-     */
-    public function definitionList(...$list);
-
-    /**
-     * @see ProgressBar::iterate()
-     */
-    public function progressIterate(iterable $iterable, ?int $max = null): iterable;
-
-    /**
-     * @return mixed
-     */
-    public function askQuestion(Question $question);
-
-    public function createTable(): Table;
-}
+class_alias(
+    (string) version_compare(
+        (string) InstalledVersions::getPrettyVersion('symfony/console'),
+        'v6.0',
+        '>=',
+    )
+        ? StyledOutputSymfony6::class
+        : StyledOutputSymfony5::class,
+    \Fidry\Console\Input\StyledOutput::class,
+);
