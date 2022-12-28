@@ -36,7 +36,7 @@ jobs:
 
     psalm:
         runs-on: ubuntu-latest
-        name: Lint ${{ matrix.check.name }}
+        name: Psalm
         steps:
             -   name: Checkout
                 uses: actions/checkout@v3
