@@ -39,4 +39,12 @@ jobs:
             -   name: Ensure Psalm is properly installed
                 run: make psalm_install
 
+            -   name: Install CoversValidator Composer dependencies
+                uses: ramsey/composer-install@v2
+                with:
+                    working-directory: 'vendor-bin/covers-validator'
+
+            -   name: Ensure CoversValidator is properly installed
+                run: make covers_validator_install
+
             -   run: make autoreview --keep-going
