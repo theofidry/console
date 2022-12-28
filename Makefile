@@ -54,6 +54,12 @@ ifndef SKIP_CS
 	$(PHP_CS_FIXER)
 endif
 
+
+.PHONY: autoreview
+autoreview: ## Runs the AutoReview checks
+autoreview: cs_lint psalm phpunit_autoreview
+
+
 .PHONY: cs_lint
 cs_lint: ## Runs the CS linters
 cs_lint: $(PHP_CS_FIXER_BIN)

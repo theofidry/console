@@ -38,6 +38,7 @@ final class MakefileTest extends BaseMakefileTestCase
             [33mdefault:[0m  Runs the default task
             [33mdump:[0m	 Dumps the getter
             [33mcs:[0m  Runs PHP-CS-Fixer
+            [33mautoreview:[0m  Runs the AutoReview checks
             [33mcs_lint:[0m  Runs the CS linters
             [33mpsalm:[0m  Runs Psalm
             [33minfection:[0m  Runs infection
