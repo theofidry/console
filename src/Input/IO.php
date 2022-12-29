@@ -105,7 +105,7 @@ final class IO extends SymfonyStyle implements InputInterface, StyledOutput
     /**
      * @param non-empty-string $name
      */
-    public function getArgument(string $name): TypedInput
+    public function getTypedArgument(string $name): TypedInput
     {
         return TypedInput::fromArgument(
             $this->input->getArgument($name),
@@ -116,7 +116,7 @@ final class IO extends SymfonyStyle implements InputInterface, StyledOutput
     /**
      * @param non-empty-string $name
      */
-    public function getOption(string $name): TypedInput
+    public function getTypedOption(string $name): TypedInput
     {
         return TypedInput::fromOption(
             $this->input->getOption($name),

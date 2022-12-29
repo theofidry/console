@@ -1,17 +1,19 @@
 {
     "name": "fidry/console",
-    "type": "library",
     "description": "Library to create CLI applications",
     "license": "MIT",
-    "keywords": ["console", "cli", "symfony"],
+    "type": "library",
+    "keywords": [
+        "console",
+        "cli",
+        "symfony"
+    ],
     "authors": [
         {
             "name": "Théo Fidry",
             "email": "theo.fidry@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": "^7.4.0 || ^8.0.0",
         "symfony/console": "^5.4 || ^6.1",
@@ -41,24 +43,8 @@
         "symfony/framework-bundle": "<5.4.0 || >=6.0.0,<6.1.0",
         "symfony/http-kernel": "<5.4.0 || >=6.0.0,<6.1.0"
     },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true,
-            "infection/extension-installer": true,
-            "bamarni/composer-bin-plugin": true,
-            "symfony/flex": true
-        }
-    },
-    "extra": {
-        "bamarni-bin": {
-            "bin-links": false,
-            "forward-command": false
-        },
-        "branch-alias": {
-            "dev-main": "1.0.x-dev"
-        }
-    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Fidry\\Console\\": "src"
@@ -69,10 +55,22 @@
             "Fidry\\Console\\Tests\\": "tests"
         }
     },
-    "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true,
+            "bamarni/composer-bin-plugin": true,
+            "symfony/flex": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": false,
+            "forward-command": false
+        },
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
         }
     }
 }

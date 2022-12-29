@@ -67,13 +67,21 @@ test: composer_validate_package infection
 
 .PHONY: cs
 cs: 	    ## Runs the CS fixers
-cs: php_cs_fixer
+cs: composer_normalize php_cs_fixer
 
 
 .PHONY: cs_lint
 cs_lint:    ## Runs the CS linters
-cs_lint: php_cs_fixer_lint
+cs_lint: composer_normalize_lint php_cs_fixer_lint
 
+
+.PHONY: composer_normalize
+composer_normalize: vendor
+	composer normalize
+
+.PHONY: composer_normalize_lint
+composer_normalize_lint: vendor
+	composer normalize --dry-run
 
 .PHONY: php_cs_fixer
 php_cs_fixer: $(PHP_CS_FIXER_BIN)
@@ -126,13 +134,6 @@ phpunit_coverage_html: $(PHPUNIT_BIN) vendor
 clean:  ## Cleans up all artefacts
 clean:
 	rm -rf tests/Integration/**/cache || true
-
-
-.PHONY: install_symfony4
-install_symfony4: ## Installs latest dependencies with Symfony4
-install_symfony4: vendor
-	SYMFONY_REQUIRE="4.4.*" composer update --no-scripts
-	touch -c vendor $(PHPUNIT_BIN) $(INFECTION_BIN)
 
 
 .PHONY: install_symfony5

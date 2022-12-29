@@ -118,8 +118,8 @@ final class CommandWithService implements Command
     public function execute(IO $io): int
     {
         $this->service->call(
-            $io->getArgument('username')->asStringNonEmptyList(),
-            $io->getArgument('age')->asNullablePositiveInteger(),
+            $io->getTypedArgument('username')->asStringNonEmptyList(),
+            $io->getTypedArgument('age')->asNullablePositiveInteger(),
         );
 
         return ExitCode::SUCCESS;
