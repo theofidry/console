@@ -11,8 +11,8 @@ COVERAGE_JUNIT = $(COVERAGE_DIR)/phpunit.junit.xml
 COVERAGE_HTML_DIR = $(COVERAGE_DIR)/html
 
 INFECTION_BIN = vendor/bin/infection
-INFECTION = php -d zend.enable_gc=0 $(INFECTION_BIN) --skip-initial-tests --coverage=$(COVERAGE_DIR) --only-covered --show-mutations --min-msi=100 --min-covered-msi=100 --ansi --threads=max
-INFECTION_WITH_INITIAL_TESTS = php -d zend.enable_gc=0 $(INFECTION_BIN) --only-covered --show-mutations --min-msi=$(TARGET_MSI) --min-covered-msi=$(TARGET_MSI) --ansi --threads=max
+INFECTION = SYMFONY_DEPRECATIONS_HELPER="disabled=1" php -d zend.enable_gc=0 $(INFECTION_BIN) --skip-initial-tests --coverage=$(COVERAGE_DIR) --only-covered --show-mutations --min-msi=100 --min-covered-msi=100 --ansi --threads=max
+INFECTION_WITH_INITIAL_TESTS = SYMFONY_DEPRECATIONS_HELPER="disabled=1" php -d zend.enable_gc=0 $(INFECTION_BIN) --only-covered --show-mutations --min-msi=100 --min-covered-msi=100 --ansi --threads=max
 
 PHPUNIT_BIN = vendor/bin/phpunit
 PHPUNIT = php -d zend.enable_gc=0 $(PHPUNIT_BIN)
