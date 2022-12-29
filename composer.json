@@ -72,11 +72,5 @@
         "branch-alias": {
             "dev-main": "1.0.x-dev"
         }
-    },
-    "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        }
     }
 }
