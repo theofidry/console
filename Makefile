@@ -67,13 +67,17 @@ test: composer_validate_package infection
 
 .PHONY: cs
 cs: 	    ## Runs the CS fixers
-cs: php_cs_fixer
+cs: gitignore_sort php_cs_fixer
 
 
 .PHONY: cs_lint
 cs_lint:    ## Runs the CS linters
 cs_lint: php_cs_fixer_lint
 
+
+.PHONY: gitignore_sort
+gitignore_sort:
+	LC_ALL=C sort -u .gitignore -o .gitignore
 
 .PHONY: php_cs_fixer
 php_cs_fixer: $(PHP_CS_FIXER_BIN)

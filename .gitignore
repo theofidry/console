@@ -1,33 +1,22 @@
-/.idea/
-/dist/
+
+.phpunit.result.cache
 /.composer-cache/
+/.env.*.local
+/.env.local
+/.env.local.php
+/.idea/
 /.php-cs-fixer.cache
 /.phpunit.result.cache
 /.psalm/
 /composer.lock
+/config/secrets/prod/prod.decrypt.private.php
+/dist/
 /infection.log
 /lsp/
+/phpunit.xml
+/public/bundles/
 /tests/Integration/var/cache/
 /tests/Integration/var/logs/
-/vendor/
-/vendor-bin/*/vendor/
-
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
 /var/
+/vendor-bin/*/vendor/
 /vendor/
-###< symfony/framework-bundle ###
-
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
-
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
-/phpunit.xml
-###< symfony/phpunit-bridge ###
