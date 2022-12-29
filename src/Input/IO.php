@@ -31,15 +31,11 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-/**
- * @method string __toString()
- */
 final class IO extends SymfonyStyle implements InputInterface, StyledOutput
 {
     use DecoratesInput;
 
     private OutputInterface $output;
-    private SymfonyStyle $styledOutput;
 
     public function __construct(
         InputInterface $input,
@@ -49,7 +45,6 @@ final class IO extends SymfonyStyle implements InputInterface, StyledOutput
 
         $this->input = $input;
         $this->output = $output;
-        $this->styledOutput = new SymfonyStyle($output);
     }
 
     public static function createDefault(): self

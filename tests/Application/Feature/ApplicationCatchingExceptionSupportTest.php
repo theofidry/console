@@ -28,6 +28,9 @@ use UnexpectedValueException;
  */
 final class ApplicationCatchingExceptionSupportTest extends TestCase
 {
+    /**
+     * @group legacy
+     */
     public function test_it_can_show_the_list_of_the_available_commands(): void
     {
         $input = new StringInput('app:fail');

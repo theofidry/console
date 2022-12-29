@@ -30,7 +30,7 @@ use function func_get_args;
 /**
  * @internal
  */
-trait DecoratesInputSymfony6
+trait DecoratesInput
 {
     private InputInterface $input;
 

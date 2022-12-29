@@ -34,15 +34,9 @@ trait DecoratesInputSymfony5
 {
     private InputInterface $input;
 
-    /**
-     * @param non-empty-string $name
-     */
-    public function getArgument(string $name): TypedInput
+    public function getArgument(string $name)
     {
-        return TypedInput::fromArgument(
-            $this->input->getArgument($name),
-            $name,
-        );
+        return $this->input->getArgument(...func_get_args());
     }
 
     public function getFirstArgument(): ?string
@@ -98,15 +92,9 @@ trait DecoratesInputSymfony5
         return $this->input->setOption(...func_get_args());
     }
 
-    /**
-     * @param non-empty-string $name
-     */
-    public function getOption(string $name): TypedInput
+    public function getOption(string $name)
     {
-        return TypedInput::fromOption(
-            $this->input->getOption($name),
-            $name,
-        );
+        return $this->input->getOption(...func_get_args());
     }
 
     /**
