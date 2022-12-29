@@ -112,12 +112,4 @@ final class IO extends SymfonyStyle implements InputInterface, StyledOutput
             $name,
         );
     }
-
-    /**
-     * @param non-empty-string $name
-     */
-    public function hasParameterOption(string $name, bool $onlyRealParams = false): bool
-    {
-        return $this->input->hasParameterOption($name, $onlyRealParams);
-    }
 }
