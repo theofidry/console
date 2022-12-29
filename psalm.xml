@@ -20,10 +20,14 @@
 
     <projectFiles>
         <directory name="src"/>
+        <file name="stubs/DecoratesInput.php"/>
         <file name="stubs/StyledOutput.php"/>
         <directory name="tests"/>
 
         <ignoreFiles>
+            <file name="src/Input/DecoratesInput.php"/>
+            <file name="src/Input/DecoratesInputSymfony5.php"/>
+            <file name="src/Input/DecoratesInputSymfony6.php"/>
             <file name="src/Input/StyledOutput.php"/>
             <file name="src/Input/StyledOutputSymfony5.php"/>
             <file name="src/Input/StyledOutputSymfony6.php"/>
@@ -55,6 +59,7 @@
         <MissingReturnType>
             <errorLevel type="suppress">
                 <!-- Can be removed once 7.4 & Symfony 5.4 support is dropped. -->
+                <file name="stubs/DecoratesInput.php"/>
                 <file name="stubs/StyledOutput.php"/>
             </errorLevel>
         </MissingReturnType>

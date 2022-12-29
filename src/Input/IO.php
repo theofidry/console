@@ -31,16 +31,16 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-/**
- * @final
- */
-class IO extends SymfonyStyle implements StyledOutput
+final class IO extends SymfonyStyle implements InputInterface, StyledOutput
 {
-    private InputInterface $input;
+    use DecoratesInput;
+
     private OutputInterface $output;
 
-    public function __construct(InputInterface $input, OutputInterface $output)
-    {
+    public function __construct(
+        InputInterface $input,
+        OutputInterface $output
+    ) {
         parent::__construct($input, $output);
 
         $this->input = $input;
@@ -81,11 +81,6 @@ class IO extends SymfonyStyle implements StyledOutput
         return $this->input;
     }
 
-    public function isInteractive(): bool
-    {
-        return $this->input->isInteractive();
-    }
-
     public function withOutput(OutputInterface $output): self
     {
         return new self($this->input, $output);
@@ -116,13 +111,5 @@ class IO extends SymfonyStyle implements StyledOutput
             $this->input->getOption($name),
             $name,
         );
-    }
-
-    /**
-     * @param non-empty-string $name
-     */
-    public function hasParameterOption(string $name, bool $onlyRealParams = false): bool
-    {
-        return $this->input->hasParameterOption($name, $onlyRealParams);
     }
 }
