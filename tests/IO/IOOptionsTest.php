@@ -65,7 +65,7 @@ final class IOOptionsTest extends TestCase
         $this->expectExceptionMessage('This is my custom error message. Previous message: Expected an integer string. Got "\'\'" for the option "opt".');
 
         $io
-            ->getOption(self::OPTION_NAME)
+            ->getTypedOption(self::OPTION_NAME)
             ->asNatural('This is my custom error message. Previous message: %s');
     }
 
