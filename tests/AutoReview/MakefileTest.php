@@ -44,7 +44,6 @@ final class MakefileTest extends BaseMakefileTestCase
             [33mphpunit_coverage_infection:[0m  Runs PHPUnit tests with test coverage
             [33mphpunit_coverage_html:[0m	     Runs PHPUnit with code coverage with HTML report
             [33mclean:[0m   Cleans up all artefacts
-            [33minstall_symfony4:[0m  Installs latest dependencies with Symfony4
             [33minstall_symfony5:[0m  Installs latest dependencies with Symfony5
             [33minstall_symfony6:[0m  Installs latest dependencies with Symfony6
 
