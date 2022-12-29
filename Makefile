@@ -128,13 +128,6 @@ clean:
 	rm -rf tests/Integration/**/cache || true
 
 
-.PHONY: install_symfony4
-install_symfony4: ## Installs latest dependencies with Symfony4
-install_symfony4: vendor
-	SYMFONY_REQUIRE="4.4.*" composer update --no-scripts
-	touch -c vendor $(PHPUNIT_BIN) $(INFECTION_BIN)
-
-
 .PHONY: install_symfony5
 install_symfony5: ## Installs latest dependencies with Symfony5
 install_symfony5: vendor
