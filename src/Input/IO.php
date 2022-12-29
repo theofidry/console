@@ -99,7 +99,7 @@ class IO extends SymfonyStyle implements StyledOutput
     /**
      * @param non-empty-string $name
      */
-    public function getArgument(string $name): TypedInput
+    public function getTypedArgument(string $name): TypedInput
     {
         return TypedInput::fromArgument(
             $this->input->getArgument($name),
@@ -110,7 +110,7 @@ class IO extends SymfonyStyle implements StyledOutput
     /**
      * @param non-empty-string $name
      */
-    public function getOption(string $name): TypedInput
+    public function getTypedOption(string $name): TypedInput
     {
         return TypedInput::fromOption(
             $this->input->getOption($name),
@@ -121,7 +121,7 @@ class IO extends SymfonyStyle implements StyledOutput
     /**
      * @param non-empty-string $name
      */
-    public function hasOption(string $name, bool $onlyRealParams = false): bool
+    public function hasParameterOption(string $name, bool $onlyRealParams = false): bool
     {
         return $this->input->hasParameterOption($name, $onlyRealParams);
     }

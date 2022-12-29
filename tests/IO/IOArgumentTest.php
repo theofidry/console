@@ -64,7 +64,7 @@ final class IOArgumentTest extends TestCase
         $this->expectExceptionMessage('This is my custom error message. Previous message: Expected an integer string. Got "\'foo\'" for the argument "arg".');
 
         $io
-            ->getArgument(self::ARGUMENT_NAME)
+            ->getTypedArgument(self::ARGUMENT_NAME)
             ->asNatural('This is my custom error message. Previous message: %s');
     }
 
