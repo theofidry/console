@@ -136,7 +136,7 @@ final class IOTest extends TestCase
         $this->expectException(ConsoleInvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
 
-        $io->getArgument('arg')->asString();
+        $io->getTypedArgument('arg')->asString();
     }
 
     public static function invalidArgumentTypeProvider(): iterable
@@ -222,7 +222,7 @@ final class IOTest extends TestCase
         $this->expectException(ConsoleInvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
 
-        $io->getOption('opt')->asString();
+        $io->getTypedOption('opt')->asString();
     }
 
     public function test_it_can_create_a_new_instance_with_a_new_input(): void
@@ -276,7 +276,7 @@ final class IOTest extends TestCase
             new NullOutput(),
         );
 
-        $actual = $io->hasOption($option);
+        $actual = $io->hasParameterOption($option);
 
         self::assertSame($expected, $actual);
     }
@@ -296,7 +296,7 @@ final class IOTest extends TestCase
             new NullOutput(),
         );
 
-        $actual = $io->hasOption($option, true);
+        $actual = $io->hasParameterOption($option, true);
 
         self::assertSame($expected, $actual);
     }
@@ -308,7 +308,7 @@ final class IOTest extends TestCase
             new NullOutput(),
         );
 
-        $result = $io->hasOption('--foo');
+        $result = $io->hasParameterOption('--foo');
 
         self::assertTrue($result);
     }
