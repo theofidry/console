@@ -67,7 +67,7 @@ test: composer_validate_package infection
 
 .PHONY: cs
 cs: 	    ## Runs the CS fixers
-cs: composer_normalize php_cs_fixer
+cs: gitignore_sort composer_normalize php_cs_fixer
 
 
 .PHONY: cs_lint
@@ -82,6 +82,10 @@ composer_normalize: vendor
 .PHONY: composer_normalize_lint
 composer_normalize_lint: vendor
 	composer normalize --dry-run
+
+.PHONY: gitignore_sort
+gitignore_sort:
+	LC_ALL=C sort -u .gitignore -o .gitignore
 
 .PHONY: php_cs_fixer
 php_cs_fixer: $(PHP_CS_FIXER_BIN)
