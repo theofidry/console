@@ -23,28 +23,39 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
+use Symfony\Component\Console\Formatter\OutputFormatterInterface;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use function func_get_args;
 
 /**
- * @final
+ * @method string __toString()
  */
-class IO extends SymfonyStyle implements StyledOutput
+final class IO extends SymfonyStyle implements InputInterface, StyledOutput
 {
-    private InputInterface $input;
-    private OutputInterface $output;
+    use DecoratesInput;
 
-    public function __construct(InputInterface $input, OutputInterface $output)
-    {
+    private OutputInterface $output;
+    private SymfonyStyle $styledOutput;
+
+    public function __construct(
+        InputInterface $input,
+        OutputInterface $output
+    ) {
         parent::__construct($input, $output);
 
         $this->input = $input;
         $this->output = $output;
+        $this->styledOutput = new SymfonyStyle($output);
     }
 
     public static function createDefault(): self
@@ -81,11 +92,6 @@ class IO extends SymfonyStyle implements StyledOutput
         return $this->input;
     }
 
-    public function isInteractive(): bool
-    {
-        return $this->input->isInteractive();
-    }
-
     public function withOutput(OutputInterface $output): self
     {
         return new self($this->input, $output);
@@ -116,13 +122,5 @@ class IO extends SymfonyStyle implements StyledOutput
             $this->input->getOption($name),
             $name,
         );
-    }
-
-    /**
-     * @param non-empty-string $name
-     */
-    public function hasOption(string $name, bool $onlyRealParams = false): bool
-    {
-        return $this->input->hasParameterOption($name, $onlyRealParams);
     }
 }
