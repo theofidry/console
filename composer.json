@@ -68,11 +68,5 @@
         "psr-4": {
             "Fidry\\Console\\Tests\\": "tests"
         }
-    },
-    "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        }
     }
 }
