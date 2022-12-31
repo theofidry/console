@@ -21,9 +21,15 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Fidry\Console\Input;
+namespace Fidry\Console;
 
 use Closure;
+use Fidry\Console\Input\DecoratesInput;
+use Fidry\Console\Input\TypedInput;
+use Fidry\Console\Output\DecoratesOutput;
+use Fidry\Console\Output\DecoratesStyledOutput;
+use Fidry\Console\Output\StyledOutput;
+use Fidry\Console\Output\SymfonyStyledOutput;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;

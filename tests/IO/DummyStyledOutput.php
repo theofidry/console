@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\IO;
 
 use Closure;
-use Fidry\Console\Input\StyledOutput;
-use Fidry\Console\Input\SymfonyStyledOutput;
+use Fidry\Console\Output\StyledOutput;
+use Fidry\Console\Output\SymfonyStyledOutput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

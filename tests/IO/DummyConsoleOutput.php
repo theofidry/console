@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\IO;
 
 use DomainException;
-use Fidry\Console\Input\DecoratesOutput;
+use Fidry\Console\Output\DecoratesOutput;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\ConsoleSectionOutput;
 use Symfony\Component\Console\Output\OutputInterface;

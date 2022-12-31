@@ -15,8 +15,8 @@ namespace Fidry\Console\Tests\IO;
 
 use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
-use Fidry\Console\Input\IO;
-use Fidry\Console\Input\SymfonyStyledOutput;
+use Fidry\Console\IO;
+use Fidry\Console\Output\SymfonyStyledOutput;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Console\Completion\CompletionInput;
@@ -34,8 +34,8 @@ use Symfony\Component\Console\Output\NullOutput;
 use TypeError;
 
 /**
- * @covers \Fidry\Console\Input\IO
  * @covers \Fidry\Console\InputAssert
+ * @covers \Fidry\Console\IO
  *
  * @internal
  */
