@@ -28,7 +28,7 @@ namespace App\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
-use Fidry\Console\Input\IO;
+use Fidry\Console\IO;
 
 final class CreateUserCommand implements Command
 {
@@ -69,7 +69,7 @@ You can optionally define a description, help message and the input options and 
 // src/Command/CreateUserCommand.php
 namespace App\Command;
 
-use Fidry\Console\Command\Command;use Fidry\Console\Command\Configuration;use Fidry\Console\Input\IO;use Symfony\Component\Console\Input\InputArgument;
+use Fidry\Console\Command\Command;use Fidry\Console\Command\Configuration;use Fidry\Console\IO;use Symfony\Component\Console\Input\InputArgument;
 
 final class CreateUserCommand implements Command
 {
@@ -268,7 +268,7 @@ use App\Service\UserManager;
 use Fidry\Console\ExitCode;
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
-use Fidry\Console\Input\IO;
+use Fidry\Console\IO;
 
 final class CreateUserCommand implements Command
 {

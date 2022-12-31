@@ -80,7 +80,7 @@ follows:
 namespace Acme;
 
 use Acme\MyService;
-use Fidry\Console\{ Command\Command, Command\Configuration, ExitCode, Input\IO };
+use Fidry\Console\{ Command\Command, Command\Configuration, ExitCode, IO };
 use Symfony\Component\Console\Input\InputArgument;
 
 final class CommandWithService implements Command

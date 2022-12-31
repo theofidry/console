@@ -21,9 +21,9 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Fidry\Console\Input\Compatibility;
+namespace Fidry\Console\Output\Compatibility;
 
-use Fidry\Console\Input\StyledOutput;
+use Fidry\Console\Output\StyledOutput;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;

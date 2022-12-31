@@ -16,7 +16,7 @@ namespace Fidry\Console\Application;
 use Fidry\Console\Command\Command as FidryCommand;
 use Fidry\Console\Command\LazyCommand as FidryLazyCommand;
 use Fidry\Console\Command\SymfonyCommand;
-use Fidry\Console\Input\IO;
+use Fidry\Console\IO;
 use LogicException;
 use Symfony\Component\Console\Application as BaseSymfonyApplication;
 use Symfony\Component\Console\Command\Command as BaseSymfonyCommand;
