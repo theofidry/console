@@ -26,6 +26,8 @@ jobs:
                       symfony-version: '6.*.*'
                     - php: '8.0'
                       symfony-version: '6.*.*'
+                    - php: '8.2'
+                      symfony-version: '5.4.*'
 
         steps:
             -   name: Check out repository code
