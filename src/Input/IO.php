@@ -24,19 +24,23 @@ declare(strict_types=1);
 namespace Fidry\Console\Input;
 
 use Closure;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use function func_get_args;
 
-final class IO implements InputInterface, OutputInterface, StyledOutput
+final class IO implements InputInterface, OutputInterface, StyledOutput, LoggerInterface
 {
     use DecoratesInput;
     use DecoratesOutput;
     use DecoratesStyledOutput;
+    use DecoratesLogger;
 
     /**
      * @var Closure(InputInterface, OutputInterface): StyledOutput
@@ -45,19 +49,31 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
     private StyledOutput $styledErrorOutput;
 
     /**
+     * @var Closure(OutputInterface): LoggerInterface
+     */
+    private Closure $loggerFactory;
+    private LoggerInterface $logger;
+    private LoggerInterface $errorLogger;
+
+    /**
      * @param null|Closure(InputInterface, OutputInterface): StyledOutput $styledOutputFactory
+     * @param null|Closure(OutputInterface): LoggerInterface $loggerFactory
      */
     public function __construct(
         InputInterface $input,
         OutputInterface $output,
-        ?Closure $styledOutputFactory = null
+        ?Closure $styledOutputFactory = null,
+        ?Closure $loggerFactory = null
     ) {
         $this->styledOutputFactory = $styledOutputFactory ?? static fn (InputInterface $input, OutputInterface $output): StyledOutput => new SymfonyStyledOutput($input, $output);
+        $this->loggerFactory = $loggerFactory ?? static fn (OutputInterface $output): LoggerInterface => new ConsoleLogger($output);
 
         $this->input = $input;
         $this->output = $output;
         $this->styledOutput = ($this->styledOutputFactory)($input, $output);
         $this->styledErrorOutput = ($this->styledOutputFactory)($input, $this->getErrorOutput());
+        $this->logger = ($this->loggerFactory)($output);
+        $this->errorLogger = ($this->loggerFactory)($this->getErrorOutput());
     }
 
     public static function createDefault(): self
@@ -140,6 +156,29 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
     public function getStyledErrorOutput(): StyledOutput
     {
         return $this->styledErrorOutput;
+    }
+
+    /**
+     * @param null|Closure(OutputInterface): LoggerInterface $loggerFactory
+     */
+    public function withLoggerFactory(?Closure $loggerFactory): self
+    {
+        return new self(
+            $this->input,
+            $this->output,
+            $this->styledOutputFactory,
+            $loggerFactory,
+        );
+    }
+
+    public function getLogger(): LoggerInterface
+    {
+        return $this->logger;
+    }
+
+    public function getErrorLogger(): LoggerInterface
+    {
+        return $this->errorLogger;
     }
 
     /**
