@@ -21,6 +21,8 @@
     <projectFiles>
         <directory name="src"/>
         <file name="stubs/DecoratesInput.php"/>
+        <file name="stubs/DecoratesOutput.php"/>
+        <file name="stubs/DecoratesStyledOutput.php"/>
         <file name="stubs/StyledOutput.php"/>
         <directory name="tests"/>
 
@@ -28,6 +30,12 @@
             <file name="src/Input/DecoratesInput.php"/>
             <file name="src/Input/DecoratesInputSymfony5.php"/>
             <file name="src/Input/DecoratesInputSymfony6.php"/>
+            <file name="src/Input/DecoratesOutput.php"/>
+            <file name="src/Input/DecoratesOutputSymfony5.php"/>
+            <file name="src/Input/DecoratesOutputSymfony6.php"/>
+            <file name="src/Input/DecoratesStyledOutput.php"/>
+            <file name="src/Input/DecoratesStyledOutputSymfony5.php"/>
+            <file name="src/Input/DecoratesStyledOutputSymfony6.php"/>
             <file name="src/Input/StyledOutput.php"/>
             <file name="src/Input/StyledOutputSymfony5.php"/>
             <file name="src/Input/StyledOutputSymfony6.php"/>
@@ -60,6 +68,8 @@
             <errorLevel type="suppress">
                 <!-- Can be removed once 7.4 & Symfony 5.4 support is dropped. -->
                 <file name="stubs/DecoratesInput.php"/>
+                <file name="stubs/DecoratesOutput.php"/>
+                <file name="stubs/DecoratesStyledOutput.php"/>
                 <file name="stubs/StyledOutput.php"/>
             </errorLevel>
         </MissingReturnType>

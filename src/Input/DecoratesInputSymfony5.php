@@ -28,6 +28,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use function func_get_args;
 
 /**
+ * @internal
  * @psalm-require-implements InputInterface
  */
 trait DecoratesInputSymfony5
@@ -97,9 +98,6 @@ trait DecoratesInputSymfony5
         return $this->input->getOption(...func_get_args());
     }
 
-    /**
-     * @param non-empty-string $name
-     */
     public function hasOption(string $name, bool $onlyRealParams = false): bool
     {
         return $this->input->hasOption(...func_get_args());

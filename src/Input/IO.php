@@ -31,20 +31,19 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-final class IO extends SymfonyStyle implements InputInterface, StyledOutput
+final class IO implements InputInterface, OutputInterface, StyledOutput
 {
     use DecoratesInput;
-
-    private OutputInterface $output;
+    use DecoratesOutput;
+    use DecoratesStyledOutput;
 
     public function __construct(
         InputInterface $input,
         OutputInterface $output
     ) {
-        parent::__construct($input, $output);
-
         $this->input = $input;
         $this->output = $output;
+        $this->styledOutput = new SymfonyStyledOutput($input, $output);
     }
 
     public static function createDefault(): self
@@ -67,7 +66,7 @@ final class IO extends SymfonyStyle implements InputInterface, StyledOutput
     {
         return new self(
             $this->input,
-            $this->getErrorOutput(),
+            $this->output->getErrorOutput(),
         );
     }
 
