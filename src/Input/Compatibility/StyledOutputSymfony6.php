@@ -11,14 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Input;
+namespace Fidry\Console\Input\Compatibility;
 
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\StyleInterface;
-use function key;
 
 /**
  * Complements the Symfony Style interface with the methods present in

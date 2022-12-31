@@ -29,6 +29,7 @@ use function func_get_args;
 
 /**
  * @internal
+ * @psalm-require-implements InputInterface
  */
 trait DecoratesInput
 {

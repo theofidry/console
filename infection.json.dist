@@ -6,8 +6,7 @@
             "src"
         ],
         "excludes": [
-            "src/Input/DecoratesInputSymfony5.php",
-            "src/Input/DecoratesInputSymfony6.php"
+            "src/Input/Compatibility"
         ]
     },
     "logs": {

@@ -21,7 +21,7 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Fidry\Console\Input;
+namespace Fidry\Console\Input\Compatibility;
 
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,6 +29,7 @@ use function func_get_args;
 
 /**
  * @internal
+ * @psalm-require-implements InputInterface
  */
 trait DecoratesInputSymfony6
 {
@@ -67,7 +68,6 @@ trait DecoratesInputSymfony6
         return $this->input->validate();
     }
 
-    /** @psalm-suppress LessSpecificImplementedReturnType */
     public function getArguments(): array
     {
         return $this->input->getArguments();
@@ -83,7 +83,6 @@ trait DecoratesInputSymfony6
         return $this->input->hasArgument(...func_get_args());
     }
 
-    /** @psalm-suppress LessSpecificImplementedReturnType */
     public function getOptions(): array
     {
         return $this->input->getOptions();
