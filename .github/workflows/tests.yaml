@@ -38,6 +38,10 @@ jobs:
                     tools: composer
                     coverage: none
 
+            -   name: Configures the deprecations listener
+                if: matrix.symfony-version == '5.4.*'
+                run: echo "{SYMFONY_DEPRECATIONS_HELPER}={disabled=1}" >> $GITHUB_ENV
+
             -   name: Enforce the Symfony version used
                 if: ${{ matrix.symfony-version }}
                 run: composer config extra.symfony.require ${{ matrix.symfony-version }}

@@ -77,5 +77,5 @@ interface StyledOutputSymfony5 extends StyleInterface
 
     public function createTable(): Table;
 
-    public function createProgressBar(int $max = 0): ProgressBar;
+    public function createProgressBar(int $max = 0);
 }
