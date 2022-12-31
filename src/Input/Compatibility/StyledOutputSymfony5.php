@@ -28,6 +28,13 @@ use Symfony\Component\Console\Style\StyleInterface;
 interface StyledOutputSymfony5 extends StyleInterface
 {
     /**
+     * Formats a message as a block of text.
+     *
+     * @param string|array $messages
+     */
+    public function block($messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true);
+
+    /**
      * Formats a command comment.
      *
      * @param string|array $message
@@ -69,4 +76,6 @@ interface StyledOutputSymfony5 extends StyleInterface
     public function askQuestion(Question $question);
 
     public function createTable(): Table;
+
+    public function createProgressBar(int $max = 0): ProgressBar;
 }

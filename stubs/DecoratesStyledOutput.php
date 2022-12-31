@@ -23,13 +23,9 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
-use Symfony\Component\Console\Formatter\OutputFormatterInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
-use Symfony\Component\Console\Input\InputDefinition;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use function func_get_args;
 
@@ -41,7 +37,7 @@ trait DecoratesStyledOutput
 {
     private StyledOutput $styledOutput;
 
-    public function block(string|array $messages, string $type = null, string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true)
+    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true)
     {
         return $this->styledOutput->block(...func_get_args());
     }
@@ -116,12 +112,12 @@ trait DecoratesStyledOutput
         return $this->styledOutput->definitionList(...func_get_args());
     }
 
-    public function ask(string $question, string $default = null, callable $validator = null): mixed
+    public function ask(string $question, ?string $default = null, ?callable $validator = null): mixed
     {
         return $this->styledOutput->ask(...func_get_args());
     }
 
-    public function askHidden(string $question, callable $validator = null): mixed
+    public function askHidden(string $question, ?callable $validator = null): mixed
     {
         return $this->styledOutput->askHidden(...func_get_args());
     }
@@ -156,7 +152,7 @@ trait DecoratesStyledOutput
         return $this->styledOutput->createProgressBar(...func_get_args());
     }
 
-    public function progressIterate(iterable $iterable, int $max = null): iterable
+    public function progressIterate(iterable $iterable, ?int $max = null): iterable
     {
         return $this->styledOutput->progressIterate(...func_get_args());
     }
@@ -171,14 +167,8 @@ trait DecoratesStyledOutput
         return $this->styledOutput->newLine(...func_get_args());
     }
 
-    public function getErrorStyle(): self
-    {
-        return $this->styledOutput->getErrorStyle(...func_get_args());
-    }
-
     public function createTable(): Table
     {
         return $this->styledOutput->createTable(...func_get_args());
     }
-
 }

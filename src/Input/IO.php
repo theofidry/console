@@ -23,13 +23,14 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
+use Closure;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 final class IO implements InputInterface, OutputInterface, StyledOutput
 {
@@ -37,13 +38,26 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
     use DecoratesOutput;
     use DecoratesStyledOutput;
 
+    /**
+     * @var Closure(InputInterface, OutputInterface): StyledOutput
+     */
+    private Closure $styledOutputFactory;
+    private StyledOutput $styledErrorOutput;
+
+    /**
+     * @param null|Closure(InputInterface, OutputInterface): StyledOutput $styledOutputFactory
+     */
     public function __construct(
         InputInterface $input,
-        OutputInterface $output
+        OutputInterface $output,
+        ?Closure $styledOutputFactory = null
     ) {
+        $this->styledOutputFactory = $styledOutputFactory ?? static fn (InputInterface $input, OutputInterface $output): StyledOutput => new SymfonyStyledOutput($input, $output);
+
         $this->input = $input;
         $this->output = $output;
-        $this->styledOutput = new SymfonyStyledOutput($input, $output);
+        $this->styledOutput = ($this->styledOutputFactory)($input, $output);
+        $this->styledErrorOutput = ($this->styledOutputFactory)($input, $this->getErrorOutput());
     }
 
     public static function createDefault(): self
@@ -66,13 +80,18 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
     {
         return new self(
             $this->input,
-            $this->output->getErrorOutput(),
+            $this->getErrorOutput(),
+            $this->styledOutputFactory,
         );
     }
 
     public function withInput(InputInterface $input): self
     {
-        return new self($input, $this->output);
+        return new self(
+            $input,
+            $this->output,
+            $this->styledOutputFactory,
+        );
     }
 
     public function getInput(): InputInterface
@@ -82,12 +101,45 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
 
     public function withOutput(OutputInterface $output): self
     {
-        return new self($this->input, $output);
+        return new self(
+            $this->input,
+            $output,
+            $this->styledOutputFactory,
+        );
     }
 
     public function getOutput(): OutputInterface
     {
         return $this->output;
+    }
+
+    public function getErrorOutput(): OutputInterface
+    {
+        return $this->output instanceof ConsoleOutputInterface
+            ? $this->output->getErrorOutput()
+            : $this->output;
+    }
+
+    /**
+     * @param null|Closure(InputInterface, OutputInterface): StyledOutput $styledOutputFactory
+     */
+    public function withStyledOutputFactory(?Closure $styledOutputFactory): self
+    {
+        return new self(
+            $this->input,
+            $this->output,
+            $styledOutputFactory,
+        );
+    }
+
+    public function getStyledOutput(): StyledOutput
+    {
+        return $this->styledOutput;
+    }
+
+    public function getStyledErrorOutput(): StyledOutput
+    {
+        return $this->styledErrorOutput;
     }
 
     /**

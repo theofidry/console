@@ -21,11 +21,9 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Fidry\Console\Input;
+namespace Fidry\Console\Input\Compatibility;
 
 use Symfony\Component\Console\Formatter\OutputFormatterInterface;
-use Symfony\Component\Console\Input\InputDefinition;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use function func_get_args;
 
@@ -33,16 +31,16 @@ use function func_get_args;
  * @internal
  * @psalm-require-implements OutputInterface
  */
-trait DecoratesOutputSymfony5
+trait DecoratesOutputSymfony6
 {
     private OutputInterface $output;
 
-    public function write($messages, bool $newline = false, int $options = 0)
+    public function write(string|iterable $messages, bool $newline = false, int $options = 0)
     {
         return $this->output->write(...func_get_args());
     }
 
-    public function writeln($messages, int $options = 0)
+    public function writeln(string|iterable $messages, int $options = 0)
     {
         return $this->output->writeln(...func_get_args());
     }
@@ -52,27 +50,27 @@ trait DecoratesOutputSymfony5
         return $this->output->setVerbosity(...func_get_args());
     }
 
-    public function getVerbosity()
+    public function getVerbosity(): int
     {
         return $this->output->getVerbosity(...func_get_args());
     }
 
-    public function isQuiet()
+    public function isQuiet(): bool
     {
         return $this->output->isQuiet(...func_get_args());
     }
 
-    public function isVerbose()
+    public function isVerbose(): bool
     {
         return $this->output->isVerbose(...func_get_args());
     }
 
-    public function isVeryVerbose()
+    public function isVeryVerbose(): bool
     {
         return $this->output->isVeryVerbose(...func_get_args());
     }
 
-    public function isDebug()
+    public function isDebug(): bool
     {
         return $this->output->isDebug(...func_get_args());
     }
@@ -82,7 +80,7 @@ trait DecoratesOutputSymfony5
         return $this->output->setDecorated(...func_get_args());
     }
 
-    public function isDecorated()
+    public function isDecorated(): bool
     {
         return $this->output->isDecorated(...func_get_args());
     }
@@ -92,7 +90,7 @@ trait DecoratesOutputSymfony5
         return $this->output->setFormatter(...func_get_args());
     }
 
-    public function getFormatter()
+    public function getFormatter(): OutputFormatterInterface
     {
         return $this->output->getFormatter(...func_get_args());
     }

@@ -24,8 +24,6 @@ declare(strict_types=1);
 namespace Fidry\Console\Input;
 
 use Symfony\Component\Console\Formatter\OutputFormatterInterface;
-use Symfony\Component\Console\Input\InputDefinition;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use function func_get_args;
 

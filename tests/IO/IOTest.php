@@ -16,6 +16,7 @@ namespace Fidry\Console\Tests\IO;
 use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
 use Fidry\Console\Input\IO;
+use Fidry\Console\Input\SymfonyStyledOutput;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Console\Completion\CompletionInput;
@@ -40,6 +41,10 @@ use TypeError;
  */
 final class IOTest extends TestCase
 {
+    /**
+     * The legacy group is due to InputInterface::getParameterOption().
+     * @group legacy
+     */
     public function test_it_exposes_its_input_and_output(): void
     {
         $input = new StringInput('');
@@ -243,6 +248,23 @@ final class IOTest extends TestCase
         self::assertSame($output, $newIO->getOutput());
     }
 
+    public function test_it_preserves_the_styled_output_when_creating_a_new_instance_with_a_new_input(): void
+    {
+        $input = new StringInput('');
+        $newInput = new CompletionInput();
+        $output = new NullOutput();
+
+        $io = new IO(
+            $input,
+            $output,
+            DummyStyledOutput::getFactory(),
+        );
+        $newIO = $io->withInput($newInput);
+
+        self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());   // Sanity check
+        self::assertInstanceOf(DummyStyledOutput::class, $newIO->getStyledOutput());
+    }
+
     public function test_it_can_create_a_new_instance_with_a_new_output(): void
     {
         $input = new StringInput('');
@@ -259,6 +281,23 @@ final class IOTest extends TestCase
 
         self::assertSame($input, $newIO->getInput());
         self::assertSame($newOutput, $newIO->getOutput());
+    }
+
+    public function test_it_preserves_the_styled_output_when_creating_a_new_instance_with_a_new_output(): void
+    {
+        $input = new StringInput('');
+        $output = new NullOutput();
+        $newOutput = new NullOutput();
+
+        $io = new IO(
+            $input,
+            $output,
+            DummyStyledOutput::getFactory(),
+        );
+        $newIO = $io->withOutput($newOutput);
+
+        self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());   // Sanity check
+        self::assertInstanceOf(DummyStyledOutput::class, $newIO->getStyledOutput());
     }
 
     /**
@@ -505,6 +544,129 @@ final class IOTest extends TestCase
             '-opt',
             false,
         ];
+    }
+
+    public function test_it_can_be_created_with_a_custom_style(): void
+    {
+        $io = new IO(
+            new StringInput(''),
+            new NullOutput(),
+            DummyStyledOutput::getFactory(),
+        );
+
+        self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());
+    }
+
+    public function test_it_can_get_the_error_io_with_an_output_that_does_not_have_an_error_output(): void
+    {
+        $input = new StringInput('');
+        $output = new NullOutput();
+
+        $io = new IO($input, $output);
+        $errorIO = $io->getErrorIO();
+
+        // Sanity check
+        self::assertSame($input, $io->getInput());
+        self::assertSame($output, $io->getOutput());
+
+        self::assertSame($input, $errorIO->getInput());
+        self::assertSame($output, $errorIO->getOutput());
+    }
+
+    public function test_it_can_get_the_error_io_with_an_output_that_has_an_error_output(): void
+    {
+        $input = new StringInput('');
+        $output = new NullOutput();
+        $errorOutput = new NullOutput();
+        $consoleOutput = new DummyConsoleOutput($output, $errorOutput);
+
+        $io = new IO($input, $consoleOutput);
+        $errorIO = $io->getErrorIO();
+
+        // Sanity check
+        self::assertSame($input, $io->getInput());
+        self::assertSame($consoleOutput, $io->getOutput());
+
+        self::assertSame($input, $errorIO->getInput());
+        self::assertSame($errorOutput, $errorIO->getOutput());
+    }
+
+    public function test_it_preserves_the_styled_output_when_getting_the_error_io(): void
+    {
+        $input = new StringInput('');
+        $output = new NullOutput();
+
+        $io = new IO(
+            $input,
+            $output,
+            DummyStyledOutput::getFactory(),
+        );
+        $errorIO = $io->getErrorIO();
+
+        self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());   // Sanity check
+        self::assertInstanceOf(DummyStyledOutput::class, $errorIO->getStyledOutput());
+    }
+
+    public function test_it_exposes_its_error_output(): void
+    {
+        $errorOutput = new NullOutput();
+        $output = new DummyConsoleOutput(new NullOutput(), $errorOutput);
+
+        $io = new IO(
+            new StringInput(''),
+            $output,
+        );
+
+        self::assertSame($errorOutput, $io->getErrorOutput());
+    }
+
+    public function test_it_exposes_the_regular_output_as_its_error_output_if_the_output_has_no_error_output(): void
+    {
+        $output = new NullOutput();
+
+        $io = new IO(
+            new StringInput(''),
+            $output,
+        );
+
+        self::assertSame($output, $io->getErrorOutput());
+    }
+
+    public function test_it_can_create_another_io_with_a_different_styled_output(): void
+    {
+        $io = IO::createNull();
+        $newIO = $io->withStyledOutputFactory(DummyStyledOutput::getFactory());
+
+        self::assertInstanceOf(SymfonyStyledOutput::class, $io->getStyledOutput()); // Sanity check
+        self::assertInstanceOf(DummyStyledOutput::class, $newIO->getStyledOutput());
+    }
+
+    public function test_it_can_create_another_io_with_the_default_styled_output(): void
+    {
+        $io = new IO(
+            new StringInput(''),
+            new NullOutput(),
+            DummyStyledOutput::getFactory(),
+        );
+        $newIO = $io->withStyledOutputFactory(null);
+
+        self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput()); // Sanity check
+        self::assertInstanceOf(SymfonyStyledOutput::class, $newIO->getStyledOutput());
+    }
+
+    public function test_it_can_get_the_styled_error_output(): void
+    {
+        $errorOutput = new BufferedOutput();
+        $output = new DummyConsoleOutput(new NullOutput(), $errorOutput);
+
+        $io = new IO(
+            new StringInput(''),
+            $output,
+        );
+
+        $io->getStyledErrorOutput()->error('something happened.');
+
+        self::assertNotSame('', $errorOutput->fetch());
     }
 
     private static function createInput(bool $interactive): InputInterface

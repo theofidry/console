@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Input;
 
 use Composer\InstalledVersions;
+use Fidry\Console\Input\Compatibility\DecoratesOutputSymfony5;
+use Fidry\Console\Input\Compatibility\DecoratesOutputSymfony6;
 use function Safe\class_alias;
 use function version_compare;
 
