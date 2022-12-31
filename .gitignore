@@ -1,5 +1,4 @@
-
-.phpunit.result.cache
+!/dist/.gitkeep
 /.composer-cache/
 /.env.*.local
 /.env.local

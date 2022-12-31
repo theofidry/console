@@ -6,12 +6,11 @@
             "src"
         ],
         "excludes": [
-            "src/Input/DecoratesInputSymfony5.php",
-            "src/Input/DecoratesInputSymfony6.php"
+            "src/Input/Compatibility"
         ]
     },
     "logs": {
-        "text": "infection.log"
+        "text": "php://stderr"
     },
     "tmpDir": "dist/infection",
     "mutators": {

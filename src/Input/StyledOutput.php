@@ -14,9 +14,15 @@ declare(strict_types=1);
 namespace Fidry\Console\Input;
 
 use Composer\InstalledVersions;
+use Fidry\Console\Input\Compatibility\StyledOutputSymfony5;
+use Fidry\Console\Input\Compatibility\StyledOutputSymfony6;
 use function Safe\class_alias;
 use function version_compare;
 
+// This is purely for the compatibility layer between Symfony5 & Symfony6. The
+// behaviour is the same, only the method signatures differ.
+// To have a more comprehensive look of the class check:
+// stubs/StyledOutput.php
 class_alias(
     (string) version_compare(
         (string) InstalledVersions::getPrettyVersion('symfony/console'),
