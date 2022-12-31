@@ -40,7 +40,7 @@ jobs:
 
             -   name: Configures the deprecations listener
                 if: matrix.symfony-version == '5.4.*'
-                run: echo "{SYMFONY_DEPRECATIONS_HELPER}={disabled=1}" >> $GITHUB_ENV
+                run: echo "{SYMFONY_DEPRECATIONS_HELPER}=\"disabled=1\"" >> $GITHUB_ENV
 
             -   name: Enforce the Symfony version used
                 if: ${{ matrix.symfony-version }}
