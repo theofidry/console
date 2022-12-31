@@ -23,28 +23,41 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
+use Closure;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
-final class IO extends SymfonyStyle implements InputInterface, StyledOutput
+final class IO implements InputInterface, OutputInterface, StyledOutput
 {
     use DecoratesInput;
+    use DecoratesOutput;
+    use DecoratesStyledOutput;
 
-    private OutputInterface $output;
+    /**
+     * @var Closure(InputInterface, OutputInterface): StyledOutput
+     */
+    private Closure $styledOutputFactory;
+    private StyledOutput $styledErrorOutput;
 
+    /**
+     * @param null|Closure(InputInterface, OutputInterface): StyledOutput $styledOutputFactory
+     */
     public function __construct(
         InputInterface $input,
-        OutputInterface $output
+        OutputInterface $output,
+        ?Closure $styledOutputFactory = null
     ) {
-        parent::__construct($input, $output);
+        $this->styledOutputFactory = $styledOutputFactory ?? static fn (InputInterface $input, OutputInterface $output): StyledOutput => new SymfonyStyledOutput($input, $output);
 
         $this->input = $input;
         $this->output = $output;
+        $this->styledOutput = ($this->styledOutputFactory)($input, $output);
+        $this->styledErrorOutput = ($this->styledOutputFactory)($input, $this->getErrorOutput());
     }
 
     public static function createDefault(): self
@@ -68,12 +81,17 @@ final class IO extends SymfonyStyle implements InputInterface, StyledOutput
         return new self(
             $this->input,
             $this->getErrorOutput(),
+            $this->styledOutputFactory,
         );
     }
 
     public function withInput(InputInterface $input): self
     {
-        return new self($input, $this->output);
+        return new self(
+            $input,
+            $this->output,
+            $this->styledOutputFactory,
+        );
     }
 
     public function getInput(): InputInterface
@@ -83,12 +101,45 @@ final class IO extends SymfonyStyle implements InputInterface, StyledOutput
 
     public function withOutput(OutputInterface $output): self
     {
-        return new self($this->input, $output);
+        return new self(
+            $this->input,
+            $output,
+            $this->styledOutputFactory,
+        );
     }
 
     public function getOutput(): OutputInterface
     {
         return $this->output;
+    }
+
+    public function getErrorOutput(): OutputInterface
+    {
+        return $this->output instanceof ConsoleOutputInterface
+            ? $this->output->getErrorOutput()
+            : $this->output;
+    }
+
+    /**
+     * @param null|Closure(InputInterface, OutputInterface): StyledOutput $styledOutputFactory
+     */
+    public function withStyledOutputFactory(?Closure $styledOutputFactory): self
+    {
+        return new self(
+            $this->input,
+            $this->output,
+            $styledOutputFactory,
+        );
+    }
+
+    public function getStyledOutput(): StyledOutput
+    {
+        return $this->styledOutput;
+    }
+
+    public function getStyledErrorOutput(): StyledOutput
+    {
+        return $this->styledErrorOutput;
     }
 
     /**

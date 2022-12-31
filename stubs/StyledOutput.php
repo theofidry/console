@@ -27,6 +27,11 @@ use function key;
 interface StyledOutput extends StyleInterface
 {
     /**
+     * Formats a message as a block of text.
+     */
+    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true);
+
+    /**
      * Formats a command comment.
      */
     public function comment(string|array $message);
@@ -62,4 +67,6 @@ interface StyledOutput extends StyleInterface
     public function askQuestion(Question $question);
 
     public function createTable(): Table;
+
+    public function createProgressBar(int $max = 0): ProgressBar;
 }
