@@ -25,12 +25,9 @@
         <directory name="tests"/>
 
         <ignoreFiles>
+            <directory name="src/Input/Compatibility"/>
             <file name="src/Input/DecoratesInput.php"/>
-            <file name="src/Input/DecoratesInputSymfony5.php"/>
-            <file name="src/Input/DecoratesInputSymfony6.php"/>
             <file name="src/Input/StyledOutput.php"/>
-            <file name="src/Input/StyledOutputSymfony5.php"/>
-            <file name="src/Input/StyledOutputSymfony6.php"/>
             <directory name="vendor"/>
             <directory name="tests/Integration/var"/>
             <file name="tests/Internal/Type/ConfigurableType.php"/>
