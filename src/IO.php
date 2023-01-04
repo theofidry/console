@@ -21,9 +21,16 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Fidry\Console\Input;
+namespace Fidry\Console;
 
 use Closure;
+use Fidry\Console\Input\DecoratesInput;
+use Fidry\Console\Input\TypedInput;
+use Fidry\Console\Output\DecoratesLogger;
+use Fidry\Console\Output\DecoratesOutput;
+use Fidry\Console\Output\DecoratesStyledOutput;
+use Fidry\Console\Output\StyledOutput;
+use Fidry\Console\Output\SymfonyStyledOutput;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,14 +40,13 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use function func_get_args;
 
-final class IO implements InputInterface, OutputInterface, StyledOutput, LoggerInterface
+final class IO implements InputInterface, OutputInterface, StyledOutput
 {
     use DecoratesInput;
+    use DecoratesLogger;
     use DecoratesOutput;
     use DecoratesStyledOutput;
-    use DecoratesLogger;
 
     /**
      * @var Closure(InputInterface, OutputInterface): StyledOutput
@@ -52,12 +58,11 @@ final class IO implements InputInterface, OutputInterface, StyledOutput, LoggerI
      * @var Closure(OutputInterface): LoggerInterface
      */
     private Closure $loggerFactory;
-    private LoggerInterface $logger;
     private LoggerInterface $errorLogger;
 
     /**
      * @param null|Closure(InputInterface, OutputInterface): StyledOutput $styledOutputFactory
-     * @param null|Closure(OutputInterface): LoggerInterface $loggerFactory
+     * @param null|Closure(OutputInterface): LoggerInterface              $loggerFactory
      */
     public function __construct(
         InputInterface $input,
@@ -98,6 +103,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput, LoggerI
             $this->input,
             $this->getErrorOutput(),
             $this->styledOutputFactory,
+            $this->loggerFactory,
         );
     }
 
@@ -107,6 +113,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput, LoggerI
             $input,
             $this->output,
             $this->styledOutputFactory,
+            $this->loggerFactory,
         );
     }
 
@@ -121,6 +128,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput, LoggerI
             $this->input,
             $output,
             $this->styledOutputFactory,
+            $this->loggerFactory,
         );
     }
 
@@ -145,6 +153,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput, LoggerI
             $this->input,
             $this->output,
             $styledOutputFactory,
+            $this->loggerFactory,
         );
     }
 

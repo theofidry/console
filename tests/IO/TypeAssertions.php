@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\IO;
 
-use Fidry\Console\Input\IO;
+use Fidry\Console\IO;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
 use function sprintf;

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\IO;
 
 use Fidry\Console\Input\InvalidInputValueType;
-use Fidry\Console\Input\IO;
+use Fidry\Console\IO;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
@@ -22,8 +22,8 @@ use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
 /**
- * @covers \Fidry\Console\Input\IO
  * @covers \Fidry\Console\InputAssert
+ * @covers \Fidry\Console\IO
  *
  * @internal
  */

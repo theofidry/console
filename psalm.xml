@@ -25,11 +25,12 @@
 
         <ignoreFiles>
             <directory name="src/Input/Compatibility"/>
+            <directory name="src/Output/Compatibility"/>
             <file name="src/Input/DecoratesInput.php"/>
-            <file name="src/Input/DecoratesLogger.php"/>
-            <file name="src/Input/DecoratesOutput.php"/>
-            <file name="src/Input/DecoratesStyledOutput.php"/>
-            <file name="src/Input/StyledOutput.php"/>
+            <file name="src/Output/DecoratesLogger.php"/>
+            <file name="src/Output/DecoratesOutput.php"/>
+            <file name="src/Output/DecoratesStyledOutput.php"/>
+            <file name="src/Output/StyledOutput.php"/>
             <directory name="vendor"/>
             <directory name="tests/Integration/var"/>
             <file name="tests/Internal/Type/ConfigurableType.php"/>

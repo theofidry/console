@@ -11,27 +11,25 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Input;
+namespace Fidry\Console\Output;
 
 use Composer\InstalledVersions;
-use Fidry\Console\Input\Compatibility\DecoratesInputSymfony5;
-use Fidry\Console\Input\Compatibility\DecoratesInputSymfony6;
-use Fidry\Console\Input\Compatibility\DecoratesLoggerPsr1;
-use Fidry\Console\Input\Compatibility\DecoratesLoggerPsr2;
+use Fidry\Console\Output\Compatibility\StyledOutputSymfony5;
+use Fidry\Console\Output\Compatibility\StyledOutputSymfony6;
 use function Safe\class_alias;
 use function version_compare;
 
 // This is purely for the compatibility layer between Symfony5 & Symfony6. The
 // behaviour is the same, only the method signatures differ.
 // To have a more comprehensive look of the class check:
-// stubs/DecoratesInput.php
+// stubs/StyledOutput.php
 class_alias(
     (string) version_compare(
-        (string) InstalledVersions::getPrettyVersion('psr/log'),
-        '2.0.0',
+        (string) InstalledVersions::getPrettyVersion('symfony/console'),
+        'v6.0',
         '>=',
     )
-        ? DecoratesLoggerPsr2::class
-        : DecoratesLoggerPsr1::class,
-    \Fidry\Console\Input\DecoratesLogger::class,
+        ? StyledOutputSymfony6::class
+        : StyledOutputSymfony5::class,
+    \Fidry\Console\Output\StyledOutput::class,
 );

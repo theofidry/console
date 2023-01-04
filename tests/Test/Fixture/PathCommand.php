@@ -16,7 +16,7 @@ namespace Fidry\Console\Tests\Test\Fixture;
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
 use Fidry\Console\ExitCode;
-use Fidry\Console\Input\IO;
+use Fidry\Console\IO;
 
 final class PathCommand implements Command
 {

@@ -21,58 +21,60 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Fidry\Console\Input\Compatibility;
+namespace Fidry\Console\Output\Compatibility;
 
-use Fidry\Console\Input\StyledOutput;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Helper\TableSeparator;
-use Symfony\Component\Console\Question\Question;
-use function func_get_args;
 use Stringable;
+use function func_get_args;
 
 /**
  * @internal
- * @psalm-require-implements LoggerInterface
  */
-trait DecoratesLoggerPsr1
+trait DecoratesLoggerPsr2
 {
     private LoggerInterface $logger;
 
-    public function emergency($message, array $context = array())
+    public function logEmergency(string|Stringable $message, array $context = []): void
     {
         $this->logger->emergency(...func_get_args());
     }
-    public function alert($message, array $context = array())
+
+    public function logAlert(string|Stringable $message, array $context = []): void
     {
         $this->logger->alert(...func_get_args());
     }
-    public function critical($message, array $context = array())
+
+    public function logCritical(string|Stringable $message, array $context = []): void
     {
         $this->logger->critical(...func_get_args());
     }
-    public function error($message, array $context = array())
+
+    public function logError(string|Stringable $message, array $context = []): void
     {
         $this->logger->error(...func_get_args());
     }
-    public function warning($message, array $context = array())
+
+    public function logWarning(string|Stringable $message, array $context = []): void
     {
         $this->logger->warning(...func_get_args());
     }
-    public function notice($message, array $context = array())
+
+    public function logNotice(string|Stringable $message, array $context = []): void
     {
         $this->logger->notice(...func_get_args());
     }
-    public function info($message, array $context = array())
+
+    public function logInfo(string|Stringable $message, array $context = []): void
     {
         $this->logger->info(...func_get_args());
     }
-    public function debug($message, array $context = array())
+
+    public function logDebug(string|Stringable $message, array $context = []): void
     {
         $this->logger->debug(...func_get_args());
     }
-    public function log($level, $message, array $context = array())
+
+    public function log($level, string|Stringable $message, array $context = []): void
     {
         $this->logger->log(...func_get_args());
     }

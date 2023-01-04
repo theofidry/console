@@ -11,11 +11,11 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Input;
+namespace Fidry\Console\Output;
 
 use Composer\InstalledVersions;
-use Fidry\Console\Input\Compatibility\DecoratesOutputSymfony5;
-use Fidry\Console\Input\Compatibility\DecoratesOutputSymfony6;
+use Fidry\Console\Output\Compatibility\DecoratesOutputSymfony5;
+use Fidry\Console\Output\Compatibility\DecoratesOutputSymfony6;
 use function Safe\class_alias;
 use function version_compare;
 
@@ -27,5 +27,5 @@ class_alias(
     )
         ? DecoratesOutputSymfony6::class
         : DecoratesOutputSymfony5::class,
-    \Fidry\Console\Input\DecoratesOutput::class,
+    \Fidry\Console\Output\DecoratesOutput::class,
 );

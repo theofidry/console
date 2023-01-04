@@ -86,6 +86,7 @@ composer_normalize_lint: vendor
 .PHONY: gitignore_sort
 gitignore_sort:
 	LC_ALL=C sort -u .gitignore -o .gitignore
+	LC_ALL=C sort -u .gitattributes -o .gitattributes
 
 .PHONY: php_cs_fixer
 php_cs_fixer: $(PHP_CS_FIXER_BIN)

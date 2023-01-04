@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Command;
 
-use Fidry\Console\Input\IO;
+use Fidry\Console\IO;
 
 interface InteractiveCommand extends Command
 {
