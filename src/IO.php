@@ -103,7 +103,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
             $this->input,
             $this->getErrorOutput(),
             $this->styledOutputFactory,
-            $this->loggerFactory,
+//            $this->loggerFactory,
         );
     }
 
@@ -173,7 +173,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
     public function withLoggerFactory(?Closure $loggerFactory): self
     {
         return new self(
-            $this->input,
+            new StringInput(''),
             $this->output,
             $this->styledOutputFactory,
             $loggerFactory,

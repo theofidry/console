@@ -9,9 +9,6 @@
             "src/Input/Compatibility"
         ]
     },
-    "logs": {
-        "text": "php://stderr"
-    },
     "tmpDir": "dist/infection",
     "mutators": {
         "@default": true,
@@ -29,6 +26,16 @@
         "CastInt": {
             "ignore": [
                 "Fidry\\Console\\InputAssert::castThrowException"
+            ]
+        },
+        "IncrementInteger": {
+            "ignore": [
+                "Fidry\\Console\\Output\\Compatibility\\DecoratesOutputSymfony6::writeln"
+            ]
+        },
+        "DecrementInteger": {
+            "ignore": [
+                "Fidry\\Console\\Output\\Compatibility\\DecoratesOutputSymfony6::writeln"
             ]
         },
         "LessThan": {
