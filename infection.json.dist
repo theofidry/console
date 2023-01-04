@@ -9,9 +9,6 @@
             "src/Input/Compatibility"
         ]
     },
-    "logs": {
-        "text": "php://stderr"
-    },
     "tmpDir": "dist/infection",
     "mutators": {
         "@default": true,

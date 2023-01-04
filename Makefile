@@ -180,12 +180,12 @@ $(INFECTION_BIN): vendor
 	touch -c $@
 
 $(COVERAGE_XML_DIR): $(PHPUNIT_BIN) src tests phpunit.xml.dist
-	$(PHPUNIT_COVERAGE)
+	$(PHPUNIT_COVERAGE_INFECTION)
 	touch -c $@
 	touch -c $(COVERAGE_JUNIT)
 
 $(COVERAGE_JUNIT): $(PHPUNIT_BIN) src tests phpunit.xml.dist
-	$(PHPUNIT_COVERAGE)
+	$(PHPUNIT_COVERAGE_INFECTION)
 	touch -c $@
 	touch -c $(COVERAGE_XML_DIR)
 
