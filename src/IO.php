@@ -26,13 +26,16 @@ namespace Fidry\Console;
 use Closure;
 use Fidry\Console\Input\DecoratesInput;
 use Fidry\Console\Input\TypedInput;
+use Fidry\Console\Output\DecoratesLogger;
 use Fidry\Console\Output\DecoratesOutput;
 use Fidry\Console\Output\DecoratesStyledOutput;
 use Fidry\Console\Output\StyledOutput;
 use Fidry\Console\Output\SymfonyStyledOutput;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
@@ -41,6 +44,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class IO implements InputInterface, OutputInterface, StyledOutput
 {
     use DecoratesInput;
+    use DecoratesLogger;
     use DecoratesOutput;
     use DecoratesStyledOutput;
 
@@ -51,19 +55,30 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
     private StyledOutput $styledErrorOutput;
 
     /**
+     * @var Closure(OutputInterface): LoggerInterface
+     */
+    private Closure $loggerFactory;
+    private LoggerInterface $errorLogger;
+
+    /**
      * @param null|Closure(InputInterface, OutputInterface): StyledOutput $styledOutputFactory
+     * @param null|Closure(OutputInterface): LoggerInterface              $loggerFactory
      */
     public function __construct(
         InputInterface $input,
         OutputInterface $output,
-        ?Closure $styledOutputFactory = null
+        ?Closure $styledOutputFactory = null,
+        ?Closure $loggerFactory = null
     ) {
         $this->styledOutputFactory = $styledOutputFactory ?? static fn (InputInterface $input, OutputInterface $output): StyledOutput => new SymfonyStyledOutput($input, $output);
+        $this->loggerFactory = $loggerFactory ?? static fn (OutputInterface $output): LoggerInterface => new ConsoleLogger($output);
 
         $this->input = $input;
         $this->output = $output;
         $this->styledOutput = ($this->styledOutputFactory)($input, $output);
         $this->styledErrorOutput = ($this->styledOutputFactory)($input, $this->getErrorOutput());
+        $this->logger = ($this->loggerFactory)($output);
+        $this->errorLogger = ($this->loggerFactory)($this->getErrorOutput());
     }
 
     public static function createDefault(): self
@@ -88,6 +103,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
             $this->input,
             $this->getErrorOutput(),
             $this->styledOutputFactory,
+//            $this->loggerFactory,
         );
     }
 
@@ -97,6 +113,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
             $input,
             $this->output,
             $this->styledOutputFactory,
+            $this->loggerFactory,
         );
     }
 
@@ -111,6 +128,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
             $this->input,
             $output,
             $this->styledOutputFactory,
+            $this->loggerFactory,
         );
     }
 
@@ -135,6 +153,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
             $this->input,
             $this->output,
             $styledOutputFactory,
+            $this->loggerFactory,
         );
     }
 
@@ -146,6 +165,29 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
     public function getStyledErrorOutput(): StyledOutput
     {
         return $this->styledErrorOutput;
+    }
+
+    /**
+     * @param null|Closure(OutputInterface): LoggerInterface $loggerFactory
+     */
+    public function withLoggerFactory(?Closure $loggerFactory): self
+    {
+        return new self(
+            new StringInput(''),
+            $this->output,
+            $this->styledOutputFactory,
+            $loggerFactory,
+        );
+    }
+
+    public function getLogger(): LoggerInterface
+    {
+        return $this->logger;
+    }
+
+    public function getErrorLogger(): LoggerInterface
+    {
+        return $this->errorLogger;
     }
 
     /**

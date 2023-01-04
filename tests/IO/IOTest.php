@@ -28,6 +28,7 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
@@ -242,10 +243,10 @@ final class IOTest extends TestCase
         $newIO = $io->withInput($newInput);
 
         self::assertSame($input, $io->getInput());
-        self::assertSame($output, $io->getOutput());
-
         self::assertSame($newInput, $newIO->getInput());
-        self::assertSame($output, $newIO->getOutput());
+
+        self::assertSame($output, $io->getOutput());
+        self::assertSame($io->getOutput(), $newIO->getOutput());
     }
 
     public function test_it_preserves_the_styled_output_when_creating_a_new_instance_with_a_new_input(): void
@@ -263,6 +264,24 @@ final class IOTest extends TestCase
 
         self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());   // Sanity check
         self::assertInstanceOf(DummyStyledOutput::class, $newIO->getStyledOutput());
+    }
+
+    public function test_it_preserves_the_logger_when_creating_a_new_instance_with_a_new_input(): void
+    {
+        $input = new StringInput('');
+        $newInput = new CompletionInput();
+        $output = new NullOutput();
+
+        $io = new IO(
+            $input,
+            $output,
+            null,
+            DummyLogger::getFactory(),
+        );
+        $newIO = $io->withInput($newInput);
+
+        self::assertInstanceOf(DummyLogger::class, $io->getLogger());   // Sanity check
+        self::assertInstanceOf(DummyLogger::class, $newIO->getLogger());
     }
 
     public function test_it_can_create_a_new_instance_with_a_new_output(): void
@@ -298,6 +317,24 @@ final class IOTest extends TestCase
 
         self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());   // Sanity check
         self::assertInstanceOf(DummyStyledOutput::class, $newIO->getStyledOutput());
+    }
+
+    public function test_it_preserves_the_logger_when_creating_a_new_instance_with_a_new_output(): void
+    {
+        $input = new StringInput('');
+        $output = new NullOutput();
+        $newOutput = new NullOutput();
+
+        $io = new IO(
+            $input,
+            $output,
+            null,
+            DummyLogger::getFactory(),
+        );
+        $newIO = $io->withOutput($newOutput);
+
+        self::assertInstanceOf(DummyLogger::class, $io->getLogger());   // Sanity check
+        self::assertInstanceOf(DummyLogger::class, $newIO->getLogger());
     }
 
     /**
@@ -555,6 +592,7 @@ final class IOTest extends TestCase
         );
 
         self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());
+        self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledErrorOutput());
     }
 
     public function test_it_can_get_the_error_io_with_an_output_that_does_not_have_an_error_output(): void
@@ -605,6 +643,33 @@ final class IOTest extends TestCase
 
         self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());   // Sanity check
         self::assertInstanceOf(DummyStyledOutput::class, $errorIO->getStyledOutput());
+    }
+
+    public function test_it_preserves_the_styled_output_when_creating_with_a_different_logger(): void
+    {
+        $io = new IO(
+            new StringInput(''),
+            new NullOutput(),
+            DummyStyledOutput::getFactory(),
+        );
+        $newIO = $io->withLoggerFactory(DummyLogger::getFactory());
+
+        self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());
+        self::assertInstanceOf(DummyStyledOutput::class, $newIO->getStyledOutput());
+    }
+
+    public function test_it_preserves_the_logger_when_creating_an_io_with_a_custom_styled_output(): void
+    {
+        $io = new IO(
+            new StringInput(''),
+            new NullOutput(),
+            null,
+            DummyLogger::getFactory(),
+        );
+        $newIO = $io->withStyledOutputFactory(DummyStyledOutput::getFactory());
+
+        self::assertInstanceOf(DummyLogger::class, $io->getLogger());
+        self::assertInstanceOf(DummyLogger::class, $newIO->getLogger());
     }
 
     public function test_it_exposes_its_error_output(): void
@@ -665,6 +730,107 @@ final class IOTest extends TestCase
         );
 
         $io->getStyledErrorOutput()->error('something happened.');
+
+        self::assertNotSame('', $errorOutput->fetch());
+    }
+
+    public function test_it_can_be_created_with_a_logger(): void
+    {
+        $io = new IO(
+            new StringInput(''),
+            new NullOutput(),
+            null,
+            DummyLogger::getFactory(),
+        );
+
+        self::assertInstanceOf(DummyLogger::class, $io->getLogger());
+        self::assertInstanceOf(DummyLogger::class, $io->getErrorLogger());
+    }
+
+    public function test_it_can_create_another_io_with_a_different_logger(): void
+    {
+        $io = IO::createNull();
+        $newIO = $io->withLoggerFactory(DummyLogger::getFactory());
+
+        self::assertInstanceOf(ConsoleLogger::class, $io->getLogger()); // Sanity check
+        self::assertInstanceOf(DummyLogger::class, $newIO->getLogger());
+        self::assertInstanceOf(DummyLogger::class, $newIO->getErrorLogger());
+    }
+
+    public function test_it_can_create_another_io_with_the_default_logger(): void
+    {
+        $io = new IO(
+            new StringInput(''),
+            new NullOutput(),
+            null,
+            DummyLogger::getFactory(),
+        );
+        $newIO = $io->withLoggerFactory(null);
+
+        // Sanity check
+        self::assertInstanceOf(DummyLogger::class, $io->getLogger());
+        self::assertInstanceOf(DummyLogger::class, $io->getErrorLogger());
+
+        self::assertInstanceOf(ConsoleLogger::class, $newIO->getLogger());
+        self::assertInstanceOf(ConsoleLogger::class, $newIO->getErrorLogger());
+    }
+
+    public function test_it_can_get_log_to_the_output_via_the_logger(): void
+    {
+        $stdout = new BufferedOutput();
+        $output = new DummyConsoleOutput($stdout, new NullOutput());
+
+        $io = new IO(
+            new StringInput(''),
+            $output,
+        );
+
+        $io->getLogger()->warning('something happened.');
+
+        self::assertNotSame('', $stdout->fetch());
+    }
+
+    public function test_it_can_get_log_to_the_output_directly(): void
+    {
+        $stdout = new BufferedOutput();
+        $output = new DummyConsoleOutput($stdout, new NullOutput());
+
+        $io = new IO(
+            new StringInput(''),
+            $output,
+        );
+
+        $io->logWarning('something happened.');
+
+        self::assertNotSame('', $stdout->fetch());
+    }
+
+    public function test_it_can_get_log_to_the_error_output_via_the_logger(): void
+    {
+        $errorOutput = new BufferedOutput();
+        $output = new DummyConsoleOutput(new NullOutput(), $errorOutput);
+
+        $io = new IO(
+            new StringInput(''),
+            $output,
+        );
+
+        $io->getErrorLogger()->warning('something happened.');
+
+        self::assertNotSame('', $errorOutput->fetch());
+    }
+
+    public function test_it_can_get_log_to_the_error_output_directly(): void
+    {
+        $errorOutput = new BufferedOutput();
+        $output = new DummyConsoleOutput(new NullOutput(), $errorOutput);
+
+        $io = new IO(
+            new StringInput(''),
+            $output,
+        );
+
+        $io->getErrorIO()->logWarning('something happened.');
 
         self::assertNotSame('', $errorOutput->fetch());
     }

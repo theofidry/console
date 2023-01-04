@@ -28,6 +28,16 @@
                 "Fidry\\Console\\InputAssert::castThrowException"
             ]
         },
+        "IncrementInteger": {
+            "ignore": [
+                "Fidry\\Console\\Output\\Compatibility\\DecoratesOutputSymfony6::writeln"
+            ]
+        },
+        "DecrementInteger": {
+            "ignore": [
+                "Fidry\\Console\\Output\\Compatibility\\DecoratesOutputSymfony6::writeln"
+            ]
+        },
         "LessThan": {
             "ignoreSourceCodeByRegex": [
                 ".*\\$min < \\$max.*"

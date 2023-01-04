@@ -20,16 +20,14 @@
 
     <projectFiles>
         <directory name="src"/>
-        <file name="stubs/DecoratesInput.php"/>
-        <file name="stubs/DecoratesOutput.php"/>
-        <file name="stubs/DecoratesStyledOutput.php"/>
-        <file name="stubs/StyledOutput.php"/>
         <directory name="tests"/>
+        <directory name="stubs"/>
 
         <ignoreFiles>
             <directory name="src/Input/Compatibility"/>
             <directory name="src/Output/Compatibility"/>
             <file name="src/Input/DecoratesInput.php"/>
+            <file name="src/Output/DecoratesLogger.php"/>
             <file name="src/Output/DecoratesOutput.php"/>
             <file name="src/Output/DecoratesStyledOutput.php"/>
             <file name="src/Output/StyledOutput.php"/>
