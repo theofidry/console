@@ -32,7 +32,12 @@ use Fidry\Console\Output\DecoratesStyledOutput;
 use Fidry\Console\Output\StyledOutput;
 use Fidry\Console\Output\SymfonyStyledOutput;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Formatter\OutputFormatterInterface;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Logger\ConsoleLogger;
@@ -40,7 +45,86 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 
+/**
+ * Note that all of this faff is about supporting Symfony5 & Symfony6 together.
+ * It is otherwise much simpler.
+ *
+ * Input methods.
+ *
+ * @method getArgument(string $name): mixed
+ * @method getFirstArgument(): ?string
+ * @method hasParameterOption(string|array $values, bool $onlyParams = false): bool
+ * @method getParameterOption(string|array $values, string|bool|int|float|array|null $default = false, bool $onlyParams = false): mixed
+ * @method bind(InputDefinition $definition)
+ * @method validate(): void
+ * @method getArguments(): array
+ * @method setArgument(string $name, mixed $value)
+ * @method hasArgument(string $name): bool
+ * @method getOptions(): array
+ * @method setOption(string $name, mixed $value)
+ * @method getOption(string $name): mixed
+ * @method hasOption(string $name, bool $onlyRealParams = false): bool
+ * @method isInteractive(): bool
+ * @method setInteractive(bool $interactive)
+ *
+ * Logger methods.
+ *
+ * @method logEmergency(string|Stringable $message, array $context = []): void
+ * @method logCritical(string|Stringable $message, array $context = []): void
+ * @method logError(string|Stringable $message, array $context = []): void
+ * @method logWarning(string|Stringable $message, array $context = []): void
+ * @method logNotice(string|Stringable $message, array $context = []): void
+ * @method logInfo(string|Stringable $message, array $context = []): void
+ * @method logDebug(string|Stringable $message, array $context = []): void
+ * @method log(mixed $level, string|Stringable $message, array $context = []): void
+ *
+ * Output methods.
+ *
+ * @method write(string|iterable $messages, bool $newline = false, int $options = 0)
+ * @method writeln(string|iterable $messages, int $options = 0)
+ * @method setVerbosity(int $level)
+ * @method getVerbosity(): int
+ * @method isQuiet(): bool
+ * @method isVerbose(): bool
+ * @method isVeryVerbose(): bool
+ * @method isDebug(): bool
+ * @method setDecorated(bool $decorated)
+ * @method isDecorated(): bool
+ * @method setFormatter(OutputFormatterInterface $formatter)
+ * @method getFormatter(): OutputFormatterInterface
+ *
+ * Styled output methods.
+ *
+ * @method block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true)
+ * @method title(string $message)
+ * @method section(string $message)
+ * @method listing(array $elements)
+ * @method text(string|array $message)
+ * @method comment(string|array $message)
+ * @method success(string|array $message)
+ * @method error(string|array $message)
+ * @method warning(string|array $message)
+ * @method note(string|array $message)
+ * @method info(string|array $message)
+ * @method caution(string|array $message)
+ * @method table(array $headers, array $rows)
+ * @method horizontalTable(array $headers, array $rows)
+ * @method definitionList(string|array|TableSeparator ...$list)
+ * @method ask(string $question, ?string $default = null, ?callable $validator = null): mixed
+ * @method askHidden(string $question, ?callable $validator = null): mixed
+ * @method confirm(string $question, bool $default = true): bool
+ * @method choice(string $question, array $choices, mixed $default = null, bool $multiSelect = false): mixed
+ * @method progressStart(int $max = 0)
+ * @method progressAdvance(int $step = 1)
+ * @method progressFinish()
+ * @method createProgressBar(int $max = 0): ProgressBar
+ * @method progressIterate(iterable $iterable, ?int $max = null): iterable
+ * @method askQuestion(Question $question): mixed
+ * @method newLine(int $count = 1)
+ * @method createTable(): Table
+ */
 final class IO implements InputInterface, OutputInterface, StyledOutput
 {
     use DecoratesInput;
