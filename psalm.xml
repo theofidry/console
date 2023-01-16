@@ -49,6 +49,12 @@
                 <file name="src/Internal/Type/NullOrNonEmptyStringType.php"/>
             </errorLevel>
         </InvalidReturnType>
+        
+        <LessSpecificImplementedReturnType>
+            <errorLevel type="suppress">
+                <file name="src/IO.php"/>
+            </errorLevel>
+        </LessSpecificImplementedReturnType>
 
         <MissingConstructor>
             <errorLevel type="suppress">
