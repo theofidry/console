@@ -111,7 +111,7 @@ final class CreateUserCommand implements Command
 
 ### Registering the Command
 
-Symfony commands must be registered as services and tagged with the `webmozarts.console_command` 
+Symfony commands must be registered as services and tagged with the `fidry.console_command` 
 tag. If you’re using the default `services.yaml` configuration, this is already done for you thanks
 to autoconfiguration.
 
