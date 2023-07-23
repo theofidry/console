@@ -67,7 +67,8 @@ use Symfony\Component\Console\Question\Question;
  * @method getOption(string $name): mixed
  * @method hasOption(string $name, bool $onlyRealParams = false): bool
  * @method isInteractive(): bool
- * @method setInteractive(bool $interactive)
+ * @method setInteractive(bool $interactive): void
+ * @method __toString(): string
  *
  * Logger methods.
  *
@@ -82,17 +83,17 @@ use Symfony\Component\Console\Question\Question;
  *
  * Output methods.
  *
- * @method write(string|iterable $messages, bool $newline = false, int $options = 0)
- * @method writeln(string|iterable $messages, int $options = 0)
- * @method setVerbosity(int $level)
+ * @method write(string|iterable $messages, bool $newline = false, int $options = 0): void
+ * @method writeln(string|iterable $messages, int $options = 0): void
+ * @method setVerbosity(int $level): void
  * @method getVerbosity(): int
  * @method isQuiet(): bool
  * @method isVerbose(): bool
  * @method isVeryVerbose(): bool
  * @method isDebug(): bool
- * @method setDecorated(bool $decorated)
+ * @method setDecorated(bool $decorated): void
  * @method isDecorated(): bool
- * @method setFormatter(OutputFormatterInterface $formatter)
+ * @method setFormatter(OutputFormatterInterface $formatter): void
  * @method getFormatter(): OutputFormatterInterface
  *
  * Styled output methods.

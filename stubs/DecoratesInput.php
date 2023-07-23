@@ -63,9 +63,9 @@ trait DecoratesInput
         return $this->input->bind($definition);
     }
 
-    public function validate()
+    public function validate(): void
     {
-        return $this->input->validate();
+        $this->input->validate();
     }
 
     /** @psalm-suppress LessSpecificImplementedReturnType */
@@ -74,9 +74,9 @@ trait DecoratesInput
         return $this->input->getArguments();
     }
 
-    public function setArgument(string $name, mixed $value)
+    public function setArgument(string $name, mixed $value): void
     {
-        return $this->input->setArgument(...func_get_args());
+        $this->input->setArgument(...func_get_args());
     }
 
     public function hasArgument(string $name): bool
@@ -90,9 +90,9 @@ trait DecoratesInput
         return $this->input->getOptions();
     }
 
-    public function setOption(string $name, mixed $value)
+    public function setOption(string $name, mixed $value): void
     {
-        return $this->input->setOption(...func_get_args());
+        $this->input->setOption(...func_get_args());
     }
 
     public function getOption(string $name): mixed
@@ -110,8 +110,13 @@ trait DecoratesInput
         return $this->input->isInteractive();
     }
 
-    public function setInteractive(bool $interactive)
+    public function setInteractive(bool $interactive): void
     {
-        return $this->input->setInteractive(...func_get_args());
+        $this->input->setInteractive(...func_get_args());
+    }
+
+    public function __toString(): string
+    {
+        return $this->input->__toString();
     }
 }

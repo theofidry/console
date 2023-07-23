@@ -35,19 +35,19 @@ trait DecoratesOutput
 {
     private OutputInterface $output;
 
-    public function write(string|iterable $messages, bool $newline = false, int $options = 0)
+    public function write(string|iterable $messages, bool $newline = false, int $options = 0): void
     {
-        return $this->output->write(...func_get_args());
+        $this->output->write(...func_get_args());
     }
 
-    public function writeln(string|iterable $messages, int $options = 0)
+    public function writeln(string|iterable $messages, int $options = 0): void
     {
-        return $this->output->writeln(...func_get_args());
+        $this->output->writeln(...func_get_args());
     }
 
-    public function setVerbosity(int $level)
+    public function setVerbosity(int $level): void
     {
-        return $this->output->setVerbosity(...func_get_args());
+        $this->output->setVerbosity(...func_get_args());
     }
 
     public function getVerbosity(): int
@@ -75,9 +75,9 @@ trait DecoratesOutput
         return $this->output->isDebug(...func_get_args());
     }
 
-    public function setDecorated(bool $decorated)
+    public function setDecorated(bool $decorated): void
     {
-        return $this->output->setDecorated(...func_get_args());
+        $this->output->setDecorated(...func_get_args());
     }
 
     public function isDecorated(): bool
@@ -85,9 +85,9 @@ trait DecoratesOutput
         return $this->output->isDecorated(...func_get_args());
     }
 
-    public function setFormatter(OutputFormatterInterface $formatter)
+    public function setFormatter(OutputFormatterInterface $formatter): void
     {
-        return $this->output->setFormatter(...func_get_args());
+        $this->output->setFormatter(...func_get_args());
     }
 
     public function getFormatter(): OutputFormatterInterface
