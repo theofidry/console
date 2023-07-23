@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Application\Feature;
 
 use Fidry\Console\Application\ApplicationRunner;
-use Fidry\Console\Input\IO;
+use Fidry\Console\IO;
 use Fidry\Console\Tests\Application\Fixture\BaseApplication;
 use Fidry\Console\Tests\Application\OutputAssertions;
 use PHPUnit\Framework\TestCase;

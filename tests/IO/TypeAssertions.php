@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\IO;
 
-use Fidry\Console\Input\IO;
+use Fidry\Console\IO;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
 use function sprintf;
@@ -34,47 +34,47 @@ final class TypeAssertions
     ): void {
         self::assertExpectedType(
             $expected->boolean,
-            static fn () => $io->getArgument($argumentName)->asBoolean(),
+            static fn () => $io->getTypedArgument($argumentName)->asBoolean(),
         );
         self::assertExpectedType(
             $expected->nullableBoolean,
-            static fn () => $io->getArgument($argumentName)->asNullableBoolean(),
+            static fn () => $io->getTypedArgument($argumentName)->asNullableBoolean(),
         );
         self::assertExpectedType(
             $expected->string,
-            static fn () => $io->getArgument($argumentName)->asString(),
+            static fn () => $io->getTypedArgument($argumentName)->asString(),
         );
         self::assertExpectedType(
             $expected->nullableString,
-            static fn () => $io->getArgument($argumentName)->asNullableString(),
+            static fn () => $io->getTypedArgument($argumentName)->asNullableString(),
         );
         self::assertExpectedType(
             $expected->stringArray,
-            static fn () => $io->getArgument($argumentName)->asStringList(),
+            static fn () => $io->getTypedArgument($argumentName)->asStringList(),
         );
         self::assertExpectedType(
             $expected->integer,
-            static fn () => $io->getArgument($argumentName)->asNatural(),
+            static fn () => $io->getTypedArgument($argumentName)->asNatural(),
         );
         self::assertExpectedType(
             $expected->nullableInteger,
-            static fn () => $io->getArgument($argumentName)->asNullableNatural(),
+            static fn () => $io->getTypedArgument($argumentName)->asNullableNatural(),
         );
         self::assertExpectedType(
             $expected->integerArray,
-            static fn () => $io->getArgument($argumentName)->asNaturalList(),
+            static fn () => $io->getTypedArgument($argumentName)->asNaturalList(),
         );
         self::assertExpectedType(
             $expected->float,
-            static fn () => $io->getArgument($argumentName)->asFloat(),
+            static fn () => $io->getTypedArgument($argumentName)->asFloat(),
         );
         self::assertExpectedType(
             $expected->nullableFloat,
-            static fn () => $io->getArgument($argumentName)->asNullableFloat(),
+            static fn () => $io->getTypedArgument($argumentName)->asNullableFloat(),
         );
         self::assertExpectedType(
             $expected->floatArray,
-            static fn () => $io->getArgument($argumentName)->asFloatList(),
+            static fn () => $io->getTypedArgument($argumentName)->asFloatList(),
         );
     }
 
@@ -88,47 +88,47 @@ final class TypeAssertions
     ): void {
         self::assertExpectedType(
             $expected->boolean,
-            static fn () => $io->getOption($optionName)->asBoolean(),
+            static fn () => $io->getTypedOption($optionName)->asBoolean(),
         );
         self::assertExpectedType(
             $expected->nullableBoolean,
-            static fn () => $io->getOption($optionName)->asNullableBoolean(),
+            static fn () => $io->getTypedOption($optionName)->asNullableBoolean(),
         );
         self::assertExpectedType(
             $expected->string,
-            static fn () => $io->getOption($optionName)->asString(),
+            static fn () => $io->getTypedOption($optionName)->asString(),
         );
         self::assertExpectedType(
             $expected->nullableString,
-            static fn () => $io->getOption($optionName)->asNullableString(),
+            static fn () => $io->getTypedOption($optionName)->asNullableString(),
         );
         self::assertExpectedType(
             $expected->stringArray,
-            static fn () => $io->getOption($optionName)->asStringList(),
+            static fn () => $io->getTypedOption($optionName)->asStringList(),
         );
         self::assertExpectedType(
             $expected->integer,
-            static fn () => $io->getOption($optionName)->asNatural(),
+            static fn () => $io->getTypedOption($optionName)->asNatural(),
         );
         self::assertExpectedType(
             $expected->nullableInteger,
-            static fn () => $io->getOption($optionName)->asNullableNatural(),
+            static fn () => $io->getTypedOption($optionName)->asNullableNatural(),
         );
         self::assertExpectedType(
             $expected->integerArray,
-            static fn () => $io->getOption($optionName)->asNaturalList(),
+            static fn () => $io->getTypedOption($optionName)->asNaturalList(),
         );
         self::assertExpectedType(
             $expected->float,
-            static fn () => $io->getOption($optionName)->asFloat(),
+            static fn () => $io->getTypedOption($optionName)->asFloat(),
         );
         self::assertExpectedType(
             $expected->nullableFloat,
-            static fn () => $io->getOption($optionName)->asNullableFloat(),
+            static fn () => $io->getTypedOption($optionName)->asNullableFloat(),
         );
         self::assertExpectedType(
             $expected->floatArray,
-            static fn () => $io->getOption($optionName)->asFloatList(),
+            static fn () => $io->getTypedOption($optionName)->asFloatList(),
         );
     }
 

@@ -80,7 +80,7 @@ follows:
 namespace Acme;
 
 use Acme\MyService;
-use Fidry\Console\{ Command\Command, Command\Configuration, ExitCode, Input\IO };
+use Fidry\Console\{ Command\Command, Command\Configuration, ExitCode, IO };
 use Symfony\Component\Console\Input\InputArgument;
 
 final class CommandWithService implements Command
@@ -118,8 +118,8 @@ final class CommandWithService implements Command
     public function execute(IO $io): int
     {
         $this->service->call(
-            $io->getArgument('username')->asStringNonEmptyList(),
-            $io->getArgument('age')->asNullablePositiveInteger(),
+            $io->getTypedArgument('username')->asStringNonEmptyList(),
+            $io->getTypedArgument('age')->asNullablePositiveInteger(),
         );
 
         return ExitCode::SUCCESS;

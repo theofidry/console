@@ -14,16 +14,22 @@ declare(strict_types=1);
 namespace Fidry\Console\Input;
 
 use Composer\InstalledVersions;
+use Fidry\Console\Input\Compatibility\DecoratesInputSymfony5;
+use Fidry\Console\Input\Compatibility\DecoratesInputSymfony6;
 use function Safe\class_alias;
 use function version_compare;
 
+// This is purely for the compatibility layer between Symfony5 & Symfony6. The
+// behaviour is the same, only the method signatures differ.
+// To have a more comprehensive look of the class check:
+// stubs/DecoratesInput.php
 class_alias(
     (string) version_compare(
         (string) InstalledVersions::getPrettyVersion('symfony/console'),
         'v6.0',
         '>=',
     )
-        ? StyledOutputSymfony6::class
-        : StyledOutputSymfony5::class,
-    \Fidry\Console\Input\StyledOutput::class,
+        ? DecoratesInputSymfony6::class
+        : DecoratesInputSymfony5::class,
+    \Fidry\Console\Input\DecoratesInput::class,
 );

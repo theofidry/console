@@ -4,6 +4,9 @@
     "source": {
         "directories": [
             "src"
+        ],
+        "excludes": [
+            "src/Input/Compatibility"
         ]
     },
     "tmpDir": "dist/infection",
@@ -23,6 +26,16 @@
         "CastInt": {
             "ignore": [
                 "Fidry\\Console\\InputAssert::castThrowException"
+            ]
+        },
+        "IncrementInteger": {
+            "ignore": [
+                "Fidry\\Console\\Output\\Compatibility\\DecoratesOutputSymfony6::writeln"
+            ]
+        },
+        "DecrementInteger": {
+            "ignore": [
+                "Fidry\\Console\\Output\\Compatibility\\DecoratesOutputSymfony6::writeln"
             ]
         },
         "LessThan": {

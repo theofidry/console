@@ -11,15 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Command;
+namespace Fidry\Console\Output;
 
-use Fidry\Console\IO;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
-interface InitializableCommand extends Command
+/**
+ * @internal
+ */
+class SymfonyStyledOutput extends SymfonyStyle implements StyledOutput
 {
-    /**
-     * Its main purpose is to initialize variables used in the rest of the
-     * command methods.
-     */
-    public function initialize(IO $io): void;
 }

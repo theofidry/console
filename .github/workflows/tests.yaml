@@ -22,6 +22,8 @@ jobs:
                 exclude:
                     - php: '8.0'
                       symfony-version: '6.*.*'
+                    - php: '8.2'
+                      symfony-version: '5.4.*'
 
         steps:
             -   name: Check out repository code
@@ -33,6 +35,10 @@ jobs:
                     php-version: "${{ matrix.php }}"
                     tools: composer
                     coverage: none
+
+            -   name: Configures the deprecations listener
+                if: matrix.symfony-version == '5.4.*'
+                run: echo "SYMFONY_DEPRECATIONS_HELPER=disabled=1" >> $GITHUB_ENV
 
             -   name: Enforce the Symfony version used
                 if: ${{ matrix.symfony-version }}
