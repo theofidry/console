@@ -61,7 +61,7 @@ final class CommandFullLifeCycleSupportTest extends KernelTestCase
         $this->tester->setInputs(['username' => 'Jean']);
 
         $this->expectException(RuntimeException::class);
-        $this->expectErrorMessage('Not enough arguments (missing: "username")');
+        $this->expectExceptionMessage('Not enough arguments (missing: "username")');
 
         $this->tester->execute([], ['interactive' => false]);
     }
