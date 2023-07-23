@@ -1,6 +1,7 @@
 framework:
     secret: 'e6bd98c41c9f2868471cc94c7443c9d4'
     test: true
+    http_method_override: false
 
 services:
     _defaults:
