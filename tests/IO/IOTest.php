@@ -629,7 +629,7 @@ final class IOTest extends TestCase
         self::assertSame($errorOutput, $errorIO->getOutput());
     }
 
-    public function test_it_preserves_the_styled_output_when_getting_the_error_io(): void
+    public function test_it_transfers_its_state_to_the_error_output(): void
     {
         $input = new StringInput('');
         $output = new NullOutput();
@@ -638,14 +638,18 @@ final class IOTest extends TestCase
             $input,
             $output,
             DummyStyledOutput::getFactory(),
+            DummyLogger::getFactory(),
         );
         $errorIO = $io->getErrorIO();
 
         self::assertInstanceOf(DummyStyledOutput::class, $io->getStyledOutput());   // Sanity check
         self::assertInstanceOf(DummyStyledOutput::class, $errorIO->getStyledOutput());
+
+        self::assertInstanceOf(DummyLogger::class, $io->getLogger());   // Sanity check
+        self::assertInstanceOf(DummyLogger::class, $errorIO->getLogger());
     }
 
-    public function test_it_preserves_the_styled_output_when_creating_with_a_different_logger(): void
+    public function test_it_preserves_its_state_when_creating_with_a_different_logger(): void
     {
         $io = new IO(
             new StringInput(''),
@@ -658,7 +662,7 @@ final class IOTest extends TestCase
         self::assertInstanceOf(DummyStyledOutput::class, $newIO->getStyledOutput());
     }
 
-    public function test_it_preserves_the_logger_when_creating_an_io_with_a_custom_styled_output(): void
+    public function test_it_preserves_its_state_when_creating_an_io_with_a_custom_styled_output(): void
     {
         $io = new IO(
             new StringInput(''),
