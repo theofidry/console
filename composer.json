@@ -39,9 +39,9 @@
         "webmozarts/strict-phpunit": "^7.3"
     },
     "conflict": {
-        "symfony/dependency-injection": "<5.4.0 || >=6.0.0,<6.1.0",
-        "symfony/framework-bundle": "<5.4.0 || >=6.0.0,<6.1.0",
-        "symfony/http-kernel": "<5.4.0 || >=6.0.0,<6.1.0"
+        "symfony/dependency-injection": "<5.4.0 || >=6.0.0,<7.0.0",
+        "symfony/framework-bundle": "<5.4.0 || >=6.0.0,<7.0.0",
+        "symfony/http-kernel": "<5.4.0 || >=6.0.0,<7.0.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
