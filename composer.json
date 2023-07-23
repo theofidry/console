@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": "^7.4.0 || ^8.0.0",
+        "php": "^8.1",
         "symfony/console": "^5.4 || ^6.1",
         "symfony/event-dispatcher-contracts": "^1.0 || ^2.5 || ^3.0",
         "symfony/service-contracts": "^1.0 || ^2.5 || ^3.0",
@@ -31,7 +31,7 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.4.3",
         "symfony/dependency-injection": "^5.4 || ^6.1",
-        "symfony/flex": "^1.19 || ^2.2",
+        "symfony/flex": "^2.3",
         "symfony/framework-bundle": "^5.4 || ^6.1",
         "symfony/http-kernel": "^5.4 || ^6.1",
         "symfony/phpunit-bridge": "^4.4.47 || ^5.4 || ^6.0",
@@ -39,9 +39,9 @@
         "webmozarts/strict-phpunit": "^7.3"
     },
     "conflict": {
-        "symfony/dependency-injection": "<5.4.0 || >=6.0.0,<6.1.0",
-        "symfony/framework-bundle": "<5.4.0 || >=6.0.0,<6.1.0",
-        "symfony/http-kernel": "<5.4.0 || >=6.0.0,<6.1.0"
+        "symfony/dependency-injection": "<5.4.0 || >=6.0.0 <6.1.0",
+        "symfony/framework-bundle": "<5.4.0 || >=6.0.0 <6.1.0",
+        "symfony/http-kernel": "<5.4.0 || >=6.0.0 <6.1.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
