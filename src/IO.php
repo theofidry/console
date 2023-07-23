@@ -187,7 +187,7 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
             $this->input,
             $this->getErrorOutput(),
             $this->styledOutputFactory,
-//            $this->loggerFactory,
+            $this->loggerFactory,
         );
     }
 
