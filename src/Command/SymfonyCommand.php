@@ -24,18 +24,15 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class SymfonyCommand extends BaseSymfonyCommand
 {
-    private Command $command;
-
     /** @psalm-suppress PropertyNotSetInConstructor */
     private IO $io;
 
     /** @psalm-suppress PropertyNotSetInConstructor */
     private CommandRegistry $commandRegistry;
 
-    public function __construct(Command $command)
-    {
-        $this->command = $command;
-
+    public function __construct(
+        private readonly Command $command
+    ) {
         $name = $command->getConfiguration()->getName();
 
         parent::__construct($name);

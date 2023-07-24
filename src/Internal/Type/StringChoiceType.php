@@ -34,7 +34,7 @@ final class StringChoiceType implements ScalarType
         $this->choices = $choices;
     }
 
-    public function coerceValue($value, string $label): string
+    public function coerceValue(null|bool|string|array $value, string $label): string
     {
         $value = (new StringType())->coerceValue($value, $label);
 

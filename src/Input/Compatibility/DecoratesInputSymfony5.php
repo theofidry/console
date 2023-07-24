@@ -28,13 +28,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use function func_get_args;
 
 /**
+ * @property InputInterface $input
+ *
  * @internal
  * @psalm-require-implements InputInterface
  */
 trait DecoratesInputSymfony5
 {
-    private InputInterface $input;
-
     public function getArgument(string $name)
     {
         return $this->input->getArgument(...func_get_args());
@@ -54,18 +54,18 @@ trait DecoratesInputSymfony5
         $values,
         $default = false,
         bool $onlyParams = false
-    ) {
+    ): mixed {
         return $this->input->getParameterOption(...func_get_args());
     }
 
-    public function bind(InputDefinition $definition)
+    public function bind(InputDefinition $definition): void
     {
-        return $this->input->bind($definition);
+        $this->input->bind($definition);
     }
 
-    public function validate()
+    public function validate(): void
     {
-        return $this->input->validate();
+        $this->input->validate();
     }
 
     public function getArguments(): array
@@ -73,9 +73,9 @@ trait DecoratesInputSymfony5
         return $this->input->getArguments();
     }
 
-    public function setArgument(string $name, $value)
+    public function setArgument(string $name, $value): void
     {
-        return $this->input->setArgument(...func_get_args());
+        $this->input->setArgument(...func_get_args());
     }
 
     public function hasArgument(string $name): bool
@@ -88,12 +88,12 @@ trait DecoratesInputSymfony5
         return $this->input->getOptions();
     }
 
-    public function setOption(string $name, $value)
+    public function setOption(string $name, $value): void
     {
-        return $this->input->setOption(...func_get_args());
+        $this->input->setOption(...func_get_args());
     }
 
-    public function getOption(string $name)
+    public function getOption(string $name): mixed
     {
         return $this->input->getOption(...func_get_args());
     }
@@ -108,8 +108,8 @@ trait DecoratesInputSymfony5
         return $this->input->isInteractive();
     }
 
-    public function setInteractive(bool $interactive)
+    public function setInteractive(bool $interactive): void
     {
-        return $this->input->setInteractive(...func_get_args());
+        $this->input->setInteractive(...func_get_args());
     }
 }

@@ -21,11 +21,9 @@ use Fidry\Console\Tests\StatefulService;
 
 final class ApplicationWithConfigurableIO implements Application, ConfigurableIO
 {
-    private StatefulService $service;
-
-    public function __construct(StatefulService $service)
-    {
-        $this->service = $service;
+    public function __construct(
+        private readonly StatefulService $service,
+    ) {
     }
 
     public function getName(): string

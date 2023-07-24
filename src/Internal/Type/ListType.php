@@ -36,7 +36,7 @@ final class ListType implements InputType
         $this->innerType = $innerType;
     }
 
-    public function coerceValue($value, string $label): array
+    public function coerceValue(null|bool|string|array $value, string $label): array
     {
         InputAssert::assertIsList($value, $label);
 

@@ -17,24 +17,17 @@ use Fidry\Console\Internal\Type\InputType;
 
 final class ConfigurableType implements InputType
 {
-    private array $typeClassNames;
-    private string $psalmTypeDeclaration;
-    private ?string $phpTypeDeclaration;
-
     /**
      * @param non-empty-list<class-string<InputType>> $typeClassNames
      */
     public function __construct(
-        string $psalmTypeDeclaration,
-        ?string $phpTypeDeclaration,
-        ?array $typeClassNames = null
+        private readonly string $psalmTypeDeclaration,
+        private readonly ?string $phpTypeDeclaration,
+        private readonly array $typeClassNames = [self::class]
     ) {
-        $this->psalmTypeDeclaration = $psalmTypeDeclaration;
-        $this->phpTypeDeclaration = $phpTypeDeclaration;
-        $this->typeClassNames = $typeClassNames ?? [self::class];
     }
 
-    public function coerceValue($value, string $label)
+    public function coerceValue($value, string $label): mixed
     {
         return $value;
     }

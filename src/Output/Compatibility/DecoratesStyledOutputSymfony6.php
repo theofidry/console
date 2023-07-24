@@ -38,79 +38,79 @@ trait DecoratesStyledOutputSymfony6
 {
     private StyledOutput $styledOutput;
 
-    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true)
+    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true): void
     {
-        return $this->styledOutput->block(...func_get_args());
+        $this->styledOutput->block(...func_get_args());
     }
 
-    public function title(string $message)
+    public function title(string $message): void
     {
-        return $this->styledOutput->title(...func_get_args());
+        $this->styledOutput->title(...func_get_args());
     }
 
-    public function section(string $message)
+    public function section(string $message): void
     {
-        return $this->styledOutput->section(...func_get_args());
+        $this->styledOutput->section(...func_get_args());
     }
 
-    public function listing(array $elements)
+    public function listing(array $elements): void
     {
-        return $this->styledOutput->listing(...func_get_args());
+        $this->styledOutput->listing(...func_get_args());
     }
 
-    public function text(string|array $message)
+    public function text(string|array $message): void
     {
-        return $this->styledOutput->text(...func_get_args());
+        $this->styledOutput->text(...func_get_args());
     }
 
-    public function comment(string|array $message)
+    public function comment(string|array $message): void
     {
-        return $this->styledOutput->comment(...func_get_args());
+        $this->styledOutput->comment(...func_get_args());
     }
 
-    public function success(string|array $message)
+    public function success(string|array $message): void
     {
-        return $this->styledOutput->success(...func_get_args());
+        $this->styledOutput->success(...func_get_args());
     }
 
-    public function error(string|array $message)
+    public function error(string|array $message): void
     {
-        return $this->styledOutput->error(...func_get_args());
+        $this->styledOutput->error(...func_get_args());
     }
 
-    public function warning(string|array $message)
+    public function warning(string|array $message): void
     {
-        return $this->styledOutput->warning(...func_get_args());
+        $this->styledOutput->warning(...func_get_args());
     }
 
-    public function note(string|array $message)
+    public function note(string|array $message): void
     {
-        return $this->styledOutput->note(...func_get_args());
+        $this->styledOutput->note(...func_get_args());
     }
 
-    public function info(string|array $message)
+    public function info(string|array $message): void
     {
-        return $this->styledOutput->info(...func_get_args());
+        $this->styledOutput->info(...func_get_args());
     }
 
-    public function caution(string|array $message)
+    public function caution(string|array $message): void
     {
-        return $this->styledOutput->caution(...func_get_args());
+        $this->styledOutput->caution(...func_get_args());
     }
 
-    public function table(array $headers, array $rows)
+    public function table(array $headers, array $rows): void
     {
-        return $this->styledOutput->table(...func_get_args());
+        $this->styledOutput->table(...func_get_args());
     }
 
-    public function horizontalTable(array $headers, array $rows)
+    public function horizontalTable(array $headers, array $rows): void
     {
-        return $this->styledOutput->horizontalTable(...func_get_args());
+        $this->styledOutput->horizontalTable(...func_get_args());
     }
 
-    public function definitionList(string|array|TableSeparator ...$list)
+    public function definitionList(string|array|TableSeparator ...$list): void
     {
-        return $this->styledOutput->definitionList(...func_get_args());
+        $this->styledOutput->definitionList(...func_get_args());
     }
 
     public function ask(string $question, ?string $default = null, ?callable $validator = null): mixed
@@ -133,19 +133,19 @@ trait DecoratesStyledOutputSymfony6
         return $this->styledOutput->choice(...func_get_args());
     }
 
-    public function progressStart(int $max = 0)
+    public function progressStart(int $max = 0): void
     {
-        return $this->styledOutput->progressStart(...func_get_args());
+        $this->styledOutput->progressStart(...func_get_args());
     }
 
-    public function progressAdvance(int $step = 1)
+    public function progressAdvance(int $step = 1): void
     {
-        return $this->styledOutput->progressAdvance(...func_get_args());
+        $this->styledOutput->progressAdvance(...func_get_args());
     }
 
-    public function progressFinish()
+    public function progressFinish(): void
     {
-        return $this->styledOutput->progressFinish(...func_get_args());
+        $this->styledOutput->progressFinish(...func_get_args());
     }
 
     public function createProgressBar(int $max = 0): ProgressBar
@@ -163,9 +163,9 @@ trait DecoratesStyledOutputSymfony6
         return $this->styledOutput->askQuestion(...func_get_args());
     }
 
-    public function newLine(int $count = 1)
+    public function newLine(int $count = 1): void
     {
-        return $this->styledOutput->newLine(...func_get_args());
+        $this->styledOutput->newLine(...func_get_args());
     }
 
     public function createTable(): Table

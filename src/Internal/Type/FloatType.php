@@ -20,7 +20,7 @@ use Fidry\Console\InputAssert;
  */
 final class FloatType implements ScalarType
 {
-    public function coerceValue($value, string $label): float
+    public function coerceValue(null|bool|string|array $value, string $label): float
     {
         InputAssert::numericString($value, $label);
 

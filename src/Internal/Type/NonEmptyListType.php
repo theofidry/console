@@ -36,7 +36,7 @@ final class NonEmptyListType implements InputType
         $this->innerType = $innerType;
     }
 
-    public function coerceValue($value, string $label): array
+    public function coerceValue(null|bool|string|array $value, string $label): array
     {
         $list = (new ListType($this->innerType))->coerceValue($value, $label);
 

@@ -20,7 +20,7 @@ use Fidry\Console\InputAssert;
  */
 final class UntrimmedStringType implements ScalarType
 {
-    public function coerceValue($value, string $label): string
+    public function coerceValue(null|bool|string|array $value, string $label): string
     {
         InputAssert::string($value, $label);
 

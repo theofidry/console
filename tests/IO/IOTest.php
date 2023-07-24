@@ -98,12 +98,9 @@ final class IOTest extends TestCase
         self::assertInstanceOf(NullOutput::class, $io->getOutput());
     }
 
-    /**
-     * @param mixed $default
-     */
     #[DataProvider('invalidArgumentTypeProvider')]
     public function test_it_checks_against_invalid_argument_default_types(
-        $default,
+        mixed $default,
         string $expectedMessage
     ): void {
         try {
@@ -182,12 +179,9 @@ final class IOTest extends TestCase
         }
     }
 
-    /**
-     * @param mixed $default
-     */
     #[DataProvider('invalidOptionTypeProvider')]
     public function test_it_checks_against_invalid_option_default_types(
-        $default,
+        mixed $default,
         string $expectedMessage
     ): void {
         try {

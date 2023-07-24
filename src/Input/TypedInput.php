@@ -27,31 +27,25 @@ use function sprintf;
 final class TypedInput
 {
     /**
-     * @var ArgumentInput|OptionInput
-     */
-    private $value;
-
-    /**
-     * @var non-empty-string
-     */
-    private string $label;
-
-    /**
      * @param ArgumentInput|OptionInput $value
+     * @param non-empty-string          $label
+     *
+     * @psalm-suppress RedundantCondition
      */
-    private function __construct($value, string $label)
-    {
+    private function __construct(
+        private readonly null|bool|string|array $value,
+        private readonly string $label,
+    ) {
         Assert::stringNotEmpty($label);
-
-        $this->value = $value;
-        $this->label = $label;
     }
 
     /**
-     * @param ArgumentInput    $argument
      * @param non-empty-string $name
+     *
+     * @psalm-assert ArgumentInput $argument
+     * @psalm-suppress ArgumentTypeCoercion
      */
-    public static function fromArgument($argument, string $name): self
+    public static function fromArgument(mixed $argument, string $name): self
     {
         InputAssert::assertIsValidArgumentType($argument, $name);
 
@@ -65,10 +59,12 @@ final class TypedInput
     }
 
     /**
-     * @param OptionInput      $option
      * @param non-empty-string $name
+     *
+     * @psalm-assert OptionInput $option
+     * @psalm-suppress ArgumentTypeCoercion
      */
-    public static function fromOption($option, string $name): self
+    public static function fromOption(mixed $option, string $name): self
     {
         InputAssert::assertIsValidOptionType($option, $name);
 

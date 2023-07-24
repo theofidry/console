@@ -23,14 +23,11 @@ final class DummyConsoleOutput implements ConsoleOutputInterface
 {
     use DecoratesOutput;
 
-    private OutputInterface $errorOutput;
-
     public function __construct(
         OutputInterface $output,
-        OutputInterface $errorOutput
+        private OutputInterface $errorOutput
     ) {
         $this->output = $output;
-        $this->errorOutput = $errorOutput;
     }
 
     public function getErrorOutput(): OutputInterface

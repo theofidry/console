@@ -28,13 +28,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use function func_get_args;
 
 /**
+ * @property OutputInterface $output
+ *
  * @internal
  * @psalm-require-implements OutputInterface
  */
 trait DecoratesOutputSymfony5
 {
-    private OutputInterface $output;
-
     public function write($messages, bool $newline = false, int $options = 0): void
     {
         $this->output->write(...func_get_args());
@@ -50,27 +50,27 @@ trait DecoratesOutputSymfony5
         $this->output->setVerbosity(...func_get_args());
     }
 
-    public function getVerbosity()
+    public function getVerbosity(): int
     {
         return $this->output->getVerbosity(...func_get_args());
     }
 
-    public function isQuiet()
+    public function isQuiet(): bool
     {
         return $this->output->isQuiet(...func_get_args());
     }
 
-    public function isVerbose()
+    public function isVerbose(): bool
     {
         return $this->output->isVerbose(...func_get_args());
     }
 
-    public function isVeryVerbose()
+    public function isVeryVerbose(): bool
     {
         return $this->output->isVeryVerbose(...func_get_args());
     }
 
-    public function isDebug()
+    public function isDebug(): bool
     {
         return $this->output->isDebug(...func_get_args());
     }
@@ -80,7 +80,7 @@ trait DecoratesOutputSymfony5
         $this->output->setDecorated(...func_get_args());
     }
 
-    public function isDecorated()
+    public function isDecorated(): bool
     {
         return $this->output->isDecorated(...func_get_args());
     }
@@ -90,7 +90,7 @@ trait DecoratesOutputSymfony5
         $this->output->setFormatter(...func_get_args());
     }
 
-    public function getFormatter()
+    public function getFormatter(): OutputFormatterInterface
     {
         return $this->output->getFormatter(...func_get_args());
     }

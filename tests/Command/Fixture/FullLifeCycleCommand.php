@@ -32,11 +32,10 @@ use Symfony\Component\Console\Question\Question;
 final class FullLifeCycleCommand implements Command, InitializableCommand, InteractiveCommand
 {
     private bool $initialized = false;
-    private QuestionHelper $questionHelper;
 
-    public function __construct(QuestionHelper $questionHelper)
-    {
-        $this->questionHelper = $questionHelper;
+    public function __construct(
+        private readonly QuestionHelper $questionHelper,
+    ) {
     }
 
     public function getConfiguration(): Configuration

@@ -20,7 +20,7 @@ namespace Fidry\Console\Internal\Type;
  */
 final class RawType implements InputType
 {
-    public function coerceValue($value, string $label)
+    public function coerceValue(null|bool|string|array $value, string $label): mixed
     {
         /** @psalm-suppress NullableReturnStatement */
         return $value;

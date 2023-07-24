@@ -37,9 +37,9 @@ trait DecoratesStyledOutput
 {
     private StyledOutput $styledOutput;
 
-    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true)
+    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true): void
     {
-        return $this->styledOutput->block(...func_get_args());
+        $this->styledOutput->block(...func_get_args());
     }
 
     public function title(string $message)
