@@ -136,7 +136,7 @@ final class TypeAssertions
      * @param mixed|TypeException $expected
      * @param callable():mixed    $getArgument
      */
-    private static function assertExpectedType($expected, callable $getArgument): void
+    private static function assertExpectedType(mixed $expected, callable $getArgument): void
     {
         try {
             $actual = $getArgument();

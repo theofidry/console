@@ -18,7 +18,7 @@ use Fidry\Console\Command\Command;
 interface Application
 {
     /**
-     * Name of the application. Typically shown when running the application
+     * Name of the application. Typically, shown when running the application
      * or displaying the current version.
      */
     public function getName(): string;
@@ -49,7 +49,7 @@ interface Application
 
     /**
      * The default command executed when the application is being run without
-     * any command specified. Typically the list command which will display all
+     * any command specified. Typically, the list command which will display all
      * the available commands.
      */
     public function getDefaultCommand(): string;

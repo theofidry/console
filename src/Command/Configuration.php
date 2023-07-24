@@ -21,20 +21,6 @@ use Symfony\Component\Console\Input\InputOption;
  */
 final class Configuration
 {
-    private string $name;
-    private string $description;
-    private string $help;
-
-    /**
-     * @var InputArgument[]
-     */
-    private array $arguments;
-
-    /**
-     * @var InputOption[]
-     */
-    private array $options;
-
     /**
      * Beware that if the command is lazy, the name and description will be
      * overwritten by the values provided for the laziness (see the LazyCommand
@@ -44,17 +30,12 @@ final class Configuration
      * @param InputOption[]   $options
      */
     public function __construct(
-        string $name,
-        string $description,
-        string $help,
-        array $arguments = [],
-        array $options = []
+        private readonly string $name,
+        private readonly string $description,
+        private readonly string $help,
+        private readonly array $arguments = [],
+        private readonly array $options = []
     ) {
-        $this->name = $name;
-        $this->description = $description;
-        $this->help = $help;
-        $this->arguments = $arguments;
-        $this->options = $options;
     }
 
     public function getName(): string

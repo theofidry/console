@@ -15,10 +15,7 @@ namespace Fidry\Console\Tests\IO;
 
 final class TypeException
 {
-    public string $message;
-
-    public function __construct(string $message)
+    public function __construct(public readonly string $message)
     {
-        $this->message = $message;
     }
 }

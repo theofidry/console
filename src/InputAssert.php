@@ -38,11 +38,9 @@ final class InputAssert
     }
 
     /**
-     * @param mixed $argument
-     *
      * @psalm-assert ArgumentInput $argument
      */
-    public static function assertIsValidArgumentType($argument, string $name): void
+    public static function assertIsValidArgumentType(mixed $argument, string $name): void
     {
         if (null === $argument || is_string($argument)) {
             return;
@@ -64,11 +62,9 @@ final class InputAssert
     }
 
     /**
-     * @param mixed $option
-     *
      * @psalm-assert OptionInput $option
      */
-    public static function assertIsValidOptionType($option, string $name): void
+    public static function assertIsValidOptionType(mixed $option, string $name): void
     {
         if (null === $option || is_bool($option) || is_string($option)) {
             return;
@@ -95,7 +91,7 @@ final class InputAssert
      *
      * @psalm-assert scalar|null $value
      */
-    public static function assertIsScalar($value, string $label): void
+    public static function assertIsScalar(null|bool|string|array $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value): void {
@@ -119,9 +115,9 @@ final class InputAssert
      * @param ArgumentInput|OptionInput $value
      * @param non-empty-string          $label
      *
-     * @psalm-assert list $value
+     * @psalm-assert list<string> $value
      */
-    public static function assertIsList($value, string $label): void
+    public static function assertIsList(null|bool|string|array $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value): void {
@@ -151,7 +147,7 @@ final class InputAssert
      *
      * @psalm-assert numeric $value
      */
-    public static function numericString($value, string $label): void
+    public static function numericString(null|bool|string|array $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value, $label): void {
@@ -181,7 +177,7 @@ final class InputAssert
      *
      * @psalm-assert string $value
      */
-    public static function integerString($value, string $label): void
+    public static function integerString(null|bool|string|array $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value, $label): void {
@@ -211,7 +207,7 @@ final class InputAssert
      *
      * @psalm-assert string $value
      */
-    public static function string($value, string $label): void
+    public static function string(null|bool|string|array $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value, $label): void {
@@ -244,7 +240,7 @@ final class InputAssert
     /**
      * @param ArgumentInput|OptionInput $value
      */
-    private static function castType($value): string
+    private static function castType(null|bool|string|array $value): string
     {
         return var_export($value, true);
     }

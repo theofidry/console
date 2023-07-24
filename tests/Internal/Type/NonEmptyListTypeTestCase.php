@@ -41,11 +41,8 @@ final class NonEmptyListTypeTestCase extends BaseTypeTestCase
         self::assertSame($expected, $actual);
     }
 
-    /**
-     * @param mixed $_
-     */
     #[DataProvider('listProvider')]
-    public function test_it_exposes_its_psalm_declaration(InputType $input, $_, string $expected): void
+    public function test_it_exposes_its_psalm_declaration(InputType $input, mixed $_, string $expected): void
     {
         $actual = $input->getPsalmTypeDeclaration();
 

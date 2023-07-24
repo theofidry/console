@@ -26,7 +26,7 @@ interface InputType
      *
      * @return TypedValue
      */
-    public function coerceValue($value, string $label);
+    public function coerceValue(null|bool|string|array $value, string $label): mixed;
 
     /**
      * @return non-empty-list<class-string<InputType>>

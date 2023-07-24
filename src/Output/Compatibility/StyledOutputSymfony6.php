@@ -30,22 +30,22 @@ interface StyledOutputSymfony6 extends StyleInterface
     /**
      * Formats a message as a block of text.
      */
-    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true);
+    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true): void;
 
     /**
      * Formats a command comment.
      */
-    public function comment(string|array $message);
+    public function comment(string|array $message): void;
 
     /**
      * Formats an info message.
      */
-    public function info(string|array $message);
+    public function info(string|array $message): void;
 
     /**
      * Formats a horizontal table.
      */
-    public function horizontalTable(array $headers, array $rows);
+    public function horizontalTable(array $headers, array $rows): void;
 
     /**
      * Formats a list of key/value horizontally.
@@ -55,17 +55,14 @@ interface StyledOutputSymfony6 extends StyleInterface
      * * ['key' => 'value']
      * * new TableSeparator()
      */
-    public function definitionList(string|array|TableSeparator ...$list);
+    public function definitionList(string|array|TableSeparator ...$list): void;
 
     /**
      * @see ProgressBar::iterate()
      */
     public function progressIterate(iterable $iterable, ?int $max = null): iterable;
 
-    /**
-     * @return mixed
-     */
-    public function askQuestion(Question $question);
+    public function askQuestion(Question $question): mixed;
 
     public function createTable(): Table;
 

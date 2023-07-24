@@ -51,23 +51,16 @@ final class NullableTypeTestCase extends BaseTypeTestCase
         self::assertSame($expected, $actual);
     }
 
-    /**
-     * @param mixed $_
-     */
     #[DataProvider('nullableProvider')]
-    public function test_it_exposes_its_psalm_declaration(InputType $input, $_, string $expected): void
+    public function test_it_exposes_its_psalm_declaration(InputType $input, mixed $_, string $expected): void
     {
         $actual = $input->getPsalmTypeDeclaration();
 
         self::assertSame($expected, $actual);
     }
 
-    /**
-     * @param mixed $_1
-     * @param mixed $_2
-     */
     #[DataProvider('nullableProvider')]
-    public function test_it_exposes_its_php_declaration(InputType $input, $_1, $_2, ?string $expected): void
+    public function test_it_exposes_its_php_declaration(InputType $input, mixed $_1, mixed $_2, ?string $expected): void
     {
         $actual = $input->getPhpTypeDeclaration();
 

@@ -16,119 +16,35 @@ namespace Fidry\Console\Tests\IO;
 final class TypedInput
 {
     /**
-     * @var bool|TypeException
-     */
-    public $boolean;
-
-    /**
-     * @var null|bool|TypeException
-     */
-    public $nullableBoolean;
-
-    /**
-     * @var string|TypeException
-     */
-    public $string;
-
-    /**
-     * @var null|string|TypeException
-     */
-    public $nullableString;
-
-    /**
-     * @var string[]|TypeException
-     */
-    public $stringArray;
-
-    /**
-     * @var int|TypeException
-     */
-    public $integer;
-
-    /**
-     * @var null|int|TypeException
-     */
-    public $nullableInteger;
-
-    /**
-     * @var int[]|TypeException
-     */
-    public $integerArray;
-
-    /**
-     * @var float|TypeException
-     */
-    public $float;
-
-    /**
-     * @var null|float|TypeException
-     */
-    public $nullableFloat;
-
-    /**
-     * @var float[]|TypeException
-     */
-    public $floatArray;
-
-    /**
-     * @param bool|TypeException        $boolean
-     * @param null|bool|TypeException   $nullableBoolean
-     * @param string|TypeException      $string
-     * @param null|string|TypeException $nullableString
-     * @param string[]|TypeException    $stringArray
-     * @param int|TypeException         $integer
-     * @param null|int|TypeException    $nullableInteger
-     * @param int[]|TypeException       $integerArray
-     * @param float|TypeException       $float
-     * @param null|float|TypeException  $nullableFloat
-     * @param float[]|TypeException     $floatArray
+     * @param string[]|TypeException $stringArray
+     * @param int[]|TypeException    $integerArray
+     * @param float[]|TypeException  $floatArray
      */
     public function __construct(
-        $boolean,
-        $nullableBoolean,
-        $string,
-        $nullableString,
-        $stringArray,
-        $integer,
-        $nullableInteger,
-        $integerArray,
-        $float,
-        $nullableFloat,
-        $floatArray
+        public readonly bool|TypeException $boolean,
+        public readonly null|bool|TypeException $nullableBoolean,
+        public readonly string|TypeException $string,
+        public readonly null|string|TypeException $nullableString,
+        public readonly array|TypeException $stringArray,
+        public readonly int|TypeException $integer,
+        public readonly null|int|TypeException $nullableInteger,
+        public readonly array|TypeException $integerArray,
+        public readonly float|TypeException $float,
+        public readonly null|float|TypeException $nullableFloat,
+        public readonly array|TypeException $floatArray,
     ) {
-        $this->boolean = $boolean;
-        $this->nullableBoolean = $nullableBoolean;
-        $this->string = $string;
-        $this->nullableString = $nullableString;
-        $this->stringArray = $stringArray;
-        $this->integer = $integer;
-        $this->nullableInteger = $nullableInteger;
-        $this->integerArray = $integerArray;
-        $this->float = $float;
-        $this->nullableFloat = $nullableFloat;
-        $this->floatArray = $floatArray;
     }
 
-    /**
-     * @param bool|TypeException        $boolean
-     * @param null|bool|TypeException   $nullableBoolean
-     * @param string|TypeException      $string
-     * @param null|string|TypeException $nullableString
-     * @param int|TypeException         $integer
-     * @param null|int|TypeException    $nullableInteger
-     * @param float|TypeException       $float
-     * @param null|float|TypeException  $nullableFloat
-     */
     public static function createForScalar(
         TypeException $arrayToScalarTypeException,
-        $boolean,
-        $nullableBoolean,
-        $string,
-        $nullableString,
-        $integer,
-        $nullableInteger,
-        $float,
-        $nullableFloat
+        bool|TypeException $boolean,
+        null|bool|TypeException $nullableBoolean,
+        string|TypeException $string,
+        null|string|TypeException $nullableString,
+        int|TypeException $integer,
+        null|int|TypeException $nullableInteger,
+        float|TypeException $float,
+        null|float|TypeException $nullableFloat,
     ): self {
         return new self(
             $boolean,
@@ -152,9 +68,9 @@ final class TypedInput
      */
     public static function createForArray(
         TypeException $scalarToArrayTypeException,
-        $stringArray,
-        $integerArray,
-        $floatArray
+        array|TypeException $stringArray,
+        array|TypeException $integerArray,
+        array|TypeException $floatArray,
     ): self {
         return new self(
             $scalarToArrayTypeException,

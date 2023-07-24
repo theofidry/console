@@ -21,11 +21,9 @@ use Fidry\Console\Tests\StatefulService;
 
 final class CommandWithService implements Command
 {
-    private StatefulService $service;
-
-    public function __construct(StatefulService $service)
-    {
-        $this->service = $service;
+    public function __construct(
+        private readonly StatefulService $service,
+    ) {
     }
 
     public function getConfiguration(): Configuration

@@ -98,32 +98,32 @@ use Symfony\Component\Console\Question\Question;
  *
  * Styled output methods.
  *
- * @method block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true)
- * @method title(string $message)
- * @method section(string $message)
- * @method listing(array $elements)
- * @method text(string|array $message)
- * @method comment(string|array $message)
- * @method success(string|array $message)
- * @method error(string|array $message)
- * @method warning(string|array $message)
- * @method note(string|array $message)
- * @method info(string|array $message)
- * @method caution(string|array $message)
- * @method table(array $headers, array $rows)
- * @method horizontalTable(array $headers, array $rows)
- * @method definitionList(string|array|TableSeparator ...$list)
+ * @method block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true): void
+ * @method title(string $message): void
+ * @method section(string $message): void
+ * @method listing(array $elements): void
+ * @method text(string|array $message): void
+ * @method comment(string|array $message): void
+ * @method success(string|array $message): void
+ * @method error(string|array $message): void
+ * @method warning(string|array $message): void
+ * @method note(string|array $message): void
+ * @method info(string|array $message): void
+ * @method caution(string|array $message): void
+ * @method table(array $headers, array $rows): void
+ * @method horizontalTable(array $headers, array $rows): void
+ * @method definitionList(string|array|TableSeparator ...$list): void
  * @method ask(string $question, ?string $default = null, ?callable $validator = null): mixed
  * @method askHidden(string $question, ?callable $validator = null): mixed
  * @method confirm(string $question, bool $default = true): bool
  * @method choice(string $question, array $choices, mixed $default = null, bool $multiSelect = false): mixed
- * @method progressStart(int $max = 0)
- * @method progressAdvance(int $step = 1)
- * @method progressFinish()
+ * @method progressStart(int $max = 0): void
+ * @method progressAdvance(int $step = 1): void
+ * @method progressFinish(): void
  * @method createProgressBar(int $max = 0): ProgressBar
  * @method progressIterate(iterable $iterable, ?int $max = null): iterable
  * @method askQuestion(Question $question): mixed
- * @method newLine(int $count = 1)
+ * @method newLine(int $count = 1): void
  * @method createTable(): Table
  */
 final class IO implements InputInterface, OutputInterface, StyledOutput
@@ -150,16 +150,14 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
      * @param null|Closure(OutputInterface): LoggerInterface              $loggerFactory
      */
     public function __construct(
-        InputInterface $input,
-        OutputInterface $output,
+        private readonly InputInterface $input,
+        private readonly OutputInterface $output,
         ?Closure $styledOutputFactory = null,
         ?Closure $loggerFactory = null
     ) {
         $this->styledOutputFactory = $styledOutputFactory ?? static fn (InputInterface $input, OutputInterface $output): StyledOutput => new SymfonyStyledOutput($input, $output);
         $this->loggerFactory = $loggerFactory ?? static fn (OutputInterface $output): LoggerInterface => new ConsoleLogger($output);
 
-        $this->input = $input;
-        $this->output = $output;
         $this->styledOutput = ($this->styledOutputFactory)($input, $output);
         $this->styledErrorOutput = ($this->styledOutputFactory)($input, $this->getErrorOutput());
         $this->logger = ($this->loggerFactory)($output);
