@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\IO;
 
 use Fidry\Console\Input\InvalidInputValueType;
-use Fidry\Console\InputAssert;
+use Fidry\Console\Internal\InputAssert;
 use Fidry\Console\IO;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;

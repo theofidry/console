@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console;
+namespace Fidry\Console\Internal;
 
 use Fidry\Console\Input\InvalidInputValueType;
 use Webmozart\Assert\Assert;

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Internal\Type;
 
-use Fidry\Console\InputAssert;
+use Fidry\Console\Internal\InputAssert;
 
 /**
  * @implements ScalarType<string>

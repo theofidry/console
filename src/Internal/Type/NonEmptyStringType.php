@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\Input\InvalidInputValueType;
-use Fidry\Console\InputAssert;
+use Fidry\Console\Internal\InputAssert;
 use function sprintf;
 use function trim;
 
