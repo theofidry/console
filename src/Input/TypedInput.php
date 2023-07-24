@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
-use Fidry\Console\InputAssert;
+use Fidry\Console\Internal\InputAssert;
 use Fidry\Console\Internal\Type\NaturalRangeType;
 use Fidry\Console\Internal\Type\StringChoiceType;
 use Fidry\Console\Internal\Type\TypeFactory;
@@ -21,8 +21,8 @@ use Webmozart\Assert\Assert;
 use function sprintf;
 
 /**
- * @psalm-import-type ArgumentInput from \Fidry\Console\InputAssert
- * @psalm-import-type OptionInput from \Fidry\Console\InputAssert
+ * @psalm-import-type ArgumentInput from \Fidry\Console\Internal\InputAssert
+ * @psalm-import-type OptionInput from \Fidry\Console\Internal\InputAssert
  */
 final class TypedInput
 {
