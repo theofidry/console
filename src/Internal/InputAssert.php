@@ -25,8 +25,6 @@ use function sprintf;
 use function var_export;
 
 /**
- * TODO: move this under Internal.
- *
  * @private
  * @psalm-type ArgumentInput = null|string|list<string>
  * @psalm-type OptionInput = null|bool|string|list<string>
