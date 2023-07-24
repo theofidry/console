@@ -28,13 +28,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use function func_get_args;
 
 /**
+ * @property OutputInterface $output
+ *
  * @internal
  * @psalm-require-implements OutputInterface
  */
 trait DecoratesOutputSymfony5
 {
-    private OutputInterface $output;
-
     public function write($messages, bool $newline = false, int $options = 0): void
     {
         $this->output->write(...func_get_args());

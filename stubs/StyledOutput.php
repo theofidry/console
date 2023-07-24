@@ -29,22 +29,22 @@ interface StyledOutput extends StyleInterface
     /**
      * Formats a message as a block of text.
      */
-    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true): void;
+    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true);
 
     /**
      * Formats a command comment.
      */
-    public function comment(string|array $message): void;
+    public function comment(string|array $message);
 
     /**
      * Formats an info message.
      */
-    public function info(string|array $message): void;
+    public function info(string|array $message);
 
     /**
      * Formats a horizontal table.
      */
-    public function horizontalTable(array $headers, array $rows): void;
+    public function horizontalTable(array $headers, array $rows);
 
     /**
      * Formats a list of key/value horizontally.
@@ -54,14 +54,17 @@ interface StyledOutput extends StyleInterface
      * * ['key' => 'value']
      * * new TableSeparator()
      */
-    public function definitionList(string|array|TableSeparator ...$list): void;
+    public function definitionList(string|array|TableSeparator ...$list);
 
     /**
      * @see ProgressBar::iterate()
      */
     public function progressIterate(iterable $iterable, ?int $max = null): iterable;
 
-    public function askQuestion(Question $question): mixed;
+    /**
+     * @return mixed
+     */
+    public function askQuestion(Question $question);
 
     public function createTable(): Table;
 

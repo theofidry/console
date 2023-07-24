@@ -25,7 +25,7 @@ final class DummyConsoleOutput implements ConsoleOutputInterface
 
     public function __construct(
         OutputInterface $output,
-        private readonly OutputInterface $errorOutput
+        private OutputInterface $errorOutput
     ) {
         $this->output = $output;
     }

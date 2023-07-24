@@ -29,6 +29,8 @@ final class TypedInput
     /**
      * @param ArgumentInput|OptionInput $value
      * @param non-empty-string          $label
+     *
+     * @psalm-suppress RedundantCondition
      */
     private function __construct(
         private readonly null|bool|string|array $value,
@@ -38,10 +40,12 @@ final class TypedInput
     }
 
     /**
-     * @param ArgumentInput    $argument
      * @param non-empty-string $name
+     *
+     * @psalm-assert ArgumentInput $argument
+     * @psalm-suppress ArgumentTypeCoercion
      */
-    public static function fromArgument(null|string|array $argument, string $name): self
+    public static function fromArgument(mixed $argument, string $name): self
     {
         InputAssert::assertIsValidArgumentType($argument, $name);
 
@@ -55,10 +59,12 @@ final class TypedInput
     }
 
     /**
-     * @param OptionInput      $option
      * @param non-empty-string $name
+     *
+     * @psalm-assert OptionInput $option
+     * @psalm-suppress ArgumentTypeCoercion
      */
-    public static function fromOption(null|bool|string|array $option, string $name): self
+    public static function fromOption(mixed $option, string $name): self
     {
         InputAssert::assertIsValidOptionType($option, $name);
 

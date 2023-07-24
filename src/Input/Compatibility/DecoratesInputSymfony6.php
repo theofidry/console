@@ -28,13 +28,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use function func_get_args;
 
 /**
+ * @property InputInterface $input
+ *
  * @internal
  * @psalm-require-implements InputInterface
  */
 trait DecoratesInputSymfony6
 {
-    private InputInterface $input;
-
     public function getArgument(string $name): mixed
     {
         return $this->input->getArgument($name);
