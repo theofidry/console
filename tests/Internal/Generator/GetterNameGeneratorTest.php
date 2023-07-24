@@ -19,18 +19,14 @@ use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NonEmptyListType;
 use Fidry\Console\Internal\Type\NullableType;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Fidry\Console\Internal\Generator\GetterNameGenerator
- *
- * @internal
- */
+#[CoversClass(GetterNameGenerator::class)]
 final class GetterNameGeneratorTest extends TestCase
 {
-    /**
-     * @dataProvider typeProvider
-     */
+    #[DataProvider('typeProvider')]
     public function test_it_can_generate_name(InputType $type, string $expected): void
     {
         $actual = GetterNameGenerator::generateMethodName(

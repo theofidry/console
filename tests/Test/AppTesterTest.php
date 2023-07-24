@@ -17,15 +17,12 @@ use Fidry\Console\ExitCode;
 use Fidry\Console\Test\AppTester;
 use Fidry\Console\Test\OutputAssertions;
 use Fidry\Console\Tests\Test\Fixture\Application;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use function str_replace;
 
-/**
- * @covers \Fidry\Console\Test\AppTester
- * @covers \Fidry\Console\Test\OutputAssertions
- *
- * @internal
- */
+#[CoversClass(AppTester::class)]
+#[CoversClass(OutputAssertions::class)]
 final class AppTesterTest extends TestCase
 {
     private AppTester $appTester;

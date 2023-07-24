@@ -19,13 +19,11 @@ use Fidry\Console\Internal\Type\NaturalType;
 use Fidry\Console\Internal\Type\NullableType;
 use Fidry\Console\Internal\Type\StringType;
 use Fidry\Console\Tests\IO\TypeException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-/**
- * @covers \Fidry\Console\Internal\Type\ListType
- *
- * @internal
- */
-final class ListTypeTest extends BaseTypeTest
+#[CoversClass(ListType::class)]
+final class ListTypeTestCase extends BaseTypeTestCase
 {
     protected function setUp(): void
     {
@@ -33,10 +31,9 @@ final class ListTypeTest extends BaseTypeTest
     }
 
     /**
-     * @dataProvider listProvider
-     *
      * @param list<class-string<InputType>> $expected
      */
+    #[DataProvider('listProvider')]
     public function test_it_exposes_its_type_and_inner_type(InputType $input, array $expected): void
     {
         $actual = $input->getTypeClassNames();
@@ -45,10 +42,9 @@ final class ListTypeTest extends BaseTypeTest
     }
 
     /**
-     * @dataProvider listProvider
-     *
      * @param mixed $_
      */
+    #[DataProvider('listProvider')]
     public function test_it_exposes_its_psalm_declaration(InputType $input, $_, string $expected): void
     {
         $actual = $input->getPsalmTypeDeclaration();

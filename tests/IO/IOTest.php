@@ -15,8 +15,11 @@ namespace Fidry\Console\Tests\IO;
 
 use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
+use Fidry\Console\InputAssert;
 use Fidry\Console\IO;
 use Fidry\Console\Output\SymfonyStyledOutput;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Console\Completion\CompletionInput;
@@ -34,12 +37,8 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
 use TypeError;
 
-/**
- * @covers \Fidry\Console\InputAssert
- * @covers \Fidry\Console\IO
- *
- * @internal
- */
+#[CoversClass(InputAssert::class)]
+#[CoversClass(IO::class)]
 final class IOTest extends TestCase
 {
     /**
@@ -57,9 +56,7 @@ final class IOTest extends TestCase
         self::assertSame($output, $io->getOutput());
     }
 
-    /**
-     * @dataProvider inputProvider
-     */
+    #[DataProvider('inputProvider')]
     public function test_it_exposes_if_its_input_is_interactive(
         InputInterface $input,
         bool $expectedInteractivity
@@ -102,10 +99,9 @@ final class IOTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidArgumentTypeProvider
-     *
      * @param mixed $default
      */
+    #[DataProvider('invalidArgumentTypeProvider')]
     public function test_it_checks_against_invalid_argument_default_types(
         $default,
         string $expectedMessage
@@ -187,10 +183,9 @@ final class IOTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidOptionTypeProvider
-     *
      * @param mixed $default
      */
+    #[DataProvider('invalidOptionTypeProvider')]
     public function test_it_checks_against_invalid_option_default_types(
         $default,
         string $expectedMessage
@@ -338,10 +333,9 @@ final class IOTest extends TestCase
     }
 
     /**
-     * @dataProvider optionProvider
-     *
      * @param non-empty-string $option
      */
+    #[DataProvider('optionProvider')]
     public function test_it_can_tell_if_an_option_is_present(
         InputInterface $input,
         string $option,
@@ -358,10 +352,9 @@ final class IOTest extends TestCase
     }
 
     /**
-     * @dataProvider optionWithOnlyOptionsProvider
-     *
      * @param non-empty-string $option
      */
+    #[DataProvider('optionWithOnlyOptionsProvider')]
     public function test_it_can_tell_if_an_option_with_only_real_params_is_present(
         InputInterface $input,
         string $option,

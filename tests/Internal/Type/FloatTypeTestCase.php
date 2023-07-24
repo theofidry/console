@@ -15,14 +15,11 @@ namespace Fidry\Console\Tests\Internal\Type;
 
 use Fidry\Console\Internal\Type\FloatType;
 use Fidry\Console\Tests\IO\TypeException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use const PHP_VERSION_ID;
 
-/**
- * @covers \Fidry\Console\Internal\Type\FloatType
- *
- * @internal
- */
-final class FloatTypeTest extends BaseTypeTest
+#[CoversClass(FloatType::class)]
+final class FloatTypeTestCase extends BaseTypeTestCase
 {
     protected function setUp(): void
     {

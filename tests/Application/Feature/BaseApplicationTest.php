@@ -14,20 +14,18 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Application\Feature;
 
 use Fidry\Console\Application\ApplicationRunner;
+use Fidry\Console\Application\SymfonyApplication;
 use Fidry\Console\IO;
 use Fidry\Console\Tests\Application\Fixture\BaseApplication;
 use Fidry\Console\Tests\Application\OutputAssertions;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
-/**
- * @covers \Fidry\Console\Application\ApplicationRunner
- * @covers \Fidry\Console\Application\BaseApplication
- * @covers \Fidry\Console\Application\SymfonyApplication
- *
- * @internal
- */
+#[CoversClass(ApplicationRunner::class)]
+#[CoversClass(BaseApplication::class)]
+#[CoversClass(SymfonyApplication::class)]
 final class BaseApplicationTest extends TestCase
 {
     private const EXPECTED = <<<'EOT'

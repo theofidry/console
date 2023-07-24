@@ -15,19 +15,18 @@ namespace Fidry\Console\Tests\Application\Feature;
 
 use Fidry\Console\Application\Application;
 use Fidry\Console\Application\ApplicationRunner;
+use Fidry\Console\Application\SymfonyApplication;
 use Fidry\Console\Tests\Application\Fixture\ApplicationWithConfigurableIO;
 use Fidry\Console\Tests\Application\Fixture\SimpleApplication;
 use Fidry\Console\Tests\StatefulService;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
-/**
- * @covers \Fidry\Console\Application\ApplicationRunner
- * @covers \Fidry\Console\Application\SymfonyApplication
- *
- * @internal
- */
+#[CoversClass(ApplicationRunner::class)]
+#[CoversClass(SymfonyApplication::class)]
 final class IOConfigurationSupportTest extends TestCase
 {
     public function test_it_supports_application_which_configures_the_io(): void
@@ -47,9 +46,7 @@ final class IOConfigurationSupportTest extends TestCase
         self::assertTrue($service->called);
     }
 
-    /**
-     * @dataProvider applicationProvider
-     */
+    #[DataProvider('applicationProvider')]
     public function test_it_uses_the_original_symfony_configuration(Application $application): void
     {
         unset($_ENV['SHELL_VERBOSITY']);

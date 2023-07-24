@@ -17,16 +17,13 @@ use Fidry\Console\Command\SymfonyCommand;
 use Fidry\Console\ExitCode;
 use Fidry\Console\Test\OutputAssertions;
 use Fidry\Console\Tests\Test\Fixture\PathCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\ApplicationTester;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \Fidry\Console\Test\OutputAssertions
- *
- * @internal
- */
+#[CoversClass(OutputAssertions::class)]
 final class SymfonyOutputAssertionsTest extends TestCase
 {
     public function test_it_works_with_a_symfony_application_tester(): void

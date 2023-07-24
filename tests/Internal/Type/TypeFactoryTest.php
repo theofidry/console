@@ -18,18 +18,14 @@ use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NullableType;
 use Fidry\Console\Internal\Type\TypeFactory;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Fidry\Console\Internal\Type\TypeFactory
- *
- * @internal
- */
+#[CoversClass(TypeFactory::class)]
 final class TypeFactoryTest extends TestCase
 {
-    /**
-     * @dataProvider typeProvider
-     */
+    #[DataProvider('typeProvider')]
     public function test_it_can_cast_value(InputType $type): void
     {
         $expected = $type;

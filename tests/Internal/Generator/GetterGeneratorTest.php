@@ -19,18 +19,14 @@ use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NullableType;
 use Fidry\Console\Tests\Internal\Type\ConfigurableType;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Fidry\Console\Internal\Generator\GetterGenerator
- *
- * @internal
- */
+#[CoversClass(GetterGenerator::class)]
 final class GetterGeneratorTest extends TestCase
 {
-    /**
-     * @dataProvider typeProvider
-     */
+    #[DataProvider('typeProvider')]
     public function test_it_can_generate_a_getter_for_an_argument(InputType $type, string $expected): void
     {
         $actual = GetterGenerator::generate($type);

@@ -14,13 +14,10 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Internal\Type;
 
 use Fidry\Console\Internal\Type\RawType;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Fidry\Console\Internal\Type\RawType
- *
- * @internal
- */
-final class RawTypeTest extends BaseTypeTest
+#[CoversClass(RawType::class)]
+final class RawTypeTestCase extends BaseTypeTestCase
 {
     protected function setUp(): void
     {

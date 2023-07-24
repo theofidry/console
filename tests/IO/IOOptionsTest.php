@@ -14,26 +14,23 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\IO;
 
 use Fidry\Console\Input\InvalidInputValueType;
+use Fidry\Console\InputAssert;
 use Fidry\Console\IO;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
-/**
- * @covers \Fidry\Console\InputAssert
- * @covers \Fidry\Console\IO
- *
- * @internal
- */
+#[CoversClass(InputAssert::class)]
+#[CoversClass(IO::class)]
 final class IOOptionsTest extends TestCase
 {
     private const OPTION_NAME = 'opt';
 
-    /**
-     * @dataProvider optionProvider
-     */
+    #[DataProvider('optionProvider')]
     public function test_it_exposes_a_typed_api(
         InputOption $inputOption,
         string $option,

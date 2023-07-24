@@ -20,21 +20,18 @@ use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NonEmptyListType;
 use Fidry\Console\Internal\Type\NullableType;
 use Fidry\Console\Internal\Type\StringType;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Fidry\Console\Internal\Generator\TypeNameSorter
- *
- * @internal
- */
+#[CoversClass(TypeNameSorter::class)]
 final class TypeNameSorterTest extends TestCase
 {
     /**
-     * @dataProvider typeProvider
-     *
      * @param list<class-string<InputType>> $typeClassNames
      * @param list<class-string<InputType>> $expected
      */
+    #[DataProvider('typeProvider')]
     public function test_it_can_collect_types(array $typeClassNames, array $expected): void
     {
         $actual = TypeNameSorter::sortClassNames($typeClassNames);
