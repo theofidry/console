@@ -17,20 +17,17 @@ use Fidry\Console\Internal\Generator\GettersGenerator;
 use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Internal\Type\StringType;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Fidry\Console\Internal\Generator\GettersGenerator
- *
- * @internal
- */
+#[CoversClass(GettersGenerator::class)]
 final class GettersGeneratorTest extends TestCase
 {
     /**
-     * @dataProvider typesProvider
-     *
      * @param non-empty-list<InputType> $types
      */
+    #[DataProvider('typesProvider')]
     public function test_it_can_generate_getters_for_the_given_types_and_parameters(
         array $types,
         string $expected

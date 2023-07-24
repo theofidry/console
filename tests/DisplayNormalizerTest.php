@@ -14,19 +14,15 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests;
 
 use Fidry\Console\DisplayNormalizer;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use function sprintf;
 
-/**
- * @covers \Fidry\Console\DisplayNormalizer
- *
- * @internal
- */
+#[CoversClass(DisplayNormalizer::class)]
 final class DisplayNormalizerTest extends TestCase
 {
-    /**
-     * @dataProvider displayProvider
-     */
+    #[DataProvider('displayProvider')]
     public function test_it_normalizes_the_given_output(string $value, string $expected): void
     {
         $actual = DisplayNormalizer::removeTrailingSpaces($value);

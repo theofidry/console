@@ -18,13 +18,11 @@ use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NaturalType;
 use Fidry\Console\Internal\Type\NullableType;
 use Fidry\Console\Internal\Type\StringType;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-/**
- * @covers \Fidry\Console\Internal\Type\NullableType
- *
- * @internal
- */
-final class NullableTypeTest extends BaseTypeTest
+#[CoversClass(NullableType::class)]
+final class NullableTypeTestCase extends BaseTypeTestCase
 {
     protected function setUp(): void
     {
@@ -32,10 +30,9 @@ final class NullableTypeTest extends BaseTypeTest
     }
 
     /**
-     * @dataProvider validTypeProvider
-     *
      * @param null|bool|string|list<string> $value
      */
+    #[DataProvider('validTypeProvider')]
     public function test_it_properly_infers_the_type($value): void
     {
         $value = $this->type->coerceValue($value, 'the argument or option "test"');
@@ -44,10 +41,9 @@ final class NullableTypeTest extends BaseTypeTest
     }
 
     /**
-     * @dataProvider nullableProvider
-     *
      * @param list<class-string<InputType>> $expected
      */
+    #[DataProvider('nullableProvider')]
     public function test_it_exposes_its_type_and_inner_type(InputType $input, array $expected): void
     {
         $actual = $input->getTypeClassNames();
@@ -56,10 +52,9 @@ final class NullableTypeTest extends BaseTypeTest
     }
 
     /**
-     * @dataProvider nullableProvider
-     *
      * @param mixed $_
      */
+    #[DataProvider('nullableProvider')]
     public function test_it_exposes_its_psalm_declaration(InputType $input, $_, string $expected): void
     {
         $actual = $input->getPsalmTypeDeclaration();
@@ -68,11 +63,10 @@ final class NullableTypeTest extends BaseTypeTest
     }
 
     /**
-     * @dataProvider nullableProvider
-     *
      * @param mixed $_1
      * @param mixed $_2
      */
+    #[DataProvider('nullableProvider')]
     public function test_it_exposes_its_php_declaration(InputType $input, $_1, $_2, ?string $expected): void
     {
         $actual = $input->getPhpTypeDeclaration();

@@ -13,19 +13,17 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Command\Feature;
 
+use Fidry\Console\Command\SymfonyCommand;
 use Fidry\Console\ExitCode;
 use Fidry\Console\Tests\Command\CommandAssertions;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \Fidry\Console\Command\SymfonyCommand
- *
- * @internal
- */
+#[CoversClass(SymfonyCommand::class)]
 final class CommandFullLifeCycleSupportTest extends KernelTestCase
 {
     private Command $command;

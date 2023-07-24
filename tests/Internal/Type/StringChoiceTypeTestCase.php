@@ -15,13 +15,10 @@ namespace Fidry\Console\Tests\Internal\Type;
 
 use Fidry\Console\Internal\Type\StringChoiceType;
 use Fidry\Console\Tests\IO\TypeException;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Fidry\Console\Internal\Type\StringChoiceType
- *
- * @internal
- */
-final class StringChoiceTypeTest extends BaseTypeTest
+#[CoversClass(StringChoiceType::class)]
+final class StringChoiceTypeTestCase extends BaseTypeTestCase
 {
     protected function setUp(): void
     {

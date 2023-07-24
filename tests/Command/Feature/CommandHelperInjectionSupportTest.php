@@ -14,14 +14,11 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Command\Feature;
 
 use Fidry\Console\Command\SymfonyCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-/**
- * @covers \Fidry\Console\Command\SymfonyCommand
- *
- * @internal
- */
+#[CoversClass(SymfonyCommand::class)]
 final class CommandHelperInjectionSupportTest extends KernelTestCase
 {
     public function test_it_can_be_instantiated(): void

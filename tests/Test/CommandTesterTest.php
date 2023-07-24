@@ -17,15 +17,12 @@ use Fidry\Console\ExitCode;
 use Fidry\Console\Test\CommandTester;
 use Fidry\Console\Test\OutputAssertions;
 use Fidry\Console\Tests\Test\Fixture\PathCommand;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use function str_replace;
 
-/**
- * @covers \Fidry\Console\Test\CommandTester
- * @covers \Fidry\Console\Test\OutputAssertions
- *
- * @internal
- */
+#[CoversClass(CommandTester::class)]
+#[CoversClass(OutputAssertions::class)]
 final class CommandTesterTest extends TestCase
 {
     private CommandTester $commandTester;

@@ -13,44 +13,40 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Internal\Type;
 
-use Fidry\Console\Internal\Type\UntrimmedStringType;
+use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Tests\IO\TypeException;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Fidry\Console\Internal\Type\UntrimmedStringType
- *
- * @internal
- */
-final class UntrimmedStringTypeTest extends BaseTypeTest
+#[CoversClass(BooleanType::class)]
+final class BooleanTypeTestCase extends BaseTypeTestCase
 {
     protected function setUp(): void
     {
-        $this->type = new UntrimmedStringType();
+        $this->type = new BooleanType();
     }
 
     public static function valueProvider(): iterable
     {
-        yield [
-            null,
-            new TypeException('Expected a string. Got "NULL" for the argument or option "test".'),
-        ];
-
-        yield [
+        $trueishValues = [
             true,
-            new TypeException('Expected a string. Got "true" for the argument or option "test".'),
-        ];
-
-        $stringValues = [
-            '10',
-            '9.1',
-            'null',
-            '',
+            '1',
             ' ',
-            'foo',
+            '0 ',
+            'null',
         ];
 
-        foreach ($stringValues as $stringValue) {
-            yield [$stringValue, $stringValue];
+        $falseishValues = [
+            null,
+            false,
+            '0',
+        ];
+
+        foreach ($trueishValues as $trueishValue) {
+            yield [$trueishValue, true];
+        }
+
+        foreach ($falseishValues as $falseishValue) {
+            yield [$falseishValue, false];
         }
 
         yield [

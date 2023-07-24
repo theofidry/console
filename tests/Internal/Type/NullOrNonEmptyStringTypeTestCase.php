@@ -15,13 +15,10 @@ namespace Fidry\Console\Tests\Internal\Type;
 
 use Fidry\Console\Internal\Type\NullOrNonEmptyStringType;
 use Fidry\Console\Tests\IO\TypeException;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Fidry\Console\Internal\Type\NullOrNonEmptyStringType
- *
- * @internal
- */
-final class NullOrNonEmptyStringTypeTest extends BaseTypeTest
+#[CoversClass(NullOrNonEmptyStringType::class)]
+final class NullOrNonEmptyStringTypeTestCase extends BaseTypeTestCase
 {
     protected function setUp(): void
     {

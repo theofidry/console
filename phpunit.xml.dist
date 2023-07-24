@@ -14,14 +14,6 @@
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[self]=0"/>
     </php>
 
-    <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
-    </listeners>
-
-    <extensions>
-        <extension class="Webmozarts\StrictPHPUnit\StrictPHPUnitExtension"/>
-    </extensions>
-
     <testsuites>
         <testsuite name="AutoReview">
             <directory>tests/AutoReview</directory>
@@ -33,7 +25,7 @@
         </testsuite>
     </testsuites>
 
-    <coverage>
+    <source>
         <include>
             <directory>src</directory>
         </include>
@@ -41,5 +33,5 @@
             <file>src/FidryConsoleBundle.php</file>
             <directory>src/DependencyInjection</directory>
         </exclude>
-    </coverage>
+    </source>
 </phpunit>

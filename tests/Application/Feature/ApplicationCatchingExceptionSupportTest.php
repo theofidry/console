@@ -14,18 +14,16 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Application\Feature;
 
 use Fidry\Console\Application\ApplicationRunner;
+use Fidry\Console\Application\SymfonyApplication;
 use Fidry\Console\Tests\Application\Fixture\ApplicationThrowingException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 use UnexpectedValueException;
 
-/**
- * @covers \Fidry\Console\Application\ApplicationRunner
- * @covers \Fidry\Console\Application\SymfonyApplication
- *
- * @internal
- */
+#[CoversClass(ApplicationRunner::class)]
+#[CoversClass(SymfonyApplication::class)]
 final class ApplicationCatchingExceptionSupportTest extends TestCase
 {
     /**

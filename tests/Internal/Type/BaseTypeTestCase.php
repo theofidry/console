@@ -16,20 +16,20 @@ namespace Fidry\Console\Tests\Internal\Type;
 use Fidry\Console\Internal\Type\InputType;
 use Fidry\Console\Tests\IO\TypeException;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Exception\InvalidArgumentException as ConsoleInvalidArgumentException;
 use function sprintf;
 
-abstract class BaseTypeTest extends TestCase
+abstract class BaseTypeTestCase extends TestCase
 {
     protected InputType $type;
 
     /**
-     * @dataProvider valueProvider
-     *
      * @param null|bool|string|list<string> $value
      * @param bool|TypeException            $expected
      */
+    #[DataProvider('valueProvider')]
     final public function test_it_can_cast_values($value, $expected): void
     {
         try {

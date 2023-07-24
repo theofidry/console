@@ -15,20 +15,17 @@ namespace Fidry\Console\Tests\Internal\Generator;
 
 use Closure;
 use Fidry\Console\Internal\Generator\ClassName;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Fidry\Console\Internal\Generator\ClassName
- *
- * @internal
- */
+#[CoversClass(ClassName::class)]
 final class ClassNameTest extends TestCase
 {
     /**
-     * @dataProvider classNameProvider
-     *
      * @param class-string $className
      */
+    #[DataProvider('classNameProvider')]
     public function test_it_can_get_a_class_short_name(
         string $className,
         string $expectedShortName

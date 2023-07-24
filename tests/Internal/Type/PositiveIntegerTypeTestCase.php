@@ -15,13 +15,10 @@ namespace Fidry\Console\Tests\Internal\Type;
 
 use Fidry\Console\Internal\Type\PositiveIntegerType;
 use Fidry\Console\Tests\IO\TypeException;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Fidry\Console\Internal\Type\PositiveIntegerType
- *
- * @internal
- */
-final class PositiveIntegerTypeTest extends BaseTypeTest
+#[CoversClass(PositiveIntegerType::class)]
+final class PositiveIntegerTypeTestCase extends BaseTypeTestCase
 {
     protected function setUp(): void
     {

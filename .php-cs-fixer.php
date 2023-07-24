@@ -32,6 +32,10 @@ $config = new FidryConfig(
     74_000,
 );
 
+$config->addRules([
+    'php_unit_internal_class' => false,
+]);
+
 $config->setFinder($finder);
 $config->setCacheFile(__DIR__.'/dist/.php-cs-fixer.cache');
 

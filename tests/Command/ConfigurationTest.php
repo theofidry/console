@@ -14,15 +14,12 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Command;
 
 use Fidry\Console\Command\Configuration;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-/**
- * @covers \Fidry\Console\Command\Configuration
- *
- * @internal
- */
+#[CoversClass(Configuration::class)]
 final class ConfigurationTest extends TestCase
 {
     public function test_it_can_be_instantiated_with_minimum_params(): void

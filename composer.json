@@ -29,14 +29,12 @@
         "fidry/makefile": "^0.2.1",
         "infection/infection": "^0.27",
         "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/phpunit": "^9.4.3",
+        "phpunit/phpunit": "^10.2",
         "symfony/dependency-injection": "^5.4 || ^6.1",
         "symfony/flex": "^2.3.1",
         "symfony/framework-bundle": "^5.4 || ^6.1",
         "symfony/http-kernel": "^5.4 || ^6.1",
-        "symfony/phpunit-bridge": "^5.4 || ^6.0",
-        "symfony/yaml": "^5.4 || ^6.1",
-        "webmozarts/strict-phpunit": "^7.3"
+        "symfony/yaml": "^5.4 || ^6.1"
     },
     "conflict": {
         "symfony/dependency-injection": "<5.4.0 || >=6.0.0 <6.1.0",
