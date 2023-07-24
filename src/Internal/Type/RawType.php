@@ -38,7 +38,6 @@ final class RawType implements InputType
 
     public function getPhpTypeDeclaration(): ?string
     {
-        // TODO: make it null|bool|string|array in PHP8.1
-        return null;
+        return 'null|bool|string|array';
     }
 }

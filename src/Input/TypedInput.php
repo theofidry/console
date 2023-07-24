@@ -136,7 +136,7 @@ final class TypedInput
     /**
      * @return null|bool|string|list<string>
      */
-    public function asRaw(?string $errorMessage = null)
+    public function asRaw(?string $errorMessage = null): null|bool|string|array
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\RawType::class,

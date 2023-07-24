@@ -43,7 +43,6 @@ help:
 .PHONY: dump
 dump:	## Dumps the getter
 dump:
-	rm $(TYPED_INPUT) || true
 	$(MAKE) $(TYPED_INPUT)
 
 
