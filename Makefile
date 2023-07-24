@@ -22,9 +22,6 @@ PHPUNIT_COVERAGE_HTML = XDEBUG_MODE=coverage $(PHPUNIT) --coverage-html=$(COVERA
 PSALM_BIN = vendor-bin/psalm/vendor/vimeo/psalm/psalm
 PSALM = $(PSALM_BIN) --no-cache
 
-COVERS_VALIDATOR_BIN = vendor-bin/covers-validator/vendor/ockcyp/covers-validator/covers-validator
-COVERS_VALIDATOR = $(COVERS_VALIDATOR_BIN)
-
 PHP_CS_FIXER_BIN = vendor-bin/php-cs-fixer/vendor/friendsofphp/php-cs-fixer/php-cs-fixer
 PHP_CS_FIXER = $(PHP_CS_FIXER_BIN) fix --ansi --verbose --config=.php-cs-fixer.php
 
@@ -57,7 +54,7 @@ check: clean cs autoreview infection
 
 .PHONY: autoreview
 autoreview: ## Runs the AutoReview checks
-autoreview: cs_lint psalm covers_validator phpunit_autoreview
+autoreview: cs_lint psalm phpunit_autoreview
 
 
 .PHONY: test
@@ -111,10 +108,6 @@ _infection: $(INFECTION_BIN) $(COVERAGE_XML_DIR) $(COVERAGE_JUNIT) vendor
 .PHONY: composer_validate_package
 composer_validate_package: vendor
 	composer validate --strict
-
-.PHONY: covers_validator
-covers_validator: $(COVERS_VALIDATOR_BIN) vendor
-	$(COVERS_VALIDATOR)
 
 .PHONY: phpunit
 phpunit: $(PHPUNIT_BIN) vendor
@@ -201,13 +194,6 @@ psalm_install: $(PSALM_BIN)
 
 $(PSALM_BIN): vendor
 	composer bin psalm install
-	touch -c $@
-
-covers_validator_install: $(COVERS_VALIDATOR_BIN)
-	# Nothing to do
-
-$(COVERS_VALIDATOR_BIN): vendor
-	composer bin covers-validator install
 	touch -c $@
 
 $(TYPED_INPUT): src vendor
