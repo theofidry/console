@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Application;
 
 use Fidry\Console\Command\Command;
+use Fidry\Console\Command\LazyCommand;
+use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 
 interface Application
 {
@@ -43,7 +45,7 @@ interface Application
      * Exhaustive list of the custom commands. A few more commands such as
      * the HelpCommand or ListCommand are also included besides those.
      *
-     * @return Command[]
+     * @return array<string|array-key, class-string<LazyCommand>|class-string<Command>|Command|callable():Command>
      */
     public function getCommands(): array;
 
