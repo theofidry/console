@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Test;
 
-use Fidry\Console\Command\SymfonyCommand;
+use Fidry\Console\Bridge\Command\SymfonyCommand;
 use Fidry\Console\ExitCode;
 use Fidry\Console\Test\OutputAssertions;
 use Fidry\Console\Tests\Test\Fixture\PathCommand;

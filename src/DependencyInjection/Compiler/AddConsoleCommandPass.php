@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Fidry\Console\DependencyInjection\Compiler;
 
+use Fidry\Console\Bridge\Command\SymfonyCommand;
 use Fidry\Console\Command\LazyCommand;
-use Fidry\Console\Command\SymfonyCommand;
 use InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

@@ -15,7 +15,7 @@ namespace Fidry\Console\Tests\Application\Feature;
 
 use Fidry\Console\Application\ApplicationRunner;
 use Fidry\Console\Application\BaseApplication;
-use Fidry\Console\Application\SymfonyApplication;
+use Fidry\Console\Bridge\Application\SymfonyApplication;
 use Fidry\Console\Tests\Application\Fixture\ApplicationWithLazyCommands;
 use Fidry\Console\Tests\Application\OutputAssertions;
 use PHPUnit\Framework\Attributes\CoversClass;

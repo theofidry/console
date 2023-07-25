@@ -11,11 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Application;
+namespace Fidry\Console\Bridge\Application;
 
+use Fidry\Console\Application\Application;
+use Fidry\Console\Application\ConfigurableIO;
+use Fidry\Console\Bridge\Command\SymfonyCommand;
 use Fidry\Console\Command\Command as FidryCommand;
 use Fidry\Console\Command\LazyCommand as FidryLazyCommand;
-use Fidry\Console\Command\SymfonyCommand;
 use Fidry\Console\IO;
 use LogicException;
 use Symfony\Component\Console\Application as BaseSymfonyApplication;
@@ -119,7 +121,7 @@ final class SymfonyApplication extends BaseSymfonyApplication
     }
 
     /**
-     * @return list<BaseSymfonyCommand>
+     * @return BaseSymfonyCommand[]
      */
     private function getSymfonyCommands(): array
     {
