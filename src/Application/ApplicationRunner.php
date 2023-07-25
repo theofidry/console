@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Fidry\Console\Application;
 
 use Fidry\Console\Bridge\Application\SymfonyApplication;
+use Fidry\Console\Bridge\Command\BasicSymfonyCommandFactory;
+use Fidry\Console\Bridge\Command\SymfonyCommandFactory;
 use Fidry\Console\IO;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,9 +26,14 @@ final class ApplicationRunner
 {
     private SymfonyApplication $application;
 
-    public function __construct(Application $application)
-    {
-        $this->application = new SymfonyApplication($application);
+    public function __construct(
+        Application $application,
+        ?SymfonyCommandFactory $commandFactory = null,
+    ) {
+        $this->application = new SymfonyApplication(
+            $application,
+            $commandFactory ?? new BasicSymfonyCommandFactory(),
+        );
     }
 
     /**
@@ -41,9 +48,15 @@ final class ApplicationRunner
     public static function runApplication(
         Application $application,
         ?InputInterface $input = null,
-        ?OutputInterface $output = null
+        ?OutputInterface $output = null,
+        ?SymfonyCommandFactory $commandFactory = null,
     ): int {
-        return (new self($application))->run(
+        $runner = new self(
+            $application,
+            $commandFactory,
+        );
+
+        return $runner->run(
             new IO(
                 $input ?? new ArgvInput(),
                 $output ?? new ConsoleOutput(),
