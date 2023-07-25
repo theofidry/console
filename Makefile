@@ -136,10 +136,12 @@ clean:
 		.phpunit.result.cache \
 		infection.log \
 		|| true
+
 	rm -rf \
 		tests/Integration/**/cache \
 		dist \
 		|| true
+
 	$(MAKE) dist
 
 
