@@ -121,7 +121,7 @@ final class SymfonyApplication extends BaseSymfonyApplication
     }
 
     /**
-     * @return BaseSymfonyCommand[]
+     * @return list<BaseSymfonyCommand>
      */
     private function getSymfonyCommands(): array
     {
