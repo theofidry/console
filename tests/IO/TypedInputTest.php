@@ -26,7 +26,8 @@ use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
 /**
- * Test for the extra methods manually added to the TypedInput object.
+ * Test for the extra methods manually added to the TypedInput object. This could be tested with either InputArgument
+ * or InputOption, we are not really testing their specifics there but the method of TypedInput.
  */
 #[CoversClass(InputAssert::class)]
 #[CoversClass(TypedInput::class)]
@@ -49,10 +50,12 @@ final class TypedInputTest extends TestCase
             $this->expectExceptionMessage($expected->message);
         }
 
-        $argument->asStringChoice(
+        $actual = $argument->asStringChoice(
             $choices,
             $errorMessage,
         );
+
+        self::assertSame($expected, $actual);
     }
 
     public static function choiceListArgumentProvider(): iterable
@@ -117,11 +120,13 @@ final class TypedInputTest extends TestCase
             $this->expectExceptionMessage($expected->message);
         }
 
-        $argument->asNaturalWithinRange(
+        $actual = $argument->asNaturalWithinRange(
             $min,
             $max,
             $errorMessage,
         );
+
+        self::assertSame($expected, $actual);
     }
 
     public static function naturalWithinRangeArgumentProvider(): iterable
