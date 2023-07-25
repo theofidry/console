@@ -14,20 +14,20 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Internal\Type;
 
 use Fidry\Console\Internal\Type\InputType;
+use Fidry\Console\Internal\Type\ListType;
 use Fidry\Console\Internal\Type\NaturalType;
-use Fidry\Console\Internal\Type\NonEmptyListType;
 use Fidry\Console\Internal\Type\NullableType;
 use Fidry\Console\Internal\Type\StringType;
 use Fidry\Console\Tests\IO\TypeException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-#[CoversClass(NonEmptyListType::class)]
-final class NonEmptyListTypeTestCase extends BaseTypeTestCase
+#[CoversClass(ListType::class)]
+final class ListTypeTest extends BaseTypeTestCase
 {
     protected function setUp(): void
     {
-        $this->type = new NonEmptyListType(new NaturalType());
+        $this->type = new ListType(new NaturalType());
     }
 
     /**
@@ -58,7 +58,7 @@ final class NonEmptyListTypeTestCase extends BaseTypeTestCase
 
         yield 'empty array' => [
             [],
-            new TypeException('Expected an array to contain at least 1 elements. Got: 0 for the argument or option "test".'),
+            [],
         ];
 
         yield 'array with integers' => [
@@ -75,22 +75,22 @@ final class NonEmptyListTypeTestCase extends BaseTypeTestCase
     public static function listProvider(): iterable
     {
         yield 'scalar type' => [
-            new NonEmptyListType(new StringType()),
+            new ListType(new StringType()),
             [
-                NonEmptyListType::class,
+                ListType::class,
                 StringType::class,
             ],
-            'non-empty-list<string>',
+            'list<string>',
         ];
 
         yield 'composed type' => [
-            new NonEmptyListType(new NullableType(new StringType())),
+            new ListType(new NullableType(new StringType())),
             [
-                NonEmptyListType::class,
+                ListType::class,
                 NullableType::class,
                 StringType::class,
             ],
-            'non-empty-list<null|string>',
+            'list<null|string>',
         ];
     }
 }

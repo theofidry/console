@@ -13,16 +13,16 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Internal\Type;
 
-use Fidry\Console\Internal\Type\PositiveIntegerType;
+use Fidry\Console\Internal\Type\NaturalRangeType;
 use Fidry\Console\Tests\IO\TypeException;
 use PHPUnit\Framework\Attributes\CoversClass;
 
-#[CoversClass(PositiveIntegerType::class)]
-final class PositiveIntegerTypeTestCase extends BaseTypeTestCase
+#[CoversClass(NaturalRangeType::class)]
+final class NaturalRangeTypeTest extends BaseTypeTestCase
 {
     protected function setUp(): void
     {
-        $this->type = new PositiveIntegerType();
+        $this->type = new NaturalRangeType(2, 5);
     }
 
     public static function valueProvider(): iterable
@@ -37,9 +37,29 @@ final class PositiveIntegerTypeTestCase extends BaseTypeTestCase
             new TypeException('Expected an integer string. Got "true" for the argument or option "test".'),
         ];
 
-        yield '(string) integer' => [
-            '10',
-            10,
+        yield '(string) integer outside of bound (min)' => [
+            '1',
+            new TypeException('Expected a value between 2 and 5. Got: 1 for the argument or option "test".'),
+        ];
+
+        yield '(string) integer at limit (min)' => [
+            '2',
+            2,
+        ];
+
+        yield '(string) integer within bounds' => [
+            '3',
+            3,
+        ];
+
+        yield '(string) integer within at limit (max)' => [
+            '5',
+            5,
+        ];
+
+        yield '(string) integer outside of bound (max)' => [
+            '6',
+            new TypeException('Expected a value between 2 and 5. Got: 6 for the argument or option "test".'),
         ];
 
         yield '(string) negative integer' => [

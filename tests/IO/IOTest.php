@@ -15,6 +15,7 @@ namespace Fidry\Console\Tests\IO;
 
 use Composer\InstalledVersions;
 use Composer\Semver\VersionParser;
+use Fidry\Console\Input\TypedInput;
 use Fidry\Console\Internal\InputAssert;
 use Fidry\Console\IO;
 use Fidry\Console\Output\SymfonyStyledOutput;

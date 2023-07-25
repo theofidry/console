@@ -18,7 +18,7 @@ use Fidry\Console\Tests\IO\TypeException;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(StringChoiceType::class)]
-final class StringChoiceTypeTestCase extends BaseTypeTestCase
+final class StringChoiceTypeTest extends BaseTypeTestCase
 {
     protected function setUp(): void
     {
