@@ -130,11 +130,16 @@ phpunit_coverage_html: $(PHPUNIT_BIN) vendor
 .PHONY: clean
 clean:  ## Cleans up all artefacts
 clean:
-	rm -f .php-cs-fixer.cache || true
-	rm -f .phpunit.result.cache || true
-	rm -f infection.log || true
-	rm -rf tests/Integration/**/cache || true
-	rm -rf dist || true
+	@# Legacy entries.
+	@rm -f \
+		.php-cs-fixer.cache \
+		.phpunit.result.cache \
+		infection.log \
+		|| true
+	rm -rf \
+		tests/Integration/**/cache \
+		dist \
+		|| true
 	$(MAKE) dist
 
 
