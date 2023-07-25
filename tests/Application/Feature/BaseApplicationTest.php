@@ -86,6 +86,26 @@ final class BaseApplicationTest extends TestCase
         );
     }
 
+    public function test_it_can_display_the_version_used(): void
+    {
+        $input = new StringInput('--version');
+        $output = new BufferedOutput();
+
+        $runner = new ApplicationRunner(new SimpleApplicationUsingBaseApplication());
+
+        $runner->run(
+            new IO($input, $output),
+        );
+
+        OutputAssertions::assertSameOutput(
+            <<<'LONG_VERSION'
+                BaseApp 1.0.0
+
+                LONG_VERSION,
+            $output->fetch(),
+        );
+    }
+
     public function test_it_catches_exceptions_thrown(): void
     {
         $input = new StringInput('app:fail');
