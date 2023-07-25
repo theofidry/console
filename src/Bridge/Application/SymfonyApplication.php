@@ -15,14 +15,11 @@ namespace Fidry\Console\Bridge\Application;
 
 use Fidry\Console\Application\Application;
 use Fidry\Console\Application\ConfigurableIO;
-use Fidry\Console\Bridge\Command\SymfonyCommand;
-use Fidry\Console\Command\Command as FidryCommand;
-use Fidry\Console\Command\LazyCommand as FidryLazyCommand;
+use Fidry\Console\Bridge\Command\SymfonyCommandFactory;
 use Fidry\Console\IO;
 use LogicException;
 use Symfony\Component\Console\Application as BaseSymfonyApplication;
 use Symfony\Component\Console\Command\Command as BaseSymfonyCommand;
-use Symfony\Component\Console\Command\LazyCommand as SymfonyLazyCommand;
 use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -38,12 +35,10 @@ use function array_values;
  */
 final class SymfonyApplication extends BaseSymfonyApplication
 {
-    private Application $application;
-
-    public function __construct(Application $application)
-    {
-        $this->application = $application;
-
+    public function __construct(
+        private readonly Application $application,
+        private readonly SymfonyCommandFactory $commandFactory,
+    ) {
         parent::__construct(
             $application->getName(),
             $application->getVersion(),
@@ -127,25 +122,9 @@ final class SymfonyApplication extends BaseSymfonyApplication
     {
         return array_values(
             array_map(
-                static fn (FidryCommand $command) => self::crateSymfonyCommand($command),
+                $this->commandFactory->crateSymfonyCommand(...),
                 $this->application->getCommands(),
             ),
         );
-    }
-
-    private static function crateSymfonyCommand(FidryCommand $command): BaseSymfonyCommand
-    {
-        if ($command instanceof FidryLazyCommand) {
-            return new SymfonyLazyCommand(
-                $command::getName(),
-                [],
-                $command::getDescription(),
-                false,
-                static fn () => new SymfonyCommand($command),
-                true,
-            );
-        }
-
-        return new SymfonyCommand($command);
     }
 }
