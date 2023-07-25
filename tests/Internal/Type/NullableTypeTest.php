@@ -22,7 +22,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 #[CoversClass(NullableType::class)]
-final class NullableTypeTestCase extends BaseTypeTestCase
+final class NullableTypeTest extends BaseTypeTestCase
 {
     protected function setUp(): void
     {

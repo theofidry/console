@@ -18,7 +18,7 @@ use Fidry\Console\Tests\IO\TypeException;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(NonEmptyStringType::class)]
-final class NonEmptyStringTypeTestCase extends BaseTypeTestCase
+final class NonEmptyStringTypeTest extends BaseTypeTestCase
 {
     protected function setUp(): void
     {

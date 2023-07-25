@@ -13,51 +13,41 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Internal\Type;
 
-use Fidry\Console\Internal\Type\StringType;
+use Fidry\Console\Internal\Type\BooleanType;
 use Fidry\Console\Tests\IO\TypeException;
 use PHPUnit\Framework\Attributes\CoversClass;
 
-#[CoversClass(StringType::class)]
-final class StringTypeTestCase extends BaseTypeTestCase
+#[CoversClass(BooleanType::class)]
+final class BooleanTypeTest extends BaseTypeTestCase
 {
     protected function setUp(): void
     {
-        $this->type = new StringType();
+        $this->type = new BooleanType();
     }
 
     public static function valueProvider(): iterable
     {
-        yield [
-            null,
-            new TypeException('Expected a string. Got "NULL" for the argument or option "test".'),
-        ];
-
-        yield [
+        $trueishValues = [
             true,
-            new TypeException('Expected a string. Got "true" for the argument or option "test".'),
-        ];
-
-        $stringValues = [
-            '10',
-            '9.1',
+            '1',
+            ' ',
+            '0 ',
             'null',
-            '',
-            'foo',
         ];
 
-        foreach ($stringValues as $stringValue) {
-            yield [$stringValue, $stringValue];
+        $falseishValues = [
+            null,
+            false,
+            '0',
+        ];
+
+        foreach ($trueishValues as $trueishValue) {
+            yield [$trueishValue, true];
         }
 
-        yield 'blank string' => [
-            ' ',
-            '',
-        ];
-
-        yield 'string with spaces' => [
-            ' foo ',
-            'foo',
-        ];
+        foreach ($falseishValues as $falseishValue) {
+            yield [$falseishValue, false];
+        }
 
         yield [
             [],

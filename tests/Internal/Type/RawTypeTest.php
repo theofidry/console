@@ -17,7 +17,7 @@ use Fidry\Console\Internal\Type\RawType;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(RawType::class)]
-final class RawTypeTestCase extends BaseTypeTestCase
+final class RawTypeTest extends BaseTypeTestCase
 {
     protected function setUp(): void
     {

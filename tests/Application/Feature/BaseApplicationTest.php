@@ -16,7 +16,7 @@ namespace Fidry\Console\Tests\Application\Feature;
 use Fidry\Console\Application\ApplicationRunner;
 use Fidry\Console\Application\SymfonyApplication;
 use Fidry\Console\IO;
-use Fidry\Console\Tests\Application\Fixture\BaseApplication;
+use Fidry\Console\Tests\Application\Fixture\SimpleApplicationUsingBaseApplication;
 use Fidry\Console\Tests\Application\OutputAssertions;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -24,7 +24,7 @@ use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 #[CoversClass(ApplicationRunner::class)]
-#[CoversClass(BaseApplication::class)]
+#[CoversClass(SimpleApplicationUsingBaseApplication::class)]
 #[CoversClass(SymfonyApplication::class)]
 final class BaseApplicationTest extends TestCase
 {
@@ -58,7 +58,7 @@ final class BaseApplicationTest extends TestCase
         $output = new BufferedOutput();
 
         ApplicationRunner::runApplication(
-            new BaseApplication(),
+            new SimpleApplicationUsingBaseApplication(),
             $input,
             $output,
         );
@@ -74,7 +74,7 @@ final class BaseApplicationTest extends TestCase
         $input = new StringInput('list');
         $output = new BufferedOutput();
 
-        $runner = new ApplicationRunner(new BaseApplication());
+        $runner = new ApplicationRunner(new SimpleApplicationUsingBaseApplication());
 
         $runner->run(
             new IO($input, $output),
@@ -86,13 +86,33 @@ final class BaseApplicationTest extends TestCase
         );
     }
 
+    public function test_it_can_display_the_version_used(): void
+    {
+        $input = new StringInput('--version');
+        $output = new BufferedOutput();
+
+        $runner = new ApplicationRunner(new SimpleApplicationUsingBaseApplication());
+
+        $runner->run(
+            new IO($input, $output),
+        );
+
+        OutputAssertions::assertSameOutput(
+            <<<'LONG_VERSION'
+                BaseApp 1.0.0
+
+                LONG_VERSION,
+            $output->fetch(),
+        );
+    }
+
     public function test_it_catches_exceptions_thrown(): void
     {
         $input = new StringInput('app:fail');
         $output = new BufferedOutput();
 
         ApplicationRunner::runApplication(
-            new BaseApplication(),
+            new SimpleApplicationUsingBaseApplication(),
             $input,
             $output,
         );
