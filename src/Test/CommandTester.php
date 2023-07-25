@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Test;
 
+use Fidry\Console\Bridge\Command\SymfonyCommand;
 use Fidry\Console\Command\Command;
-use Fidry\Console\Command\SymfonyCommand;
 use Fidry\Console\DisplayNormalizer;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester as SymfonyCommandTester;

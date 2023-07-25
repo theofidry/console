@@ -15,7 +15,7 @@ namespace Fidry\Console\Tests\Application\Feature;
 
 use Fidry\Console\Application\Application;
 use Fidry\Console\Application\ApplicationRunner;
-use Fidry\Console\Application\SymfonyApplication;
+use Fidry\Console\Bridge\Application\SymfonyApplication;
 use Fidry\Console\Tests\Application\Fixture\ApplicationWithConfigurableIO;
 use Fidry\Console\Tests\Application\Fixture\SimpleApplication;
 use Fidry\Console\Tests\StatefulService;

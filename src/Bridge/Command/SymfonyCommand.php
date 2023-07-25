@@ -11,8 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Command;
+namespace Fidry\Console\Bridge\Command;
 
+use Fidry\Console\Command\Command;
+use Fidry\Console\Command\CommandAware;
+use Fidry\Console\Command\CommandRegistry;
+use Fidry\Console\Command\InitializableCommand;
+use Fidry\Console\Command\InteractiveCommand;
 use Fidry\Console\IO;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command as BaseSymfonyCommand;
@@ -20,7 +25,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Bridge between a traditional Symfony console command and the new Command API.
+ * Implements a Symfony command based on a Fidry command.
  */
 final class SymfonyCommand extends BaseSymfonyCommand
 {

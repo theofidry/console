@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Application\Feature;
 
 use Fidry\Console\Application\ApplicationRunner;
-use Fidry\Console\Application\SymfonyApplication;
+use Fidry\Console\Bridge\Application\SymfonyApplication;
 use Fidry\Console\Tests\Application\Fixture\ApplicationThrowingException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

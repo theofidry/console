@@ -40,7 +40,7 @@
     <issueHandlers>
         <DuplicateArrayKey>
             <errorLevel type="suppress">
-                <file name="src/Application/SymfonyApplication.php"/>
+                <file name="src/Bridge/Application/SymfonyApplication.php"/>
             </errorLevel>
         </DuplicateArrayKey>
 

@@ -68,7 +68,8 @@
         },
         "UnwrapArrayValues": {
             "ignore": [
-                "Fidry\\Console\\Application\\SymfonyApplication::getSymfonyCommands"
+                // The following should be caught by Psalm not unit tests.
+                "Fidry\\Console\\Bridge\\Application\\SymfonyApplication::getSymfonyCommands"
             ]
         }
     }

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Command\Feature;
 
-use Fidry\Console\Command\SymfonyCommand;
+use Fidry\Console\Bridge\Command\SymfonyCommand;
 use Fidry\Console\ExitCode;
 use Fidry\Console\Tests\Command\CommandAssertions;
 use PHPUnit\Framework\Attributes\CoversClass;

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Fidry\Console\Test;
 
 use Fidry\Console\Application\Application as ConsoleApplication;
-use Fidry\Console\Application\SymfonyApplication;
+use Fidry\Console\Bridge\Application\SymfonyApplication;
 use Fidry\Console\DisplayNormalizer;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
