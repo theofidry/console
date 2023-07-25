@@ -39,6 +39,7 @@ use TypeError;
 
 #[CoversClass(InputAssert::class)]
 #[CoversClass(IO::class)]
+#[CoversClass(TypedInput::class)]
 final class IOTest extends TestCase
 {
     /**
