@@ -16,7 +16,7 @@ namespace Fidry\Console\Tests\Application\Fixture;
 use Fidry\Console\Application\BaseApplication as FidryBaseApplication;
 use Fidry\Console\Tests\Command\Fixture\SimpleCommand;
 
-final class BaseApplication extends FidryBaseApplication
+final class SimpleApplicationUsingBaseApplication extends FidryBaseApplication
 {
     public function getName(): string
     {
