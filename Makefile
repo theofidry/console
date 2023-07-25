@@ -119,12 +119,12 @@ phpunit_autoreview: $(PHPUNIT_BIN) vendor
 .PHONY: phpunit_coverage_infection
 phpunit_coverage_infection: ## Runs PHPUnit tests with test coverage
 phpunit_coverage_infection: $(PHPUNIT_BIN) vendor
-	$(PHPUNIT_COVERAGE_INFECTION)
+	$(PHPUNIT_COVERAGE_INFECTION) --testsuite=Tests
 
 .PHONY: phpunit_coverage_html
 phpunit_coverage_html:	    ## Runs PHPUnit with code coverage with HTML report
 phpunit_coverage_html: $(PHPUNIT_BIN) vendor
-	$(PHPUNIT_COVERAGE_HTML)
+	$(PHPUNIT_COVERAGE_HTML) --testsuite=Tests
 	@echo "You can check the report by opening the file \"$(COVERAGE_HTML_DIR)/index.html\"."
 
 .PHONY: clean
