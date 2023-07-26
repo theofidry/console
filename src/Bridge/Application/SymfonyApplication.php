@@ -19,15 +19,11 @@ use Fidry\Console\Bridge\Command\SymfonyCommandFactory;
 use Fidry\Console\IO;
 use LogicException;
 use Symfony\Component\Console\Application as BaseSymfonyApplication;
-use Symfony\Component\Console\Command\Command as BaseSymfonyCommand;
-use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\Service\ResetInterface;
-use function array_map;
-use function array_values;
 
 /**
  * Bridge to create a traditional Symfony application from the new Application
@@ -47,6 +43,7 @@ final class SymfonyApplication extends BaseSymfonyApplication
         $this->setDefaultCommand($application->getDefaultCommand());
         $this->setAutoExit($application->isAutoExitEnabled());
         $this->setCatchExceptions($application->areExceptionsCaught());
+        $this->registerCommands($this->application);
     }
 
     public function reset(): void
@@ -76,11 +73,6 @@ final class SymfonyApplication extends BaseSymfonyApplication
         return $this->application->getLongVersion();
     }
 
-    public function setCommandLoader(CommandLoaderInterface $commandLoader): void
-    {
-        throw new LogicException('Not supported');
-    }
-
     public function setSignalsToDispatchEvent(int ...$signalsToDispatchEvent): void
     {
         throw new LogicException('Not supported');
@@ -107,24 +99,12 @@ final class SymfonyApplication extends BaseSymfonyApplication
         }
     }
 
-    protected function getDefaultCommands(): array
+    private function registerCommands(Application $application): void
     {
-        return [
-            ...parent::getDefaultCommands(),
-            ...$this->getSymfonyCommands(),
-        ];
-    }
-
-    /**
-     * @return list<BaseSymfonyCommand>
-     */
-    private function getSymfonyCommands(): array
-    {
-        return array_values(
-            array_map(
-                $this->commandFactory->crateSymfonyCommand(...),
-                $this->application->getCommands(),
-            ),
-        );
+        foreach ($application->getCommands() as $command) {
+            $this->add(
+                $this->commandFactory->crateSymfonyCommand($command),
+            );
+        }
     }
 }
