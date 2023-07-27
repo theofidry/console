@@ -25,6 +25,9 @@ use Symfony\Component\Console\Helper\ProcessHelper;
 
 final class CommandWithHelpers implements Command
 {
+    /**
+     * @psalm-suppress UnusedParam
+     */
     public function __construct(
         DebugFormatterHelper $debugFormatterHelper,
         DescriptorHelper $descriptorHelper,
