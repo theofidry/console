@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Fidry\Console\Tests\Application\Fixture;
+namespace Fidry\Console\Tests\Bridge\Command;
 
 use DomainException;
 use Fidry\Console\Bridge\Command\SymfonyCommandFactory;

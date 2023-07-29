@@ -13,14 +13,18 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Integration;
 
+use DomainException;
 use Fidry\Console\Application\BaseApplication;
 use Fidry\Console\Helper\QuestionHelper;
+use Fidry\Console\Tests\Application\Fixture\ManualLazyCommand;
 use Fidry\Console\Tests\Command\Fixture\CommandAwareCommand;
 use Fidry\Console\Tests\Command\Fixture\CommandWithArgumentAndOption;
 use Fidry\Console\Tests\Command\Fixture\CommandWithHelpers;
 use Fidry\Console\Tests\Command\Fixture\CommandWithService;
+use Fidry\Console\Tests\Command\Fixture\FakeCommand;
 use Fidry\Console\Tests\Command\Fixture\FullLifeCycleCommand;
 use Fidry\Console\Tests\Command\Fixture\SimpleCommand;
+use Fidry\Console\Tests\Command\Fixture\SimpleLazyCommand;
 use Fidry\Console\Tests\StatefulService;
 use Symfony\Component\Console\Helper\DebugFormatterHelper;
 use Symfony\Component\Console\Helper\DescriptorHelper;
@@ -58,6 +62,11 @@ final class StandaloneSymfonyApplication extends BaseApplication
             new CommandWithService(
                 new StatefulService(),
             ),
+            new ManualLazyCommand(
+                static fn () => new FakeCommand(),
+            ),
+            // TODO: add easier support for lazy commands in order to allow this.
+            // new SimpleLazyCommand(static fn () => throw new DomainException()),
         ];
     }
 }

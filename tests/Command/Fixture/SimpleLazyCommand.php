@@ -21,9 +21,11 @@ use Fidry\Console\Tests\StatefulService;
 
 final class SimpleLazyCommand implements LazyCommand
 {
-    public function __construct(StatefulService $service)
+    public function __construct(callable|StatefulService $service)
     {
-        $service->call();
+        $service instanceof StatefulService
+            ? $service->call()
+            : $service();
     }
 
     public static function getName(): string
