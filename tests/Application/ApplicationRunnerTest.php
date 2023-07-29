@@ -15,7 +15,7 @@ namespace Fidry\Console\Tests\Application;
 
 use DomainException;
 use Fidry\Console\Application\ApplicationRunner;
-use Fidry\Console\Tests\Application\Fixture\FakeSymfonyCommandFactory;
+use Fidry\Console\Tests\Bridge\Command\FakeSymfonyCommandFactory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

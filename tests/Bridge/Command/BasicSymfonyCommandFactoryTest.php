@@ -48,14 +48,14 @@ final class BasicSymfonyCommandFactoryTest extends TestCase
         ];
 
         yield 'lazy command' => [
-            new SimpleLazyCommand(new StatefulService()),
+            new SimpleLazyCommand(static fn () => new StatefulService()),
             new SymfonyLazyCommand(
                 'app:lazy',
                 [],
                 'lazy command description',
                 false,
                 static fn () => new SymfonyBridgeCommand(
-                    new SimpleLazyCommand(new StatefulService()),
+                    new SimpleLazyCommand(static fn () => new StatefulService()),
                 ),
                 true,
             ),
