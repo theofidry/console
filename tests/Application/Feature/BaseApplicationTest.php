@@ -16,6 +16,7 @@ namespace Fidry\Console\Tests\Application\Feature;
 use Fidry\Console\Application\ApplicationRunner;
 use Fidry\Console\Bridge\Application\SymfonyApplication;
 use Fidry\Console\Bridge\Command\BasicSymfonyCommandFactory;
+use Fidry\Console\Bridge\CommandLoader\SymfonyFactoryCommandLoaderFactory;
 use Fidry\Console\IO;
 use Fidry\Console\Tests\Application\Fixture\SimpleApplicationUsingBaseApplication;
 use Fidry\Console\Tests\Application\OutputAssertions;
@@ -77,7 +78,9 @@ final class BaseApplicationTest extends TestCase
 
         $runner = new ApplicationRunner(
             new SimpleApplicationUsingBaseApplication(),
-            new BasicSymfonyCommandFactory(),
+            new SymfonyFactoryCommandLoaderFactory(
+                new BasicSymfonyCommandFactory(),
+            ),
         );
 
         $runner->run(
@@ -97,7 +100,9 @@ final class BaseApplicationTest extends TestCase
 
         $runner = new ApplicationRunner(
             new SimpleApplicationUsingBaseApplication(),
-            new BasicSymfonyCommandFactory(),
+            new SymfonyFactoryCommandLoaderFactory(
+                new BasicSymfonyCommandFactory(),
+            ),
         );
 
         $runner->run(

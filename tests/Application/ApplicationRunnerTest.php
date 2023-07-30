@@ -15,7 +15,7 @@ namespace Fidry\Console\Tests\Application;
 
 use DomainException;
 use Fidry\Console\Application\ApplicationRunner;
-use Fidry\Console\Tests\Bridge\Command\FakeSymfonyCommandFactory;
+use Fidry\Console\Tests\Bridge\Command\FakeSymfonyCommandLoaderFactory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -26,7 +26,7 @@ final class ApplicationRunnerTest extends TestCase
     {
         $runner = new ApplicationRunner(
             new DummyApplication(),
-            new FakeSymfonyCommandFactory(),
+            new FakeSymfonyCommandLoaderFactory(),
         );
 
         $this->expectException(DomainException::class);

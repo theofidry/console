@@ -16,7 +16,8 @@ namespace Fidry\Console\Test;
 use Fidry\Console\Application\Application as ConsoleApplication;
 use Fidry\Console\Bridge\Application\SymfonyApplication;
 use Fidry\Console\Bridge\Command\BasicSymfonyCommandFactory;
-use Fidry\Console\Bridge\Command\SymfonyCommandFactory;
+use Fidry\Console\Bridge\CommandLoader\CommandLoaderFactory;
+use Fidry\Console\Bridge\CommandLoader\SymfonyFactoryCommandLoaderFactory;
 use Fidry\Console\DisplayNormalizer;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
@@ -27,7 +28,9 @@ final class AppTester extends ApplicationTester
 {
     public static function fromConsoleApp(
         ConsoleApplication $application,
-        SymfonyCommandFactory $commandFactory = new BasicSymfonyCommandFactory(),
+        CommandLoaderFactory $commandFactory = new SymfonyFactoryCommandLoaderFactory(
+            new BasicSymfonyCommandFactory(),
+        ),
     ): self {
         return new self(
             new SymfonyApplication(
