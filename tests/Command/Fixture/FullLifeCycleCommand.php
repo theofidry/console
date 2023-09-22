@@ -94,7 +94,7 @@ final class FullLifeCycleCommand implements Command, InitializableCommand, Inter
         $question = new Question('Please choose a username:');
 
         $question->setValidator(
-            function (string $username) {
+            static function (string $username) {
                 if ('' === $username) {
                     throw new Exception('Username can not be empty');
                 }
