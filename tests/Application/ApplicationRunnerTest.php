@@ -24,13 +24,16 @@ final class ApplicationRunnerTest extends TestCase
 {
     public function test_it_uses_the_command_factory_given(): void
     {
-        $runner = new ApplicationRunner(
-            new DummyApplication(),
-            new FakeSymfonyCommandLoaderFactory(),
-        );
+        $application = new DummyApplication();
+        $commandLoaderFactory = new FakeSymfonyCommandLoaderFactory();
 
         $this->expectException(DomainException::class);
         $this->expectExceptionMessage('Should not be called.');
+
+        $runner = new ApplicationRunner(
+            $application,
+            $commandLoaderFactory,
+        );
 
         $runner->run();
     }
