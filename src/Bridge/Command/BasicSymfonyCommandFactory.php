@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Bridge\Command;
 
+use Closure;
 use Fidry\Console\Command\Command as FidryCommand;
 use Fidry\Console\Command\LazyCommand as FidryLazyCommand;
 use Symfony\Component\Console\Command\Command as BaseSymfonyCommand;
@@ -32,5 +33,20 @@ final class BasicSymfonyCommandFactory implements SymfonyCommandFactory
                 true,
             )
             : new SymfonyCommand($command);
+    }
+
+    public function crateSymfonyLazyCommand(
+        string $name,
+        string $description,
+        Closure $factory,
+    ): BaseSymfonyCommand {
+        return new SymfonyLazyCommand(
+            $name,
+            [],
+            $description,
+            false,
+            static fn () => new SymfonyCommand($factory()),
+            true,
+        );
     }
 }

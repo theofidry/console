@@ -15,6 +15,7 @@ namespace Fidry\Console\Tests\Integration;
 
 use DomainException;
 use Fidry\Console\Application\BaseApplication;
+use Fidry\Console\Command\LazyCommandEnvelope;
 use Fidry\Console\Helper\QuestionHelper;
 use Fidry\Console\Tests\Application\Fixture\ManualLazyCommand;
 use Fidry\Console\Tests\Command\Fixture\CommandAwareCommand;
@@ -65,8 +66,15 @@ final class StandaloneSymfonyApplication extends BaseApplication
             new ManualLazyCommand(
                 static fn () => new FakeCommand(),
             ),
-            // TODO: add easier support for lazy commands in order to allow this.
-            // new SimpleLazyCommand(static fn () => throw new DomainException()),
+            new LazyCommandEnvelope(
+                'app:wrapped-lazy',
+                'wrapped lazy command description',
+                static fn () => new SimpleCommand(),
+            ),
+            LazyCommandEnvelope::wrap(
+                SimpleLazyCommand::class,
+                static fn () => new SimpleLazyCommand(static fn () => throw new DomainException()),
+            ),
         ];
     }
 }

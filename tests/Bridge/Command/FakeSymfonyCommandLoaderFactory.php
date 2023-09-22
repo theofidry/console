@@ -14,13 +14,12 @@ declare(strict_types=1);
 namespace Fidry\Console\Tests\Bridge\Command;
 
 use DomainException;
-use Fidry\Console\Bridge\Command\SymfonyCommandFactory;
-use Fidry\Console\Command\Command as FidryCommand;
-use Symfony\Component\Console\Command\Command as BaseSymfonyCommand;
+use Fidry\Console\Bridge\CommandLoader\CommandLoaderFactory;
+use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 
-final class FakeSymfonyCommandFactory implements SymfonyCommandFactory
+final class FakeSymfonyCommandLoaderFactory implements CommandLoaderFactory
 {
-    public function crateSymfonyCommand(FidryCommand $command): BaseSymfonyCommand
+    public function createCommandLoader(array $commands): CommandLoaderInterface
     {
         throw new DomainException('Should not be called.');
     }

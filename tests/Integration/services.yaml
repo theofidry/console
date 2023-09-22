@@ -19,7 +19,7 @@ services:
         autoconfigure: false
 
     app.simple_lazy_1:
-        class: Fidry\Console\Command\SymfonyCommand
+        class: Fidry\Console\Bridge\Command\SymfonyCommand
         arguments:
             - '@app.simple_command'
         tags:
@@ -28,7 +28,7 @@ services:
               description: 'First instance of a "traditional" lazy Symfony command'
 
     app.simple_lazy_2:
-        class: Fidry\Console\Command\SymfonyCommand
+        class: Fidry\Console\Bridge\Command\SymfonyCommand
         arguments:
             - '@app.simple_command'
         tags:
