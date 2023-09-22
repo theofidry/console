@@ -13,9 +13,13 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Command;
 
-// TODO: description & doc
 use Closure;
 
+/**
+ * Envelope to make a command lazy. Unlike Symfony, it requires the command
+ * description to be provided as well to prevent the command to be instantiated
+ * by the `list` command.
+ */
 final class LazyCommandEnvelope
 {
     /**

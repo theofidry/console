@@ -1,7 +1,46 @@
 ## How to Make Commands Lazily Loaded
 
-To make your command lazily loaded, you need to implement the
-`Fidry\Console\Command\LazyCommand` interface:
+There is two ways to make a command lazily loaded.
+
+The first way is, if your command is a standard command, to
+make it lazy by registering it like as follows to your application:
+
+```php
+<?php declare(strict_types=1);
+
+// src/Console/Application.php
+namespace App\Console;
+
+use App\Console\Command\CreateUserCommand;
+use Fidry\Console\Application\Application as FidryApplication;
+use Fidry\Console\Command\LazyCommandEnvelope;
+use function sprintf;
+
+final class Application implements FidryApplication
+{
+    // ...
+
+    public function getCommands() : array
+    {
+        return [
+            // Declare a lazy command
+            new LazyCommandEnvelope(
+                'app:wrapped-lazy',
+                'Wrapped lazy command description.',
+                static fn () => new CreateUserCommand(/*...*/),
+            ),
+            // Alternatively, you can wrap it directly if
+            // it implements the FidryLazyCommand interface.
+            LazyCommandEnvelope::wrap(
+                CreateUserCommand::class,
+                static fn () => new CreateUserCommand(/*...*/),
+            ),
+        ];
+    }
+}
+```
+
+The other way is to implement the `Fidry\Console\Command\LazyCommand` interface:
 
 ```php
 <?php declare(strict_types=1);
@@ -30,11 +69,12 @@ final class CreateUserCommand implements LazyCommand
 ```
 
 Due to the design of `Fidry\Console\Command\LazyCommand`, you can have one and
-only one lazy command instance per class. If you wish to circumvent this, you
+only one lazy command instance per class. If you wish to get around this limitation, you
 can still implement a lazy command the "regular" way:
 
 - Implement `Fidry\Console\Command\Command` instead of `Fidry\Console\Command\LazyCommand`
-- Adjust the service registration as follows:
+- Make use of the `Fidry\Console\Command\LazyCommandEnvelope` (see at the beginning of this page).
+- Alternatively, you can also adjust the service registration as follows if you are in a Symfony application:
 
 ```yaml
 services:

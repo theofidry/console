@@ -20,6 +20,7 @@ namespace App\Console;
 
 use App\Console\Command\CreateUserCommand;
 use Fidry\Console\Application\Application as FidryApplication;
+use Fidry\Console\Command\LazyCommandEnvelope;
 use function sprintf;
 
 final class Application implements FidryApplication
@@ -51,7 +52,19 @@ final class Application implements FidryApplication
     public function getCommands() : array
     {
         return [
+            // Regular command
             new CreateUserCommand(),
+            // Declare a lazy command
+            new LazyCommandEnvelope(
+                'app:wrapped-lazy',
+                'Wrapped lazy command description.',
+                static fn () => new CreateUserCommand(/*...*/),
+            ),
+            // Register a FidryLazyCommand as lazy
+            LazyCommandEnvelope::wrap(
+                CreateUserCommand::class,
+                static fn () => new CreateUserCommand(/*...*/),
+            ),
         ];
     }
 
