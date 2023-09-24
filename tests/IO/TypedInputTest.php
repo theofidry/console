@@ -13,10 +13,12 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\IO;
 
+use BackedEnum;
 use Fidry\Console\Input\InvalidInputValueType;
 use Fidry\Console\Input\TypedInput;
 use Fidry\Console\Internal\InputAssert;
 use Fidry\Console\IO;
+use Fidry\Console\Tests\Enum\BackedIntegerEnum;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -171,6 +173,74 @@ final class TypedInputTest extends TestCase
             3,
             'This is my custom error message. Previous message: %s',
             new TypeException('This is my custom error message. Previous message: Expected a value between 1 and 3. Got: 10 for the argument "'.self::ARGUMENT_NAME.'".'),
+        ];
+    }
+
+    /**
+     * @param class-string<BackedEnum> $backedEnumClassName
+     */
+    #[DataProvider('backedEnumArgumentProvider')]
+    public function test_it_get_the_argument_value_as_a_backed_enum(
+        InputArgument $inputArgument,
+        string $argument,
+        string $backedEnumClassName,
+        ?string $errorMessage,
+        BackedEnum|TypeException $expected
+    ): void {
+        $argument = $this->getTypedArgument($inputArgument, $argument);
+
+        if ($expected instanceof TypeException) {
+            $this->expectException(InvalidInputValueType::class);
+            $this->expectExceptionMessage($expected->message);
+        }
+
+        $actual = $argument->asBackedEnum(
+            $backedEnumClassName,
+            $errorMessage,
+        );
+
+        self::assertSame($expected, $actual);
+    }
+
+    public static function backedEnumArgumentProvider(): iterable
+    {
+        yield 'valid value' => [
+            new InputArgument(
+                self::ARGUMENT_NAME,
+                InputArgument::REQUIRED,
+                '',
+                null,
+            ),
+            '10',
+            BackedIntegerEnum::class,
+            null,
+            BackedIntegerEnum::A,
+        ];
+
+        yield 'invalid value' => [
+            new InputArgument(
+                self::ARGUMENT_NAME,
+                InputArgument::REQUIRED,
+                '',
+                null,
+            ),
+            '100',
+            BackedIntegerEnum::class,
+            null,
+            new TypeException('Expected a value "Fidry\Console\Tests\Enum\BackedIntegerEnum" enum. Got "\'100\'" for the argument "'.self::ARGUMENT_NAME.'".'),
+        ];
+
+        yield 'invalid value with custom error message' => [
+            new InputArgument(
+                self::ARGUMENT_NAME,
+                InputArgument::REQUIRED,
+                '',
+                null,
+            ),
+            '100',
+            BackedIntegerEnum::class,
+            'This is my custom error message. Previous message: %s',
+            new TypeException('This is my custom error message. Previous message: Expected a value "Fidry\Console\Tests\Enum\BackedIntegerEnum" enum. Got "\'100\'" for the argument "'.self::ARGUMENT_NAME.'".'),
         ];
     }
 

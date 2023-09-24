@@ -27,7 +27,7 @@ abstract class BaseTypeTestCase extends TestCase
 
     /**
      * @param null|bool|string|list<string> $value
-     * @param bool|TypeException            $expected
+     * @param mixed|TypeException           $expected
      */
     #[DataProvider('valueProvider')]
     final public function test_it_can_cast_values($value, $expected): void

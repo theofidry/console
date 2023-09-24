@@ -238,7 +238,7 @@ final class InputAssert
     /**
      * @param ArgumentInput|OptionInput $value
      */
-    private static function castType(null|bool|string|array $value): string
+    public static function castType(null|bool|string|array $value): string
     {
         return var_export($value, true);
     }
