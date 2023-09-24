@@ -13,8 +13,11 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
+use BackedEnum;
 use Fidry\Console\Internal\InputAssert;
+use Fidry\Console\Internal\Type\BackedEnumType;
 use Fidry\Console\Internal\Type\NaturalRangeType;
+use Fidry\Console\Internal\Type\NullableType;
 use Fidry\Console\Internal\Type\StringChoiceType;
 use Fidry\Console\Internal\Type\TypeFactory;
 use Webmozart\Assert\Assert;
@@ -122,6 +125,65 @@ final class TypedInput
 
         try {
             /** @psalm-suppress LessSpecificReturnStatement */
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
+    }
+
+    /**
+     * @template T of BackedEnum
+     *
+     * @param class-string<T> $backedEnumClassName
+     *
+     * @return T
+     */
+    public function asBackedEnum(
+        string $backedEnumClassName,
+        ?string $errorMessage = null
+    ): BackedEnum {
+        $type = new BackedEnumType($backedEnumClassName);
+
+        if (null === $errorMessage) {
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            return $type->coerceValue($this->value, $this->label);
+        } catch (InvalidInputValueType $coercingFailed) {
+            throw InvalidInputValueType::withErrorMessage(
+                $coercingFailed,
+                $errorMessage,
+            );
+        }
+    }
+
+    /**
+     * @psalm-suppress InvalidReturnType
+     * @template T of BackedEnum
+     *
+     * @param class-string<T> $backedEnumClassName
+     *
+     * @return T|null
+     */
+    public function asNullableBackedEnum(
+        string $backedEnumClassName,
+        ?string $errorMessage = null
+    ): ?BackedEnum {
+        $type = new NullableType(
+            new BackedEnumType($backedEnumClassName),
+        );
+
+        if (null === $errorMessage) {
+            /** @psalm-suppress InvalidReturnStatement */
+            return $type->coerceValue($this->value, $this->label);
+        }
+
+        try {
+            /** @psalm-suppress InvalidReturnStatement */
             return $type->coerceValue($this->value, $this->label);
         } catch (InvalidInputValueType $coercingFailed) {
             throw InvalidInputValueType::withErrorMessage(
