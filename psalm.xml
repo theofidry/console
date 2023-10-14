@@ -71,6 +71,12 @@
                 <file name="stubs/StyledOutput.php"/>
             </errorLevel>
         </MissingReturnType>
+        
+        <MoreSpecificImplementedParamType>
+            <errorLevel type="suppress">
+                <file name="src/IO.php"/>
+            </errorLevel>
+        </MoreSpecificImplementedParamType>
 
         <PossiblyUnusedMethod errorLevel="suppress"/>
 
