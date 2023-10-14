@@ -77,6 +77,7 @@
         <UndefinedClass>
             <errorLevel type="suppress">
                 <file name="tests/Internal/Generator/ClassNameTest.php"/>
+                <referencedClass name="Fidry\Console\Input\IO"/>
             </errorLevel>
         </UndefinedClass>
 
