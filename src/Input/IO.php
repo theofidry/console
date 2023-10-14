@@ -13,15 +13,14 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Input;
 
+use Fidry\Console\Deprecation;
 use function class_alias;
 use function sprintf;
-use function trigger_deprecation;
 
 $alias = \Fidry\Console\Input\IO::class;
 $newClass = \Fidry\Console\IO::class;
 
-@trigger_deprecation(
-    'fidry/console',
+Deprecation::trigger(
     '0.6.0',
     sprintf(
         'Using the class "%s" is deprecated. Use "%s" instead.',
