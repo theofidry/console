@@ -55,9 +55,9 @@
     },
     "config": {
         "allow-plugins": {
+            "bamarni/composer-bin-plugin": true,
             "ergebnis/composer-normalize": true,
             "infection/extension-installer": true,
-            "bamarni/composer-bin-plugin": true,
             "symfony/flex": true
         },
         "sort-packages": true
