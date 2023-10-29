@@ -34,6 +34,9 @@ $config = new FidryConfig(
 
 $config->addRules([
     'php_unit_internal_class' => false,
+
+    'phpdoc_no_empty_return' => false,
+    'void_return' => false,
 ]);
 
 $config->setFinder($finder);

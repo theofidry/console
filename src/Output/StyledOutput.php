@@ -13,23 +13,75 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Output;
 
-use Composer\InstalledVersions;
-use Fidry\Console\Output\Compatibility\StyledOutputSymfony5;
-use Fidry\Console\Output\Compatibility\StyledOutputSymfony6;
-use function Safe\class_alias;
-use function version_compare;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Helper\TableSeparator;
+use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Style\StyleInterface;
 
-// This is purely for the compatibility layer between Symfony5 & Symfony6. The
-// behaviour is the same, only the method signatures differ.
-// To have a more comprehensive look of the class check:
-// stubs/StyledOutput.php
-class_alias(
-    (string) version_compare(
-        (string) InstalledVersions::getPrettyVersion('symfony/console'),
-        'v6.0',
-        '>=',
-    )
-        ? StyledOutputSymfony6::class
-        : StyledOutputSymfony5::class,
-    \Fidry\Console\Output\StyledOutput::class,
-);
+/**
+ * Complements the Symfony Style interface with the methods present in
+ * SymfonyStyle that are not in the interface due to BC breaks concerns.
+ *
+ * @internal
+ */
+interface StyledOutput extends StyleInterface
+{
+    /**
+     * Formats a message as a block of text.
+     *
+     * @return void
+     */
+    public function block(
+        string|array $messages,
+        ?string $type = null,
+        ?string $style = null,
+        string $prefix = ' ',
+        bool $padding = false,
+        bool $escape = true
+    );
+
+    /**
+     * Formats a command comment.
+     *
+     * @return void
+     */
+    public function comment(string|array $message);
+
+    /**
+     * Formats an info message.
+     *
+     * @return void
+     */
+    public function info(string|array $message);
+
+    /**
+     * Formats a horizontal table.
+     *
+     * @return void
+     */
+    public function horizontalTable(array $headers, array $rows);
+
+    /**
+     * Formats a list of key/value horizontally.
+     *
+     * Each row can be one of:
+     * * 'A title'
+     * * ['key' => 'value']
+     * * new TableSeparator()
+     *
+     * @return void
+     */
+    public function definitionList(string|array|TableSeparator ...$list);
+
+    /**
+     * @see ProgressBar::iterate()
+     */
+    public function progressIterate(iterable $iterable, ?int $max = null): iterable;
+
+    public function askQuestion(Question $question): mixed;
+
+    public function createTable(): Table;
+
+    public function createProgressBar(int $max = 0): ProgressBar;
+}
