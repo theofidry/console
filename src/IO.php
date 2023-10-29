@@ -57,13 +57,13 @@ use Symfony\Component\Console\Question\Question;
  * @method getFirstArgument(): ?string
  * @method hasParameterOption(string|array $values, bool $onlyParams = false): bool
  * @method getParameterOption(string|array $values, string|bool|int|float|array|null $default = false, bool $onlyParams = false): mixed
- * @method bind(InputDefinition $definition)
+ * @method bind(InputDefinition $definition): void
  * @method validate(): void
- * @method getArguments(): array
- * @method setArgument(string $name, mixed $value)
+ * @method getArguments(): array<string|bool|int|float|array|null>
+ * @method setArgument(string $name, mixed $value): void
  * @method hasArgument(string $name): bool
- * @method getOptions(): array
- * @method setOption(string $name, mixed $value)
+ * @method getOptions(): array<string|bool|int|float|array|null>
+ * @method setOption(string $name, mixed $value): void
  * @method getOption(string $name): mixed
  * @method hasOption(string $name, bool $onlyRealParams = false): bool
  * @method isInteractive(): bool

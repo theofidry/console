@@ -24,13 +24,8 @@
         <directory name="stubs"/>
 
         <ignoreFiles>
-            <directory name="src/Input/Compatibility"/>
             <directory name="src/Output/Compatibility"/>
-            <file name="src/Input/DecoratesInput.php"/>
             <file name="src/Output/DecoratesLogger.php"/>
-            <file name="src/Output/DecoratesOutput.php"/>
-            <file name="src/Output/DecoratesStyledOutput.php"/>
-            <file name="src/Output/StyledOutput.php"/>
             <directory name="vendor"/>
             <directory name="tests/Integration/var"/>
             <file name="tests/Internal/Type/ConfigurableType.php"/>
@@ -61,16 +56,6 @@
                 <directory name="tests"/>
             </errorLevel>
         </MissingConstructor>
-
-        <MissingReturnType>
-            <errorLevel type="suppress">
-                <!-- Can be removed once 7.4 & Symfony 5.4 support is dropped. -->
-                <file name="stubs/DecoratesInput.php"/>
-                <file name="stubs/DecoratesOutput.php"/>
-                <file name="stubs/DecoratesStyledOutput.php"/>
-                <file name="stubs/StyledOutput.php"/>
-            </errorLevel>
-        </MissingReturnType>
         
         <MoreSpecificImplementedParamType>
             <errorLevel type="suppress">

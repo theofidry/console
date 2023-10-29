@@ -11,25 +11,111 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the box project.
+ *
+ * (c) Kevin Herrera <kevin@herrera.io>
+ *     Théo Fidry <theo.fidry@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Fidry\Console\Input;
 
-use Composer\InstalledVersions;
-use Fidry\Console\Input\Compatibility\DecoratesInputSymfony5;
-use Fidry\Console\Input\Compatibility\DecoratesInputSymfony6;
-use function Safe\class_alias;
-use function version_compare;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputInterface;
+use function func_get_args;
 
-// This is purely for the compatibility layer between Symfony5 & Symfony6. The
-// behaviour is the same, only the method signatures differ.
-// To have a more comprehensive look of the class check:
-// stubs/DecoratesInput.php
-class_alias(
-    (string) version_compare(
-        (string) InstalledVersions::getPrettyVersion('symfony/console'),
-        'v6.0',
-        '>=',
-    )
-        ? DecoratesInputSymfony6::class
-        : DecoratesInputSymfony5::class,
-    \Fidry\Console\Input\DecoratesInput::class,
-);
+/**
+ * @property InputInterface $input
+ *
+ * @internal
+ * @psalm-require-implements InputInterface
+ */
+trait DecoratesInput
+{
+    public function getArgument(string $name): mixed
+    {
+        return $this->input->getArgument($name);
+    }
+
+    public function getFirstArgument(): ?string
+    {
+        return $this->input->getFirstArgument();
+    }
+
+    public function hasParameterOption(string|array $values, bool $onlyParams = false): bool
+    {
+        return $this->input->hasParameterOption(...func_get_args());
+    }
+
+    public function getParameterOption(
+        string|array $values,
+        string|bool|int|float|array|null $default = false,
+        bool $onlyParams = false
+    ): mixed {
+        return $this->input->getParameterOption(...func_get_args());
+    }
+
+    public function bind(InputDefinition $definition): void
+    {
+        $this->input->bind($definition);
+    }
+
+    public function validate(): void
+    {
+        $this->input->validate();
+    }
+
+    /**
+     * @return array<string|bool|int|float|array|null>
+     */
+    public function getArguments(): array
+    {
+        return $this->input->getArguments();
+    }
+
+    public function setArgument(string $name, mixed $value): void
+    {
+        $this->input->setArgument(...func_get_args());
+    }
+
+    public function hasArgument(string $name): bool
+    {
+        return $this->input->hasArgument(...func_get_args());
+    }
+
+    /**
+     * @return array<string|bool|int|float|array|null>
+     */
+    public function getOptions(): array
+    {
+        return $this->input->getOptions();
+    }
+
+    public function setOption(string $name, mixed $value): void
+    {
+        $this->input->setOption(...func_get_args());
+    }
+
+    public function getOption(string $name): mixed
+    {
+        return $this->input->getOption(...func_get_args());
+    }
+
+    public function hasOption(string $name, bool $onlyRealParams = false): bool
+    {
+        return $this->input->hasOption(...func_get_args());
+    }
+
+    public function isInteractive(): bool
+    {
+        return $this->input->isInteractive();
+    }
+
+    public function setInteractive(bool $interactive): void
+    {
+        $this->input->setInteractive(...func_get_args());
+    }
+}
