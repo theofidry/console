@@ -37,6 +37,7 @@
         "symfony/yaml": "^6.3"
     },
     "conflict": {
+        "psr/log": "<2.0",
         "symfony/dependency-injection": "<6.3.0",
         "symfony/framework-bundle": "<6.3.0",
         "symfony/http-kernel": "<6.3.0"
