@@ -30,12 +30,19 @@
         },
         "IncrementInteger": {
             "ignore": [
-                "Fidry\\Console\\Output\\Compatibility\\DecoratesOutputSymfony6::writeln"
+                "Fidry\\Console\\Output\\DecoratesOutput::writeln",
+                "Fidry\\Console\\Input\\DecoratesInput::hasParameterOption",
             ]
         },
         "DecrementInteger": {
             "ignore": [
-                "Fidry\\Console\\Output\\Compatibility\\DecoratesOutputSymfony6::writeln"
+                "Fidry\\Console\\Output\\DecoratesOutput::writeln",
+                "Fidry\\Console\\Input\\DecoratesInput::hasParameterOption",
+            ]
+        },
+        "FalseValue": {
+            "ignore": [
+                "Fidry\\Console\\Input\\DecoratesInput::hasParameterOption"
             ]
         },
         "LessThan": {
