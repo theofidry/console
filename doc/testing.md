@@ -48,6 +48,7 @@ final class AppTesterTest extends TestCase
             The project path is /home/runner/work/console/console.
             
             EOS,
+            '',
             ExitCode::SUCCESS,
             $this->appTester,
         );
@@ -69,6 +70,7 @@ final class AppTesterTest extends TestCase
             The project path is /path/to/console.
 
             EOS,
+            '',
             ExitCode::SUCCESS,
             $this->appTester,
             $extraDisplayNormalization,
@@ -120,6 +122,7 @@ final class CommandTesterTest extends TestCase
             The project path is /home/runner/work/console/console.
             
             EOT,
+            '',
             ExitCode::SUCCESS,
             $this->commandTester,
         );

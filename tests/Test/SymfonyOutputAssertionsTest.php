@@ -48,6 +48,29 @@ final class SymfonyOutputAssertionsTest extends TestCase
         );
     }
 
+    public function test_it_works_with_a_symfony_application_tester_with_separate_outputs(): void
+    {
+        $app = new Application();
+        $app->setAutoExit(false);
+        $app->setCatchExceptions(false);
+        $app->add(new SymfonyCommand(new PathCommand()));
+
+        $appTester = new ApplicationTester($app);
+
+        $appTester->run(['app:path'], ['capture_stderr_separately' => true]);
+
+        OutputAssertions::assertSameSeparateOutputs(
+            <<<'EOT'
+
+                The project path is /home/runner/work/console/console.
+
+                EOT,
+            '',
+            ExitCode::SUCCESS,
+            $appTester,
+        );
+    }
+
     public function test_it_works_with_a_symfony_command_tester(): void
     {
         $command = new SymfonyCommand(new PathCommand());
@@ -62,6 +85,26 @@ final class SymfonyOutputAssertionsTest extends TestCase
                 The project path is /home/runner/work/console/console.
 
                 EOT,
+            ExitCode::SUCCESS,
+            $commandTester,
+        );
+    }
+
+    public function test_it_works_with_a_symfony_command_tester_with_separate_outputs(): void
+    {
+        $command = new SymfonyCommand(new PathCommand());
+
+        $commandTester = new CommandTester($command);
+
+        $commandTester->execute([], ['capture_stderr_separately' => true]);
+
+        OutputAssertions::assertSameSeparateOutputs(
+            <<<'EOT'
+
+                The project path is /home/runner/work/console/console.
+
+                EOT,
+            '',
             ExitCode::SUCCESS,
             $commandTester,
         );
