@@ -11,25 +11,71 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the box project.
+ *
+ * (c) Kevin Herrera <kevin@herrera.io>
+ *     Théo Fidry <theo.fidry@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Fidry\Console\Output;
 
-use Composer\InstalledVersions;
-use Fidry\Console\Output\Compatibility\DecoratesLoggerPsr1;
-use Fidry\Console\Output\Compatibility\DecoratesLoggerPsr2;
-use function Safe\class_alias;
-use function version_compare;
+use Psr\Log\LoggerInterface;
+use Stringable;
+use function func_get_args;
 
-// This is purely for the compatibility layer between Symfony5 & Symfony6. The
-// behaviour is the same, only the method signatures differ.
-// To have a more comprehensive look of the class check:
-// stubs/DecoratesInput.php
-class_alias(
-    (string) version_compare(
-        (string) InstalledVersions::getPrettyVersion('psr/log'),
-        '2.0.0',
-        '>=',
-    )
-        ? DecoratesLoggerPsr2::class
-        : DecoratesLoggerPsr1::class,
-    \Fidry\Console\Output\DecoratesLogger::class,
-);
+/**
+ * @internal
+ */
+trait DecoratesLogger
+{
+    private LoggerInterface $logger;
+
+    public function logEmergency(string|Stringable $message, array $context = []): void
+    {
+        $this->logger->emergency(...func_get_args());
+    }
+
+    public function logAlert(string|Stringable $message, array $context = []): void
+    {
+        $this->logger->alert(...func_get_args());
+    }
+
+    public function logCritical(string|Stringable $message, array $context = []): void
+    {
+        $this->logger->critical(...func_get_args());
+    }
+
+    public function logError(string|Stringable $message, array $context = []): void
+    {
+        $this->logger->error(...func_get_args());
+    }
+
+    public function logWarning(string|Stringable $message, array $context = []): void
+    {
+        $this->logger->warning(...func_get_args());
+    }
+
+    public function logNotice(string|Stringable $message, array $context = []): void
+    {
+        $this->logger->notice(...func_get_args());
+    }
+
+    public function logInfo(string|Stringable $message, array $context = []): void
+    {
+        $this->logger->info(...func_get_args());
+    }
+
+    public function logDebug(string|Stringable $message, array $context = []): void
+    {
+        $this->logger->debug(...func_get_args());
+    }
+
+    public function log(mixed $level, string|Stringable $message, array $context = []): void
+    {
+        $this->logger->log(...func_get_args());
+    }
+}

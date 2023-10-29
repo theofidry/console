@@ -21,11 +21,8 @@
     <projectFiles>
         <directory name="src"/>
         <directory name="tests"/>
-        <directory name="stubs"/>
 
         <ignoreFiles>
-            <directory name="src/Output/Compatibility"/>
-            <file name="src/Output/DecoratesLogger.php"/>
             <directory name="vendor"/>
             <directory name="tests/Integration/var"/>
             <file name="tests/Internal/Type/ConfigurableType.php"/>
