@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Fidry\Console;
 
-use Fidry\Console\Bridge\Command\ReversedSymfonyCommand as BridgeReversedSymfonyCommand;
-use Fidry\Console\Command\ReversedSymfonyCommand as PreviousReversedSymfonyCommand;
 use function sprintf;
 use function trigger_deprecation;
 
@@ -44,8 +42,10 @@ final class Deprecation
      */
     public static function classRenamed(
         string $previous,
-        string $new, string $version, mixed ...$args): void
-    {
+        string $new,
+        string $version,
+        mixed ...$args
+    ): void {
         self::trigger(
             sprintf(
                 'The class "%s" has been deprecated in favour of "%s".',

@@ -17,7 +17,6 @@ use Fidry\Console\Bridge\Command\SymfonyCommand as BridgeSymfonyCommand;
 use Fidry\Console\Command\SymfonyCommand as PreviousSymfonyCommand;
 use Fidry\Console\Deprecation;
 use function class_alias;
-use function sprintf;
 
 class_alias(BridgeSymfonyCommand::class, PreviousSymfonyCommand::class);
 

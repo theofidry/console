@@ -27,7 +27,6 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\Service\ResetInterface;
-use function sprintf;
 
 /**
  * Bridge to create a traditional Symfony application from the new Application

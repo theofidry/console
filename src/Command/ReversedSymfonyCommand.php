@@ -17,7 +17,6 @@ use Fidry\Console\Bridge\Command\ReversedSymfonyCommand as BridgeReversedSymfony
 use Fidry\Console\Command\ReversedSymfonyCommand as PreviousReversedSymfonyCommand;
 use Fidry\Console\Deprecation;
 use function class_alias;
-use function sprintf;
 
 class_alias(BridgeReversedSymfonyCommand::class, PreviousReversedSymfonyCommand::class);
 
