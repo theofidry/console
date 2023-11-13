@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Fidry\Console;
 
+use function sprintf;
 use function trigger_deprecation;
 
 /**
@@ -32,6 +33,27 @@ final class Deprecation
             $version,
             $message,
             $args,
+        );
+    }
+
+    /**
+     * @param class-string $previous
+     * @param class-string $new
+     */
+    public static function classRenamed(
+        string $previous,
+        string $new,
+        string $version,
+        mixed ...$args
+    ): void {
+        self::trigger(
+            sprintf(
+                'The class "%s" has been deprecated in favour of "%s".',
+                $previous,
+                $new,
+            ),
+            $version,
+            ...$args,
         );
     }
 

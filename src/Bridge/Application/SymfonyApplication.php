@@ -15,7 +15,10 @@ namespace Fidry\Console\Bridge\Application;
 
 use Fidry\Console\Application\Application;
 use Fidry\Console\Application\ConfigurableIO;
+use Fidry\Console\Bridge\Command\BasicSymfonyCommandFactory;
 use Fidry\Console\Bridge\CommandLoader\CommandLoaderFactory;
+use Fidry\Console\Bridge\CommandLoader\SymfonyFactoryCommandLoaderFactory;
+use Fidry\Console\Deprecation;
 use Fidry\Console\IO;
 use LogicException;
 use Symfony\Component\Console\Application as BaseSymfonyApplication;
@@ -33,12 +36,23 @@ final class SymfonyApplication extends BaseSymfonyApplication
 {
     public function __construct(
         private readonly Application $application,
-        CommandLoaderFactory $commandLoaderFactory,
+        ?CommandLoaderFactory $commandLoaderFactory = null,
     ) {
         parent::__construct(
             $application->getName(),
             $application->getVersion(),
         );
+
+        if (null === $commandLoaderFactory) {
+            $commandLoaderFactory = new SymfonyFactoryCommandLoaderFactory(
+                new BasicSymfonyCommandFactory(),
+            );
+
+            Deprecation::trigger(
+                'The parameter "$commandLoaderFactory" will be made non-nullable in future versions.',
+                '0.5',
+            );
+        }
 
         $this->setDefaultCommand($application->getDefaultCommand());
         $this->setAutoExit($application->isAutoExitEnabled());

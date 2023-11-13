@@ -28,6 +28,12 @@
                 "Fidry\\Console\\InputAssert::castThrowException"
             ]
         },
+        "Identical": {
+            "ignore": [
+                // This is purely for BC
+                "Fidry\\Console\\Bridge\\Application\\SymfonyApplication"
+            ]
+        },
         "IncrementInteger": {
             "ignore": [
                 "Fidry\\Console\\Output\\DecoratesOutput::writeln",
