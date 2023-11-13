@@ -49,6 +49,22 @@ final class CommandTesterTest extends TestCase
         );
     }
 
+    public function test_it_can_assert_the_output_via_the_app_tester_with_separate_outputs(): void
+    {
+        $this->commandTester->execute([], ['capture_stderr_separately' => true]);
+
+        OutputAssertions::assertSameSeparateOutputs(
+            <<<'EOT'
+
+                The project path is /home/runner/work/console/console.
+
+                EOT,
+            '',
+            ExitCode::SUCCESS,
+            $this->commandTester,
+        );
+    }
+
     public function test_it_can_assert_the_output_with_custom_normalization_via_the_app_tester(): void
     {
         $this->commandTester->execute([]);
@@ -65,6 +81,29 @@ final class CommandTesterTest extends TestCase
                 The project path is /path/to/console.
 
                 EOT,
+            ExitCode::SUCCESS,
+            $this->commandTester,
+            $extraNormalization,
+        );
+    }
+
+    public function test_it_can_assert_the_output_with_custom_normalization_via_the_app_tester_with_separate_outputs(): void
+    {
+        $this->commandTester->execute([], ['capture_stderr_separately' => true]);
+
+        $extraNormalization = static fn (string $display): string => str_replace(
+            '/home/runner/work/console/console',
+            '/path/to/console',
+            $display,
+        );
+
+        OutputAssertions::assertSameSeparateOutputs(
+            <<<'EOT'
+
+                The project path is /path/to/console.
+
+                EOT,
+            '',
             ExitCode::SUCCESS,
             $this->commandTester,
             $extraNormalization,
