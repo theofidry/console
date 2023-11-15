@@ -16,6 +16,7 @@ namespace Fidry\Console\Bridge\Command;
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\CommandAware;
 use Fidry\Console\Command\CommandRegistry;
+use Fidry\Console\Command\DecoratesSymfonyCommand;
 use Fidry\Console\Command\InitializableCommand;
 use Fidry\Console\Command\InteractiveCommand;
 use Fidry\Console\IO;
@@ -46,6 +47,12 @@ final class SymfonyCommand extends BaseSymfonyCommand
     public function setApplication(?Application $application = null): void
     {
         parent::setApplication($application);
+
+        $decoratedCommand = $this->command;
+
+        if ($decoratedCommand instanceof DecoratesSymfonyCommand) {
+            $decoratedCommand->getDecoratedCommand()->setApplication($application);
+        }
 
         if (null !== $application) {
             $this->commandRegistry = new CommandRegistry($application);
