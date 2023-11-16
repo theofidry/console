@@ -34,7 +34,8 @@ final class Configuration
         private readonly string $description,
         private readonly string $help,
         private readonly array $arguments = [],
-        private readonly array $options = []
+        private readonly array $options = [],
+        private readonly bool $hidden = false,
     ) {
     }
 
@@ -67,5 +68,10 @@ final class Configuration
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    public function isHidden(): bool
+    {
+        return $this->hidden;
     }
 }
