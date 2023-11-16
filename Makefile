@@ -48,7 +48,7 @@ dump:
 
 .PHONY: check
 check:  ## Runs all the checks
-check: clean cs autoreview infection
+check: cs autoreview infection
 
 
 .PHONY: autoreview
