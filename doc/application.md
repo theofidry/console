@@ -21,6 +21,7 @@ namespace App\Console;
 use App\Console\Command\CreateUserCommand;
 use Fidry\Console\Application\Application as FidryApplication;
 use Fidry\Console\Command\LazyCommandEnvelope;
+use Fidry\Console\Bridge\Command\ReversedSymfonyCommand;
 use function sprintf;
 
 final class Application implements FidryApplication
@@ -64,6 +65,10 @@ final class Application implements FidryApplication
             LazyCommandEnvelope::wrap(
                 CreateUserCommand::class,
                 static fn () => new CreateUserCommand(/*...*/),
+            ),
+            // A regular Symfony command
+            new ReversedSymfonyCommand(
+                new OriginalUpdateUserSymfonyCommand(),
             ),
         ];
     }
