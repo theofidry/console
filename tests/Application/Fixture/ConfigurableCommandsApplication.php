@@ -16,14 +16,15 @@ namespace Fidry\Console\Tests\Application\Fixture;
 use Closure;
 use Fidry\Console\Application\Application;
 use Fidry\Console\Command\Command;
+use function is_array;
 
 final class ConfigurableCommandsApplication implements Application
 {
     /**
-     * @param Closure(): Command[] $commandsFactory
+     * @param Command[]|Closure(): Command[] $commandsFactory
      */
     public function __construct(
-        private readonly Closure $commandsFactory
+        private readonly Closure|array $commandsFactory
     ) {
     }
 
@@ -44,6 +45,10 @@ final class ConfigurableCommandsApplication implements Application
 
     public function getCommands(): array
     {
+        if (is_array($this->commandsFactory)) {
+            return $this->commandsFactory;
+        }
+
         return ($this->commandsFactory)();
     }
 

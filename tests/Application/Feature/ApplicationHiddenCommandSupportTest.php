@@ -13,12 +13,13 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Application\Feature;
 
+use Fidry\Console\Application\Application;
 use Fidry\Console\Application\ApplicationRunner;
 use Fidry\Console\Bridge\Application\SymfonyApplication;
 use Fidry\Console\Bridge\Command\SymfonyCommand;
-use Fidry\Console\Command\Configuration;
-use Fidry\Console\Tests\Application\Fixture\SimpleApplication;
+use Fidry\Console\Tests\Application\Fixture\ConfigurableCommandsApplication;
 use Fidry\Console\Tests\Application\OutputAssertions;
+use Fidry\Console\Tests\Command\Fixture\HiddenCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\StringInput;
@@ -27,8 +28,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 #[CoversClass(ApplicationRunner::class)]
 #[CoversClass(SymfonyApplication::class)]
 #[CoversClass(SymfonyCommand::class)]
-#[CoversClass(Configuration::class)]
-final class ApplicationSimpleConfigSupportTest extends TestCase
+final class ApplicationHiddenCommandSupportTest extends TestCase
 {
     public function test_it_can_show_the_list_of_the_available_commands(): void
     {
@@ -36,7 +36,7 @@ final class ApplicationSimpleConfigSupportTest extends TestCase
         $output = new BufferedOutput();
 
         ApplicationRunner::runApplication(
-            new SimpleApplication(),
+            self::createApplication(),
             $input,
             $output,
         );
@@ -60,8 +60,6 @@ final class ApplicationSimpleConfigSupportTest extends TestCase
               completion  Dump the shell completion script
               help        Display help for a command
               list        List commands
-             app
-              app:foo     Description content
 
             EOT;
 
@@ -71,13 +69,13 @@ final class ApplicationSimpleConfigSupportTest extends TestCase
         );
     }
 
-    public function test_it_executes_the_default_command_by_default(): void
+    public function test_it_can_execute_the_hidden_command(): void
     {
-        $input = new StringInput('');
+        $input = new StringInput('app:hidden');
         $output = new BufferedOutput();
 
         ApplicationRunner::runApplication(
-            new SimpleApplication(),
+            self::createApplication(),
             $input,
             $output,
         );
@@ -85,31 +83,18 @@ final class ApplicationSimpleConfigSupportTest extends TestCase
         $actual = $output->fetch();
 
         OutputAssertions::assertSameOutput(
-            '',
+            <<<'EOF'
+                OK
+
+                EOF,
             $actual,
         );
     }
 
-    public function test_it_can_show_its_version(): void
+    private static function createApplication(): Application
     {
-        $input = new StringInput('--version');
-        $output = new BufferedOutput();
-
-        ApplicationRunner::runApplication(
-            new SimpleApplication(),
-            $input,
-            $output,
-        );
-
-        $actual = $output->fetch();
-        $expected = <<<'EOT'
-            1.0.0@60a94d3e
-
-            EOT;
-
-        OutputAssertions::assertSameOutput(
-            $expected,
-            $actual,
-        );
+        return new ConfigurableCommandsApplication([
+            new HiddenCommand(),
+        ]);
     }
 }
