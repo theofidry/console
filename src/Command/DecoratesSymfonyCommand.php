@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Command;
 
-use Fidry\Console\IO;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 interface DecoratesSymfonyCommand extends Command

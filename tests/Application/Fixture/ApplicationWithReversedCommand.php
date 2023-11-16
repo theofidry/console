@@ -13,11 +13,9 @@ declare(strict_types=1);
 
 namespace Fidry\Console\Tests\Application\Fixture;
 
-use Fidry\Console\Tests\Command\Fixture\SimpleSymfonyCommand;
-use Fidry\Console\Application\Application;
 use Fidry\Console\Application\BaseApplication;
 use Fidry\Console\Bridge\Command\ReversedSymfonyCommand;
-use Fidry\Console\Tests\Command\Fixture\SimpleCommand;
+use Fidry\Console\Tests\Command\Fixture\SimpleSymfonyCommand;
 
 final class ApplicationWithReversedCommand extends BaseApplication
 {
