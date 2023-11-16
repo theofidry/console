@@ -15,6 +15,7 @@ namespace Fidry\Console\Bridge\Command;
 
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\Configuration;
+use Fidry\Console\Command\DecoratesSymfonyCommand;
 use Fidry\Console\IO;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
@@ -23,13 +24,15 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
  *
  * @private
  */
-final class ReversedSymfonyCommand implements Command
+final class ReversedSymfonyCommand implements Command, DecoratesSymfonyCommand
 {
-    private SymfonyCommand $command;
-
-    public function __construct(SymfonyCommand $command)
+    public function __construct(private SymfonyCommand $command)
     {
-        $this->command = $command;
+    }
+
+    public function getDecoratedCommand(): SymfonyCommand
+    {
+        return $this->command;
     }
 
     public function getConfiguration(): Configuration
