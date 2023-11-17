@@ -15,6 +15,7 @@ namespace Fidry\Console\Application;
 
 use Fidry\Console\Command\Command;
 use Fidry\Console\Command\LazyCommandEnvelope;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 interface Application
 {
@@ -44,7 +45,7 @@ interface Application
      * Exhaustive list of the custom commands. A few more commands such as
      * the HelpCommand or ListCommand are also included besides those.
      *
-     * @return array<LazyCommandEnvelope|Command>
+     * @return array<LazyCommandEnvelope|Command|SymfonyCommand>
      */
     public function getCommands(): array;
 

@@ -15,12 +15,13 @@ namespace Fidry\Console\Bridge\CommandLoader;
 
 use Fidry\Console\Command\Command as FidryCommand;
 use Fidry\Console\Command\LazyCommandEnvelope;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 
 interface CommandLoaderFactory
 {
     /**
-     * @param array<LazyCommandEnvelope|FidryCommand> $commands
+     * @param array<LazyCommandEnvelope|FidryCommand|SymfonyCommand> $commands
      */
     public function createCommandLoader(array $commands): CommandLoaderInterface;
 }

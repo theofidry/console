@@ -17,8 +17,10 @@ use Fidry\Console\Bridge\Command\BasicSymfonyCommandFactory;
 use Fidry\Console\Bridge\CommandLoader\CommandLoaderFactory;
 use Fidry\Console\Bridge\CommandLoader\SymfonyFactoryCommandLoaderFactory;
 use Fidry\Console\Command\LazyCommandEnvelope;
+use Fidry\Console\Command\ReversedSymfonyCommand;
 use Fidry\Console\Tests\Command\Fixture\SimpleCommand;
 use Fidry\Console\Tests\Command\Fixture\SimpleLazyCommand;
+use Fidry\Console\Tests\Command\Fixture\SimpleSymfonyCommand;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -60,11 +62,17 @@ final class SymfonyFactoryCommandLoaderFactoryTest extends TestCase
                     SimpleLazyCommand::class,
                     static fn () => new SimpleLazyCommand(static function (): void {}),
                 ),
+                new ReversedSymfonyCommand(
+                    new SimpleSymfonyCommand('app:reversed-cmd'),
+                ),
+                new SimpleSymfonyCommand('app:original-cmd'),
             ],
             [
                 'app:foo',
                 'app:lazy:foo',
                 'app:lazy',
+                'app:reversed-cmd',
+                'app:original-cmd',
             ],
         ];
     }

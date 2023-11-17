@@ -19,9 +19,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class SimpleSymfonyCommand extends Command
 {
-    public function __construct()
+    public function __construct(?string $name = null)
     {
-        parent::__construct('symfony-cmd');
+        parent::__construct($name ?? 'symfony-cmd');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

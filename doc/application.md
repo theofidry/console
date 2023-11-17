@@ -66,10 +66,8 @@ final class Application implements FidryApplication
                 CreateUserCommand::class,
                 static fn () => new CreateUserCommand(/*...*/),
             ),
-            // A regular Symfony command
-            new ReversedSymfonyCommand(
-                new OriginalUpdateUserSymfonyCommand(),
-            ),
+            // A regular Symfony command: yes it just works!
+            new OriginalUpdateUserSymfonyCommand(),
         ];
     }
 
