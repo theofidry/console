@@ -65,7 +65,8 @@ final class SymfonyCommand extends BaseSymfonyCommand
 
         $this
             ->setDescription($configuration->getDescription())
-            ->setHelp($configuration->getHelp());
+            ->setHelp($configuration->getHelp())
+            ->setHidden($configuration->isHidden());
 
         $definition = $this->getDefinition();
 
