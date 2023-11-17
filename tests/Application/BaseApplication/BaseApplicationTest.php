@@ -45,6 +45,7 @@ final class BaseApplicationTest extends TestCase
         );
     }
 
+    /** @psalm-suppress InternalMethod */
     private static function getApplicationState(SymfonyNativeApplication $application): array
     {
         return [
