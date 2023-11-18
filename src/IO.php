@@ -294,4 +294,30 @@ final class IO implements InputInterface, OutputInterface, StyledOutput
             $name,
         );
     }
+
+    /**
+     * @param non-empty-string $name
+     */
+    public function getArgument(string $name): TypedInput
+    {
+        Deprecation::trigger(
+            '::getArgument() will be reverted to return the traditional Symfony argument raw value. Use ::getTypedArgument() instead.',
+            '0.6.0',
+        );
+
+        return $this->getTypedArgument($name);
+    }
+
+    /**
+     * @param non-empty-string $name
+     */
+    public function getOption(string $name): TypedInput
+    {
+        Deprecation::trigger(
+            '::getArgument() will be reverted to return the traditional Symfony argument raw value. Use ::getTypedArgument() instead.',
+            '0.6.0',
+        );
+
+        return $this->getTypedOption($name);
+    }
 }
