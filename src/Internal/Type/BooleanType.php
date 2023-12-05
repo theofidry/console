@@ -21,7 +21,7 @@ use Fidry\Console\Internal\InputAssert;
  */
 final class BooleanType implements ScalarType
 {
-    public function coerceValue(null|bool|string|array $value, string $label): bool
+    public function coerceValue(null|array|bool|string $value, string $label): bool
     {
         InputAssert::assertIsScalar($value, $label);
 

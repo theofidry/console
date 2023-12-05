@@ -24,7 +24,7 @@ final class ConfigurableCommandsApplication implements Application
      * @param Command[]|Closure(): Command[] $commandsFactory
      */
     public function __construct(
-        private readonly Closure|array $commandsFactory
+        private readonly array|Closure $commandsFactory
     ) {
     }
 

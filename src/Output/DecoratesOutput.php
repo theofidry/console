@@ -35,12 +35,12 @@ use function func_get_args;
  */
 trait DecoratesOutput
 {
-    public function write(string|iterable $messages, bool $newline = false, int $options = 0): void
+    public function write(iterable|string $messages, bool $newline = false, int $options = 0): void
     {
         $this->output->write(...func_get_args());
     }
 
-    public function writeln(string|iterable $messages, int $options = 0): void
+    public function writeln(iterable|string $messages, int $options = 0): void
     {
         $this->output->writeln(...func_get_args());
     }
