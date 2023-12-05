@@ -19,13 +19,7 @@ jobs:
                     - '8.2'
                 dependency: [ highest, lowest ]
                 symfony-version:
-                    - '5.4.*'
                     - '6.*.*'
-                exclude:
-                    - php: '8.0'
-                      symfony-version: '6.*.*'
-                    - php: '8.2'
-                      symfony-version: '5.4.*'
 
         steps:
             -   name: Check out repository code
