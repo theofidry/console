@@ -22,6 +22,7 @@ jobs:
                 symfony-version:
                     - 'unchanged'
                     - '6.*.*'
+                    - '7.*.*'
         steps:
             -   name: Check out repository code
                 uses: actions/checkout@v4
