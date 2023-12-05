@@ -847,7 +847,7 @@ final class IOTest extends TestCase
         $result = InstalledVersions::satisfies(
             new VersionParser(),
             'symfony/console',
-            '6.*',
+            '6.* || 7.*',
         );
 
         return $result;

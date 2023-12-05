@@ -118,4 +118,9 @@ trait DecoratesInput
     {
         $this->input->setInteractive(...func_get_args());
     }
+
+    public function __toString(): string
+    {
+        return $this->input->__toString();
+    }
 }
