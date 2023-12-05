@@ -69,7 +69,7 @@ final class ApplicationCommandsLazinessTest extends TestCase
     public function test_it_can_be_run(
         Input $input,
         Closure $commandsFactory,
-        Throwable|string $expectedOutput,
+        string|Throwable $expectedOutput,
     ): void {
         $output = new BufferedOutput();
         $application = new ConfigurableCommandsApplication($commandsFactory);

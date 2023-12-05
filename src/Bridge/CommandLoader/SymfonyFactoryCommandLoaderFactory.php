@@ -42,7 +42,7 @@ final class SymfonyFactoryCommandLoaderFactory implements CommandLoaderFactory
         return new FactoryCommandLoader($factories);
     }
 
-    private function createCommand(LazyCommandEnvelope|FidryCommand|SymfonyNativeCommand $commandOrCommandFactory): SymfonyNativeCommand
+    private function createCommand(FidryCommand|LazyCommandEnvelope|SymfonyNativeCommand $commandOrCommandFactory): SymfonyNativeCommand
     {
         if ($commandOrCommandFactory instanceof SymfonyNativeCommand) {
             return $commandOrCommandFactory;

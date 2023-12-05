@@ -34,7 +34,7 @@ final class BackedEnumType implements InputType
     ) {
     }
 
-    public function coerceValue(null|bool|string|array $value, string $label): BackedEnum
+    public function coerceValue(null|array|bool|string $value, string $label): BackedEnum
     {
         InputAssert::assertIsScalar($value, $label);
 

@@ -36,7 +36,7 @@ final class TypedInput
      * @psalm-suppress RedundantCondition
      */
     private function __construct(
-        private readonly null|bool|string|array $value,
+        private readonly null|array|bool|string $value,
         private readonly string $label,
     ) {
         Assert::stringNotEmpty($label);
@@ -198,7 +198,7 @@ final class TypedInput
     /**
      * @return null|bool|string|list<string>
      */
-    public function asRaw(?string $errorMessage = null): null|bool|string|array
+    public function asRaw(?string $errorMessage = null): null|array|bool|string
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\RawType::class,

@@ -33,7 +33,7 @@ interface StyledOutput extends StyleInterface
      * @return void
      */
     public function block(
-        string|array $messages,
+        array|string $messages,
         ?string $type = null,
         ?string $style = null,
         string $prefix = ' ',
@@ -46,14 +46,14 @@ interface StyledOutput extends StyleInterface
      *
      * @return void
      */
-    public function comment(string|array $message);
+    public function comment(array|string $message);
 
     /**
      * Formats an info message.
      *
      * @return void
      */
-    public function info(string|array $message);
+    public function info(array|string $message);
 
     /**
      * Formats a horizontal table.
@@ -72,7 +72,7 @@ interface StyledOutput extends StyleInterface
      *
      * @return void
      */
-    public function definitionList(string|array|TableSeparator ...$list);
+    public function definitionList(array|string|TableSeparator ...$list);
 
     /**
      * @see ProgressBar::iterate()

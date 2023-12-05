@@ -37,7 +37,7 @@ trait DecoratesStyledOutput
 {
     private StyledOutput $styledOutput;
 
-    public function block(string|array $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true): void
+    public function block(array|string $messages, ?string $type = null, ?string $style = null, string $prefix = ' ', bool $padding = false, bool $escape = true): void
     {
         $this->styledOutput->block(...func_get_args());
     }
@@ -57,42 +57,42 @@ trait DecoratesStyledOutput
         $this->styledOutput->listing(...func_get_args());
     }
 
-    public function text(string|array $message): void
+    public function text(array|string $message): void
     {
         $this->styledOutput->text(...func_get_args());
     }
 
-    public function comment(string|array $message): void
+    public function comment(array|string $message): void
     {
         $this->styledOutput->comment(...func_get_args());
     }
 
-    public function success(string|array $message): void
+    public function success(array|string $message): void
     {
         $this->styledOutput->success(...func_get_args());
     }
 
-    public function error(string|array $message): void
+    public function error(array|string $message): void
     {
         $this->styledOutput->error(...func_get_args());
     }
 
-    public function warning(string|array $message): void
+    public function warning(array|string $message): void
     {
         $this->styledOutput->warning(...func_get_args());
     }
 
-    public function note(string|array $message): void
+    public function note(array|string $message): void
     {
         $this->styledOutput->note(...func_get_args());
     }
 
-    public function info(string|array $message): void
+    public function info(array|string $message): void
     {
         $this->styledOutput->info(...func_get_args());
     }
 
-    public function caution(string|array $message): void
+    public function caution(array|string $message): void
     {
         $this->styledOutput->caution(...func_get_args());
     }
@@ -107,7 +107,7 @@ trait DecoratesStyledOutput
         $this->styledOutput->horizontalTable(...func_get_args());
     }
 
-    public function definitionList(string|array|TableSeparator ...$list): void
+    public function definitionList(array|string|TableSeparator ...$list): void
     {
         $this->styledOutput->definitionList(...func_get_args());
     }

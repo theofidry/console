@@ -89,7 +89,7 @@ final class InputAssert
      *
      * @psalm-assert scalar|null $value
      */
-    public static function assertIsScalar(null|bool|string|array $value, string $label): void
+    public static function assertIsScalar(null|array|bool|string $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value): void {
@@ -115,7 +115,7 @@ final class InputAssert
      *
      * @psalm-assert list<string> $value
      */
-    public static function assertIsList(null|bool|string|array $value, string $label): void
+    public static function assertIsList(null|array|bool|string $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value): void {
@@ -145,7 +145,7 @@ final class InputAssert
      *
      * @psalm-assert numeric $value
      */
-    public static function numericString(null|bool|string|array $value, string $label): void
+    public static function numericString(null|array|bool|string $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value, $label): void {
@@ -175,7 +175,7 @@ final class InputAssert
      *
      * @psalm-assert string $value
      */
-    public static function integerString(null|bool|string|array $value, string $label): void
+    public static function integerString(null|array|bool|string $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value, $label): void {
@@ -205,7 +205,7 @@ final class InputAssert
      *
      * @psalm-assert string $value
      */
-    public static function string(null|bool|string|array $value, string $label): void
+    public static function string(null|array|bool|string $value, string $label): void
     {
         self::castThrowException(
             static function () use ($value, $label): void {
@@ -238,7 +238,7 @@ final class InputAssert
     /**
      * @param ArgumentInput|OptionInput $value
      */
-    public static function castType(null|bool|string|array $value): string
+    public static function castType(null|array|bool|string $value): string
     {
         return var_export($value, true);
     }

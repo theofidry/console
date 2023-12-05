@@ -45,14 +45,14 @@ trait DecoratesInput
         return $this->input->getFirstArgument();
     }
 
-    public function hasParameterOption(string|array $values, bool $onlyParams = false): bool
+    public function hasParameterOption(array|string $values, bool $onlyParams = false): bool
     {
         return $this->input->hasParameterOption(...func_get_args());
     }
 
     public function getParameterOption(
-        string|array $values,
-        string|bool|int|float|array|null $default = false,
+        array|string $values,
+        null|array|bool|float|int|string $default = false,
         bool $onlyParams = false
     ): mixed {
         return $this->input->getParameterOption(...func_get_args());
