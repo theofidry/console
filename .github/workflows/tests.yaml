@@ -19,8 +19,8 @@ jobs:
                     - '8.2'
                 dependency: [ highest, lowest ]
                 symfony-version:
+                    - 'unchanged'
                     - '6.*.*'
-
         steps:
             -   name: Check out repository code
                 uses: actions/checkout@v4
@@ -29,25 +29,12 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: "${{ matrix.php }}"
-                    tools: composer
+                    tools: composer, flex
                     coverage: none
 
-            -   name: Configures the deprecations listener
-                if: matrix.symfony-version == '5.4.*'
-                run: echo "SYMFONY_DEPRECATIONS_HELPER=disabled=1" >> $GITHUB_ENV
-
-            -   name: Enforce the Symfony version used
-                if: ${{ matrix.symfony-version }}
-                run: composer config extra.symfony.require ${{ matrix.symfony-version }}
-
-            # See https://symfony.com/doc/current/bundles/best_practices.html#require-a-specific-symfony-version
-            # This is done despite having flex locally because locally the dependencies are already
-            # installed once. Here the local flex will not kick in yet because not installed yet.
-            -   name: Install Flex
-                if: ${{ matrix.symfony-version }}
-                run: |
-                    composer global config --no-plugins allow-plugins.symfony/flex true
-                    composer global require --no-progress --no-scripts --no-plugins symfony/flex
+            -   name: Configure the Symfony version
+                if: matrix.symfony != 'unchanged'
+                run: echo "SYMFONY_REQUIRE=${{ matrix.symfony }}" >> $GITHUB_ENV
 
             -   name: Install Composer dependencies
                 uses: ramsey/composer-install@v2
