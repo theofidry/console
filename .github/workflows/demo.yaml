@@ -1,4 +1,4 @@
-name: Tests
+name: Demo
 
 on:
     push:
@@ -17,12 +17,9 @@ jobs:
             matrix:
                 php:
                     - '8.2'
-                    - '8.3'
-                dependency: [ highest, lowest ]
+                dependency: [ highest ]
                 symfony-version:
                     - 'unchanged'
-                    - '6.*.*'
-                    - '7.*.*'
         steps:
             -   name: Check out repository code
                 uses: actions/checkout@v4
