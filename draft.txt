@@ -1,0 +1,37 @@
+Input + Output + SymfonyStyle
+
+$io->writeln()
+$io->error()
+
+$io->getErrorIO()->writeln()
+
+====
+
+In fine, stdout & stderr are just common, standard file descriptors. But in absolute, you could have
+other ones (is any PHP app doing that???)
+
+In a traditional app:
+
+my-app | smth <- this is the stdout piped
+
+so you want the stdout to be "consumable" to other apps.
+
+Ideally any debug info, styling & co should be to the **stderr**.
+
+Input {
+    args/options: static data
+    dynamic -> what is written to the stdin
+}
+
+```
+my-app | smth <- this is the stdout piped
+my-app > /dev/null <- show only stderr
+logger -> devrait écrire sur stderr
+
+my-app 2> &1 -> from PHP, you don't know there is a redirection
+
+can you handle more file descriptors in PHP?
+looks like you can, need to open a file descriptor file and provide a stream to it
+```
+
+
