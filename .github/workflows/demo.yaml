@@ -31,8 +31,10 @@ jobs:
                     tools: composer, flex
                     coverage: none
 
+            -   run: env
             -   run: echo $NO_COLOR
             -   run: echo 'NO_COLOR=' >> $GITHUB_ENV
+            -   run: env
             -   run: echo $NO_COLOR
             -   run: composer install
             -   run: vendor/bin/phpunit
