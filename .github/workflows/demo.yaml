@@ -9,7 +9,7 @@ on:
         - cron: "* 10 5 * *"
 
 env:
-    TERM: xterm
+    ANSICON: 1
 
 jobs:
     tests:
