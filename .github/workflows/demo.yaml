@@ -8,9 +8,6 @@ on:
         # Do not make it the first of the month and/or midnight since it is a very busy time
         - cron: "* 10 5 * *"
 
-env:
-    ANSICON: 1
-
 jobs:
     tests:
         runs-on: ubuntu-latest
@@ -34,5 +31,8 @@ jobs:
                     tools: composer, flex
                     coverage: none
 
+            -   run: echo $NO_COLOR
+            -   run: echo 'NO_COLOR=' >> $GITHUB_ENV
+            -   run: echo $NO_COLOR
             -   run: composer install
             -   run: vendor/bin/phpunit
