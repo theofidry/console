@@ -147,6 +147,7 @@ of the use case presented.
 - [zenstruck/console-extra](https://github.com/zenstruck/console-extra)
 - [zenstruck/console-test](https://github.com/zenstruck/console-test)
 - [webignition/symfony-console-typed-input](https://github.com/webignition/symfony-console-typed-input)
+- [webmozart-console](https://github.com/webmozart/console)
 
 
 ### Contributing
