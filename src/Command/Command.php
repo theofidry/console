@@ -27,5 +27,7 @@ interface Command
      *
      * @see ExitCode
      */
-    public function execute(IO $io): int;
+    public function execute(IO $ioStdout, IO $ioStderr): int;
+
+    $io->getErrorIo();
 }
