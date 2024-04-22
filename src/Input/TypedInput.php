@@ -36,7 +36,7 @@ final class TypedInput
      * @psalm-suppress RedundantCondition
      */
     private function __construct(
-        private readonly null|array|bool|string $value,
+        private readonly array|bool|string|null $value,
         private readonly string $label,
     ) {
         Assert::stringNotEmpty($label);
@@ -198,7 +198,7 @@ final class TypedInput
     /**
      * @return null|bool|string|list<string>
      */
-    public function asRaw(?string $errorMessage = null): null|array|bool|string
+    public function asRaw(?string $errorMessage = null): array|bool|string|null
     {
         $type = TypeFactory::createTypeFromClassNames([
             \Fidry\Console\Internal\Type\RawType::class,
@@ -241,7 +241,7 @@ final class TypedInput
     public function asNullableBoolean(?string $errorMessage = null): ?bool
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NullableType::class,
+            NullableType::class,
             \Fidry\Console\Internal\Type\BooleanType::class,
         ]);
 
@@ -336,7 +336,7 @@ final class TypedInput
     public function asNullableNatural(?string $errorMessage = null): ?int
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NullableType::class,
+            NullableType::class,
             \Fidry\Console\Internal\Type\NaturalType::class,
         ]);
 
@@ -431,7 +431,7 @@ final class TypedInput
     public function asNullablePositiveInteger(?string $errorMessage = null): ?int
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NullableType::class,
+            NullableType::class,
             \Fidry\Console\Internal\Type\PositiveIntegerType::class,
         ]);
 
@@ -520,7 +520,7 @@ final class TypedInput
     public function asNullableFloat(?string $errorMessage = null): ?float
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NullableType::class,
+            NullableType::class,
             \Fidry\Console\Internal\Type\FloatType::class,
         ]);
 
@@ -609,7 +609,7 @@ final class TypedInput
     public function asNullableString(?string $errorMessage = null): ?string
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NullableType::class,
+            NullableType::class,
             \Fidry\Console\Internal\Type\StringType::class,
         ]);
 
@@ -704,7 +704,7 @@ final class TypedInput
     public function asNullableNonEmptyString(?string $errorMessage = null): ?string
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NullableType::class,
+            NullableType::class,
             \Fidry\Console\Internal\Type\NonEmptyStringType::class,
         ]);
 
@@ -793,7 +793,7 @@ final class TypedInput
     public function asNullableUntrimmedString(?string $errorMessage = null): ?string
     {
         $type = TypeFactory::createTypeFromClassNames([
-            \Fidry\Console\Internal\Type\NullableType::class,
+            NullableType::class,
             \Fidry\Console\Internal\Type\UntrimmedStringType::class,
         ]);
 

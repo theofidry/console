@@ -23,7 +23,7 @@ use function trim;
  */
 final class NonEmptyStringType implements ScalarType
 {
-    public function coerceValue(null|array|bool|string $value, string $label): string
+    public function coerceValue(array|bool|string|null $value, string $label): string
     {
         InputAssert::string($value, $label);
 

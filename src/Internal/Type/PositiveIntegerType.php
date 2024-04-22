@@ -21,7 +21,7 @@ use Webmozart\Assert\Assert;
  */
 final class PositiveIntegerType implements ScalarType
 {
-    public function coerceValue(null|array|bool|string $value, string $label): int
+    public function coerceValue(array|bool|string|null $value, string $label): int
     {
         $intValue = (new NaturalType())->coerceValue($value, $label);
 

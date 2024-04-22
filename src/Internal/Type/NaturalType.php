@@ -25,7 +25,7 @@ use Webmozart\Assert\Assert;
  */
 final class NaturalType implements ScalarType
 {
-    public function coerceValue(null|array|bool|string $value, string $label): int
+    public function coerceValue(array|bool|string|null $value, string $label): int
     {
         InputAssert::integerString($value, $label);
 
