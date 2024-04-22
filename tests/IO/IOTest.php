@@ -273,6 +273,7 @@ final class IOTest extends TestCase
 
         self::assertInstanceOf(DummyLogger::class, $io->getLogger());   // Sanity check
         self::assertInstanceOf(DummyLogger::class, $newIO->getLogger());
+        self::assertInstanceOf(DummyLogger::class, $newIO->getErrorIO()->getLogger());
     }
 
     public function test_it_can_create_a_new_instance_with_a_new_output(): void
