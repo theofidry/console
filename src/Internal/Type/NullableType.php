@@ -32,7 +32,7 @@ final class NullableType implements InputType
         $this->innerType = $innerType;
     }
 
-    public function coerceValue(null|array|bool|string $value, string $label): mixed
+    public function coerceValue(array|bool|string|null $value, string $label): mixed
     {
         return null === $value
             ? $value

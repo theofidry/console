@@ -22,15 +22,15 @@ final class TypedInput
      */
     public function __construct(
         public readonly bool|TypeException $boolean,
-        public readonly null|bool|TypeException $nullableBoolean,
+        public readonly bool|TypeException|null $nullableBoolean,
         public readonly string|TypeException $string,
-        public readonly null|string|TypeException $nullableString,
+        public readonly string|TypeException|null $nullableString,
         public readonly array|TypeException $stringArray,
         public readonly int|TypeException $integer,
-        public readonly null|int|TypeException $nullableInteger,
+        public readonly int|TypeException|null $nullableInteger,
         public readonly array|TypeException $integerArray,
         public readonly float|TypeException $float,
-        public readonly null|float|TypeException $nullableFloat,
+        public readonly float|TypeException|null $nullableFloat,
         public readonly array|TypeException $floatArray,
     ) {
     }
@@ -38,13 +38,13 @@ final class TypedInput
     public static function createForScalar(
         TypeException $arrayToScalarTypeException,
         bool|TypeException $boolean,
-        null|bool|TypeException $nullableBoolean,
+        bool|TypeException|null $nullableBoolean,
         string|TypeException $string,
-        null|string|TypeException $nullableString,
+        string|TypeException|null $nullableString,
         int|TypeException $integer,
-        null|int|TypeException $nullableInteger,
+        int|TypeException|null $nullableInteger,
         float|TypeException $float,
-        null|float|TypeException $nullableFloat,
+        float|TypeException|null $nullableFloat,
     ): self {
         return new self(
             $boolean,

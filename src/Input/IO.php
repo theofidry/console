@@ -17,7 +17,7 @@ use Fidry\Console\Deprecation;
 use function class_alias;
 use function sprintf;
 
-$alias = \Fidry\Console\Input\IO::class;
+$alias = IO::class;
 $newClass = \Fidry\Console\IO::class;
 
 Deprecation::trigger(
