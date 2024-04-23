@@ -32,7 +32,7 @@ final class InvalidInputValueType extends ConsoleInvalidArgumentException
                 $exception->getMessage(),
                 $inputLabel,
             ),
-            (int) $exception->getCode(),
+            $exception->getCode(),
             $exception,
         );
     }
@@ -46,7 +46,7 @@ final class InvalidInputValueType extends ConsoleInvalidArgumentException
                 $errorMessage,
                 $exception->getMessage(),
             ),
-            (int) $exception->getCode(),
+            $exception->getCode(),
             $exception,
         );
     }

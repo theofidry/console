@@ -50,6 +50,9 @@ trait DecoratesOutput
         $this->output->setVerbosity(...func_get_args());
     }
 
+    /**
+     * @return OutputInterface::VERBOSITY_*
+     */
     public function getVerbosity(): int
     {
         return $this->output->getVerbosity(...func_get_args());

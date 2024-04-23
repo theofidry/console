@@ -25,18 +25,22 @@ use Webmozart\Assert\Assert;
  */
 final class NaturalType implements ScalarType
 {
+    /**
+     * @psalm-suppress MoreSpecificReturnType
+     */
     public function coerceValue(array|bool|string|null $value, string $label): int
     {
         InputAssert::integerString($value, $label);
 
         $intValue = (int) $value;
 
-        /** @psalm-suppress InvalidDocblock,MissingClosureReturnType */
+        /** @psalm-suppress MissingClosureReturnType */
         InputAssert::castThrowException(
             static fn () => Assert::natural($intValue),
             $label,
         );
 
+        /** @psalm-suppress LessSpecificReturnStatement */
         return (int) $value;
     }
 

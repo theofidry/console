@@ -21,6 +21,9 @@ use Webmozart\Assert\Assert;
  */
 final class PositiveIntegerType implements ScalarType
 {
+    /**
+     * @psalm-suppress InvalidReturnType,InvalidReturnStatement
+     */
     public function coerceValue(array|bool|string|null $value, string $label): int
     {
         $intValue = (new NaturalType())->coerceValue($value, $label);

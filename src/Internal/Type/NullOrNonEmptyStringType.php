@@ -22,7 +22,6 @@ final class NullOrNonEmptyStringType implements ScalarType
     {
         $trimmedValue = (new StringType())->coerceValue($value, $label);
 
-        /** @psalm-suppress InvalidReturnStatement */
         return '' === $trimmedValue ? null : $trimmedValue;
     }
 
