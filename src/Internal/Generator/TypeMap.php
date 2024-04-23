@@ -37,6 +37,11 @@ final class TypeMap
     {
     }
 
+    /**
+     * @psalm-suppress LessSpecificReturnStatement,MoreSpecificReturnType
+     *
+     * @return non-empty-list<InputType>
+     */
     public static function provideTypes(): array
     {
         $baseTypes = [

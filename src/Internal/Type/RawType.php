@@ -22,7 +22,6 @@ final class RawType implements InputType
 {
     public function coerceValue(array|bool|string|null $value, string $label): mixed
     {
-        /** @psalm-suppress NullableReturnStatement */
         return $value;
     }
 

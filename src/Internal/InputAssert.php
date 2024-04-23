@@ -223,7 +223,7 @@ final class InputAssert
     }
 
     /**
-     * @param callable(): void $callable
+     * @param callable():void  $callable
      * @param non-empty-string $label
      */
     public static function castThrowException(callable $callable, string $label): void

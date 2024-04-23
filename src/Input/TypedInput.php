@@ -32,8 +32,6 @@ final class TypedInput
     /**
      * @param ArgumentInput|OptionInput $value
      * @param non-empty-string          $label
-     *
-     * @psalm-suppress RedundantCondition
      */
     private function __construct(
         private readonly array|bool|string|null $value,
@@ -46,7 +44,6 @@ final class TypedInput
      * @param non-empty-string $name
      *
      * @psalm-assert ArgumentInput $argument
-     * @psalm-suppress ArgumentTypeCoercion
      */
     public static function fromArgument(mixed $argument, string $name): self
     {
@@ -65,7 +62,6 @@ final class TypedInput
      * @param non-empty-string $name
      *
      * @psalm-assert OptionInput $option
-     * @psalm-suppress ArgumentTypeCoercion
      */
     public static function fromOption(mixed $option, string $name): self
     {
@@ -104,8 +100,6 @@ final class TypedInput
     }
 
     /**
-     * @psalm-suppress MoreSpecificReturnType
-     *
      * @param positive-int|0 $min
      * @param positive-int|0 $max
      *
@@ -119,12 +113,10 @@ final class TypedInput
         $type = new NaturalRangeType($min, $max);
 
         if (null === $errorMessage) {
-            /** @psalm-suppress LessSpecificReturnStatement */
             return $type->coerceValue($this->value, $this->label);
         }
 
         try {
-            /** @psalm-suppress LessSpecificReturnStatement */
             return $type->coerceValue($this->value, $this->label);
         } catch (InvalidInputValueType $coercingFailed) {
             throw InvalidInputValueType::withErrorMessage(
@@ -135,6 +127,7 @@ final class TypedInput
     }
 
     /**
+     * @psalm-suppress InvalidReturnType, NoValue
      * @template T of BackedEnum
      *
      * @param class-string<T> $backedEnumClassName
@@ -162,7 +155,6 @@ final class TypedInput
     }
 
     /**
-     * @psalm-suppress InvalidReturnType
      * @template T of BackedEnum
      *
      * @param class-string<T> $backedEnumClassName
@@ -178,12 +170,10 @@ final class TypedInput
         );
 
         if (null === $errorMessage) {
-            /** @psalm-suppress InvalidReturnStatement */
             return $type->coerceValue($this->value, $this->label);
         }
 
         try {
-            /** @psalm-suppress InvalidReturnStatement */
             return $type->coerceValue($this->value, $this->label);
         } catch (InvalidInputValueType $coercingFailed) {
             throw InvalidInputValueType::withErrorMessage(
