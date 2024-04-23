@@ -30,7 +30,7 @@
         "ergebnis/composer-normalize": "^2.33",
         "fidry/makefile": "^0.2.1 || ^1.0.0",
         "infection/infection": "^0.28",
-        "phpunit/phpunit": "^10.2",
+        "phpunit/phpunit": "^10.2 || ^11.0",
         "symfony/dependency-injection": "^6.4",
         "symfony/flex": "^2.4.0",
         "symfony/framework-bundle": "^6.4",
