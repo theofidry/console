@@ -51,7 +51,7 @@ Key differences:
 ### Installation with Symfony
 
 ```
-$ composer require theofidry/console
+$ composer require fidry/console
 ```
 
 The Symfony Flex plugin should add the following:
