@@ -6,6 +6,7 @@
         strictBinaryOperands="true"
         ignoreInternalFunctionFalseReturn="false"
         ignoreInternalFunctionNullReturn="false"
+        findUnusedBaselineEntry="true"
         findUnusedVariablesAndParams="true"
         findUnusedCode="true"
         findUnusedPsalmSuppress="true"

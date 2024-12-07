@@ -57,6 +57,7 @@ final class AddConsoleCommandPass implements CompilerPassInterface
     ): Definition {
         $decoratedCommandDefinition = $containerBuilder->getDefinition($id);
 
+        /** @psalm-suppress ArgumentTypeCoercion */
         $commandTagAttributes = self::createCommandTagAttributes(
             $id,
             $decoratedCommandDefinition->getClass(),
