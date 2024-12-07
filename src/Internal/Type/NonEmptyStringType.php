@@ -15,8 +15,8 @@ namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\Input\InvalidInputValueType;
 use Fidry\Console\Internal\InputAssert;
+use function mb_trim;
 use function sprintf;
-use function trim;
 
 /**
  * @implements ScalarType<non-empty-string>
@@ -27,7 +27,7 @@ final class NonEmptyStringType implements ScalarType
     {
         InputAssert::string($value, $label);
 
-        $trimmedValue = trim($value);
+        $trimmedValue = mb_trim($value);
 
         if ('' === $trimmedValue) {
             throw new InvalidInputValueType(
