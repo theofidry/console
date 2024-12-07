@@ -52,7 +52,7 @@ trait DecoratesInput
 
     public function getParameterOption(
         array|string $values,
-        null|array|bool|float|int|string $default = false,
+        array|bool|float|int|string|null $default = false,
         bool $onlyParams = false
     ): mixed {
         return $this->input->getParameterOption(...func_get_args());

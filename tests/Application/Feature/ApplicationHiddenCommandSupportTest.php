@@ -30,6 +30,49 @@ use Symfony\Component\Console\Output\BufferedOutput;
 #[CoversClass(SymfonyCommand::class)]
 final class ApplicationHiddenCommandSupportTest extends TestCase
 {
+    private const EXPECTED_LIST_OUTPUT_64 = <<<'EOT'
+        help message
+
+        Usage:
+          command [options] [arguments]
+
+        Options:
+          -h, --help            Display help for the given command. When no command is given display help for the app:foo command
+          -q, --quiet           Do not output any message
+          -V, --version         Display this application version
+              --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
+          -n, --no-interaction  Do not ask any interactive question
+          -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+        Available commands:
+          completion  Dump the shell completion script
+          help        Display help for a command
+          list        List commands
+
+        EOT;
+
+    private const EXPECTED_LIST_OUTPUT_72_OR_HIGHER = <<<'EOT'
+        help message
+
+        Usage:
+          command [options] [arguments]
+
+        Options:
+          -h, --help            Display help for the given command. When no command is given display help for the app:foo command
+              --silent          Do not output any message
+          -q, --quiet           Only errors are displayed. All other output is suppressed
+          -V, --version         Display this application version
+              --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
+          -n, --no-interaction  Do not ask any interactive question
+          -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+        Available commands:
+          completion  Dump the shell completion script
+          help        Display help for a command
+          list        List commands
+
+        EOT;
+
     public function test_it_can_show_the_list_of_the_available_commands(): void
     {
         $input = new StringInput('list');
@@ -42,29 +85,9 @@ final class ApplicationHiddenCommandSupportTest extends TestCase
         );
 
         $actual = $output->fetch();
-        $expected = <<<'EOT'
-            help message
-
-            Usage:
-              command [options] [arguments]
-
-            Options:
-              -h, --help            Display help for the given command. When no command is given display help for the app:foo command
-              -q, --quiet           Do not output any message
-              -V, --version         Display this application version
-                  --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
-              -n, --no-interaction  Do not ask any interactive question
-              -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
-
-            Available commands:
-              completion  Dump the shell completion script
-              help        Display help for a command
-              list        List commands
-
-            EOT;
 
         OutputAssertions::assertSameOutput(
-            $expected,
+            self::getExpectedListOutput(),
             $actual,
         );
     }
@@ -96,5 +119,12 @@ final class ApplicationHiddenCommandSupportTest extends TestCase
         return new ConfigurableCommandsApplication([
             new HiddenCommand(),
         ]);
+    }
+
+    private static function getExpectedListOutput(): string
+    {
+        return SymfonyVersion::isSfConsole72OrHigher()
+            ? self::EXPECTED_LIST_OUTPUT_72_OR_HIGHER
+            : self::EXPECTED_LIST_OUTPUT_64;
     }
 }

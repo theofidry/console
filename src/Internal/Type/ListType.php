@@ -36,7 +36,7 @@ final class ListType implements InputType
         $this->innerType = $innerType;
     }
 
-    public function coerceValue(null|array|bool|string $value, string $label): array
+    public function coerceValue(array|bool|string|null $value, string $label): array
     {
         InputAssert::assertIsList($value, $label);
 
@@ -54,10 +54,8 @@ final class ListType implements InputType
         ];
     }
 
-    /** @psalm-suppress MoreSpecificReturnType */
     public function getPsalmTypeDeclaration(): string
     {
-        /** @psalm-suppress LessSpecificReturnStatement */
         return sprintf(
             'list<%s>',
             $this->innerType->getPsalmTypeDeclaration(),

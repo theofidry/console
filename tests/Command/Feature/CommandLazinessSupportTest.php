@@ -34,6 +34,7 @@ final class CommandLazinessSupportTest extends KernelTestCase
     {
         self::bootKernel();
 
+        /** @psalm-suppress PossiblyNullReference */
         $this->service = self::$kernel->getContainer()->get(StatefulService::class);
 
         $this->application = new Application(self::$kernel);
@@ -80,7 +81,6 @@ final class CommandLazinessSupportTest extends KernelTestCase
 
         $this->application->find('app:lazy')->getSynopsis();
 
-        /** @psalm-suppress DocblockTypeContradiction */
         self::assertTrue($this->service->called);
     }
 
@@ -94,7 +94,6 @@ final class CommandLazinessSupportTest extends KernelTestCase
 
         $tester->execute([], ['interactive' => false]);
 
-        /** @psalm-suppress DocblockTypeContradiction */
         self::assertTrue($this->service->called);
     }
 
@@ -113,7 +112,6 @@ final class CommandLazinessSupportTest extends KernelTestCase
 
         self::assertSame(ExitCode::SUCCESS, $exitCode);
 
-        /** @psalm-suppress DocblockTypeContradiction */
         self::assertTrue($this->service->called);
     }
 }

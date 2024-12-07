@@ -14,18 +14,18 @@ declare(strict_types=1);
 namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\Internal\InputAssert;
-use function trim;
+use function mb_trim;
 
 /**
  * @implements ScalarType<string>
  */
 final class StringType implements ScalarType
 {
-    public function coerceValue(null|array|bool|string $value, string $label): string
+    public function coerceValue(array|bool|string|null $value, string $label): string
     {
         InputAssert::string($value, $label);
 
-        return trim($value);
+        return mb_trim($value);
     }
 
     public function getTypeClassNames(): array

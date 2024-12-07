@@ -36,7 +36,10 @@ final class NonEmptyListType implements InputType
         $this->innerType = $innerType;
     }
 
-    public function coerceValue(null|array|bool|string $value, string $label): array
+    /**
+     * @psalm-suppress InvalidReturnType
+     */
+    public function coerceValue(array|bool|string|null $value, string $label): array
     {
         $list = (new ListType($this->innerType))->coerceValue($value, $label);
 
@@ -46,6 +49,7 @@ final class NonEmptyListType implements InputType
             $label,
         );
 
+        /** @psalm-suppress InvalidReturnStatement */
         return $list;
     }
 
@@ -57,10 +61,8 @@ final class NonEmptyListType implements InputType
         ];
     }
 
-    /** @psalm-suppress MoreSpecificReturnType */
     public function getPsalmTypeDeclaration(): string
     {
-        /** @psalm-suppress LessSpecificReturnStatement */
         return sprintf(
             'non-empty-list<%s>',
             $this->innerType->getPsalmTypeDeclaration(),

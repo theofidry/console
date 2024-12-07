@@ -15,19 +15,19 @@ namespace Fidry\Console\Internal\Type;
 
 use Fidry\Console\Input\InvalidInputValueType;
 use Fidry\Console\Internal\InputAssert;
+use function mb_trim;
 use function sprintf;
-use function trim;
 
 /**
  * @implements ScalarType<non-empty-string>
  */
 final class NonEmptyStringType implements ScalarType
 {
-    public function coerceValue(null|array|bool|string $value, string $label): string
+    public function coerceValue(array|bool|string|null $value, string $label): string
     {
         InputAssert::string($value, $label);
 
-        $trimmedValue = trim($value);
+        $trimmedValue = mb_trim($value);
 
         if ('' === $trimmedValue) {
             throw new InvalidInputValueType(

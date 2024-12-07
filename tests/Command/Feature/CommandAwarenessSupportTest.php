@@ -47,7 +47,6 @@ final class CommandAwarenessSupportTest extends KernelTestCase
 
         $this->tester->execute([], ['interactive' => false]);
 
-        /** @psalm-suppress DocblockTypeContradiction */
         self::assertTrue($this->service->called);
     }
 }

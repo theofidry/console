@@ -37,6 +37,9 @@ final class TypedInputTest extends TestCase
 {
     private const ARGUMENT_NAME = 'arg';
 
+    /**
+     * @psalm-suppress ArgumentTypeCoercion
+     */
     #[DataProvider('choiceListArgumentProvider')]
     public function test_it_get_the_argument_value_as_a_choice_list(
         InputArgument $inputArgument,

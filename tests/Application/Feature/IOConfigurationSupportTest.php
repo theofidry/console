@@ -42,7 +42,6 @@ final class IOConfigurationSupportTest extends TestCase
             new NullOutput(),
         );
 
-        /** @psalm-suppress DocblockTypeContradiction */
         self::assertTrue($service->called);
     }
 
