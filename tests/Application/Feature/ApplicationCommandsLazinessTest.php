@@ -39,7 +39,7 @@ use Throwable;
 #[CoversClass(SymfonyApplication::class)]
 final class ApplicationCommandsLazinessTest extends TestCase
 {
-    private const EXPECTED = <<<'EOT'
+    private const EXPECTED_LIST_OUTPUT_64 = <<<'EOT'
         help message
 
         Usage:
@@ -48,6 +48,30 @@ final class ApplicationCommandsLazinessTest extends TestCase
         Options:
           -h, --help            Display help for the given command. When no command is given display help for the app:foo command
           -q, --quiet           Do not output any message
+          -V, --version         Display this application version
+              --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
+          -n, --no-interaction  Do not ask any interactive question
+          -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+        Available commands:
+          completion    Dump the shell completion script
+          help          Display help for a command
+          list          List commands
+         app
+          app:lazy-foo  Lazy foo description
+
+        EOT;
+
+    private const EXPECTED_LIST_OUTPUT_72_OR_HIGHER = <<<'EOT'
+        help message
+
+        Usage:
+          command [options] [arguments]
+
+        Options:
+          -h, --help            Display help for the given command. When no command is given display help for the app:foo command
+              --silent          Do not output any message
+          -q, --quiet           Only errors are displayed. All other output is suppressed
           -V, --version         Display this application version
               --ansi|--no-ansi  Force (or disable --no-ansi) ANSI output
           -n, --no-interaction  Do not ask any interactive question
@@ -120,7 +144,7 @@ final class ApplicationCommandsLazinessTest extends TestCase
                     static fn () => new FakeCommand(),
                 ),
             ],
-            self::EXPECTED,
+            self::getExpectedListOutput(),
         ];
 
         // A LazyCommand by itself is not lazy
@@ -175,5 +199,12 @@ final class ApplicationCommandsLazinessTest extends TestCase
             $expected->getMessage(),
             $actual->getMessage(),
         );
+    }
+
+    private static function getExpectedListOutput(): string
+    {
+        return SymfonyVersion::isSfConsole72OrHigher()
+            ? self::EXPECTED_LIST_OUTPUT_72_OR_HIGHER
+            : self::EXPECTED_LIST_OUTPUT_64;
     }
 }

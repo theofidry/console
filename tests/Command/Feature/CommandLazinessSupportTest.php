@@ -34,6 +34,7 @@ final class CommandLazinessSupportTest extends KernelTestCase
     {
         self::bootKernel();
 
+        /** @psalm-suppress PossiblyNullReference */
         $this->service = self::$kernel->getContainer()->get(StatefulService::class);
 
         $this->application = new Application(self::$kernel);
