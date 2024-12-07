@@ -16,6 +16,7 @@ namespace Fidry\Console\Tests\IO;
 use Closure;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
+use Stringable;
 use Symfony\Component\Console\Output\OutputInterface;
 use function func_get_args;
 
@@ -34,7 +35,7 @@ final class DummyLogger implements LoggerInterface
         return static fn (OutputInterface $output): LoggerInterface => new self();
     }
 
-    public function log($level, $message, array $context = []): void
+    public function log(mixed $level, string|Stringable $message, array $context = []): void
     {
         $this->records[] = func_get_args();
     }
