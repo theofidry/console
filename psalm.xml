@@ -36,6 +36,12 @@
                 <file name="src/Bridge/Application/SymfonyApplication.php"/>
             </errorLevel>
         </DuplicateArrayKey>
+        
+        <DuplicateClass>
+            <errorLevel type="suppress">
+                <file name="tests/IO/DummyLogger.php"/>
+            </errorLevel>
+        </DuplicateClass>
 
         <InvalidReturnType>
             <errorLevel type="suppress">
@@ -62,6 +68,12 @@
         </MoreSpecificImplementedParamType>
 
         <PossiblyUnusedMethod errorLevel="suppress"/>
+
+        <PossiblyUnusedProperty>
+            <errorLevel type="suppress">
+                <file name="tests/IO/DummyLogger.php"/>
+            </errorLevel>
+        </PossiblyUnusedProperty>
 
         <UndefinedClass>
             <errorLevel type="suppress">
