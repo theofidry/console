@@ -26,7 +26,7 @@ jobs:
                     - '7.*.*'
         steps:
             -   name: Check out repository code
-                uses: actions/checkout@v4
+                uses: actions/checkout@v7
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
@@ -40,7 +40,7 @@ jobs:
                 run: echo "SYMFONY_REQUIRE=${{ matrix.symfony }}" >> $GITHUB_ENV
 
             -   name: Install Composer dependencies
-                uses: ramsey/composer-install@v3
+                uses: ramsey/composer-install@v4
                 with:
                     dependency-versions: ${{ matrix.dependency }}
 
@@ -51,7 +51,7 @@ jobs:
         name: Infection
         steps:
             -   name: Check out repository code
-                uses: actions/checkout@v4
+                uses: actions/checkout@v7
 
             -   name: Setup PHP"
                 uses: shivammathur/setup-php@v2
@@ -61,7 +61,7 @@ jobs:
                     coverage: pcov
 
             -   name: Install Composer dependencies
-                uses: ramsey/composer-install@v3
+                uses: ramsey/composer-install@v4
 
             -   run: make infection
 
